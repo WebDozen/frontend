@@ -1,6 +1,11 @@
 @import url("./vendor/fonts/fonts.scss");
 
 :root {
+  --font-family-system: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, sans-serif;
+  --font-family-styrene: "Styrene UI", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Helvetica, sans-serif;
+
   --gap-3xs: 2px;
   --gap-2xs: 4px;
   --gap-xs: 8px;
@@ -15,18 +20,25 @@
   --gap-6xl: 72px;
   --gap-7xl: 96px;
   --gap-8xl: 128px;
+  --gap-3xs-neg: -2px;
+  --gap-2xs-neg: -4px;
+  --gap-xs-neg: -8px;
+  --gap-s-neg: -12px;
+  --gap-m-neg: -16px;
+  --gap-l-neg: -20px;
+  --gap-xl-neg: -24px;
+  --gap-2xl-neg: -32px;
+  --gap-3xl-neg: -40px;
+  --gap-4xl-neg: -48px;
+  --gap-5xl-neg: -64px;
+  --gap-6xl-neg: -72px;
+  --gap-7xl-neg: -96px;
+  --gap-8xl-neg: -128px;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font-family-styrene);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
