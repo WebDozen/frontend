@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home"
 const App = () => {
   return (
     <Routes>
+      {/* 1 уроверь */}
       <Route
         path="/"
         element={
@@ -15,6 +16,7 @@ const App = () => {
           </>
         }
       >
+        {/* 2 уроверь */}
         <Route
           index
           element={
@@ -23,7 +25,9 @@ const App = () => {
             </div>
           }
         />
+
         <Route path="/employee/:id" element={<div>Картчока сотрудника</div>} />
+        
       </Route>
     </Routes>
   )
