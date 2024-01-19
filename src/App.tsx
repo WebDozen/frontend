@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import style from "./App.module.scss"
-import Home from "./pages/Home/Home"
+import Home from "./pages/EmployeePage/EmployeePage"
 
 const App = () => {
   return (
@@ -27,7 +27,6 @@ const App = () => {
         />
 
         <Route path="/employee/:id" element={<div>Картчока сотрудника</div>} />
-        
       </Route>
     </Routes>
   )
