@@ -19,8 +19,8 @@ const DPDList = () => {
   }))
 
   return (
-    <div style={{ height: "300px" }} className={styles.table}>
-      <Table stickyHeader>
+    <div className={styles.table}>
+      <Table>
         <Table.THead>
           <Table.THeadCell title="НАЗВАНИЕ ИПР" width={484}>
             НАЗВАНИЕ ИПР

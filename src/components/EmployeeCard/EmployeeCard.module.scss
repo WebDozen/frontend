@@ -100,3 +100,9 @@
   padding-left: var(--gap---xl, 16px);
   align-items: flex-start;
 }
+
+.divider {
+  width: 1px;
+  height: 64px;
+  background-color: #090c2547;
+}
