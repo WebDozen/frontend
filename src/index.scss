@@ -2,8 +2,6 @@
 @import url("./vendor/fonts/fonts.scss");
 
 :root {
-  --font-family-system: system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Helvetica, sans-serif;
   --font-family-styrene: "Styrene UI", system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Helvetica, sans-serif;
 
@@ -40,6 +38,7 @@
 body {
   margin: 0;
   font-family: var(--font-family-styrene);
+  font-feature-settings: "ss01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
