@@ -1,0 +1,87 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-3xl) + var(--gap-2xs));
+}
+
+.box {
+  display: flex;
+  gap: var(--gap-m);
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 176px;
+  height: 40px;
+  background-color: var(--neutral-translucent-300, rgba(15, 25, 55, 0.1));
+  border: none;
+  border-radius: 8px;
+}
+
+.loupe {
+  width: 24px;
+  height: 24px;
+  background-image: url(../../images/loupe.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 0 0 12px;
+}
+
+.bell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #0f19371a;
+}
+
+.avatar {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.input {
+  width: 126px;
+  height: 24px;
+  padding: 0;
+  margin-left: 36px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: "SF Pro Text";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #0e0e0e;
+}
+
+.logo__link {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background-image: url(../../images/logo.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
