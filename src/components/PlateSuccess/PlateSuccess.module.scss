@@ -1,0 +1,51 @@
+.plateBlock {
+  display: flex;
+  padding: 12px;
+  align-items: flex-start;
+  border-radius: 12px;
+  border: 1px solid var(--status-positive, #0cc44d);
+  background: var(--status-muted-positive, #dff8e5);
+  margin-bottom: var(--gap---2xl, 32px);
+  position: relative;
+}
+
+.iconGreenDone {
+  padding: var(--gap---2xs, 4px);
+  padding-right: var(--gap---xs, 8px);
+}
+
+.textTitle {
+  margin: 0;
+  padding: var(--gap---2xs, 4px);
+  color: var(--text-primary, #0e0e0e);
+  font-family: "SF Pro Display";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.textMotivation {
+  margin: 0;
+  padding: var(--gap---2xs, 4px);
+  color: var(--text-primary, #0e0e0e);
+  font-family: "SF Pro Text";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.iconClose {
+  background-color: var(--status-muted-positive, #dff8e5);
+  border-style: none;
+  position: absolute;
+  padding: 0;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.iconClose:hover {
+  opacity: 0.6;
+}

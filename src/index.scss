@@ -1,6 +1,7 @@
 @import url("./vendor/normalize.scss");
 @import url("./vendor/fonts/fonts.scss");
 
+
 :root {
   --font-family-system: system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Helvetica, sans-serif;
@@ -44,12 +45,13 @@
 body {
   font-family: var(--font-family-styrene);
   word-wrap: break-word;
+  font-feature-settings: "ss01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "liga" 0;
 }
 
 * {
   box-sizing: border-box;
   // outline: 1px solid pink;
 }
+

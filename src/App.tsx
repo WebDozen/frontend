@@ -1,32 +1,33 @@
 import { Outlet, Route, Routes } from "react-router-dom"
-import style from "./App.module.scss"
-import appStyle from "./App.module.scss"
+import EmployeePage from "./pages/EmployeePage/EmployeePage"
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
 import ManagerPage from "./pages/manager-page/ManagerPage"
+import Head from "./components/Head/Head"
+import style from "./App.module.scss"
 
 const App = () => {
   return (
-    <div className={appStyle.app}>
+    <div className={style.app}>
       <Routes>
         {/* 1 уроверь */}
         <Route
           path="/"
           element={
             <>
-              <header className={style.header}>Привет</header>
+              <Header />
               <div className={style.main}>
+                <Head />
                 <Outlet />
               </div>
-              <footer className="footer">Пока</footer>
+              <Footer />
             </>
           }
         >
           {/* 2 уроверь */}
           <Route index element={<ManagerPage />} />
 
-          <Route
-            path="/employee/:id"
-            element={<div>Картчока сотрудника</div>}
-          />
+          <Route path="/employee/:id" element={<EmployeePage />} />
         </Route>
       </Routes>
     </div>
