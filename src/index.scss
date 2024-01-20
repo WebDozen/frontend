@@ -1,3 +1,4 @@
+@import url("./vendor/normalize.css");
 @import url("./vendor/fonts/fonts.scss");
 
 :root {
@@ -5,6 +6,10 @@
     "Helvetica Neue", Helvetica, sans-serif;
   --font-family-styrene: "Styrene UI", system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Helvetica, sans-serif;
+
+  --white: #fff;
+  --text-primary: #0e0e0e;
+  --neutral-translucent-100: rgba(38, 55, 88, 0.06);
 
   --gap-3xs: 2px;
   --gap-2xs: 4px;
@@ -37,8 +42,14 @@
 }
 
 body {
-  margin: 0;
   font-family: var(--font-family-styrene);
+  word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga" 0;
+}
+
+* {
+  box-sizing: border-box;
+  // outline: 1px solid pink;
 }
