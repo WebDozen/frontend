@@ -31,6 +31,7 @@ const Head = () => {
       <Typography.TitleResponsive font="styrene" view="small" tag="h1">
         Главная страница
       </Typography.TitleResponsive>
+      <Gap size="3xl" />
     </GenericWrapper>
   )
 }
