@@ -1,6 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import style from "./App.module.scss"
-// import Home from "./pages/Home/Home"
 import appStyle from "./App.module.scss"
 import ManagerPage from "./pages/manager-page/ManagerPage"
 
