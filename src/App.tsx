@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import style from "./App.module.scss"
 import { Gap } from '@alfalab/core-components/gap';
-import Home from "./pages/Home/Home"
+import Home from "./pages/EmployeePage/EmployeePage"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 
@@ -31,7 +31,7 @@ const App = () => {
         />
 
         <Route path="/employee/:id" element={<div>Картчока сотрудника</div>} />
-
+        
       </Route>
     </Routes>
   )
