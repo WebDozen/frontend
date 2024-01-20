@@ -65,7 +65,11 @@ const DPDList = () => {
                       <Status view="soft" color={"green"} key={"green"}>
                         ВЫПОЛНЕН
                       </Status>
-                      <img src={chevron} alt="шеврон вправо" className={styles.chevron}/>
+                      <img
+                        src={chevron}
+                        alt="шеврон вправо"
+                        className={styles.chevron}
+                      />
                     </>
                   }
                 </div>
