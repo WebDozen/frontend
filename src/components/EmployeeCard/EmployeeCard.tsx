@@ -7,11 +7,8 @@ import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBa
 interface CardProps {
   activeIPRs: boolean
 }
-export default function EmployeeCard({ activeIPRs }: CardProps) {
-  // const [activeIPRs, setActiveIPRs] = useState(false);
-  //const [activeIPR, setActiveIPR] = useState(true);
-  console.log(activeIPRs)
 
+export default function EmployeeCard({ activeIPRs }: CardProps) {
   return (
     <div className={style.employeeCard}>
       <div className={style.info}>
