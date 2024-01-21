@@ -1,9 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import style from "./App.module.scss"
-import { Gap } from '@alfalab/core-components/gap';
+import { Gap, Header, Footer } from './components';
 import Home from "./pages/Home/Home"
-import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer"
 
 const App = () => {
   return (
