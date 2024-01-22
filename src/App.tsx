@@ -1,10 +1,10 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import EmployeePage from "./pages/EmployeePage/EmployeePage"
-import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer"
+
 import ManagerPage from "./pages/manager-page/ManagerPage"
 import Head from "./components/Head/Head"
 import style from "./App.module.scss"
+import { Header, Footer } from "./components"
 
 const App = () => {
   return (
