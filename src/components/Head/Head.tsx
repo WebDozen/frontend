@@ -6,14 +6,14 @@ import { GenericWrapper } from "@alfalab/core-components/generic-wrapper"
 import { Circle } from "@alfalab/core-components/icon-view/circle"
 import { Gap } from "@alfalab/core-components/gap"
 import { Typography } from "@alfalab/core-components/typography"
-import { Link } from "react-router-dom"
+import { Link } from "@alfalab/core-components/link"
 
 import style from "./Head.module.scss"
 
 const Head = () => {
   return (
     <GenericWrapper column={true} className={style.container}>
-      <Link to="/" className={style.linkBack}>
+      <Link href="/" className={style.linkBack}>
         <Circle
           size={32}
           mainSize={24}
