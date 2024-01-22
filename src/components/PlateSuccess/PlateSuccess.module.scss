@@ -41,9 +41,10 @@
   border-style: none;
   position: absolute;
   padding: 0;
-  top: 0px;
-  right: 0px;
+  top: var(--gap---s, 12px);
+  right: var(--gap---s, 12px);
   cursor: pointer;
+  border-radius: 12px;
 }
 
 .iconClose:hover {

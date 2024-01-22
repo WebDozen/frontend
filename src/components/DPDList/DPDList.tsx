@@ -2,6 +2,7 @@ import { Table } from "@alfalab/core-components/table"
 import { Typography } from "@alfalab/core-components/typography"
 import { Space } from "@alfalab/core-components/space"
 import mentorIcon from "../../images/personalManagerIcon.svg"
+import znak from "../../images/znak.svg"
 import { Status } from "@alfalab/core-components/status"
 import chevron from "../../images/chevron-left-shift-right_s.svg"
 import styles from "./DPDList.module.scss"
@@ -20,7 +21,7 @@ const DPDList = () => {
 
   return (
     <div className={styles.table}>
-      <Table>
+      <Table >
         <Table.THead>
           <Table.THeadCell title="НАЗВАНИЕ ИПР" width={484}>
             НАЗВАНИЕ ИПР
@@ -56,15 +57,46 @@ const DPDList = () => {
 
               <Table.TCell>
                 <img src={mentorIcon} alt="Иконка ментора" />
+                {row.id === 6 && (
+                  <img src={znak} alt="Иконка восклицательного знака" />
+                )}
               </Table.TCell>
 
               <Table.TCell>
                 <div className={styles.statusBlock}>
                   {
                     <>
-                      <Status view="soft" color={"green"} key={"green"}>
-                        ВЫПОЛНЕН
-                      </Status>
+                      {" "}
+                      {(row.id === 1 || row.id > 6) && (
+                        <Status view="soft" color={"green"} key={"green"}>
+                          ВЫПОЛНЕН
+                        </Status>
+                      )}
+                      {row.id === 2 && (
+                        <Status view="soft" color={"blue"} key={"blue"}>
+                          В РАБОТЕ
+                        </Status>
+                      )}
+                      {row.id === 3 && (
+                        <Status view="soft" color={"grey"} key={"grey"}>
+                          ОТМЕНЕН
+                        </Status>
+                      )}
+                      {row.id === 4 && (
+                        <Status view="soft" color={"orange"} key={"orange"}>
+                          НА РЕВЬЮ
+                        </Status>
+                      )}
+                      {row.id === 5 && (
+                        <Status view="soft" color={"red"} key={"red"}>
+                          ПРОСРОЧЕН
+                        </Status>
+                      )}
+                      {row.id === 6 && (
+                        <Status view="soft" color={"teal"} key={"teal"}>
+                          ОТКРЫТ
+                        </Status>
+                      )}
                       <img
                         src={chevron}
                         alt="шеврон вправо"
