@@ -1,0 +1,20 @@
+.container {
+  width: max-content;
+}
+
+.linkBack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px; /* 150% */
+  text-decoration: none;
+  &:hover {
+    opacity: 0.6;
+  }
+}

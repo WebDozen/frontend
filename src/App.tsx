@@ -1,37 +1,36 @@
 import { Outlet, Route, Routes } from "react-router-dom"
+import EmployeePage from "./pages/EmployeePage/EmployeePage"
+
+import ManagerPage from "./pages/manager-page/ManagerPage"
+import Head from "./components/Head/Head"
 import style from "./App.module.scss"
-import { Gap, Header, Footer } from './components';
-import Home from "./pages/Home/Home"
+import { Header, Footer } from "./components"
 
 const App = () => {
   return (
-    <Routes>
-      {/* 1 уроверь */}
-      <Route
-        path="/"
-        element={
-          <>
-            <Header />
-            <Gap size='5xl' />
-            <Outlet />
-            <Footer />
-          </>
-        }
-      >
-        {/* 2 уроверь */}
+    <div className={style.app}>
+      <Routes>
+        {/* 1 уроверь */}
         <Route
-          index
+          path="/"
           element={
-            <div className={style.App}>
-              <Home />
-            </div>
+            <>
+              <Header />
+              <div className={style.main}>
+                <Head />
+                <Outlet />
+              </div>
+              <Footer />
+            </>
           }
-        />
+        >
+          {/* 2 уроверь */}
+          <Route index element={<ManagerPage />} />
 
-        <Route path="/employee/:id" element={<div>Картчока сотрудника</div>} />
-
-      </Route>
-    </Routes>
+          <Route path="/employee/:id" element={<EmployeePage />} />
+        </Route>
+      </Routes>
+    </div>
   )
 }
 
