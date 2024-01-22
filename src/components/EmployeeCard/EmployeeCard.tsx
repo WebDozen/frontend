@@ -28,7 +28,7 @@ export default function EmployeeCard({ activeIPRs }: CardProps) {
               </p>
             </div>
           </div>
-          <div className={style.divider}></div>
+          <div className={style.dividerCustom}></div>
           <div className={style.infoPDP}>
             <h5 className={style.infoPDPAmount}>2 ИПР</h5>
             <p className={style.infoPDPDoneStatus}>Выполнено</p>
