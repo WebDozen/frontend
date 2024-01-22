@@ -1,6 +1,6 @@
-import { ProgressBar } from "@alfalab/core-components/progress-bar"
+import { ProgressBar, Space } from ".."
+
 import styleStatus from "./InfoProgressStatusBar.module.scss"
-import { Space } from "@alfalab/core-components/space"
 
 export default function InfoProgressStatusBar() {
   return (
