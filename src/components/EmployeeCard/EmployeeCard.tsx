@@ -1,8 +1,14 @@
+import { useState } from "react"
 import style from "./EmployeeCard.module.scss"
 import avatar from "../../images/employeeAvatar.png"
-import iconCalendar from "../../images/iconCalendar.svg"
+import InfoProgressNoPDP from "../InfoProgressNoPDP/InfoProgressNoPDP"
+import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBar"
 
-export default function EmployeeCard() {
+interface CardProps {
+  activeIPRs: boolean
+}
+
+export default function EmployeeCard({ activeIPRs }: CardProps) {
   return (
     <div className={style.employeeCard}>
       <div className={style.info}>
@@ -22,21 +28,15 @@ export default function EmployeeCard() {
               </p>
             </div>
           </div>
-          <div className={style.divider}></div>
+          <div className={style.dividerCustom}></div>
           <div className={style.infoPDP}>
             <h5 className={style.infoPDPAmount}>2 ИПР</h5>
             <p className={style.infoPDPDoneStatus}>Выполнено</p>
           </div>
         </div>
       </div>
-      <div className={style.infoProgress}>
-        <img
-          className={style.infoProgressIcon}
-          src={iconCalendar}
-          alt="Иконка прогресса"
-        />
-        <p className={style.infoProgressStatus}>Нет активных ИПР</p>
-      </div>
+      {!activeIPRs && <InfoProgressNoPDP />}
+      {activeIPRs && <InfoProgressStatusBar />}
     </div>
   )
 }

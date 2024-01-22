@@ -13,15 +13,17 @@ import style from "./Head.module.scss"
 const Head = () => {
   return (
     <GenericWrapper column={true} className={style.container}>
-      <Link href="/" className={style.linkBack}>
-        <Circle
-          size={32}
-          mainSize={24}
-          children={<ArrowBackMIcon color="black" />}
-        />
-        <Gap size={"2xs"} direction="horizontal" />
-        Кнопка
-      </Link>
+      <GenericWrapper>
+        <Link href="/" className={style.linkBack}>
+          <Circle
+            size={32}
+            mainSize={24}
+            children={<ArrowBackMIcon color="black" />}
+          />
+          <Gap size={"2xs"} direction="horizontal" />
+          Кнопка
+        </Link>
+      </GenericWrapper>
       <Gap size={"2xl"} />
       <Typography.Title font="styrene" view="large" tag="h1">
         Индивидуальный план развития

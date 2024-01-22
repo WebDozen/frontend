@@ -33,16 +33,6 @@
   justify-content: flex-start;
 }
 
-.infoProgress {
-  @extend %flex;
-  gap: var(--gap---s, 12px);
-  background-color: #2637580f;
-  padding: var(--gap---2xl, 32px);
-  width: 496px;
-  justify-content: center;
-  border-radius: var(--gap---s, 12px);
-}
-
 .infoEmployee {
   @extend %flex;
   gap: var(--gap---m, 16px);
@@ -76,8 +66,7 @@
 }
 
 .infoDescriptionGrade,
-.infoPDPDoneStatus,
-.infoProgressStatus {
+.infoPDPDoneStatus {
   margin: 0;
   padding: 0;
   color: var(--text-secondary, var(--text-secondary, rgba(4, 4, 19, 0.55)));
@@ -90,18 +79,13 @@
   align-items: flex-start;
 }
 
-.infoProgressIcon {
-  width: var(--gap---4xl, 48px);
-  height: var(--gap---4xl, 48px);
-}
-
 .infoPDP {
   @extend %flex-column;
   padding-left: var(--gap---xl, 16px);
   align-items: flex-start;
 }
 
-.divider {
+.dividerCustom {
   width: 1px;
   height: 64px;
   background-color: #090c2547;

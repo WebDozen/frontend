@@ -1,38 +1,40 @@
+import { Link, Typography, NavLink, BellMIcon, Avatar, GenericWrapper, Gap, Circle, IconButton } from '..';
 import style from './Header.module.scss';
-import { BellMIcon } from '@alfalab/icons-glyph/BellMIcon';
-import avatar from '../../images/avatar.svg';
-import { Link } from '@alfalab/core-components/link';
-import { Typography } from '@alfalab/core-components/typography';
 
 const Header = () => {
   return (
-    <header className={style.header}>
-      <nav className={style.nav}>
-        <Link underline={false}>
-          <div className={style.logo__link}>
-            <div className={style.logo}></div>
-            <Typography.Title view='xsmall' tag="h2">Alfa People</Typography.Title>
-          </div>
-        </Link>
-        <Link underline={false}>
-          <Typography.Text view='primary-medium' tag='p' defaultMargins={false} style={{ fontFamily: 'Styrene UI' }}>Контакты</Typography.Text>
-        </Link>
-        <Link underline={false}>
-          <Typography.Text view='primary-medium' tag='p' defaultMargins={false} style={{ fontFamily: 'Styrene UI' }}>Информация</Typography.Text>
-        </Link>
-        <Link underline={false}>
-          <Typography.Text view='primary-medium' tag='p' defaultMargins={false} style={{ fontFamily: 'Styrene UI' }}>Подразделения</Typography.Text>
-        </Link>
-      </nav>
-      <div className={style.box}>
-        <fieldset className={style.container}>
-          <label className={style.loupe}>
-            <input type="text" className={style.input} placeholder='Поиск' />
-          </label>
-        </fieldset>
-        <div className={style.bell}><BellMIcon /></div>
-        <img src={avatar} alt="Аватар сотрудника" className={style.avatar} />
-      </div>
+    <header>
+      <GenericWrapper justifyContent='between'>
+        <GenericWrapper alignItems='center'>
+          <Link underline={false}>
+            <GenericWrapper alignItems='center'>
+              <div className={style.logo} />
+              <Gap size='s' direction='horizontal' />
+              <Typography.Title view='xsmall' tag="h2" style={{ color: '#0E0E0E' }}>Alfa People</Typography.Title>
+            </GenericWrapper >
+          </Link>
+          <Gap size='3xl' direction='horizontal' />
+          <Gap size='2xs' direction='horizontal' />
+          <NavLink fontFamily='Styrene UI' text='Контакты' />
+          <Gap size='3xl' direction='horizontal' />
+          <Gap size='2xs' direction='horizontal' />
+          <NavLink fontFamily='Styrene UI' text='Информация' />
+          <Gap size='3xl' direction='horizontal' />
+          <Gap size='2xs' direction='horizontal' />
+          <NavLink fontFamily='Styrene UI' text='Подразделения' />
+        </GenericWrapper>
+        <GenericWrapper>
+          <fieldset className={style.container}>
+            <label className={style.loupe}>
+              <input type="text" className={style.input} placeholder='Поиск' />
+            </label>
+          </fieldset>
+          <Gap size='m' direction='horizontal' />
+          <IconButton size={40} icon={<Circle size={40} backgroundColor='rgba(15, 25, 55, 0.1)'><BellMIcon color='rgba(14, 14, 14, 1)' /></Circle>} />
+          <Gap size='m' direction='horizontal' />
+          <IconButton size={40} icon={<Circle size={40} imageUrl={Avatar} />} />
+        </GenericWrapper>
+      </GenericWrapper>
     </header>
   )
 }
