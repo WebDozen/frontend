@@ -8,6 +8,10 @@ import { Divider } from "@alfalab/core-components/divider"
 import { Button } from "@alfalab/core-components/button"
 import { IconButton } from "@alfalab/core-components/icon-button"
 import { Circle } from "@alfalab/core-components/icon-view/circle"
+import { Table } from "@alfalab/core-components/table"
+import { Space } from "@alfalab/core-components/space"
+import { Status } from "@alfalab/core-components/status"
+import { ProgressBar } from "@alfalab/core-components/progress-bar"
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon"
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon"
@@ -41,4 +45,8 @@ export {
   Avatar,
   Circle,
   IconButton,
+  Table,
+  Space,
+  Status,
+  ProgressBar
 }

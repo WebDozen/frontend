@@ -1,3 +1,4 @@
+import { Circle, IconButton } from ".."
 import styles from "./PlateSuccess.module.scss"
 import iconDone from "../../images/badge_Icon_Light.svg"
 import iconClose from "../../images/iconCloseButton.svg"
@@ -16,9 +17,17 @@ export default function PlateSuccess() {
           Пришло время создать новый план развития и двигаться к новым целям!
         </p>
       </div>
-      <button className={styles.iconClose} type="button">
-        <img src={iconClose} alt="Кнопка закрытия" />
-      </button>
+      <IconButton
+        size={32}
+        className={styles.iconClose}
+        icon={
+          <Circle
+            size={32}
+            backgroundColor={"transparent"}
+            imageUrl={iconClose}
+          />
+        }
+      />
     </div>
   )
 }
