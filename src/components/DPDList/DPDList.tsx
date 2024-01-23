@@ -40,14 +40,26 @@ const DPDList = () => {
           {data.map(row => (
             <Table.TRow key={row.id}>
               <Table.TCell>
-                <Typography.Text view="primary-small" tag="div">
+                <Typography.Text
+                  view="primary-small"
+                  tag="p"
+                  defaultMargins={false}
+                  color="primary"
+                  style={{ fontFamily: "SF Pro Text" }}
+                >
                   {row.title}
                 </Typography.Text>
               </Table.TCell>
 
               <Table.TCell>
                 <Space size={2}>
-                  <Typography.Text view="primary-small" tag="div">
+                  <Typography.Text
+                    view="primary-small"
+                    tag="p"
+                    defaultMargins={false}
+                    color="primary"
+                    style={{ fontFamily: "SF Pro Text" }}
+                  >
                     {row.date.toLocaleDateString()}
                   </Typography.Text>
                 </Space>

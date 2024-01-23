@@ -1,0 +1,15 @@
+.block {
+  display: flex;
+}
+.dateArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap---2xs, 4px);
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: var(--gap---xs, 8px);
+}

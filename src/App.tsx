@@ -1,5 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import EmployeePage from "./pages/EmployeePage/EmployeePage"
+import PdpPage from "./pages/PdpPage/PdpPage"
 
 import ManagerPage from "./pages/manager-page/ManagerPage"
 import Head from "./components/Head/Head"
@@ -27,7 +28,11 @@ const App = () => {
           {/* 2 уроверь */}
           <Route index element={<ManagerPage />} />
 
-          <Route path="/employee/:id" element={<EmployeePage />} />
+          <Route path="/employee/:id" element={<EmployeePage />} 
+          />
+
+          <Route path="/pdp/:id" element={<PdpPage />}/>
+   
         </Route>
       </Routes>
     </div>
