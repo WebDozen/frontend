@@ -35,6 +35,7 @@ const Header = () => {
           <IconButton size={40} icon={<Circle size={40} imageUrl={Avatar} />} />
         </GenericWrapper>
       </GenericWrapper>
+      <Gap size='5xl' />
     </header>
   )
 }

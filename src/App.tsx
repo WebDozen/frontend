@@ -17,10 +17,10 @@ const App = () => {
           element={
             <>
               <Header />
-              <div className={style.main}>
+              <main className={style.main}>
                 <Head />
                 <Outlet />
-              </div>
+              </main>
               <Footer />
             </>
           }
