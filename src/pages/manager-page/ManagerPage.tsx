@@ -1,5 +1,4 @@
-import { Gap } from "@alfalab/core-components/gap"
-
+import { Gap } from "../../components"
 import style from "./ManagerPage.module.scss"
 import TeamInfoBlock from "../../components/TeamInfoBlock/TeamInfoBlock"
 import TeamList from "../../components/TeamList/TeamList"
