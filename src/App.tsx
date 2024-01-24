@@ -1,6 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import EmployeePage from "./pages/EmployeePage/EmployeePage"
-
 import ManagerPage from "./pages/manager-page/ManagerPage"
 import Head from "./components/Head/Head"
 import style from "./App.module.scss"
