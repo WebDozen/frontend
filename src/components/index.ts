@@ -9,7 +9,7 @@ import { Button } from "@alfalab/core-components/button";
 import { IconButton } from "@alfalab/core-components/icon-button";
 import { Circle } from "@alfalab/core-components/icon-view/circle";
 import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
-import { Status } from '@alfalab/core-components/status';
+
 import { Tabs, Tab } from '@alfalab/core-components/tabs';
 import { Textarea } from '@alfalab/core-components/textarea';
 import { Table } from "@alfalab/core-components/table";
@@ -31,6 +31,7 @@ import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import NavLink from "./NavLink/NavLink";
+import Head from "./Head/Head";
 import TaskModal from "./TaskModal/TaskModal";
 import StatusCustom from './StatusCustom/StatusCustom';
 import Comment from "./Comment/Comment";
@@ -66,14 +67,14 @@ export {
   Tab,
   Textarea,
   TrashCanMIcon,
-  Comment
+  Comment,
   Table,
   Space,
-  Status,
   ProgressBar,
   CopyMIcon,
   ChevronRightShiftRightSIcon,
   NoShape,
   PersonalManagerMIcon,
-  ArrowBackMIcon
+  ArrowBackMIcon,
+  Head
 };

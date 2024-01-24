@@ -3,8 +3,8 @@ import EmployeePage from "./pages/EmployeePage/EmployeePage"
 import PdpPage from "./pages/PdpPage/PdpPage"
 import ManagerPage from "./pages/manager-page/ManagerPage"
 
-import style from "./App.module.scss"
 import { Header, Footer, TaskModal, Head } from "./components"
+import style from "./App.module.scss"
 
 const App = () => {
   return (
@@ -26,12 +26,8 @@ const App = () => {
         >
           {/* 2 уроверь */}
           <Route index element={<ManagerPage />} />
-
-          <Route path="/employee/:id" element={<EmployeePage />} 
-          />
-
-          <Route path="/pdp/:id" element={<PdpPage />}/>
-   
+          <Route path="/employee/:id" element={<EmployeePage />} />
+          <Route path="/pdp/:id" element={<PdpPage />} />
         </Route>
       </Routes>
       <TaskModal />
