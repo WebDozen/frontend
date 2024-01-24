@@ -13,8 +13,11 @@ import chevronIcon from "./../../images/chevron-left-shift-right_s.svg"
 import s from "./TeamList.module.scss"
 
 import avatar from "./../../images/employeeAvatar.png"
+import { Navigate, useNavigate } from "react-router-dom"
 
 const TeamList = () => {
+  const navigate = useNavigate()
+
   const styleTableCell = {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",
   }
@@ -62,7 +65,7 @@ const TeamList = () => {
     },
   ]
 
-  const tableRowEllement = (user: {
+  const tableRowElement = (user: {
     id: number
     avatar: string
     name: string
@@ -70,7 +73,13 @@ const TeamList = () => {
     mentor: any
     status: string
   }) => (
-    <Table.TRow key={user.id} onClick={e => console.log(e.target)}>
+    <Table.TRow
+      key={user.id}
+      onClick={e => {
+        console.log(e.target)
+        navigate(`/employee/${user.id}`)
+      }}
+    >
       <Table.TCell className={s.tableCell}>
         <div className={s.tableUser}>
           <Circle size={40} imageUrl={user.avatar} />
@@ -142,7 +151,7 @@ const TeamList = () => {
           </Table.THeadCell>
         </Table.THead>
 
-        <Table.TBody>{users.map(user => tableRowEllement(user))}</Table.TBody>
+        <Table.TBody>{users.map(user => tableRowElement(user))}</Table.TBody>
       </TableCustomWrapper>
     </div>
   )
