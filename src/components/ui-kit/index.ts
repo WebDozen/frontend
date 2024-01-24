@@ -9,38 +9,34 @@ import { Button } from "@alfalab/core-components/button"
 import { IconButton } from "@alfalab/core-components/icon-button"
 import { Circle } from "@alfalab/core-components/icon-view/circle"
 import { Status } from "@alfalab/core-components/status"
+import { Table } from "@alfalab/core-components/table"
+
+import TableCustomWrapper from "./TableCustomWrapper/TableCustomWrapper"
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon"
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon"
 import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon"
 import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon"
 
-import Header from "./Header/Header"
-import Footer from "./Footer/Footer"
-import NavLink from "./NavLink/NavLink"
-
-import FooterLogo from "../images/footer_logo.svg"
-import Avatar from "../images/avatar.svg"
-
 export {
-  Status,
+  // Компоненты
   Gap,
   Link,
   Typography,
   Grid,
   GenericWrapper,
   SuperEllipse,
+  Divider,
+  Button,
+  IconButton,
+  Circle,
+  Status,
+  Table,
+  //Кастомные компоненты
+  TableCustomWrapper,
+  // Иконки
   TelegramMIcon,
   VkMIcon,
   YoutubeMIcon,
-  Divider,
-  Button,
-  Header,
-  Footer,
-  NavLink,
-  FooterLogo,
   BellMIcon,
-  Avatar,
-  Circle,
-  IconButton,
 }

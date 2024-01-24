@@ -7,18 +7,12 @@
 }
 
 .status {
+  display: flex;
   justify-content: space-between;
-}
-
-.table {
-  margin: 0;
-  border: none;
-  padding: 0;
-  box-shadow: none;
+  text-transform: uppercase;
 }
 
 .tableCell {
-  
   color: var(--text-primary);
   font-family: "SF Pro Text";
   font-size: 14px;
@@ -43,4 +37,9 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.tableUser {
+  display: flex;
+  align-items: center;
 }
