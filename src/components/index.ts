@@ -8,6 +8,10 @@ import { Divider } from "@alfalab/core-components/divider";
 import { Button } from "@alfalab/core-components/button";
 import { IconButton } from "@alfalab/core-components/icon-button";
 import { Circle } from "@alfalab/core-components/icon-view/circle";
+import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
+import { Status } from '@alfalab/core-components/status';
+import { Tabs, Tab } from '@alfalab/core-components/tabs';
+import { Textarea } from '@alfalab/core-components/textarea';
 import { Table } from "@alfalab/core-components/table";
 import { Space } from "@alfalab/core-components/space";
 import { Status } from "@alfalab/core-components/status";
@@ -18,6 +22,7 @@ import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
 import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon";
 import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon";
+import { TrashCanMIcon } from '@alfalab/icons-glyph/TrashCanMIcon';
 import { CopyMIcon } from '@alfalab/icons-glyph/CopyMIcon';
 import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightShiftRightSIcon';
 import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
@@ -26,6 +31,9 @@ import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import NavLink from "./NavLink/NavLink";
+import TaskModal from "./TaskModal/TaskModal";
+import StatusCustom from './StatusCustom/StatusCustom';
+import Comment from "./Comment/Comment";
 
 import FooterLogo from "../images/footer_logo.svg";
 import Avatar from "../images/avatar.svg";
@@ -50,6 +58,15 @@ export {
   Avatar,
   Circle,
   IconButton,
+  TaskModal,
+  SidePanelDesktop,
+  Status,
+  StatusCustom,
+  Tabs,
+  Tab,
+  Textarea,
+  TrashCanMIcon,
+  Comment
   Table,
   Space,
   Status,

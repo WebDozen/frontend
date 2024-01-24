@@ -1,11 +1,10 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import EmployeePage from "./pages/EmployeePage/EmployeePage"
 import PdpPage from "./pages/PdpPage/PdpPage"
-
 import ManagerPage from "./pages/manager-page/ManagerPage"
-import Head from "./components/Head/Head"
+
 import style from "./App.module.scss"
-import { Header, Footer } from "./components"
+import { Header, Footer, TaskModal, Head } from "./components"
 
 const App = () => {
   return (
@@ -35,6 +34,7 @@ const App = () => {
    
         </Route>
       </Routes>
+      <TaskModal />
     </div>
   )
 }
