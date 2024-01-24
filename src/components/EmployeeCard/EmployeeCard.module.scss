@@ -8,6 +8,11 @@
   flex-direction: column;
 }
 
+%info {
+  align-items: flex-start;
+  gap: var(--gap---2xs, 4px);
+}
+
 .employeeCard {
   @extend %flex;
   gap: var(--gap---xl, 24px);
@@ -38,17 +43,16 @@
   gap: var(--gap---m, 16px);
 }
 
-.infoIcon {
-  width: var(--gap---5xl, 64px);
-  height: var(--gap---5xl, 64px);
-  border-radius: 50%;
-}
-
 .infoDescription {
   @extend %flex-column;
-  align-items: flex-start;
-  gap: var(--gap---2xs, 4px);
+  @extend %info;
   width: 340px;
+}
+
+.infoPDP {
+  @extend %flex-column;
+  @extend %info;
+  padding-left: var(--gap---xl, 16px);
 }
 
 .infoDescriptionName,
@@ -76,12 +80,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
-  align-items: flex-start;
-}
-
-.infoPDP {
-  @extend %flex-column;
-  padding-left: var(--gap---xl, 16px);
   align-items: flex-start;
 }
 

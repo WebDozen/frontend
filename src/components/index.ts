@@ -12,12 +12,21 @@ import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
 import { Status } from '@alfalab/core-components/status';
 import { Tabs, Tab } from '@alfalab/core-components/tabs';
 import { Textarea } from '@alfalab/core-components/textarea';
+import { Table } from "@alfalab/core-components/table";
+import { Space } from "@alfalab/core-components/space";
+import { Status } from "@alfalab/core-components/status";
+import { ProgressBar } from "@alfalab/core-components/progress-bar";
+import { NoShape } from '@alfalab/core-components/icon-view/no-shape';
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
 import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon";
 import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon";
 import { TrashCanMIcon } from '@alfalab/icons-glyph/TrashCanMIcon';
+import { CopyMIcon } from '@alfalab/icons-glyph/CopyMIcon';
+import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightShiftRightSIcon';
+import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
+import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
 
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
@@ -58,4 +67,13 @@ export {
   Textarea,
   TrashCanMIcon,
   Comment
+  Table,
+  Space,
+  Status,
+  ProgressBar,
+  CopyMIcon,
+  ChevronRightShiftRightSIcon,
+  NoShape,
+  PersonalManagerMIcon,
+  ArrowBackMIcon
 };
