@@ -1,11 +1,9 @@
-import { Table } from "@alfalab/core-components/table"
-import { Typography } from "@alfalab/core-components/typography"
-import { Space } from "@alfalab/core-components/space"
+import { Table, Typography, Space, Status } from ".."
+import styles from "./DPDList.module.scss"
+
 import mentorIcon from "../../images/personalManagerIcon.svg"
 import znak from "../../images/znak.svg"
-import { Status } from "@alfalab/core-components/status"
 import chevron from "../../images/chevron-left-shift-right_s.svg"
-import styles from "./DPDList.module.scss"
 
 const DPDList = () => {
   const getCurrentDay = function (addDays: any) {
@@ -21,7 +19,7 @@ const DPDList = () => {
 
   return (
     <div className={styles.table}>
-      <Table >
+      <Table>
         <Table.THead>
           <Table.THeadCell title="НАЗВАНИЕ ИПР" width={484}>
             НАЗВАНИЕ ИПР
@@ -42,14 +40,26 @@ const DPDList = () => {
           {data.map(row => (
             <Table.TRow key={row.id}>
               <Table.TCell>
-                <Typography.Text view="primary-small" tag="div">
+                <Typography.Text
+                  view="primary-small"
+                  tag="p"
+                  defaultMargins={false}
+                  color="primary"
+                  style={{ fontFamily: "SF Pro Text" }}
+                >
                   {row.title}
                 </Typography.Text>
               </Table.TCell>
 
               <Table.TCell>
                 <Space size={2}>
-                  <Typography.Text view="primary-small" tag="div">
+                  <Typography.Text
+                    view="primary-small"
+                    tag="p"
+                    defaultMargins={false}
+                    color="primary"
+                    style={{ fontFamily: "SF Pro Text" }}
+                  >
                     {row.date.toLocaleDateString()}
                   </Typography.Text>
                 </Space>
