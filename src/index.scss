@@ -1,46 +1,46 @@
 @import url("./vendor/normalize.scss");
 @import url("./vendor/fonts/fonts.scss");
+// @import '@alfalab/core-components/vars/index.css';
 
+// :root {
+//   --font-family-system: system-ui, -apple-system, "Segoe UI", Roboto,
+//     "Helvetica Neue", Helvetica, sans-serif;
+//   --font-family-styrene: "Styrene UI", system-ui, -apple-system, "Segoe UI",
+//     Roboto, "Helvetica Neue", Helvetica, sans-serif;
 
-:root {
-  --font-family-system: system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Helvetica, sans-serif;
-  --font-family-styrene: "Styrene UI", system-ui, -apple-system, "Segoe UI",
-    Roboto, "Helvetica Neue", Helvetica, sans-serif;
+//   --white: #fff;
+//   --text-primary: #0e0e0e;
+//   --neutral-translucent-100: rgba(38, 55, 88, 0.06);
 
-  --white: #fff;
-  --text-primary: #0e0e0e;
-  --neutral-translucent-100: rgba(38, 55, 88, 0.06);
-
-  --gap-3xs: 2px;
-  --gap-2xs: 4px;
-  --gap-xs: 8px;
-  --gap-s: 12px;
-  --gap-m: 16px;
-  --gap-l: 20px;
-  --gap-xl: 24px;
-  --gap-2xl: 32px;
-  --gap-3xl: 40px;
-  --gap-4xl: 48px;
-  --gap-5xl: 64px;
-  --gap-6xl: 72px;
-  --gap-7xl: 96px;
-  --gap-8xl: 128px;
-  --gap-3xs-neg: -2px;
-  --gap-2xs-neg: -4px;
-  --gap-xs-neg: -8px;
-  --gap-s-neg: -12px;
-  --gap-m-neg: -16px;
-  --gap-l-neg: -20px;
-  --gap-xl-neg: -24px;
-  --gap-2xl-neg: -32px;
-  --gap-3xl-neg: -40px;
-  --gap-4xl-neg: -48px;
-  --gap-5xl-neg: -64px;
-  --gap-6xl-neg: -72px;
-  --gap-7xl-neg: -96px;
-  --gap-8xl-neg: -128px;
-}
+//   --gap-3xs: 2px;
+//   --gap-2xs: 4px;
+//   --gap-xs: 8px;
+//   --gap-s: 12px;
+//   --gap-m: 16px;
+//   --gap-l: 20px;
+//   --gap-xl: 24px;
+//   --gap-2xl: 32px;
+//   --gap-3xl: 40px;
+//   --gap-4xl: 48px;
+//   --gap-5xl: 64px;
+//   --gap-6xl: 72px;
+//   --gap-7xl: 96px;
+//   --gap-8xl: 128px;
+//   --gap-3xs-neg: -2px;
+//   --gap-2xs-neg: -4px;
+//   --gap-xs-neg: -8px;
+//   --gap-s-neg: -12px;
+//   --gap-m-neg: -16px;
+//   --gap-l-neg: -20px;
+//   --gap-xl-neg: -24px;
+//   --gap-2xl-neg: -32px;
+//   --gap-3xl-neg: -40px;
+//   --gap-4xl-neg: -48px;
+//   --gap-5xl-neg: -64px;
+//   --gap-6xl-neg: -72px;
+//   --gap-7xl-neg: -96px;
+//   --gap-8xl-neg: -128px;
+// }
 
 body {
   font-family: var(--font-family-styrene);
@@ -54,4 +54,3 @@ body {
   box-sizing: border-box;
   // outline: 1px solid pink;
 }
-

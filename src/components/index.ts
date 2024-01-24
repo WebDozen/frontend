@@ -1,25 +1,32 @@
-import { Gap } from "@alfalab/core-components/gap"
-import { Link } from "@alfalab/core-components/link"
-import { Typography } from "@alfalab/core-components/typography"
-import { Grid } from "@alfalab/core-components/grid"
-import { GenericWrapper } from "@alfalab/core-components/generic-wrapper"
-import { SuperEllipse } from "@alfalab/core-components/icon-view/super-ellipse"
-import { Divider } from "@alfalab/core-components/divider"
-import { Button } from "@alfalab/core-components/button"
-import { IconButton } from "@alfalab/core-components/icon-button"
-import { Circle } from "@alfalab/core-components/icon-view/circle"
+import { Gap } from "@alfalab/core-components/gap";
+import { Link } from "@alfalab/core-components/link";
+import { Typography } from "@alfalab/core-components/typography";
+import { Grid } from "@alfalab/core-components/grid";
+import { GenericWrapper } from "@alfalab/core-components/generic-wrapper";
+import { SuperEllipse } from "@alfalab/core-components/icon-view/super-ellipse";
+import { Divider } from "@alfalab/core-components/divider";
+import { Button } from "@alfalab/core-components/button";
+import { IconButton } from "@alfalab/core-components/icon-button";
+import { Circle } from "@alfalab/core-components/icon-view/circle";
+import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
+import { Status } from '@alfalab/core-components/status';
+import { Tabs, Tab } from '@alfalab/core-components/tabs';
+import { FormControl } from '@alfalab/core-components/form-control';
 
-import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon"
-import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon"
-import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon"
-import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon"
+import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
+import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
+import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon";
+import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon";
 
-import Header from "./Header/Header"
-import Footer from "./Footer/Footer"
-import NavLink from "./NavLink/NavLink"
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+import NavLink from "./NavLink/NavLink";
+import Task from "./Task/Task";
+import StatusCustom from './StatusCustom/StatusCustom';
 
-import FooterLogo from "../images/footer_logo.svg"
-import Avatar from "../images/avatar.svg"
+
+import FooterLogo from "../images/footer_logo.svg";
+import Avatar from "../images/avatar.svg";
 
 export {
   Gap,
@@ -41,4 +48,11 @@ export {
   Avatar,
   Circle,
   IconButton,
-}
+  Task,
+  SidePanelDesktop,
+  Status,
+  StatusCustom,
+  Tabs,
+  Tab,
+  FormControl
+};

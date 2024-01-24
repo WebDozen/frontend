@@ -21,7 +21,7 @@ const DPDList = () => {
 
   return (
     <div className={styles.table}>
-      <Table >
+      <Table>
         <Table.THead>
           <Table.THeadCell title="НАЗВАНИЕ ИПР" width={484}>
             НАЗВАНИЕ ИПР
@@ -66,7 +66,6 @@ const DPDList = () => {
                 <div className={styles.statusBlock}>
                   {
                     <>
-                      {" "}
                       {(row.id === 1 || row.id > 6) && (
                         <Status view="soft" color={"green"} key={"green"}>
                           ВЫПОЛНЕН
@@ -78,7 +77,7 @@ const DPDList = () => {
                         </Status>
                       )}
                       {row.id === 3 && (
-                        <Status view="soft" color={"grey"} key={"grey"}>
+                        <Status view="soft" color={"grey"} key={0}>
                           ОТМЕНЕН
                         </Status>
                       )}
