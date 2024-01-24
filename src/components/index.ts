@@ -11,19 +11,20 @@ import { Circle } from "@alfalab/core-components/icon-view/circle";
 import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
 import { Status } from '@alfalab/core-components/status';
 import { Tabs, Tab } from '@alfalab/core-components/tabs';
-import { FormControl } from '@alfalab/core-components/form-control';
+import { Textarea } from '@alfalab/core-components/textarea';
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
 import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon";
 import { BellMIcon } from "@alfalab/icons-glyph/BellMIcon";
+import { TrashCanMIcon } from '@alfalab/icons-glyph/TrashCanMIcon';
 
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import NavLink from "./NavLink/NavLink";
-import Task from "./Task/Task";
+import TaskModal from "./TaskModal/TaskModal";
 import StatusCustom from './StatusCustom/StatusCustom';
-
+import Comment from "./Comment/Comment";
 
 import FooterLogo from "../images/footer_logo.svg";
 import Avatar from "../images/avatar.svg";
@@ -48,11 +49,13 @@ export {
   Avatar,
   Circle,
   IconButton,
-  Task,
+  TaskModal,
   SidePanelDesktop,
   Status,
   StatusCustom,
   Tabs,
   Tab,
-  FormControl
+  Textarea,
+  TrashCanMIcon,
+  Comment
 };

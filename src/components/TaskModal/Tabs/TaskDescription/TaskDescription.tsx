@@ -1,4 +1,4 @@
-import { Typography } from ".."
+import { Typography } from "../../.."
 type Props = { children?: string }
 
 const TaskDescription = ({ children }: Props) => {

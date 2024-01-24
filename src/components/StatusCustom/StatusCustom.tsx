@@ -1,18 +1,10 @@
 import { Status, Typography } from ".."
 
-type Props = {
+interface Props {
   data: {
     text: string
-    color?:
-      | "green"
-      | "orange"
-      | "red"
-      | "blue"
-      | "grey"
-      | "teal"
-      | "purple"
-      | undefined
-    view?: "contrast" | "soft" | undefined
+    color: "green" | "orange" | "red" | "blue" | "grey" | "teal"
+    view?: "contrast" | "soft"
   }
 }
 
