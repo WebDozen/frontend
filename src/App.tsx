@@ -1,10 +1,10 @@
-import { Outlet, Route, Routes } from "react-router-dom"
-import EmployeePage from "./pages/EmployeePage/EmployeePage"
-import PdpPage from "./pages/PdpPage/PdpPage"
-import ManagerPage from "./pages/manager-page/ManagerPage"
+import { Outlet, Route, Routes } from "react-router-dom";
+import EmployeePage from "./pages/EmployeePage/EmployeePage";
+import PdpPage from "./pages/PdpPage/PdpPage";
+import ManagerPage from "./pages/manager-page/ManagerPage";
 
-import { Header, Footer, TaskModal, Head } from "./components"
-import style from "./App.module.scss"
+import { Header, Footer, TaskModal, Head } from "./components/ui-kit";
+import style from "./App.module.scss";
 
 const App = () => {
   return (
@@ -32,7 +32,7 @@ const App = () => {
       </Routes>
       <TaskModal />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

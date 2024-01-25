@@ -1,8 +1,8 @@
-import { Circle, IconButton } from ".."
-import styles from "../PlateSuccess/PlateSuccess.module.scss"
-import styleOrange from "./PlateFail.module.scss"
-import iconClose from "../../images/iconCloseButton.svg"
-import iconFail from "../../images/iconFail.svg"
+import { Circle, IconButton } from "../ui-kit";
+import styles from "../PlateSuccess/PlateSuccess.module.scss";
+import styleOrange from "./PlateFail.module.scss";
+import iconClose from "../../images/iconCloseButton.svg";
+import iconFail from "../../images/iconFail.svg";
 
 export default function PlateFail() {
   return (
@@ -34,5 +34,5 @@ export default function PlateFail() {
         }
       />
     </div>
-  )
+  );
 }

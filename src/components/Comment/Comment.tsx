@@ -1,10 +1,10 @@
-import { Gap, GenericWrapper, Typography } from ".."
+import { Gap, GenericWrapper, Typography } from "../ui-kit";
 
 interface CommentProps {
-  author: string
-  role: string
-  text: string
-  data: string
+  author: string;
+  role: string;
+  text: string;
+  data: string;
 }
 
 const Comment = ({ author, role, text, data }: CommentProps) => {
@@ -57,7 +57,7 @@ const Comment = ({ author, role, text, data }: CommentProps) => {
         {data}
       </Typography.Text>
     </GenericWrapper>
-  )
-}
+  );
+};
 
-export default Comment
+export default Comment;

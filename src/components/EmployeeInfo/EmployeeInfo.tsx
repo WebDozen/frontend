@@ -1,12 +1,12 @@
-import { Circle, NoShape, Typography } from ".."
-import style from "../EmployeeCard/EmployeeCard.module.scss"
-import styles from "./EmployeeInfo.module.scss"
-import avatar from "../../images/employeeAvatar.png"
-import { useLocation } from "react-router-dom"
-import iconCalendar from "../../images/iconCalendar.svg"
+import { Circle, NoShape, Typography } from "../ui-kit";
+import style from "../EmployeeCard/EmployeeCard.module.scss";
+import styles from "./EmployeeInfo.module.scss";
+import avatar from "../../images/employeeAvatar.png";
+import { useLocation } from "react-router-dom";
+import iconCalendar from "../../images/iconCalendar.svg";
 
 export default function EmployeeInfo() {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   return (
     <div className={style.info}>
@@ -65,5 +65,5 @@ export default function EmployeeInfo() {
         )}
       </div>
     </div>
-  )
+  );
 }

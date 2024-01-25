@@ -1,7 +1,7 @@
-import { Gap } from "../../components"
-import style from "./ManagerPage.module.scss"
-import TeamInfoBlock from "../../components/TeamInfoBlock/TeamInfoBlock"
-import TeamList from "../../components/TeamList/TeamList"
+import { Gap } from "../../components/ui-kit/";
+import style from "./ManagerPage.module.scss";
+import TeamInfoBlock from "../../components/TeamInfoBlock/TeamInfoBlock";
+import TeamList from "../../components/TeamList/TeamList";
 
 const ManagerPage = () => {
   return (
@@ -10,9 +10,9 @@ const ManagerPage = () => {
       <TeamInfoBlock />
       <TeamList />
     </div>
-  )
-}
+  );
+};
 
-ManagerPage.propTypes = {}
+ManagerPage.propTypes = {};
 
-export default ManagerPage
+export default ManagerPage;

@@ -1,12 +1,12 @@
-import { useState } from "react"
-import DPDList from "../../components/DPDList/DPDList"
-import EmployeeCard from "../../components/EmployeeCard/EmployeeCard"
-import PlateSuccess from "../../components/PlateSuccess/PlateSuccess"
-import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage"
-import PlateFail from "../../components/PlateFail/PlateFail"
+import { useState } from "react";
+import DPDList from "../../components/DPDList/DPDList";
+import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
+import PlateSuccess from "../../components/PlateSuccess/PlateSuccess";
+import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
+import PlateFail from "../../components/PlateFail/PlateFail";
 
 const EmployeePage = () => {
-  const [activeIPRs, setActiveIPRs] = useState(false)
+  const [activeIPRs, setActiveIPRs] = useState(false);
 
   return (
     <div>
@@ -17,9 +17,7 @@ const EmployeePage = () => {
       <EmployeeCard activeIPRs={!activeIPRs} />
       <PlateFail />
     </div>
-  )
-}
+  );
+};
 
-EmployeePage.propTypes = {}
-
-export default EmployeePage
+export default EmployeePage;

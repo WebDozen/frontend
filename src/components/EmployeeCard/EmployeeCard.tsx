@@ -1,10 +1,10 @@
-import style from "./EmployeeCard.module.scss"
-import InfoProgressNoPDP from "../InfoProgressNoPDP/InfoProgressNoPDP"
-import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBar"
-import EmployeeInfo from "../EmployeeInfo/EmployeeInfo"
+import style from "./EmployeeCard.module.scss";
+import InfoProgressNoPDP from "../InfoProgressNoPDP/InfoProgressNoPDP";
+import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBar";
+import EmployeeInfo from "../EmployeeInfo/EmployeeInfo";
 
 interface CardProps {
-  activeIPRs: boolean
+  activeIPRs: boolean;
 }
 
 export default function EmployeeCard({ activeIPRs }: CardProps) {
@@ -14,5 +14,5 @@ export default function EmployeeCard({ activeIPRs }: CardProps) {
       {!activeIPRs && <InfoProgressNoPDP />}
       {activeIPRs && <InfoProgressStatusBar />}
     </div>
-  )
+  );
 }

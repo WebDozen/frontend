@@ -8,12 +8,12 @@ import {
   VkMIcon,
   YoutubeMIcon,
   Gap,
-  FooterLogo,
   Link,
   Divider,
   Button,
-} from ".."
-import style from "./Footer.module.scss"
+} from "../ui-kit";
+import FooterLogo from "../../images/footer_logo.svg";
+import style from "./Footer.module.scss";
 
 const Footer = () => {
   return (
@@ -196,7 +196,7 @@ const Footer = () => {
         </div>
       </GenericWrapper>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

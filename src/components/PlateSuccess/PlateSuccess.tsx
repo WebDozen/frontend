@@ -1,7 +1,7 @@
-import { Circle, IconButton } from ".."
-import styles from "./PlateSuccess.module.scss"
-import iconDone from "../../images/badge_Icon_Light.svg"
-import iconClose from "../../images/iconCloseButton.svg"
+import { Circle, IconButton } from "../ui-kit";
+import styles from "./PlateSuccess.module.scss";
+import iconDone from "../../images/badge_Icon_Light.svg";
+import iconClose from "../../images/iconCloseButton.svg";
 
 export default function PlateSuccess() {
   return (
@@ -29,5 +29,5 @@ export default function PlateSuccess() {
         }
       />
     </div>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import { Status, Typography } from ".."
+import { Status, Typography } from "../ui-kit";
 
 interface Props {
   data: {
-    text: string
-    color: "green" | "orange" | "red" | "blue" | "grey" | "teal"
-    view?: "contrast" | "soft"
-  }
+    text: string;
+    color: "green" | "orange" | "red" | "blue" | "grey" | "teal";
+    view?: "contrast" | "soft";
+  };
 }
 
 const StatusCustom = ({ data }: Props) => {
@@ -24,7 +24,7 @@ const StatusCustom = ({ data }: Props) => {
         {data.text}
       </Typography.Text>
     </Status>
-  )
-}
+  );
+};
 
-export default StatusCustom
+export default StatusCustom;

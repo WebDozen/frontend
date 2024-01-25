@@ -1,5 +1,3 @@
-// import React from "react"
-// import PropTypes from "prop-types"
 import {
   Circle,
   Gap,
@@ -7,20 +5,20 @@ import {
   Typography,
   Table,
   TableCustomWrapper,
-} from "../ui-kit"
-import mentorIcon from "./../../images/personalManagerIcon.svg"
-import chevronIcon from "./../../images/chevron-left-shift-right_s.svg"
-import s from "./TeamList.module.scss"
+} from "../ui-kit";
+import mentorIcon from "./../../images/personalManagerIcon.svg";
+import chevronIcon from "./../../images/chevron-left-shift-right_s.svg";
+import s from "./TeamList.module.scss";
 
-import avatar from "./../../images/employeeAvatar.png"
-import { Navigate, useNavigate } from "react-router-dom"
+import avatar from "./../../images/employeeAvatar.png";
+import { useNavigate } from "react-router-dom";
 
 const TeamList = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const styleTableCell = {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",
-  }
+  };
 
   let users = [
     {
@@ -63,21 +61,20 @@ const TeamList = () => {
       mentor: "",
       status: "выполнен",
     },
-  ]
+  ];
 
   const tableRowElement = (user: {
-    id: number
-    avatar: string
-    name: string
-    specialty: string
-    mentor: any
-    status: string
+    id: number;
+    avatar: string;
+    name: string;
+    specialty: string;
+    mentor: any;
+    status: string;
   }) => (
     <Table.TRow
       key={user.id}
-      onClick={e => {
-        console.log(e.target)
-        navigate(`/employee/${user.id}`)
+      onClick={(e) => {
+        navigate(`/employee/${user.id}`);
       }}
     >
       <Table.TCell className={s.tableCell}>
@@ -109,7 +106,7 @@ const TeamList = () => {
         </div>
       </Table.TCell>
     </Table.TRow>
-  )
+  );
 
   return (
     <div>
@@ -151,12 +148,10 @@ const TeamList = () => {
           </Table.THeadCell>
         </Table.THead>
 
-        <Table.TBody>{users.map(user => tableRowElement(user))}</Table.TBody>
+        <Table.TBody>{users.map((user) => tableRowElement(user))}</Table.TBody>
       </TableCustomWrapper>
     </div>
-  )
-}
+  );
+};
 
-TeamList.propTypes = {}
-
-export default TeamList
+export default TeamList;

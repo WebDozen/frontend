@@ -1,7 +1,7 @@
-import { Circle, CopyMIcon, IconButton, PersonalManagerMIcon } from ".."
-import styles from "./MentorArea.module.scss"
-import style from "../EmployeeCard/EmployeeCard.module.scss"
-import managerIcon from "../../images/mentorAva.svg"
+import { Circle, CopyMIcon, IconButton, PersonalManagerMIcon } from "../ui-kit";
+import styles from "./MentorArea.module.scss";
+import style from "../EmployeeCard/EmployeeCard.module.scss";
+import managerIcon from "../../images/mentorAva.svg";
 
 export default function MentorArea() {
   return (
@@ -34,5 +34,5 @@ export default function MentorArea() {
         }}
       />
     </div>
-  )
+  );
 }

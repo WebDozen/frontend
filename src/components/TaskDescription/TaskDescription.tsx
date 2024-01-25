@@ -1,6 +1,6 @@
-import TaskList from "../TaskList/TaskList"
-import PlanDescription from "../PlanDescription/PlanDescription"
-import style from "./TaskDescription.module.scss"
+import TaskList from "../TaskList/TaskList";
+import PlanDescription from "../PlanDescription/PlanDescription";
+import style from "./TaskDescription.module.scss";
 
 export default function TaskDescription() {
   return (
@@ -8,5 +8,5 @@ export default function TaskDescription() {
       <TaskList />
       <PlanDescription />
     </div>
-  )
+  );
 }
