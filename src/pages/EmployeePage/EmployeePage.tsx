@@ -1,21 +1,22 @@
-import { useState } from "react";
 import DPDList from "../../components/DPDList/DPDList";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import PlateSuccess from "../../components/PlateSuccess/PlateSuccess";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateFail from "../../components/PlateFail/PlateFail";
+import DPDForm from "../../components/DPDForm/DPDForm";
 
 const EmployeePage = () => {
-  const [activeIPRs, setActiveIPRs] = useState(false);
+  const activeIPRs = false;
 
   return (
     <div>
       <EmployeeCard activeIPRs={activeIPRs} />
-      <PlateSuccess />
+      <DPDForm />
+      {/* <PlateSuccess />
       <DPDList />
-      <NewPlanMessage />
-      <EmployeeCard activeIPRs={!activeIPRs} />
-      <PlateFail />
+      <NewPlanMessage /> */}
+      {/* <EmployeeCard activeIPRs={!activeIPRs} />
+      <PlateFail /> */}
     </div>
   );
 };

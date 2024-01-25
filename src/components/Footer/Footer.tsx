@@ -18,7 +18,7 @@ import style from "./Footer.module.scss";
 const Footer = () => {
   return (
     <footer>
-      <Divider className={style.divider} />
+      <Divider className={style.dividerCustom} />
       <Gap size="4xl" />
       <div>
         <Grid.Row gutter={{ mobile: 0, desktop: 0 }}>
