@@ -35,11 +35,16 @@
 
 .infoProcent {
   @extend %margins;
-  color: var(--text-primary, #0e0e0e);
+  color: var(--text-secondary, var(--text-secondary, rgba(4, 4, 19, 0.55)));
   font-feature-settings: "salt" on;
   font-family: "SF Pro Text";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+}
+
+.infoProcentBold {
+  font-weight: bold;
+  color: var(--color-light-text-primary);
 }

@@ -14,9 +14,13 @@ import { Tabs, Tab } from '@alfalab/core-components/tabs';
 import { Textarea } from '@alfalab/core-components/textarea';
 import { Table } from "@alfalab/core-components/table";
 import { Space } from "@alfalab/core-components/space";
-import { Status } from "@alfalab/core-components/status";
 import { ProgressBar } from "@alfalab/core-components/progress-bar";
 import { NoShape } from '@alfalab/core-components/icon-view/no-shape';
+import { Plate } from '@alfalab/core-components/plate';
+import { Badge } from '@alfalab/core-components/badge';
+import { List } from '@alfalab/core-components/list';
+import { Scrollbar } from '@alfalab/core-components/scrollbar';
+
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
@@ -27,6 +31,7 @@ import { CopyMIcon } from '@alfalab/icons-glyph/CopyMIcon';
 import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightShiftRightSIcon';
 import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
 import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
+import {CheckmarkCircleMIcon} from '@alfalab/icons-glyph/CheckmarkCircleMIcon';
 
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
@@ -34,6 +39,7 @@ import NavLink from "./NavLink/NavLink";
 import TaskModal from "./TaskModal/TaskModal";
 import StatusCustom from './StatusCustom/StatusCustom';
 import Comment from "./Comment/Comment";
+import Head from "./Head/Head";
 
 import FooterLogo from "../images/footer_logo.svg";
 import Avatar from "../images/avatar.svg";
@@ -53,6 +59,7 @@ export {
   Header,
   Footer,
   NavLink,
+  Head,
   FooterLogo,
   BellMIcon,
   Avatar,
@@ -60,13 +67,12 @@ export {
   IconButton,
   TaskModal,
   SidePanelDesktop,
-  Status,
   StatusCustom,
   Tabs,
   Tab,
   Textarea,
   TrashCanMIcon,
-  Comment
+  Comment,
   Table,
   Space,
   Status,
@@ -75,5 +81,10 @@ export {
   ChevronRightShiftRightSIcon,
   NoShape,
   PersonalManagerMIcon,
-  ArrowBackMIcon
+  ArrowBackMIcon,
+  Plate,
+  Badge,
+  CheckmarkCircleMIcon,
+  List,
+  Scrollbar,
 };

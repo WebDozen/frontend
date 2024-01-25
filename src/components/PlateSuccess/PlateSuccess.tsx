@@ -12,14 +12,13 @@ export default function PlateSuccess() {
         alt="Иконка галочки на зеленом фоне"
       />
       <div className={styles.textBlock}>
-        <h3 className={styles.textTitle}>Сотрудник завершил все ИПР.</h3>
+        <h3 className={styles.textTitle}>Сотрудник выполнил все ИПР</h3>
         <p className={styles.textMotivation}>
           Пришло время создать новый план развития и двигаться к новым целям!
         </p>
       </div>
       <IconButton
         size={32}
-        className={styles.iconClose}
         icon={
           <Circle
             size={32}

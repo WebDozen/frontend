@@ -5,19 +5,26 @@ import calendar from "../../images/iconCalendarNewPlan.svg"
 export default function NewPlanMessage() {
   return (
     <div className={styles.newPlanBlock}>
+      <Gap size="5xl" />
       <img src={calendar} alt="Изображение планировщика задач" />
       <Gap size="l" />
-      <Typography.Title
-        view="xsmall"
-        tag="h3"
-        style={{ color: "#0E0E0E", maxWidth: "460px", textAlign: "center" }}
+      <Typography.Text
+        view="primary-medium"
+        tag="p"
+        style={{
+          color: "#0E0E0E",
+          maxWidth: "340px",
+          textAlign: "center",
+          margin: "0",
+        }}
       >
         Создайте план развития для сотрудника на основе его текущего грейда
-      </Typography.Title>
+      </Typography.Text>
       <Gap size="2xl" />
       <Button view="accent" className={styles.button}>
         Создать ИПР
       </Button>
+      <Gap size="l" />
     </div>
   )
 }
