@@ -11,7 +11,7 @@ const IdpPage = () => {
 
   return (
     <div>
-      <MentorArea status="green" />
+      <MentorArea status="blue" />
       <Gap size="2xl" />
       <EmployeeCard activeIPRs={!activeIPRs} />
       <TaskDescription />
