@@ -1,12 +1,12 @@
 import { Outlet, Route, Routes } from "react-router-dom";
-import EmployeePage from "./pages/EmployeePage/EmployeePage";
-import IdpPage from "./pages/IdpPage/IdpPage";
-import ManagerPage from "./pages/Manager-page/ManagerPage";
+import EmployeePage from "../../pages/EmployeePage/EmployeePage";
+import IdpPage from "../../pages/IdpPage/IdpPage";
+import ManagerPage from "../../pages/Manager-page/ManagerPage";
 
-import Header from "./components/Header/Header";
-import Head from "./components/Head/Head";
-import Footer from "./components/Footer/Footer";
-import TaskModal from "./components/TaskModal/TaskModal";
+import Header from "../Header/Header";
+import Head from "../Head/Head";
+import Footer from "../Footer/Footer";
+import TaskModal from "../TaskModal/TaskModal";
 import style from "./App.module.scss";
 
 const App = () => {
