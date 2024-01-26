@@ -1,14 +1,13 @@
-import { Gap } from "../../components"
-import { useState } from "react"
-import EmployeeCard from "../../components/EmployeeCard/EmployeeCard"
-import MentorArea from "../../components/MentorArea/MentorArea"
-import TaskDescription from "../../components/TaskDescription/TaskDescription"
-import CommentsList from "../../components/CommentsList/CommentsList"
-import PdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending"
-import PlateWrapper from "../../components/PlateWrapper/PlateWrapper"
+import { Gap } from "../../components/ui-kit";
+import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
+import MentorArea from "../../components/MentorArea/MentorArea";
+import TaskDescription from "../../components/TaskDescription/TaskDescription";
+import CommentsList from "../../components/CommentsList/CommentsList";
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
+import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 
 const PdpPage = () => {
-  const [activeIPRs, setActiveIPRs] = useState(false)
+  const activeIPRs = false;
 
   return (
     <div>
@@ -21,12 +20,10 @@ const PdpPage = () => {
       <Gap size="xl" />
       <CommentsList>Времянка под комменты</CommentsList>
       <Gap size="3xl" />
-      <PdpCommentSending />
+      <IdpCommentSending />
       <Gap size="7xl" />
     </div>
-  )
-}
+  );
+};
 
-PdpPage.propTypes = {}
-
-export default PdpPage
+export default PdpPage;

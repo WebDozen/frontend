@@ -1,5 +1,5 @@
-import { Button, Gap, Textarea } from ".."
-import style from "./IdpCommentSending.module.scss"
+import { Button, Gap, Textarea } from "../ui-kit";
+import style from "./IdpCommentSending.module.scss";
 
 export default function IdpCommentSending() {
   return (
@@ -16,5 +16,5 @@ export default function IdpCommentSending() {
         Отправить комментарий
       </Button>
     </div>
-  )
+  );
 }
