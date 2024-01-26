@@ -12,14 +12,14 @@ const PdpPage = () => {
 
   return (
     <div>
-      <MentorArea status="green"/>
+      <MentorArea status="green" />
       <Gap size="2xl" />
       <EmployeeCard activeIPRs={!activeIPRs} />
       <TaskDescription />
       <Gap size="2xl" />
       <PlateWrapper />
       <Gap size="xl" />
-      <CommentsList />
+      <CommentsList>Времянка под комменты</CommentsList>
       <Gap size="3xl" />
       <PdpCommentSending />
       <Gap size="7xl" />

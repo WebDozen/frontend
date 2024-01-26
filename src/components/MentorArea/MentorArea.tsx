@@ -27,17 +27,18 @@ const MentorArea = ({ status }: statusProps) => {
           </div>
         </div>
       </div>
-      {(status==='green') &&
-      <IconButton
-        view="primary"
-        size={56}
-        icon={CopyMIcon}
-        style={{
-          backgroundColor: "rgba(15, 25, 55, 0.1)",
-          borderRadius: "12px",
-          backdropFilter: "blur(40px)",
-        }}
-      />}
+      {status === "green" && (
+        <IconButton
+          view="primary"
+          size={56}
+          icon={CopyMIcon}
+          style={{
+            backgroundColor: "rgba(15, 25, 55, 0.1)",
+            borderRadius: "12px",
+            backdropFilter: "blur(40px)",
+          }}
+        />
+      )}
     </div>
   )
 }
