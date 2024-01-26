@@ -1,10 +1,10 @@
 import { Gap, Button, GenericWrapper, Divider, Textarea } from "../ui-kit";
-import style from "./DPDForm.module.scss";
+import style from "./IpdForm.module.scss";
 import AutoInput from "./AutoInput/AutoInput";
 import InputCustom from "./InputCustom/InputCustom";
 import DateInputCustom from "./DateInputCustom/DateInputCustom";
 
-const DPDForm = () => {
+const IpdForm = () => {
   return (
     <form className={style.form}>
       <AutoInput />
@@ -83,4 +83,4 @@ const DPDForm = () => {
   );
 };
 
-export default DPDForm;
+export default IpdForm;
