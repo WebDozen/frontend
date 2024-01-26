@@ -1,7 +1,7 @@
 import { Button, Gap, Textarea } from ".."
-import style from "./PdpCommentSending.module.scss"
+import style from "./IdpCommentSending.module.scss"
 
-export default function PdpCommentSending() {
+export default function IdpCommentSending() {
   return (
     <div className={style.block}>
       <Textarea

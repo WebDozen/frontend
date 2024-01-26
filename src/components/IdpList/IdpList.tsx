@@ -1,11 +1,11 @@
 import { Table, Typography, Space, Status } from ".."
-import styles from "./DPDList.module.scss"
+import styles from "./IdpList.module.scss"
 
 import mentorIcon from "../../images/personalManagerIcon.svg"
 import znak from "../../images/znak.svg"
 import chevron from "../../images/chevron-left-shift-right_s.svg"
 
-const DPDList = () => {
+const IdpList = () => {
   const getCurrentDay = function (addDays: any) {
     var date = new Date()
     date.setDate(date.getDate() + addDays)
@@ -123,4 +123,4 @@ const DPDList = () => {
   )
 }
 
-export default DPDList
+export default IdpList

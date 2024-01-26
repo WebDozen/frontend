@@ -1,5 +1,5 @@
 import { useState } from "react"
-import DPDList from "../../components/DPDList/DPDList"
+import DPDList from "../../components/IdpList/IdpList"
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard"
 import PlateSuccess from "../../components/PlateSuccess/PlateSuccess"
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage"

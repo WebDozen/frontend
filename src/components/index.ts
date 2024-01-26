@@ -20,6 +20,7 @@ import { Plate } from '@alfalab/core-components/plate';
 import { Badge } from '@alfalab/core-components/badge';
 import { List } from '@alfalab/core-components/list';
 import { Scrollbar } from '@alfalab/core-components/scrollbar';
+import { CustomButton } from '@alfalab/core-components/custom-button';
 
 
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
@@ -87,4 +88,5 @@ export {
   CheckmarkCircleMIcon,
   List,
   Scrollbar,
+  CustomButton,
 };

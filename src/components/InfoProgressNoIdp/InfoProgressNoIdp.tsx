@@ -1,8 +1,8 @@
-import style from "./InfoProgressNoPDP.module.scss"
+import style from "./InfoProgressNoIdp.module.scss"
 import iconCalendar from "../../images/iconCalendar.svg"
 import { NoShape } from ".."
 
-export default function InfoProgressNoPDP() {
+export default function InfoProgressNoIdp() {
   return (
     <div className={style.infoProgress}>
       <NoShape

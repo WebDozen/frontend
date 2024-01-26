@@ -49,14 +49,14 @@
   width: 340px;
 }
 
-.infoPDP {
+.infoIdp {
   @extend %flex-column;
   @extend %info;
   padding-left: var(--gap---xl, 16px);
 }
 
 .infoDescriptionName,
-.infoPDPAmount {
+.infoIdpAmount {
   margin: 0;
   padding: 0;
   color: var(--text-primary, #0e0e0e);
@@ -70,7 +70,7 @@
 }
 
 .infoDescriptionGrade,
-.infoPDPDoneStatus {
+.infoPIdponeStatus {
   margin: 0;
   padding: 0;
   color: var(--text-secondary, var(--text-secondary, rgba(4, 4, 19, 0.55)));

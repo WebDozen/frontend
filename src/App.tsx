@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import EmployeePage from "./pages/EmployeePage/EmployeePage"
-import PdpPage from "./pages/PdpPage/PdpPage"
+import IdpPage from "./pages/IdpPage/IdpPage"
 import ManagerPage from "./pages/manager-page/ManagerPage"
 
 import style from "./App.module.scss"
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/employee/:id" element={<EmployeePage />} 
           />
 
-          <Route path="/pdp/:id" element={<PdpPage />}/>
+          <Route path="/idp/:id" element={<IdpPage />}/>
    
         </Route>
       </Routes>

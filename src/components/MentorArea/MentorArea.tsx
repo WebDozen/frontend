@@ -1,4 +1,11 @@
-import { Circle, CopyMIcon, IconButton, PersonalManagerMIcon } from ".."
+import {
+  Circle,
+  CopyMIcon,
+  IconButton,
+  NoShape,
+  PersonalManagerMIcon,
+  SuperEllipse,
+} from ".."
 import styles from "./MentorArea.module.scss"
 import style from "../EmployeeCard/EmployeeCard.module.scss"
 import managerIcon from "../../images/mentorAva.svg"
@@ -34,8 +41,6 @@ const MentorArea = ({ status }: statusProps) => {
           icon={CopyMIcon}
           style={{
             backgroundColor: "rgba(15, 25, 55, 0.1)",
-            borderRadius: "12px",
-            backdropFilter: "blur(40px)",
           }}
         />
       )}

@@ -11,12 +11,8 @@ export default function NewPlanMessage() {
       <Typography.Text
         view="primary-medium"
         tag="p"
-        style={{
-          color: "#0E0E0E",
-          maxWidth: "340px",
-          textAlign: "center",
-          margin: "0",
-        }}
+        defaultMargins={false}
+        className={styles.text}
       >
         Создайте план развития для сотрудника на основе его текущего грейда
       </Typography.Text>
