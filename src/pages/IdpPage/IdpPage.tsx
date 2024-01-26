@@ -6,7 +6,7 @@ import CommentsList from "../../components/CommentsList/CommentsList";
 import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 
-const PdpPage = () => {
+const IdpPage = () => {
   const activeIPRs = false;
 
   return (
@@ -26,4 +26,4 @@ const PdpPage = () => {
   );
 };
 
-export default PdpPage;
+export default IdpPage;
