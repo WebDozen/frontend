@@ -1,5 +1,5 @@
-import { Gap, Typography } from ".."
-import style from "./PlanDescription.module.scss"
+import { Gap, Typography } from "../ui-kit";
+import style from "./PlanDescription.module.scss";
 
 export default function PlanDescription() {
   return (
@@ -36,5 +36,5 @@ export default function PlanDescription() {
         постоянного внимания!
       </Typography.Text>
     </div>
-  )
+  );
 }

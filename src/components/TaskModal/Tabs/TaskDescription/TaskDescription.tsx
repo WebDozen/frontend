@@ -1,5 +1,5 @@
-import { Typography } from "../../.."
-type Props = { children?: string }
+import { Typography } from "../../../ui-kit";
+type Props = { children?: string };
 
 const TaskDescription = ({ children }: Props) => {
   return (
@@ -18,7 +18,7 @@ const TaskDescription = ({ children }: Props) => {
         </Typography.Text>
       ) : null}
     </>
-  )
-}
+  );
+};
 
-export default TaskDescription
+export default TaskDescription;

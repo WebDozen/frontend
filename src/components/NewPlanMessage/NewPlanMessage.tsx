@@ -1,6 +1,6 @@
-import { Button, Gap, Typography } from ".."
-import styles from "./NewPlanMessage.module.scss"
-import calendar from "../../images/iconCalendarNewPlan.svg"
+import { Button, Gap, Typography } from "../ui-kit";
+import styles from "./NewPlanMessage.module.scss";
+import calendar from "../../images/iconCalendarNewPlan.svg";
 
 export default function NewPlanMessage() {
   return (
@@ -22,5 +22,5 @@ export default function NewPlanMessage() {
       </Button>
       <Gap size="l" />
     </div>
-  )
+  );
 }

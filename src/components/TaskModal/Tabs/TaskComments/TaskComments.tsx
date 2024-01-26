@@ -5,17 +5,17 @@ import {
   GenericWrapper,
   TrashCanMIcon,
   Comment,
-} from "../../.."
-import style from "./TaskComments.module.scss"
+} from "../../../ui-kit";
+import style from "./TaskComments.module.scss";
 
-type Props = { children: string }
+type Props = { children: string };
 
 const fakeProps = {
   author: "Николай Афанасьев",
   role: "ментор",
   text: "Мы можем периодически проводить встречи и обсуждать прогресс по текущему проекту. А если что-то будет вызывать вопросы, оставляй свои комментарии, я помогу разобраться!",
   data: "20.01.2024",
-}
+};
 
 const TaskComments = ({ children }: Props) => {
   return (
@@ -43,7 +43,7 @@ const TaskComments = ({ children }: Props) => {
         data={fakeProps.data}
       />
     </form>
-  )
-}
+  );
+};
 
-export default TaskComments
+export default TaskComments;

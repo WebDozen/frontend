@@ -1,4 +1,4 @@
-import { Gap, Typography, Comment, Scrollbar } from ".."
+import { Gap, Typography, Comment, Scrollbar } from "../ui-kit"
 import style from "./CommentsList.module.scss"
 
 type Props = { children: string }

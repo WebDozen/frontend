@@ -1,11 +1,11 @@
-// import React from 'react'
-// import PropTypes from 'prop-types'
-import { GenericWrapper } from "@alfalab/core-components/generic-wrapper"
-import { Underlay } from "@alfalab/core-components/underlay"
-import { Gap } from "@alfalab/core-components/gap"
-import { CircularProgressBar } from "@alfalab/core-components/circular-progress-bar"
-import { Space } from "@alfalab/core-components/space"
-import s from "./TeamInfoBlock.module.scss"
+import {
+  GenericWrapper,
+  Underlay,
+  Gap,
+  CircularProgressBar,
+  Space,
+} from "../ui-kit";
+import s from "./TeamInfoBlock.module.scss";
 
 const TeamInfoBlock = () => {
   return (
@@ -56,9 +56,7 @@ const TeamInfoBlock = () => {
         </GenericWrapper>
       </Underlay>
     </div>
-  )
-}
+  );
+};
 
-TeamInfoBlock.propTypes = {}
-
-export default TeamInfoBlock
+export default TeamInfoBlock;

@@ -4,14 +4,14 @@ import {
   NoShape,
   Status,
   ChevronRightShiftRightSIcon,
-} from ".."
-import styleTask from "./TaskList.module.scss"
+} from "../ui-kit";
+import styleTask from "./TaskList.module.scss";
 
 export default function TaskList() {
-  const data = Array.from({ length: 5 }, (_, i) => i + 1).map(idx => ({
+  const data = Array.from({ length: 5 }, (_, i) => i + 1).map((idx) => ({
     id: idx,
     title: `Название задачи ${idx}`,
-  }))
+  }));
 
   return (
     <div className={styleTask.table}>
@@ -20,7 +20,7 @@ export default function TaskList() {
           <Table.THeadCell title="Задачи">Задачи</Table.THeadCell>
         </Table.THead>
         <Table.TBody>
-          {data.map(row => (
+          {data.map((row) => (
             <Table.TRow>
               <Table.TCell className={styleTask.cell}>
                 <Typography.Text
@@ -48,5 +48,5 @@ export default function TaskList() {
         </Table.TBody>
       </Table>
     </div>
-  )
+  );
 }

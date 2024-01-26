@@ -4,7 +4,7 @@ import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBa
 import EmployeeInfo from "../EmployeeInfo/EmployeeInfo"
 
 interface CardProps {
-  activeIPRs: boolean
+  activeIPRs: boolean;
 }
 
 export default function EmployeeCard({ activeIPRs }: CardProps) {
@@ -14,5 +14,5 @@ export default function EmployeeCard({ activeIPRs }: CardProps) {
       {!activeIPRs && <InfoProgressNoIdp />}
       {activeIPRs && <InfoProgressStatusBar />}
     </div>
-  )
+  );
 }

@@ -1,14 +1,7 @@
-import {
-  Circle,
-  CopyMIcon,
-  IconButton,
-  NoShape,
-  PersonalManagerMIcon,
-  SuperEllipse,
-} from ".."
-import styles from "./MentorArea.module.scss"
-import style from "../EmployeeCard/EmployeeCard.module.scss"
-import managerIcon from "../../images/mentorAva.svg"
+import { Circle, CopyMIcon, IconButton, PersonalManagerMIcon } from "../ui-kit";
+import styles from "./MentorArea.module.scss";
+import style from "../EmployeeCard/EmployeeCard.module.scss";
+import managerIcon from "../../images/mentorAva.svg";
 
 interface statusProps {
   status: string
@@ -45,7 +38,7 @@ const MentorArea = ({ status }: statusProps) => {
         />
       )}
     </div>
-  )
+  );
 }
 
 export default MentorArea

@@ -1,6 +1,6 @@
-import { ProgressBar, Space } from ".."
+import { ProgressBar, Space } from "../ui-kit";
 
-import styleStatus from "./InfoProgressStatusBar.module.scss"
+import styleStatus from "./InfoProgressStatusBar.module.scss";
 
 export default function InfoProgressStatusBar() {
   return (
@@ -15,5 +15,5 @@ export default function InfoProgressStatusBar() {
         <ProgressBar view="positive" size="s" value={(2 / 5) * 100} />
       </Space>
     </div>
-  )
+  );
 }

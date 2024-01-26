@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types'
 import {
   ArrowBackMIcon,
   GenericWrapper,
@@ -6,8 +5,8 @@ import {
   Gap,
   Typography,
   Link,
-} from ".."
-import style from "./Head.module.scss"
+} from "../ui-kit";
+import style from "./Head.module.scss";
 
 const Head = () => {
   return (
@@ -39,9 +38,7 @@ const Head = () => {
       </Typography.TitleResponsive>
       <Gap size="3xl" />
     </GenericWrapper>
-  )
-}
+  );
+};
 
-Head.propTypes = {}
-
-export default Head
+export default Head;

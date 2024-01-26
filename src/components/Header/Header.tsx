@@ -3,13 +3,13 @@ import {
   Typography,
   NavLink,
   BellMIcon,
-  Avatar,
   GenericWrapper,
   Gap,
   Circle,
   IconButton,
-} from ".."
-import style from "./Header.module.scss"
+} from "../ui-kit";
+import Avatar from "../../images/avatar.svg";
+import style from "./Header.module.scss";
 
 const Header = () => {
   return (
@@ -60,7 +60,7 @@ const Header = () => {
       </GenericWrapper>
       <Gap size="5xl" />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

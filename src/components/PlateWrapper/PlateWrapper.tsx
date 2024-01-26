@@ -1,5 +1,5 @@
 import React from "react";
-import { Plate, Badge, CheckmarkCircleMIcon, Typography } from ".."
+import { Plate, Badge, CheckmarkCircleMIcon, Typography } from "../ui-kit"
 import style from "./PlateWrapper.module.scss";
 
 export default function PlateWrapper() {

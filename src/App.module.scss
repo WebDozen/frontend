@@ -1,13 +1,9 @@
 .app {
-  // position: relative;
   display: flex;
   flex-direction: column;
-  // width: 1280px;
   max-width: 1280px;
   min-width: 320px;
-  // height: 100vh;
   min-height: 100vh;
-  // margin: 0 auto;
   margin: auto;
   padding: var(--gap-xl) 28px;
   background: var(--white);
@@ -17,5 +13,4 @@
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  // margin: var(--gap-5xl) 0 var(--gap-7xl);
 }

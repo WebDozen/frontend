@@ -10,5 +10,5 @@ export default function TaskDescription() {
       <Gap size="xl" />
       <PlanDescription />
     </div>
-  )
+  );
 }
