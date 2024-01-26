@@ -64,7 +64,7 @@ const AutoInput = () => {
         }}
         optionsListProps={{
           emptyPlaceholder: (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className={style.box}>
               <Typography.Text view="component-primary">
                 Ничего не нашлось
               </Typography.Text>

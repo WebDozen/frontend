@@ -11,6 +11,10 @@
   cursor: text;
 }
 
+.container:hover {
+  opacity: 0.7;
+}
+
 .loupe {
   width: 24px;
   height: 24px;
@@ -36,13 +40,17 @@
   line-height: 1.25;
   color: #0e0e0e;
   cursor: text;
+  opacity: 1;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  background-image: url(../../images/logo.svg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.linkCustom {
+  align-items: center;
+}
+
+.linkCustom:hover {
+  opacity: 0.7;
+}
+
+.gapCustom {
+  width: 8px;
 }
