@@ -3,7 +3,10 @@ import EmployeePage from "./pages/EmployeePage/EmployeePage";
 import IdpPage from "./pages/IdpPage/IdpPage";
 import ManagerPage from "./pages/Manager-page/ManagerPage";
 
-import { Header, Footer, TaskModal, Head } from "./components/ui-kit";
+import Header from "./components/Header/Header";
+import Head from "./components/Head/Head";
+import Footer from "./components/Footer/Footer";
+import TaskModal from "./components/TaskModal/TaskModal";
 import style from "./App.module.scss";
 
 const App = () => {

@@ -1,13 +1,14 @@
 import { Gap, GenericWrapper, Typography } from "../ui-kit";
+import style from "./Comment.module.scss";
 
 interface CommentProps {
   author: string;
   role: string;
   text: string;
-  data: string;
+  date: string;
 }
 
-const Comment = ({ author, role, text, data }: CommentProps) => {
+const Comment = ({ author, role, text, date }: CommentProps) => {
   return (
     <GenericWrapper column={true}>
       <GenericWrapper>
@@ -15,7 +16,7 @@ const Comment = ({ author, role, text, data }: CommentProps) => {
           tag="p"
           view="secondary-large"
           defaultMargins={false}
-          style={{ fontWeight: 600, fontFamily: "SF Pro Text" }}
+          className={style.author}
         >
           {author}
         </Typography.Text>
@@ -24,37 +25,29 @@ const Comment = ({ author, role, text, data }: CommentProps) => {
           tag="p"
           view="secondary-large"
           defaultMargins={false}
-          style={{
-            fontFamily: "SF Pro Text",
-            color: "rgba(4, 4, 21, 0.47)",
-          }}
+          className={style.role}
         >
           {role}
         </Typography.Text>
       </GenericWrapper>
-      <Gap size="2xs" />
+      <Gap size="xs" />
       <Typography.Text
         tag="p"
         view="secondary-medium"
         color="primary"
         defaultMargins={false}
-        style={{
-          fontFamily: "SF Pro Text",
-        }}
+        className={style.text}
       >
         {text}
       </Typography.Text>
-      <Gap size="2xs" />
+      <Gap size="xs" />
       <Typography.Text
         tag="p"
         view="secondary-large"
         defaultMargins={false}
-        style={{
-          fontFamily: "SF Pro Text",
-          color: "rgba(4, 4, 21, 0.47)",
-        }}
+        className={style.date}
       >
-        {data}
+        {date}
       </Typography.Text>
     </GenericWrapper>
   );

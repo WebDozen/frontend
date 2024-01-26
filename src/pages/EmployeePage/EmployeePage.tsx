@@ -3,6 +3,7 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import PlateSuccess from "../../components/PlateSuccess/PlateSuccess";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateFail from "../../components/PlateFail/PlateFail";
+import IpdForm from "../../components/IpdForm/IpdForm";
 
 const EmployeePage = () => {
   const activeIPRs = false;
@@ -10,11 +11,12 @@ const EmployeePage = () => {
   return (
     <div>
       <EmployeeCard activeIPRs={activeIPRs} />
-      <PlateSuccess />
-      <IdpList />
-      <NewPlanMessage />
-      <EmployeeCard activeIPRs={!activeIPRs} />
-      <PlateFail />
+      <IpdForm />
+      {/* <PlateSuccess />
+      <DPDList />
+      <NewPlanMessage /> */}
+      {/* <EmployeeCard activeIPRs={!activeIPRs} />
+      <PlateFail /> */}
     </div>
   );
 };

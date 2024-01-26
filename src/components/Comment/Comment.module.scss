@@ -1,0 +1,21 @@
+$SF: "SF Pro Text";
+$color: rgba(4, 4, 21, 0.47);
+
+.author {
+  font-weight: 600;
+  font-family: $SF;
+}
+
+.role {
+  font-family: $SF;
+  color: $color;
+}
+
+.text {
+  font-family: $SF;
+}
+
+.date {
+  font-family: $SF;
+  color: $color;
+}

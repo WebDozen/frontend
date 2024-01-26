@@ -42,15 +42,7 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
           hasCloser={true}
           className={style.header}
         >
-          <Typography.Title
-            tag="h2"
-            weight="bold"
-            style={{
-              fontFamily: "SF Pro Text",
-              fontSize: "28px",
-              lineHeight: "36px",
-            }}
-          >
+          <Typography.Title tag="h2" weight="bold" className={style.title}>
             Задача
           </Typography.Title>
         </SidePanelDesktop.Header>
@@ -68,16 +60,12 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
               <Typography.Text
                 tag="p"
                 defaultMargins={false}
+                view="secondary-large"
                 color="secondary"
-                style={{
-                  fontFamily: "SF Pro Text",
-                  lineHeight: "16px",
-                  fontSize: "13px",
-                }}
+                className={style.text}
               >
                 Статус задачи
               </Typography.Text>
-
               <div>
                 <StatusCustom data={fakeProps4} />
               </div>
@@ -85,12 +73,9 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
               <Typography.Text
                 tag="p"
                 defaultMargins={false}
+                view="secondary-large"
                 color="secondary"
-                style={{
-                  fontFamily: "SF Pro Text",
-                  lineHeight: "16px",
-                  fontSize: "13px",
-                }}
+                className={style.text}
               >
                 Тип
               </Typography.Text>
@@ -99,9 +84,7 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
                 tag="p"
                 view="primary-small"
                 defaultMargins={false}
-                style={{
-                  fontFamily: "SF Pro Text",
-                }}
+                className={style.text}
               >
                 Книга
               </Typography.Text>
@@ -110,11 +93,8 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
                 tag="p"
                 defaultMargins={false}
                 color="secondary"
-                style={{
-                  fontFamily: "SF Pro Text",
-                  lineHeight: "16px",
-                  fontSize: "13px",
-                }}
+                view="secondary-large"
+                className={style.text}
               >
                 Источник
               </Typography.Text>
@@ -133,9 +113,7 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
                   tag="p"
                   view="primary-small"
                   defaultMargins={false}
-                  style={{
-                    fontFamily: "SF Pro Text",
-                  }}
+                  className={style.text}
                 >
                   -
                 </Typography.Text>
@@ -153,9 +131,7 @@ const TaskModal = ({ link, open, handleClose }: TaskProps) => {
               tag="p"
               weight="medium"
               defaultMargins={false}
-              style={{
-                fontFamily: "SF Pro Text",
-              }}
+              className={style.text}
             >
               Взять в работу
             </Typography.Text>

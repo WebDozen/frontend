@@ -8,26 +8,28 @@ import {
   Circle,
   IconButton,
 } from "../ui-kit";
-import Avatar from "../../images/avatar.svg";
+import avatar from "../../images/avatar.svg";
 import style from "./Header.module.scss";
+import logo from "../../images/logo.svg";
 
 const Header = () => {
   return (
     <header>
       <GenericWrapper justifyContent="between">
         <GenericWrapper alignItems="center">
-          <Link underline={false}>
-            <GenericWrapper alignItems="center">
-              <div className={style.logo} />
-              <Gap size="s" direction="horizontal" />
-              <Typography.Title
-                view="xsmall"
-                tag="h2"
-                style={{ color: "#0E0E0E" }}
-              >
-                Alfa People
-              </Typography.Title>
-            </GenericWrapper>
+          <Link
+            underline={false}
+            leftAddons={
+              <>
+                <Circle imageUrl={logo} size={40} />
+                <div className={style.gapCustom} />
+              </>
+            }
+            className={style.linkCustom}
+          >
+            <Typography.Title view="xsmall" tag="h2" color="primary">
+              Alfa People
+            </Typography.Title>
           </Link>
           <Gap size="3xl" direction="horizontal" />
           <Gap size="2xs" direction="horizontal" />
@@ -55,7 +57,7 @@ const Header = () => {
             }
           />
           <Gap size="m" direction="horizontal" />
-          <IconButton size={40} icon={<Circle size={40} imageUrl={Avatar} />} />
+          <IconButton size={40} icon={<Circle size={40} imageUrl={avatar} />} />
         </GenericWrapper>
       </GenericWrapper>
       <Gap size="5xl" />

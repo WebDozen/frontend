@@ -14,7 +14,7 @@ const fakeProps = {
   author: "Николай Афанасьев",
   role: "ментор",
   text: "Мы можем периодически проводить встречи и обсуждать прогресс по текущему проекту. А если что-то будет вызывать вопросы, оставляй свои комментарии, я помогу разобраться!",
-  data: "20.01.2024",
+  date: "20.01.2024",
 };
 
 const TaskComments = ({ children }: Props) => {
@@ -40,7 +40,7 @@ const TaskComments = ({ children }: Props) => {
         author={fakeProps.author}
         role={fakeProps.role}
         text={fakeProps.text}
-        data={fakeProps.data}
+        date={fakeProps.date}
       />
     </form>
   );

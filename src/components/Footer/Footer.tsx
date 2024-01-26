@@ -18,7 +18,7 @@ import style from "./Footer.module.scss";
 const Footer = () => {
   return (
     <footer>
-      <Divider className={style.divider} />
+      <Divider className={style.dividerCustom} />
       <Gap size="4xl" />
       <div>
         <Grid.Row gutter={{ mobile: 0, desktop: 0 }}>
@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
               </Grid.Col>
             </Grid.Row>
-            <div style={{ height: "28px" }}></div>
+            <div className={style.gapCustom} />
             <Grid.Row gutter={{ mobile: 0, desktop: 0 }}>
               <Grid.Col width={{ desktop: { m: 2 } }}>
                 <div>
@@ -68,7 +68,7 @@ const Footer = () => {
                 </div>
               </Grid.Col>
             </Grid.Row>
-            <div style={{ height: "28px" }}></div>
+            <div className={style.gapCustom} />
             <Grid.Row gutter={{ mobile: 0, desktop: 0 }}>
               <Grid.Col width={{ desktop: { m: 2 } }}>
                 <div>
@@ -100,7 +100,7 @@ const Footer = () => {
                   leftAddons={
                     <>
                       <SuperEllipse size={48} imageUrl={FooterLogo} />
-                      <div style={{ margin: "0 7px 0 0" }}></div>
+                      <div className={style.gapCustomMargin} />
                     </>
                   }
                 >
@@ -109,7 +109,7 @@ const Footer = () => {
                     tag="p"
                     defaultMargins={false}
                     color="primary"
-                    style={{ fontFamily: "SF Pro Text" }}
+                    className={style.text}
                   >
                     Мобильное приложение
                   </Typography.Text>
@@ -119,7 +119,7 @@ const Footer = () => {
                     tag="p"
                     defaultMargins={false}
                     color="primary"
-                    style={{ fontFamily: "SF Pro Text" }}
+                    className={style.text}
                   >
                     Для iOS и Android
                   </Typography.Text>
@@ -127,34 +127,32 @@ const Footer = () => {
               </GenericWrapper>
               <Gap size="xl" />
               <GenericWrapper>
-                <div style={{ lineHeight: "40px" }}>
-                  <Link underline={false}>
-                    <SuperEllipse
-                      size={40}
-                      backgroundColor="rgba(30, 43, 68, 0.08)"
-                    >
-                      <TelegramMIcon color="rgba(4, 4, 19, 0.55)" />
-                    </SuperEllipse>
-                  </Link>
-                  <Gap direction="horizontal" size="xl" />
-                  <Link underline={false}>
-                    <SuperEllipse
-                      size={40}
-                      backgroundColor="rgba(30, 43, 68, 0.08)"
-                    >
-                      <VkMIcon color="rgba(4, 4, 19, 0.55)" />{" "}
-                    </SuperEllipse>
-                  </Link>
-                  <Gap direction="horizontal" size="xl" />
-                  <Link underline={false}>
-                    <SuperEllipse
-                      size={40}
-                      backgroundColor="rgba(30, 43, 68, 0.08)"
-                    >
-                      <YoutubeMIcon color="rgba(4, 4, 19, 0.55)" />
-                    </SuperEllipse>
-                  </Link>
-                </div>
+                <Link underline={false}>
+                  <SuperEllipse
+                    size={40}
+                    backgroundColor="rgba(30, 43, 68, 0.08)"
+                  >
+                    <TelegramMIcon color="rgba(4, 4, 19, 0.55)" />
+                  </SuperEllipse>
+                </Link>
+                <Gap direction="horizontal" size="xl" />
+                <Link underline={false}>
+                  <SuperEllipse
+                    size={40}
+                    backgroundColor="rgba(30, 43, 68, 0.08)"
+                  >
+                    <VkMIcon color="rgba(4, 4, 19, 0.55)" />{" "}
+                  </SuperEllipse>
+                </Link>
+                <Gap direction="horizontal" size="xl" />
+                <Link underline={false}>
+                  <SuperEllipse
+                    size={40}
+                    backgroundColor="rgba(30, 43, 68, 0.08)"
+                  >
+                    <YoutubeMIcon color="rgba(4, 4, 19, 0.55)" />
+                  </SuperEllipse>
+                </Link>
               </GenericWrapper>
             </div>
           </Grid.Col>
