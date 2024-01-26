@@ -4,15 +4,15 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard"
 import MentorArea from "../../components/MentorArea/MentorArea"
 import TaskDescription from "../../components/TaskDescription/TaskDescription"
 import CommentsList from "../../components/CommentsList/CommentsList"
-import PdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending"
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending"
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper"
 
-const PdpPage = () => {
+const IdpPage = () => {
   const [activeIPRs, setActiveIPRs] = useState(false)
 
   return (
     <div>
-      <MentorArea status="green" />
+      <MentorArea status="blue" />
       <Gap size="2xl" />
       <EmployeeCard activeIPRs={!activeIPRs} />
       <TaskDescription />
@@ -21,12 +21,12 @@ const PdpPage = () => {
       <Gap size="xl" />
       <CommentsList>Времянка под комменты</CommentsList>
       <Gap size="3xl" />
-      <PdpCommentSending />
+      <IdpCommentSending />
       <Gap size="7xl" />
     </div>
   )
 }
 
-PdpPage.propTypes = {}
+IdpPage.propTypes = {}
 
-export default PdpPage
+export default IdpPage

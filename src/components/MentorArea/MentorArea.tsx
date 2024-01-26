@@ -1,10 +1,18 @@
-import { Circle, CopyMIcon, IconButton, PersonalManagerMIcon } from "../ui-kit";
+import {
+  Button,
+  Circle,
+  CopyMIcon,
+  Gap,
+  IconButton,
+  PencilMIcon,
+  PersonalManagerMIcon,
+} from "../ui-kit";
 import styles from "./MentorArea.module.scss";
 import style from "../EmployeeCard/EmployeeCard.module.scss";
 import managerIcon from "../../images/mentorAva.svg";
 
 interface statusProps {
-  status: string
+  status: string;
 }
 
 const MentorArea = ({ status }: statusProps) => {
@@ -27,7 +35,7 @@ const MentorArea = ({ status }: statusProps) => {
           </div>
         </div>
       </div>
-      {status === "green" && (
+      {(status === "green" || status === "grey") && (
         <IconButton
           view="primary"
           size={56}
@@ -37,8 +45,78 @@ const MentorArea = ({ status }: statusProps) => {
           }}
         />
       )}
+      {(status === "blue" || status === "teal") && (
+        <div className={styles.buttonsBlock}>
+          <div className={styles.littleButtonsBlock}>
+            <IconButton
+              view="primary"
+              size={56}
+              icon={PencilMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />
+            <IconButton
+              view="primary"
+              size={56}
+              icon={CopyMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />
+          </div>
+          <Button view="primary" className={styles.button}>
+            Отменить
+          </Button>
+        </div>
+      )}
+      {status === "orange" && (
+        <div className={styles.buttonsBlock}>
+          <div className={styles.littleButtonsBlock}>
+            <IconButton
+              view="primary"
+              size={56}
+              icon={PencilMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />
+            <IconButton
+              view="primary"
+              size={56}
+              icon={CopyMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />
+          </div>
+          <Button view="primary" className={styles.button}>
+            Завершить ИПР
+          </Button>
+        </div>
+      )}
+      {status === "reg" && (
+        <div className={styles.littleButtonsBlock}>
+          <IconButton
+            view="primary"
+            size={56}
+            icon={PencilMIcon}
+            style={{
+              backgroundColor: "rgba(15, 25, 55, 0.1)",
+            }}
+          />
+          <IconButton
+            view="primary"
+            size={56}
+            icon={CopyMIcon}
+            style={{
+              backgroundColor: "rgba(15, 25, 55, 0.1)",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default MentorArea
+export default MentorArea;
