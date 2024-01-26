@@ -26,9 +26,9 @@ export default function EmployeeInfo() {
 
         {pathname === "/employee/1" ? (
           <>
-            <div className={style.infoPDP}>
-              <h5 className={style.infoPDPAmount}>2 ИПР</h5>
-              <p className={style.infoPDPDoneStatus}>Выполнено</p>
+            <div className={style.infoIdp}>
+              <h5 className={style.infoIdpAmount}>2 ИПР</h5>
+              <p className={style.infoPIdponeStatus}>Выполнено</p>
             </div>
           </>
         ) : (

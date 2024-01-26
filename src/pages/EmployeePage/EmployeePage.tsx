@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DPDList from "../../components/DPDList/DPDList";
+import IdpList from "../../components/IdpList/IdpList";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import PlateSuccess from "../../components/PlateSuccess/PlateSuccess";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
@@ -12,7 +12,7 @@ const EmployeePage = () => {
     <div>
       <EmployeeCard activeIPRs={activeIPRs} />
       <PlateSuccess />
-      <DPDList />
+      <IdpList />
       <NewPlanMessage />
       <EmployeeCard activeIPRs={!activeIPRs} />
       <PlateFail />

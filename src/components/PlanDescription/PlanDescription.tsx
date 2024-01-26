@@ -7,7 +7,7 @@ export default function PlanDescription() {
       <Typography.Title view="xsmall" tag="h3" style={{ color: "#0E0E0E" }}>
         Описание плана развития
       </Typography.Title>
-      <Gap size="m" />
+      <Gap size="s" />
       <Typography.Text
         view="primary-small"
         tag="p"

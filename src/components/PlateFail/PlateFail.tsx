@@ -15,11 +15,11 @@ export default function PlateFail() {
 
       <div className={styles.textBlock}>
         <h3 className={styles.textTitle}>
-          Сотрудник не выполнил последний ИПР.
+          Сотрудник не выполнил последний ИПР
         </h3>
         <p className={styles.textMotivation}>
           Возможно задач было слишком много? Узнайте у сотрудника, что пошло не
-          так, и составьте новый план для развития.
+          так, и составьте новый план для развития
         </p>
       </div>
       <IconButton

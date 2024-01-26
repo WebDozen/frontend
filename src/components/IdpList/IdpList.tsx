@@ -1,21 +1,21 @@
-import { Table, Typography, Space, Status } from "../ui-kit";
-import styles from "./DPDList.module.scss";
+import { Table, Typography, Space, Status } from ".."
+import styles from "./IdpList.module.scss"
 
-import mentorIcon from "../../images/personalManagerIcon.svg";
-import znak from "../../images/znak.svg";
-import chevron from "../../images/chevron-left-shift-right_s.svg";
+import mentorIcon from "../../images/personalManagerIcon.svg"
+import znak from "../../images/znak.svg"
+import chevron from "../../images/chevron-left-shift-right_s.svg"
 
-const DPDList = () => {
+const IdpList = () => {
   const getCurrentDay = function (addDays: any) {
-    var date = new Date();
-    date.setDate(date.getDate() + addDays);
-    return date;
-  };
-  const data = Array.from({ length: 10 }, (_, i) => i + 1).map((idx) => ({
+    var date = new Date()
+    date.setDate(date.getDate() + addDays)
+    return date
+  }
+  const data = Array.from({ length: 10 }, (_, i) => i + 1).map(idx => ({
     id: idx,
     date: getCurrentDay(idx),
     title: `Название ИПР ${idx}`,
-  }));
+  }))
 
   return (
     <div className={styles.table}>
@@ -37,7 +37,7 @@ const DPDList = () => {
           </Table.THeadCell>
         </Table.THead>
         <Table.TBody>
-          {data.map((row) => (
+          {data.map(row => (
             <Table.TRow key={row.id}>
               <Table.TCell>
                 <Typography.Text
@@ -120,7 +120,7 @@ const DPDList = () => {
         </Table.TBody>
       </Table>
     </div>
-  );
-};
+  )
+}
 
-export default DPDList;
+export default IdpList

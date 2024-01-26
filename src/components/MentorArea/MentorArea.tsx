@@ -3,7 +3,11 @@ import styles from "./MentorArea.module.scss";
 import style from "../EmployeeCard/EmployeeCard.module.scss";
 import managerIcon from "../../images/mentorAva.svg";
 
-export default function MentorArea() {
+interface statusProps {
+  status: string
+}
+
+const MentorArea = ({ status }: statusProps) => {
   return (
     <div className={styles.mentorCopyAreaBlock}>
       <div className={styles.mentorAreaBlock}>
@@ -23,16 +27,18 @@ export default function MentorArea() {
           </div>
         </div>
       </div>
-      <IconButton
-        view="primary"
-        size={56}
-        icon={CopyMIcon}
-        style={{
-          backgroundColor: "rgba(15, 25, 55, 0.1)",
-          borderRadius: "12px",
-          backdropFilter: "blur(40px)",
-        }}
-      />
+      {status === "green" && (
+        <IconButton
+          view="primary"
+          size={56}
+          icon={CopyMIcon}
+          style={{
+            backgroundColor: "rgba(15, 25, 55, 0.1)",
+          }}
+        />
+      )}
     </div>
   );
 }
+
+export default MentorArea

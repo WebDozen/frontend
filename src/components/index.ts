@@ -1,4 +1,3 @@
-// Компоненты
 import { Gap } from "@alfalab/core-components/gap";
 import { Link } from "@alfalab/core-components/link";
 import { Typography } from "@alfalab/core-components/typography";
@@ -9,33 +8,15 @@ import { Divider } from "@alfalab/core-components/divider";
 import { Button } from "@alfalab/core-components/button";
 import { IconButton } from "@alfalab/core-components/icon-button";
 import { Circle } from "@alfalab/core-components/icon-view/circle";
-import { Status } from "@alfalab/core-components/status";
-import { Table } from "@alfalab/core-components/table";
 import { SidePanelDesktop } from "@alfalab/core-components/side-panel/desktop";
+import { Status } from '@alfalab/core-components/status';
 import { Tabs, Tab } from '@alfalab/core-components/tabs';
 import { Textarea } from '@alfalab/core-components/textarea';
+import { Table } from "@alfalab/core-components/table";
 import { Space } from "@alfalab/core-components/space";
 import { ProgressBar } from "@alfalab/core-components/progress-bar";
 import { NoShape } from '@alfalab/core-components/icon-view/no-shape';
-import { Underlay } from "@alfalab/core-components/underlay";
-import { CircularProgressBar } from "@alfalab/core-components/circular-progress-bar";
-import { Plate } from '@alfalab/core-components/plate';
-import { Badge } from '@alfalab/core-components/badge';
-import { List } from '@alfalab/core-components/list';
-import { Scrollbar } from '@alfalab/core-components/scrollbar';
-import { CustomButton } from '@alfalab/core-components/custom-button';
 
-//Кастомные компоненты
-import TableCustomWrapper from "./TableCustomWrapper/TableCustomWrapper";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import NavLink from "../NavLink/NavLink";
-import Head from "../Head/Head";
-import TaskModal from "../TaskModal/TaskModal";
-import StatusCustom from '../StatusCustom/StatusCustom';
-import Comment from "../Comment/Comment";
-
-// Иконки
 import { TelegramMIcon } from "@alfalab/icons-logotype/TelegramMIcon";
 import { VkMIcon } from "@alfalab/icons-logotype/VkMIcon";
 import { YoutubeMIcon } from "@alfalab/icons-logotype/YoutubeMIcon";
@@ -45,54 +26,51 @@ import { CopyMIcon } from '@alfalab/icons-glyph/CopyMIcon';
 import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightShiftRightSIcon';
 import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
 import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
-import { CheckmarkCircleMIcon } from '@alfalab/icons-glyph/CheckmarkCircleMIcon';
+
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+import NavLink from "./NavLink/NavLink";
+import TaskModal from "./TaskModal/TaskModal";
+import StatusCustom from './StatusCustom/StatusCustom';
+
+import FooterLogo from "../images/footer_logo.svg";
+import Avatar from "../images/avatar.svg";
 
 export {
-  // Компоненты
   Gap,
   Link,
   Typography,
   Grid,
   GenericWrapper,
   SuperEllipse,
-  Divider,
-  Button,
-  IconButton,
-  Circle,
-  Status,
-  Table,
-  SidePanelDesktop,
-  Tabs,
-  Tab,
-  Textarea,
-  Space,
-  ProgressBar,
-  NoShape,
-  Underlay,
-  CircularProgressBar,
-  Plate,
-  Badge,
-  List,
-  Scrollbar,
-  CustomButton,
-  //Кастомные компоненты
-  TableCustomWrapper,
-  Header,
-  Footer,
-  NavLink,
-  Head,
-  TaskModal,
-  StatusCustom,
-  Comment,
-  // Иконки
   TelegramMIcon,
   VkMIcon,
   YoutubeMIcon,
+  Divider,
+  Button,
+  Header,
+  Footer,
+  NavLink,
+  FooterLogo,
   BellMIcon,
+  Avatar,
+  Circle,
+  IconButton,
+  TaskModal,
+  SidePanelDesktop,
+  StatusCustom,
+  Tabs,
+  Tab,
+  Textarea,
   TrashCanMIcon,
+
+  Table,
+  Space,
+  Status,
+  ProgressBar,
   CopyMIcon,
   ChevronRightShiftRightSIcon,
+  NoShape,
   PersonalManagerMIcon,
   ArrowBackMIcon,
-  CheckmarkCircleMIcon,
 };
