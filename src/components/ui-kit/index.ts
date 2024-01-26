@@ -19,6 +19,10 @@ import { ProgressBar } from "@alfalab/core-components/progress-bar";
 import { NoShape } from '@alfalab/core-components/icon-view/no-shape';
 import { Underlay } from "@alfalab/core-components/underlay";
 import { CircularProgressBar } from "@alfalab/core-components/circular-progress-bar";
+import { InputAutocomplete } from '@alfalab/core-components/input-autocomplete';
+import { Input } from '@alfalab/core-components/input';
+import { UniversalDateInput } from '@alfalab/core-components/universal-date-input';
+import { Calendar } from '@alfalab/core-components/calendar';
 import { Plate } from '@alfalab/core-components/plate';
 import { Badge } from '@alfalab/core-components/badge';
 import { List } from '@alfalab/core-components/list';
@@ -27,11 +31,7 @@ import { CustomButton } from '@alfalab/core-components/custom-button';
 
 //Кастомные компоненты
 import TableCustomWrapper from "./TableCustomWrapper/TableCustomWrapper";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import NavLink from "../NavLink/NavLink";
-import Head from "../Head/Head";
-import TaskModal from "../TaskModal/TaskModal";
 import StatusCustom from '../StatusCustom/StatusCustom';
 import Comment from "../Comment/Comment";
 
@@ -46,6 +46,7 @@ import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightSh
 import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
 import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
 import { CheckmarkCircleMIcon } from '@alfalab/icons-glyph/CheckmarkCircleMIcon';
+import { ChevronDownMIcon } from '@alfalab/icons-glyph/ChevronDownMIcon';
 import { PencilMIcon } from '@alfalab/icons-glyph/PencilMIcon';
 
 export {
@@ -76,13 +77,13 @@ export {
   List,
   Scrollbar,
   CustomButton,
+  InputAutocomplete,
+  Input,
+  UniversalDateInput,
+  Calendar,
   //Кастомные компоненты
   TableCustomWrapper,
-  Header,
-  Footer,
   NavLink,
-  Head,
-  TaskModal,
   StatusCustom,
   Comment,
   // Иконки
@@ -96,5 +97,6 @@ export {
   PersonalManagerMIcon,
   ArrowBackMIcon,
   CheckmarkCircleMIcon,
+  ChevronDownMIcon,
   PencilMIcon,
 };

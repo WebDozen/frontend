@@ -1,19 +1,12 @@
 import { Typography } from "../../../ui-kit";
+import style from "./TaskDescription.module.scss";
 type Props = { children?: string };
 
 const TaskDescription = ({ children }: Props) => {
   return (
     <>
       {children ? (
-        <Typography.Text
-          tag="p"
-          defaultMargins={false}
-          style={{
-            fontFamily: "SF Pro Text",
-            fontSize: "14px",
-            lineHeight: "20px",
-          }}
-        >
+        <Typography.Text tag="p" defaultMargins={false} className={style.text}>
           {children}
         </Typography.Text>
       ) : null}
