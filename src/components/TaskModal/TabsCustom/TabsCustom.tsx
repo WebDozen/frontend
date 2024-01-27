@@ -5,14 +5,9 @@ import TaskComments from "./TaskComments/TaskComments";
 
 const fakeProps1 =
   "Избегание конфликтов в команде приводит к ещё большим проблемам. Давай разберёмся, почему возникают разногласия, чем они полезны, и какие методы управления конфликтами в организации можно использовать. По ходу прочтения задавай свои вопросы, а после – обсудим ключевые моменты на созвоне.";
-const fakeProps2 = "Hellooooooooo";
 
 const TabsCustom = () => {
-  const TABS: {
-    title: string;
-    id: string;
-    comp: React.ReactNode;
-  }[] = [
+  const TABS = [
     {
       title: "Описание",
       id: "tab-1",
@@ -21,14 +16,13 @@ const TabsCustom = () => {
     {
       title: "Комментарии",
       id: "tab-2",
-      comp: <TaskComments children={fakeProps2} />,
+      comp: <TaskComments />,
     },
   ];
 
   const [selectedId, setSelectedId] = useState(TABS[0].id);
-  const handleChange = (event: any, { selectedId }: any) => {
+  const handleChange = (event: any, { selectedId }: any) =>
     setSelectedId(selectedId);
-  };
   const selectedTab = TABS.find((tab) => tab.id === selectedId);
 
   return (
