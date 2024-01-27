@@ -2,7 +2,6 @@ import {
   Button,
   Circle,
   CopyMIcon,
-  Gap,
   IconButton,
   PencilMIcon,
   PersonalManagerMIcon,
@@ -95,7 +94,7 @@ const MentorArea = ({ status }: statusProps) => {
           </Button>
         </div>
       )}
-      {status === "reg" && (
+      {status === "red" && (
         <div className={styles.littleButtonsBlock}>
           <IconButton
             view="primary"

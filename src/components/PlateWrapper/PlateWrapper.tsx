@@ -1,16 +1,26 @@
-import { Plate, Badge, CheckmarkCircleMIcon, Typography } from "../ui-kit";
+import {
+  Plate,
+  Badge,
+  CheckmarkCircleMIcon,
+  Typography,
+  Button,
+  ExclamationCircleMIcon,
+} from "../ui-kit";
 import style from "./PlateWrapper.module.scss";
 
-export default function PlateWrapper() {
-  const value = {
-    badge: "no",
-    title: "bold",
-    subTitle: "no",
-    button: "no",
-    width: "nolimit",
-    mechanics: "close",
-  };
+interface PlateWrapperProps {
+  value: any;
+  view: any;
+  titleText: string;
+  text: string;
+}
 
+export default function PlateWrapper({
+  value,
+  view,
+  titleText,
+  text,
+}: PlateWrapperProps) {
   /* const onChange = (_, payload) => {
         setValue({ ...value, [payload.name]: payload.value });
     };*/
@@ -19,7 +29,7 @@ export default function PlateWrapper() {
     <div>
       <Plate
         className={style.plate}
-        view="positive"
+        view={view}
         hasCloser={value.mechanics === "close"}
         title={
           <Typography.Text
@@ -31,23 +41,35 @@ export default function PlateWrapper() {
               fontFamily: "SF Pro Display",
             }}
           >
-            Оставьте свой комментарий
+            {titleText}
           </Typography.Text>
         }
         limitContentWidth={value.width === "limit"}
         leftAddons={
-          value.badge === "yes" && (
+          value.badge === "yes" && view === "positive" ? (
             <Badge
               view="icon"
               iconColor="positive"
               content={<CheckmarkCircleMIcon />}
             />
+          ) : value.badge === "yes" && view === "attention" ? (
+            <Badge
+              view="icon"
+              iconColor="attention"
+              content={<ExclamationCircleMIcon />}
+            />
+          ) : (
+            <></>
           )
         }
+        buttons={
+          value.button === "bottom" && [
+            <Button>Матрица компетенций</Button>,
+            <Button>Candidate Jorney Map</Button>,
+          ]
+        }
       >
-        Здесь будут отображаться комментарии ко всему плану развития. Если же вы
-        хотите оставить комментарий к конкретной задаче, откройте нужную вам
-        задачу.
+        {text}
       </Plate>
     </div>
   );

@@ -78,32 +78,32 @@ const IdpList = () => {
                   {
                     <>
                       {(row.id === 1 || row.id > 6) && (
-                        <Status view="soft" color={"green"} key={"green"}>
+                        <Status view="contrast" color={"green"} key={"green"}>
                           ВЫПОЛНЕН
                         </Status>
                       )}
                       {row.id === 2 && (
-                        <Status view="soft" color={"blue"} key={"blue"}>
+                        <Status view="contrast" color={"blue"} key={"blue"}>
                           В РАБОТЕ
                         </Status>
                       )}
                       {row.id === 3 && (
-                        <Status view="soft" color={"grey"} key={0}>
+                        <Status view="contrast" color={"grey"} key={0}>
                           ОТМЕНЕН
                         </Status>
                       )}
                       {row.id === 4 && (
-                        <Status view="soft" color={"orange"} key={"orange"}>
+                        <Status view="contrast" color={"orange"} key={"orange"}>
                           НА РЕВЬЮ
                         </Status>
                       )}
                       {row.id === 5 && (
-                        <Status view="soft" color={"red"} key={"red"}>
+                        <Status view="contrast" color={"red"} key={"red"}>
                           ПРОСРОЧЕН
                         </Status>
                       )}
                       {row.id === 6 && (
-                        <Status view="soft" color={"teal"} key={"teal"}>
+                        <Status view="contrast" color={"teal"} key={"teal"}>
                           ОТКРЫТ
                         </Status>
                       )}

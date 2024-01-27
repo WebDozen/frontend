@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import {
   ArrowBackMIcon,
@@ -11,6 +12,8 @@ import {
 import style from "./Head.module.scss";
 
 const Head = () => {
+  const navigate = useNavigate();
+
   const { pathname } = useLocation();
   const status = "orange";
 
@@ -20,7 +23,7 @@ const Head = () => {
       <div className={style.LeftContainer}> 
       <GenericWrapper>
         <Link
-          href="/"
+          onClick={() => navigate(-1)}
           className={style.linkBack}
           underline={false}
           leftAddons={
