@@ -41,7 +41,6 @@ export default function PlateWrapper({
               fontFamily: "SF Pro Display",
             }}
           >
-            {" "}
             {titleText}
           </Typography.Text>
         }

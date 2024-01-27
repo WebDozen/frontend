@@ -2,7 +2,6 @@ import {
   Button,
   Circle,
   CopyMIcon,
-  Gap,
   IconButton,
   PencilMIcon,
   PersonalManagerMIcon,

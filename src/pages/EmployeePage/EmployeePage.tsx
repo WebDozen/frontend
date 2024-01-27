@@ -17,7 +17,7 @@ const EmployeePage = () => {
     mechanics: "close",
   };
 
-  const status = "green";
+  const status: string = "green";
 
   return (
     <div>
