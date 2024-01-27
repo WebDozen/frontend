@@ -3,8 +3,8 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import MentorArea from "../../components/MentorArea/MentorArea";
 import TaskDescription from "../../components/TaskDescription/TaskDescription";
 import CommentsList from "../../components/CommentsList/CommentsList";
-import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
+import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
 
 const IdpPage = () => {
   const activeIPRs = false;
