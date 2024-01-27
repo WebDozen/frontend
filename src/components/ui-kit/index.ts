@@ -48,6 +48,7 @@ import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
 import { CheckmarkCircleMIcon } from '@alfalab/icons-glyph/CheckmarkCircleMIcon';
 import { ChevronDownMIcon } from '@alfalab/icons-glyph/ChevronDownMIcon';
 import { PencilMIcon } from '@alfalab/icons-glyph/PencilMIcon';
+import { ExclamationCircleMIcon } from '@alfalab/icons-glyph/ExclamationCircleMIcon';
 
 export {
   // Компоненты
@@ -99,4 +100,5 @@ export {
   CheckmarkCircleMIcon,
   ChevronDownMIcon,
   PencilMIcon,
+  ExclamationCircleMIcon,
 };

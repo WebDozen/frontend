@@ -95,7 +95,7 @@ const MentorArea = ({ status }: statusProps) => {
           </Button>
         </div>
       )}
-      {status === "reg" && (
+      {status === "red" && (
         <div className={styles.littleButtonsBlock}>
           <IconButton
             view="primary"

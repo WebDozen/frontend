@@ -1,4 +1,4 @@
-import { Button, Gap, Typography } from "../ui-kit";
+import { Button, Gap, SuperEllipse, Typography } from "../ui-kit";
 import styles from "./NewPlanMessage.module.scss";
 import calendar from "../../images/iconCalendarNewPlan.svg";
 
@@ -6,7 +6,7 @@ export default function NewPlanMessage() {
   return (
     <div className={styles.newPlanBlock}>
       <Gap size="5xl" />
-      <img src={calendar} alt="Изображение планировщика задач" />
+      <SuperEllipse imageUrl={calendar} size={128} />
       <Gap size="l" />
       <Typography.Text
         view="primary-medium"
