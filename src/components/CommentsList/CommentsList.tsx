@@ -24,12 +24,7 @@ const CommentsList = ({ children }: Props) => {
               {new Array(6).fill(null).map((_, idx) => {
                 return (
                   <li>
-                    <Comment
-                      author={fakeProps.author}
-                      role={fakeProps.role}
-                      text={fakeProps.text}
-                      date={fakeProps.date}
-                    />
+                    <Comment commentData={fakeProps} />
                   </li>
                 );
               })}

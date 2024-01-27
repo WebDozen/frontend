@@ -1,22 +1,19 @@
-import {
-  Plate,
-  Badge,
-  CheckmarkCircleMIcon,
-  Typography,
-  Button,
-  ExclamationCircleMIcon,
-} from "../ui-kit";
+import { Plate, StatusBadge, Typography, Button } from "../ui-kit";
 import style from "./PlateWrapper.module.scss";
 
 interface PlateWrapperProps {
-  value: any;
-  view: any;
+  config: {
+    hasCloser: boolean;
+    hasBadge?: string;
+    hasButton: boolean;
+  };
+  view: "negative" | "positive" | "attention" | "common" | "custom";
   titleText: string;
-  text: string;
+  text?: string;
 }
 
 export default function PlateWrapper({
-  value,
+  config,
   view,
   titleText,
   text,
@@ -26,51 +23,35 @@ export default function PlateWrapper({
     };*/
 
   return (
-    <div>
-      <Plate
-        className={style.plate}
-        view={view}
-        hasCloser={value.mechanics === "close"}
-        title={
-          <Typography.Text
-            tag="p"
-            view="primary-large"
-            color="primary"
-            defaultMargins={false}
-            style={{
-              fontFamily: "SF Pro Display",
-            }}
-          >
-            {titleText}
-          </Typography.Text>
-        }
-        limitContentWidth={value.width === "limit"}
-        leftAddons={
-          value.badge === "yes" && view === "positive" ? (
-            <Badge
-              view="icon"
-              iconColor="positive"
-              content={<CheckmarkCircleMIcon />}
-            />
-          ) : value.badge === "yes" && view === "attention" ? (
-            <Badge
-              view="icon"
-              iconColor="attention"
-              content={<ExclamationCircleMIcon />}
-            />
-          ) : (
-            <></>
-          )
-        }
-        buttons={
-          value.button === "bottom" && [
-            <Button>Матрица компетенций</Button>,
-            <Button>Candidate Jorney Map</Button>,
-          ]
-        }
-      >
-        {text}
-      </Plate>
-    </div>
+    <Plate
+      view={view}
+      hasCloser={config.hasCloser}
+      title={
+        <Typography.Text
+          tag="p"
+          view="primary-large"
+          color="primary"
+          defaultMargins={false}
+          className={style.text}
+        >
+          {titleText}
+        </Typography.Text>
+      }
+      leftAddons={
+        config.hasBadge ? (
+          config.hasBadge === "positive" 
+          ? <StatusBadge view="positive-checkmark" />
+          : <StatusBadge view="attention-alert" />
+        ) : null
+      }
+      buttons={
+        config.hasButton && [
+          <Button>Матрица компетенций</Button>,
+          <Button>Candidate Jorney Map</Button>,
+        ]
+      }
+    >
+      {text}
+    </Plate>
   );
 }
