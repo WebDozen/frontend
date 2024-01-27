@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
   ArrowBackMIcon,
   GenericWrapper,
@@ -5,12 +6,18 @@ import {
   Gap,
   Typography,
   Link,
+  Button,
 } from "../ui-kit";
 import style from "./Head.module.scss";
 
 const Head = () => {
+  const { pathname } = useLocation();
+  const status = "orange";
+
   return (
-    <GenericWrapper column={true} className={style.container}>
+    <GenericWrapper column={true}> 
+    <GenericWrapper column={false} className={style.container}>
+      <div className={style.LeftContainer}> 
       <GenericWrapper>
         <Link
           href="/"
@@ -24,7 +31,7 @@ const Head = () => {
             />
           }
         >
-          Кнопка
+          Назад
         </Link>
       </GenericWrapper>
       <Gap size={"2xl"} />
@@ -36,7 +43,30 @@ const Head = () => {
       <Typography.TitleResponsive font="styrene" view="small" tag="h1">
         Главная страница
       </Typography.TitleResponsive>
-      <Gap size="3xl" />
+      </div>
+      {pathname === "/employee/1" && (status === "green" || status === "red" 
+      || status === "grey") ? (
+      <Button
+          view="accent"
+          size="m"
+          disabled={false}
+          className={style.mainButton}
+          type="submit"
+        >
+          Создать ИПР
+        </Button>) : 
+        (pathname === "/employee/1" && (status === "orange") || status === "teal" || status === "blue") ? (
+          <Button
+              view="accent"
+              size="m"
+              disabled={true}
+              className={style.mainButton}
+              type="submit"
+            >
+              Создать ИПР
+            </Button>) : <></>}
+    </GenericWrapper>
+    <Gap size="3xl" />
     </GenericWrapper>
   );
 };

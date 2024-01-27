@@ -1,4 +1,4 @@
-import { Table, Typography, Space, Status } from "../ui-kit";
+import { Table, Typography, Space, Status, TableCustomWrapper } from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";
@@ -19,6 +19,7 @@ const IdpList = () => {
 
   return (
     <div className={styles.table}>
+      <TableCustomWrapper>
       <Table>
         <Table.THead>
           <Table.THeadCell title="НАЗВАНИЕ ИПР" width={484}>
@@ -119,6 +120,7 @@ const IdpList = () => {
           ))}
         </Table.TBody>
       </Table>
+      </TableCustomWrapper>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import {
   NoShape,
   Status,
   ChevronRightShiftRightSIcon,
+  TableCustomWrapper,
 } from "../ui-kit";
 import styleTask from "./TaskList.module.scss";
 
@@ -15,6 +16,7 @@ export default function TaskList() {
 
   return (
     <div className={styleTask.table}>
+      <TableCustomWrapper>
       <Table>
         <Table.THead>
           <Table.THeadCell title="Задачи">Задачи</Table.THeadCell>
@@ -47,6 +49,7 @@ export default function TaskList() {
           ))}
         </Table.TBody>
       </Table>
+      </TableCustomWrapper>
     </div>
   );
 }

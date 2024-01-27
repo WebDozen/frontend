@@ -11,10 +11,10 @@ const EmployeePage = () => {
   return (
     <div>
       <EmployeeCard activeIPRs={activeIPRs} />
-      <IdpForm />
-      {/* <PlateSuccess />
+      {/* <IdpForm />*/}
+      <PlateSuccess />
       <IdpList />
-      <NewPlanMessage /> */}
+      <NewPlanMessage /> 
       {/* <EmployeeCard activeIPRs={!activeIPRs} />
       <PlateFail /> */}
     </div>
