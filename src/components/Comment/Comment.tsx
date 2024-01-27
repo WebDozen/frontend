@@ -2,13 +2,15 @@ import { Gap, GenericWrapper, Typography } from "../ui-kit";
 import style from "./Comment.module.scss";
 
 interface CommentProps {
-  author: string;
-  role: string;
-  text: string;
-  date: string;
+  commentData: {
+    author: string;
+    role: string;
+    text: string;
+    date: string;
+  };
 }
 
-const Comment = ({ author, role, text, date }: CommentProps) => {
+const Comment = ({ commentData }: CommentProps) => {
   return (
     <GenericWrapper column={true}>
       <GenericWrapper>
@@ -18,7 +20,7 @@ const Comment = ({ author, role, text, date }: CommentProps) => {
           defaultMargins={false}
           className={style.author}
         >
-          {author}
+          {commentData.author}
         </Typography.Text>
         <Gap size="xs" direction="horizontal" />
         <Typography.Text
@@ -27,7 +29,7 @@ const Comment = ({ author, role, text, date }: CommentProps) => {
           defaultMargins={false}
           className={style.role}
         >
-          {role}
+          {commentData.role}
         </Typography.Text>
       </GenericWrapper>
       <Gap size="xs" />
@@ -38,7 +40,7 @@ const Comment = ({ author, role, text, date }: CommentProps) => {
         defaultMargins={false}
         className={style.text}
       >
-        {text}
+        {commentData.text}
       </Typography.Text>
       <Gap size="xs" />
       <Typography.Text
@@ -47,7 +49,7 @@ const Comment = ({ author, role, text, date }: CommentProps) => {
         defaultMargins={false}
         className={style.date}
       >
-        {date}
+        {commentData.date}
       </Typography.Text>
     </GenericWrapper>
   );

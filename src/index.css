@@ -1,0 +1,11 @@
+@import url("./src/vendor/normalize.scss");
+@import url("./src/vendor/fonts/fonts.scss");
+@import '@alfalab/core-components/vars/index.css';
+
+body {
+  font-family: var(--font-family-styrene);
+  word-wrap: break-word;
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

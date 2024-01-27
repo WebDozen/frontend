@@ -1,6 +1,9 @@
 import { Typography } from "../../../ui-kit";
 import style from "./TaskDescription.module.scss";
-type Props = { children?: string };
+
+interface Props {
+  children?: string;
+}
 
 const TaskDescription = ({ children }: Props) => {
   return (
