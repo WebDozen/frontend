@@ -25,6 +25,7 @@ const IdpPage = () => {
       <MentorArea status="blue" />
       <Gap size="2xl" />
       <EmployeeCard activeIPRs={!activeIPRs} />
+      <Gap size="3xl" />
       <TaskDescription />
       <div className={style.leftContainer}>
         <NoTaskMessage />

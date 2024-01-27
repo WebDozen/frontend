@@ -22,6 +22,7 @@ const EmployeePage = () => {
   return (
     <div>
       <EmployeeCard activeIPRs={activeIPRs} />
+      <Gap size="2xl" />
       {/*<IdpForm />*/}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !!*/}
@@ -41,7 +42,6 @@ const EmployeePage = () => {
           text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
         />
       )}
-      <Gap size="2xl" />
       <IdpList />
       <NewPlanMessage />
       {/* <EmployeeCard activeIPRs={!activeIPRs} /> */}
