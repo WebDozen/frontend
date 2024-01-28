@@ -58,8 +58,12 @@ const IdpList = () => {
       </Table.TCell>
 
       <Table.TCell className={styles.styleTableCell}>
-        <img src={mentorIcon} alt="Иконка ментора" />
-        {idp.id === 6 && <img src={znak} alt="Иконка восклицательного знака" />}
+        <div className={styles.statusBlock}>
+          <img src={mentorIcon} alt="Иконка ментора" />
+          {idp.id === 6 && (
+            <img src={znak} alt="Иконка восклицательного знака" />
+          )}
+        </div>
       </Table.TCell>
 
       <Table.TCell className={styles.styleTableCell}>
