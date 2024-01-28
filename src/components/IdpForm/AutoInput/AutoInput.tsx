@@ -1,33 +1,28 @@
 import { useState } from "react";
-import { InputAutocomplete, Typography, ChevronDownMIcon } from "../../ui-kit";
+import {
+  InputAutocomplete,
+  Typography,
+  ChevronDownMIcon,
+  GenericWrapper,
+} from "../../ui-kit";
 import style from "./AutoInput.module.scss";
 
-const options = [
-  { key: "Иванов Андрей" },
-  { key: "Петров Алексей" },
-  { key: "Сидоров Александр" },
-  { key: "Curium" },
-  { key: "Berkelium" },
-  { key: "Californium" },
-  { key: "Einsteinium" },
-  { key: "Fermium" },
-  { key: "Mendelevium" },
-  { key: "Nobelium" },
-  { key: "Lawrencium" },
-  { key: "Rutherfordium" },
-  { key: "Dubnium" },
-  { key: "Seaborgium" },
-  { key: "Bohrium" },
-];
+interface inputProps {
+  data: {
+    label: string;
+    placeholder: string;
+    options: { key: string }[];
+  };
+}
 
-const AutoInput = () => {
+const AutoInput = ({ data }: inputProps) => {
   const [value, setValue] = useState("");
   const shownChevron = true;
 
   const matchOption = (option: { key: string }, inputValue: string) =>
     option.key.toLowerCase().includes((inputValue || "").toLowerCase());
 
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = data.options.filter((option) =>
     matchOption(option, value),
   );
 
@@ -43,20 +38,19 @@ const AutoInput = () => {
   };
 
   return (
-    <div className={style.autoInput}>
+    <GenericWrapper className={style.autoInput}>
       <InputAutocomplete
         size="m"
         selected={[]}
         block={true}
         options={filteredOptions}
-        label="Назначьте ментора"
-        placeholder="Начните вводить название"
-        labelView="inner"
+        label={data.label}
+        placeholder={data.placeholder}
+        labelView="outer"
         onChange={handleChange}
         onInput={handleInput}
         value={value}
         Arrow={shownChevron ? ChevronDownMIcon : undefined}
-        // allowUnselect={false} ?
         showEmptyOptionsList={true}
         inputProps={{
           onClear: () => setValue(""),
@@ -64,15 +58,13 @@ const AutoInput = () => {
         }}
         optionsListProps={{
           emptyPlaceholder: (
-            <div className={style.box}>
-              <Typography.Text view="component-primary">
-                Ничего не нашлось
-              </Typography.Text>
-            </div>
+            <Typography.Text view="component-primary">
+              Ничего не нашлось
+            </Typography.Text>
           ),
         }}
       />
-    </div>
+    </GenericWrapper>
   );
 };
 

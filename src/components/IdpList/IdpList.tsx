@@ -1,10 +1,4 @@
-import {
-  Table,
-  Typography,
-  Space,
-  Status,
-  TableCustomWrapper,
-} from "../ui-kit";
+import { Table, Typography, Status, TableCustomWrapper } from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";
@@ -13,7 +7,7 @@ import chevron from "../../images/chevron-left-shift-right_s.svg";
 
 const IdpList = () => {
   const getCurrentDay = function (addDays: any) {
-    var date = new Date();
+    const date = new Date();
     date.setDate(date.getDate() + addDays);
     return date;
   };

@@ -5,8 +5,8 @@ import {
   GenericWrapper,
   TrashCanMIcon,
   Comment,
+  IconButton,
 } from "../../../ui-kit";
-import style from "./TaskComments.module.scss";
 
 const TaskComments = () => {
   const fakeProps = {
@@ -29,9 +29,10 @@ const TaskComments = () => {
         <Button view={"tertiary"} size="xxs" type="submit">
           Отправить комментарий
         </Button>
-        <button className={style.button} type="button">
-          {<TrashCanMIcon color="rgba(9, 12, 37, 0.28)" />}
-        </button>
+        <IconButton
+          icon={<TrashCanMIcon color="rgba(9, 12, 37, 0.28)" />}
+          size={32}
+        />
       </GenericWrapper>
       <Gap size="xl" />
       <Comment commentData={fakeProps} />
