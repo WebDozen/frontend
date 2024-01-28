@@ -10,66 +10,62 @@ import {
   Button,
 } from "../ui-kit";
 import style from "./Head.module.scss";
+import { STATUSES } from "../../utils/constants";
 
 const Head = () => {
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
-  const status = "orange";
+  
+  const status: STATUSES = STATUSES.Review;
+  const showButton = pathname === "/employee/1" ? true : false;
+  const buttonIsDisabled =
+    (status as STATUSES) === "orange" ||
+    (status as STATUSES) === "teal" ||
+    (status as STATUSES) === "blue";
 
   return (
-    <GenericWrapper column={true}> 
-    <GenericWrapper column={false} className={style.container}>
-      <div className={style.LeftContainer}> 
-      <GenericWrapper>
-        <Link
-          onClick={() => navigate(-1)}
-          className={style.linkBack}
-          underline={false}
-          leftAddons={
-            <Circle
-              size={32}
-              mainSize={24}
-              children={<ArrowBackMIcon color="black" />}
-            />
-          }
-        >
-          Назад
-        </Link>
-      </GenericWrapper>
-      <Gap size={"2xl"} />
-      <Typography.Title font="styrene" view="large" tag="h1">
-        Индивидуальный план развития
-      </Typography.Title>
-      <Gap size={"xl"} />
-      <Gap size={"2xl"} />
-      <Typography.TitleResponsive font="styrene" view="small" tag="h1">
-        Главная страница
-      </Typography.TitleResponsive>
-      </div>
-      {pathname === "/employee/1" && (status === "green" || status === "red" 
-      || status === "grey") ? (
-      <Button
-          view="accent"
-          size="m"
-          disabled={false}
-          className={style.mainButton}
-          type="submit"
-        >
-          Создать ИПР
-        </Button>) : 
-        (pathname === "/employee/1" && (status === "orange") || status === "teal" || status === "blue") ? (
-          <Button
-              view="accent"
-              size="m"
-              disabled={true}
-              className={style.mainButton}
-              type="submit"
+    <GenericWrapper column={true}>
+      <GenericWrapper column={false} className={style.container}>
+        <div className={style.LeftContainer}>
+          <GenericWrapper>
+            <Link
+              onClick={() => navigate(-1)}
+              className={style.linkBack}
+              underline={false}
+              leftAddons={
+                <Circle
+                  size={32}
+                  mainSize={24}
+                  children={<ArrowBackMIcon color="black" />}
+                />
+              }
             >
-              Создать ИПР
-            </Button>) : <></>}
-    </GenericWrapper>
-    <Gap size="3xl" />
+              Назад
+            </Link>
+          </GenericWrapper>
+          <Gap size={"2xl"} />
+          <Typography.Title font="styrene" view="large" tag="h1">
+            Индивидуальный план развития
+          </Typography.Title>
+          <Gap size={"xl"} />
+          <Gap size={"2xl"} />
+          <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+            Главная страница
+          </Typography.TitleResponsive>
+        </div>
+        {showButton && (
+          <Button
+            view="accent"
+            size="m"
+            disabled={buttonIsDisabled}
+            className={style.mainButton}
+            type="button"
+          >
+            Создать ИПР
+          </Button>
+        )}
+      </GenericWrapper>
+      <Gap size="3xl" />
     </GenericWrapper>
   );
 };
