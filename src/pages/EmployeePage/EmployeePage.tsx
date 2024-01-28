@@ -7,20 +7,20 @@ import { Gap } from "../../components/ui-kit";
 
 const EmployeePage = () => {
   const activeIPRs = false;
-
-  const value = {
-    badge: "yes",
-    title: "bold",
-    subTitle: "no",
-    button: "no",
-    width: "nolimit",
-    mechanics: "close",
+  const status: string = "green";
+  const plateSuccess = {
+    hasBadge: "positive",
+    hasButton: false,
+    hasCloser: true,
+  };
+  const plateAttention = {
+    hasBadge: "attention",
+    hasButton: false,
+    hasCloser: true,
   };
 
-  const status: string = "green";
-
   return (
-    <div>
+    <>
       <EmployeeCard activeIPRs={activeIPRs} />
       <Gap size="2xl" />
       {/*<IdpForm />*/}
@@ -28,7 +28,7 @@ const EmployeePage = () => {
        нужно будет переделать !!*/}
       {status === "green" && (
         <PlateWrapper
-          value={value}
+          config={plateSuccess}
           view="positive"
           titleText="Сотрудник выполнил все ИПР"
           text="Пришло время создать новый план развития и двигаться к новым целям!"
@@ -36,7 +36,7 @@ const EmployeePage = () => {
       )}
       {status === "red" && (
         <PlateWrapper
-          value={value}
+          config={plateAttention}
           view="attention"
           titleText="Сотрудник не выполнил последний ИПР"
           text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
@@ -44,8 +44,7 @@ const EmployeePage = () => {
       )}
       <IdpList />
       <NewPlanMessage />
-      {/* <EmployeeCard activeIPRs={!activeIPRs} /> */}
-    </div>
+    </>
   );
 };
 
