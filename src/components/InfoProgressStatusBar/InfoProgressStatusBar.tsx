@@ -6,7 +6,7 @@ export default function InfoProgressStatusBar() {
   return (
     <div className={styleStatus.infoProgress}>
       <div className={styleStatus.infoTextBlock}>
-        <p className={styleStatus.infoProgressStatus}>Задач выполнено</p>
+        <p className={styleStatus.infoProgressStatus}>Задач по текущему ИПР</p>
         <p className={styleStatus.infoProcent}>
           <span className={styleStatus.infoProcentBold}>2</span> из 5
         </p>
