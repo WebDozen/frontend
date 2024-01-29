@@ -10,7 +10,7 @@ const IdpList = () => {
   const navigate = useNavigate();
 
   const getCurrentDay = function (addDays: any) {
-    var date = new Date();
+    const date = new Date();
     date.setDate(date.getDate() + addDays);
     return date;
   };

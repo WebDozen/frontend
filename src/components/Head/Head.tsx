@@ -15,9 +15,10 @@ import { STATUSES } from "../../utils/constants";
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  
-  const status: STATUSES = STATUSES.Review;
-  const showButton = pathname === "/employee/1" ? true : false;
+
+  const status: STATUSES = STATUSES.Done;
+  const showButton = pathname === "/employee/1";
+  const addIdpLocation = pathname === "/employee/1/add-idp";
   const buttonIsDisabled =
     (status as STATUSES) === "orange" ||
     (status as STATUSES) === "teal" ||
@@ -49,9 +50,9 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          <Typography.TitleResponsive font="styrene" view="small" tag="h1">
-            Главная страница
-          </Typography.TitleResponsive>
+          <Typography.Title font="styrene" view="small" tag="h1">
+            {addIdpLocation ? "Создание ИПР" : "Главная страница"}
+          </Typography.Title>
         </div>
         {showButton && (
           <Button
@@ -60,6 +61,9 @@ const Head = () => {
             disabled={buttonIsDisabled}
             className={style.mainButton}
             type="button"
+            onClick={(e: any) => {
+              navigate(`/employee/1/add-idp`);
+            }}
           >
             Создать ИПР
           </Button>

@@ -1,13 +1,13 @@
 import IdpList from "../../components/IdpList/IdpList";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
-import IdpForm from "../../components/IdpForm/IdpForm";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
 
 const EmployeePage = () => {
   const activeIPRs = false;
   const status: string = "green";
+
   const plateSuccess = {
     hasBadge: "positive",
     hasButton: false,
@@ -23,9 +23,6 @@ const EmployeePage = () => {
     <>
       <EmployeeCard activeIPRs={activeIPRs} />
       <Gap size="2xl" />
-      {/*<IdpForm />*/}
-      {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
-       нужно будет переделать !!*/}
       {status === "green" && (
         <PlateWrapper
           config={plateSuccess}
