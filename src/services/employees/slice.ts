@@ -32,10 +32,10 @@ const employeesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getEmployees.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      // .addCase(getEmployees.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = null;
+      // })
       .addCase(getEmployees.fulfilled, (state, action) => {
         state.list = action.payload;
         state.loading = false;
@@ -43,6 +43,10 @@ const employeesSlice = createSlice({
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
         state.loading = false;
+      })
+      .addMatcher(isPending, (state) => {
+        state.loading = true;
+        state.error = null;
       });
   },
 });
