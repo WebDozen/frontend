@@ -4,9 +4,13 @@ import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
 import { useLocation } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
+import { STATUSES } from "../../utils/constants";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
+  const status: STATUSES = STATUSES.Done;
+  const date = (status as STATUSES) === "red" ? 
+  "Истек" : "31.12.2025";
 
   return (
     <div className={style.info}>
@@ -57,7 +61,7 @@ export default function EmployeeInfo() {
                   weight="bold"
                   style={{ fontFamily: "SF Pro Text" }}
                 >
-                  31.12.2024
+                  {date}
                 </Typography.Text>
               </div>
             </div>

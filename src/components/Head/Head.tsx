@@ -8,6 +8,7 @@ import {
   Typography,
   Link,
   Button,
+  StatusCustom,
 } from "../ui-kit";
 import style from "./Head.module.scss";
 import { STATUSES } from "../../utils/constants";
@@ -23,6 +24,22 @@ const Head = () => {
     (status as STATUSES) === "orange" ||
     (status as STATUSES) === "teal" ||
     (status as STATUSES) === "blue";
+  let subtitle =
+    pathname === "/employee/1"
+      ? "Карточка сотрудника"
+      : pathname === "/"
+        ? "Главная страница"
+        : pathname === "/idp/1"
+          ? "Название ИПР":
+          addIdpLocation
+          ? "Создание ИПР"
+          : "Главная страница";
+
+  const statusData: { color: "green"; view: "contrast"; text: string } = {
+    color: "green",
+    view: "contrast",
+    text: "ВЫПОЛНЕН",
+  };
 
   return (
     <GenericWrapper column={true}>
@@ -50,9 +67,18 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          <Typography.Title font="styrene" view="small" tag="h1">
-            {addIdpLocation ? "Создание ИПР" : "Главная страница"}
-          </Typography.Title>
+          {pathname === "/idp/1" ? (
+            <div className={style.subtitleStatusBlock}>
+              <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+                {subtitle}
+              </Typography.TitleResponsive>
+              <StatusCustom data={statusData} />
+            </div>
+          ) : (
+            <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+              {subtitle}
+            </Typography.TitleResponsive>
+          )}
         </div>
         {showButton && (
           <Button

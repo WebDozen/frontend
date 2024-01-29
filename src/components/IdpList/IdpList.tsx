@@ -1,4 +1,9 @@
-import { Table, Typography, Status, TableCustomWrapper } from "../ui-kit";
+import {
+  Table,
+  Typography,
+  Status,
+  TableCustomWrapper,
+} from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";

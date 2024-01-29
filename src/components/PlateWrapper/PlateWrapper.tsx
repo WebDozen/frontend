@@ -26,6 +26,7 @@ export default function PlateWrapper({
     <Plate
       view={view}
       hasCloser={config.hasCloser}
+      limitContentWidth = {false}
       title={
         <Typography.Text
           tag="p"
