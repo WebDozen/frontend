@@ -6,7 +6,7 @@ export const getEmployeeByID = createAsyncThunk<
   Employee,
   number,
   { rejectValue: unknown }
->("employees/getEmployees", async (id, { rejectWithValue }) => {
+>("employee/getEmployees", async (id, { rejectWithValue }) => {
   try {
     const res = await api.getEmployeeByID(id);
     // // потом убрать
