@@ -1,5 +1,3 @@
-/* eslint-disable lines-between-class-members */
-// import { getToken } from './tokenStorage';
 
 interface RequestType {
   url: string | undefined;
@@ -52,21 +50,48 @@ class Api {
     const res = await fetch(`${this._baseUrl}${url}${parameters}`, config);
     return this._checkResponse(res);
   };
+  // Пользователи сервиса ИПР
+  // Получение списка сотрудников с данными по последнему ИПР
+  getEmployees = () => this._makeRequest({ url: "/employees/", method: "GET" });
 
-  // Авторизация. Получить токен
-  postLogIn = (data: {}) =>
-    this._makeRequest({ url: "/auth/token/login/", method: "POST", data });
-  // Use this endpoint to logout user (remove user authentication token).
-  postLogOut = () =>
-    this._makeRequest({ url: "/auth/token/logout/", method: "POST" });
+  // Получение всех данных о сотруднике
+  getEmployeesByID = (id: number) =>
+    this._makeRequest({ url: `/employees/${id}`, method: "GET" });
 
-  // временный эндпоинт для эмуляции оплаты заказа
-  payOrdersId = (id: string | number) =>
-    this._makeRequest({ url: `/orders/${id}/is_paid/`, method: "PATCH" });
+  // ИПР
+  // Получение всех ИПР сотрудника
+  getIdps = (employee_id: number) =>
+    this._makeRequest({
+      url: `/employees/${employee_id}/idps/`,
+      method: "GET",
+    });
+
+  // Создание нового ИПР
+  postIdp = (employee_id: number, data: {}) =>
+    this._makeRequest({
+      url: `/employees/${employee_id}/idps/`,
+      method: "POST",
+      data,
+    });
+
+  // Получение ИПР сотрудника по id ipd
+  getIdpByID = (employee_id: number, idp_id: number) =>
+    this._makeRequest({
+      url: `/employees/${employee_id}/idps/${idp_id}`,
+      method: "GET",
+    });
+
+  // обновление ИПР
+  patchIdpByID = (employee_id: number, idp_id: number, data: {}) =>
+    this._makeRequest({
+      url: `/employees/${employee_id}/idps/${idp_id}`,
+      method: "PATCH",
+      data,
+    });
 }
 
 const config = {
-  baseUrl: "https://botmarketplace.ru/api",
+  baseUrl: "http://localhost:8000/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
