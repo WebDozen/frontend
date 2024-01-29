@@ -8,6 +8,7 @@ import {
   Typography,
   Link,
   Button,
+  StatusCustom,
 } from "../ui-kit";
 import style from "./Head.module.scss";
 import { STATUSES } from "../../utils/constants";
@@ -15,13 +16,27 @@ import { STATUSES } from "../../utils/constants";
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  
+
   const status: STATUSES = STATUSES.Review;
   const showButton = pathname === "/employee/1" ? true : false;
   const buttonIsDisabled =
     (status as STATUSES) === "orange" ||
     (status as STATUSES) === "teal" ||
     (status as STATUSES) === "blue";
+  let subtitle =
+    pathname === "/employee/1"
+      ? "Карточка сотрудника"
+      : pathname === "/"
+        ? "Главная страница"
+        : pathname === "/idp/1"
+          ? "Название ИПР"
+          : "";
+
+  const statusData: { color: "green"; view: "contrast"; text: string } = {
+    color: "green",
+    view: "contrast",
+    text: "ВЫПОЛНЕН",
+  };
 
   return (
     <GenericWrapper column={true}>
@@ -49,9 +64,18 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          <Typography.TitleResponsive font="styrene" view="small" tag="h1">
-            Главная страница
-          </Typography.TitleResponsive>
+          {pathname === "/idp/1" ? (
+            <div className={style.subtitleStatusBlock}>
+              <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+                {subtitle}
+              </Typography.TitleResponsive>
+              <StatusCustom data={statusData} />
+            </div>
+          ) : (
+            <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+              {subtitle}
+            </Typography.TitleResponsive>
+          )}
         </div>
         {showButton && (
           <Button

@@ -1,7 +1,6 @@
 import {
   Table,
   Typography,
-  Space,
   Status,
   TableCustomWrapper,
 } from "../ui-kit";

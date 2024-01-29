@@ -30,3 +30,9 @@
   align-self: flex-end;
   margin-left: auto;
 }
+
+.subtitleStatusBlock {
+  display: flex;
+  gap: var(--gap---m, 16px);
+  align-items: center;
+}

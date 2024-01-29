@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
-import ManagerPage from "../../pages/ManagerPage/ManagerPage";
+import MainManagerPage from "../../pages/MainManagerPage/MainManagerPage";
 
 import Header from "../Header/Header";
 import Head from "../Head/Head";
@@ -33,7 +33,7 @@ const App = () => {
           {/* 2 уроверь */}
           {role === "manager" ? (
             <>
-              <Route index element={<ManagerPage />} />
+              <Route index element={<MainManagerPage />} />
               <Route path="/employee/:id" element={<EmployeePage />} />
               <Route path="/idp/:id" element={<IdpPage />} />
               <Route
@@ -52,6 +52,7 @@ const App = () => {
           ) : (
             <Route path="/" element={<EmployeePage />} />
           )}
+          
         </Route>
       </Routes>
       <TaskModal />
