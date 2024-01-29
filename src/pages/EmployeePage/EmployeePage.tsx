@@ -3,10 +3,14 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
+import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
+import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
 
 const EmployeePage = () => {
   const activeIPRs = false;
   const status: string = "green";
+  const role = "mentor";
+  const has_task = false;
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -21,8 +25,15 @@ const EmployeePage = () => {
 
   return (
     <>
+      {role === "mentor" && (
+        <div>
+          <MentorInfo />
+          <Gap size="2xl" />
+        </div>
+      )}
       <EmployeeCard activeIPRs={activeIPRs} />
       <Gap size="2xl" />
+      {role === "mentor" && <TabsCustomMentor />}
       {status === "green" && (
         <PlateWrapper
           config={plateSuccess}
@@ -40,7 +51,7 @@ const EmployeePage = () => {
         />
       )}
       <IdpList />
-      <NewPlanMessage />
+      {has_task === false && <NewPlanMessage />}
     </>
   );
 };
