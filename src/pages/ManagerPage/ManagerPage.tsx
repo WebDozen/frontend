@@ -10,7 +10,7 @@ const ManagerPage = () => {
 
   useEffect(() => {
     dispatch(getEmployees());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={style.content}>

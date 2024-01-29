@@ -12,9 +12,13 @@ import s from "./TeamList.module.scss";
 
 import avatar from "./../../images/employeeAvatar.png";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../services/hook";
+import { getEmployeesListData } from "../../services/selectors";
 
 const TeamList = () => {
   const navigate = useNavigate();
+  const { list, loading, error } = useAppSelector(getEmployeesListData);
+  console.log(list, loading, error);
 
   const styleTableCell = {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",

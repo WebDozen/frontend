@@ -19,7 +19,7 @@ class Api {
     this._headers = options.headers;
   }
 
-  _checkResponse = async (res: Response) => {
+  private _checkResponse = async (res: Response) => {
     if (res.ok) {
       if (res.status === 204) {
         return res;
@@ -35,9 +35,8 @@ class Api {
   };
 
   // Делаем запрос на сервер
-  private _makeRequest = async ({ url, method, data, params }: RequestType) => {
-    // const parameters = params || "";
-    const config: { method: string; headers: {}; body?: string } = {
+  private _makeRequest = async ({ url, method, data }: RequestType) => {
+    const config: ConfigType = {
       method,
       headers: this._headers,
     };
@@ -46,16 +45,16 @@ class Api {
       config.body = JSON.stringify(data);
     }
     const res = await fetch(`${this._baseUrl}${url}`, config);
-    console.log("_makeRequest => res", res);
 
     return this._checkResponse(res);
   };
+
   // Пользователи сервиса ИПР
   // Получение списка сотрудников с данными по последнему ИПР
-  getEmployees = () => this._makeRequest({ url: "/employees", method: "GET" });
+  getEmployees = () => this._makeRequest({ url: "/employees/", method: "GET" });
 
   // Получение всех данных о сотруднике
-  getEmployeesByID = (id: number) =>
+  getEmployeeByID = (id: number) =>
     this._makeRequest({ url: `/employees/${id}`, method: "GET" });
 
   // ИПР
@@ -91,7 +90,7 @@ class Api {
 }
 
 const config = {
-  baseUrl: "https://127.0.0.1:8000/api/v1",
+  baseUrl: "http://127.0.0.1:8000/api/v1",
   headers: {
     "Content-Type": "application/json",
     Authorization: "Token 7770768818aca29747c62c4130a178283e93396c",
