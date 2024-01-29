@@ -17,8 +17,9 @@ const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const status: STATUSES = STATUSES.Review;
-  const showButton = pathname === "/employee/1" ? true : false;
+  const status: STATUSES = STATUSES.Done;
+  const showButton = pathname === "/employee/1";
+  const addIdpLocation = pathname === "/employee/1/add-idp";
   const buttonIsDisabled =
     (status as STATUSES) === "orange" ||
     (status as STATUSES) === "teal" ||
@@ -29,8 +30,10 @@ const Head = () => {
       : pathname === "/"
         ? "Главная страница"
         : pathname === "/idp/1"
-          ? "Название ИПР"
-          : "";
+          ? "Название ИПР":
+          addIdpLocation
+          ? "Создание ИПР"
+          : "Главная страница";
 
   const statusData: { color: "green"; view: "contrast"; text: string } = {
     color: "green",
@@ -84,6 +87,9 @@ const Head = () => {
             disabled={buttonIsDisabled}
             className={style.mainButton}
             type="button"
+            onClick={(e: any) => {
+              navigate(`/employee/1/add-idp`);
+            }}
           >
             Создать ИПР
           </Button>

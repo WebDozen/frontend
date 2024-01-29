@@ -1,62 +1,83 @@
-import { Gap, Button, GenericWrapper, Divider, Textarea } from "../ui-kit";
+import { useState } from "react";
+import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
 import style from "./IdpForm.module.scss";
-import AutoInput from "./AutoInput/AutoInput";
-import InputCustom from "./InputCustom/InputCustom";
-import DateInputCustom from "./DateInputCustom/DateInputCustom";
+import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
+import TaskForm from "./TaskForm/TaskForm";
 
 const IdpForm = () => {
+  // const [inputs, setInputs] = useState({});
+  // const [isValid, setIsValid] = useState(false);
+
+  // const handleChange = (e: any) => {
+  //   const input = e.target;
+  //   const { name, value } = input;
+
+  //   setInputs({ ...inputs, [name]: value });
+  //   setIsValid(e.target.closest("form").checkValidity());
+  //   console.log(name);
+  // };
+
+  // const resetSubmitButton = () => {
+  //   setIsValid(false);
+  // };
+
+  // const onSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   console.log("privet");
+  // };
+  const [showTaskForm, setShowTaskForm] = useState(false);
+
+  const numbers: Array<number> = [];
+  const [taskList, setTaskList] = useState(numbers);
+
+  const handleAddTask = (item: number) => {
+    setTaskList([item, ...taskList]);
+    console.log(taskList);
+  };
+
+  const handleDeleteTask = () => {
+    setTaskList(taskList.splice(-1));
+    console.log(taskList);
+  };
+
   return (
-    <form className={style.form}>
-      <AutoInput />
-      <Gap size="m" />
-      <InputCustom />
-      <Gap size="m" />
-      <Textarea
-        block={true}
-        minRows={1}
-        maxRows={10}
-        placeholder="Добавьте описание ИПР"
-      />
-      <Gap size="m" />
-      <DateInputCustom />
-      <Gap size="s" />
-      <GenericWrapper>
-        <Button
-          view="tertiary"
-          shape="rounded"
-          size="xxs"
-          className={style.button}
-          type="button"
-        >
-          3 месяца
-        </Button>
-        <Gap size="xs" direction="horizontal" />
-        <Button
-          view="tertiary"
-          shape="rounded"
-          size="xxs"
-          className={style.button}
-          type="button"
-        >
-          6 месяцев
-        </Button>
-        <Gap size="xs" direction="horizontal" />
-        <Button
-          view="tertiary"
-          shape="rounded"
-          size="xxs"
-          className={style.button}
-          type="button"
-        >
-          1 год
-        </Button>
-      </GenericWrapper>
+    <form>
+      <IdpFormPartOne />
       <Gap size="xl" />
-      <Button view="primary" size="xs" disabled={true} type="button">
-        Добавить задачу
-      </Button>
-      <Gap size="4xl" />
-      <Divider className={style.dividerCustom} />
+
+      {showTaskForm ? (
+        <TaskForm
+          title={1}
+          showTaskForm={showTaskForm}
+          handleAddTask={handleAddTask}
+          handleDeleteTask={handleDeleteTask}
+        />
+      ) : (
+        <>
+          <Button
+            view="primary"
+            size="xs"
+            disabled={false}
+            type="button"
+            onClick={() => setShowTaskForm(true)}
+          >
+            Добавить задачу
+          </Button>
+          <Gap size="4xl" />
+          <Divider className={style.dividerCustom} />
+        </>
+      )}
+
+      {taskList.map((_, id) => (
+        <TaskForm
+          title={id + 2}
+          showTaskForm={showTaskForm}
+          handleAddTask={handleAddTask}
+          handleDeleteTask={handleDeleteTask}
+          key={id}
+        />
+      ))}
+
       <Gap size="2xl" />
       <GenericWrapper>
         <Button

@@ -19,11 +19,16 @@
 }
 
 .tableHeadCell {
+  padding: 0;
   text-transform: none;
   font-family: "Styrene UI";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+}
+
+.tableHead {
+  height: 44px;
   padding: 0;
 }

@@ -6,7 +6,7 @@ import CommentsList from "../../components/CommentsList/CommentsList";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import NoTaskMessage from "../../components/NoTaskMessage/NoTaskMessage";
 import style from "./IdpPage.module.scss";
-import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 
 const IdpPage = () => {
   const activeIPRs = false;
