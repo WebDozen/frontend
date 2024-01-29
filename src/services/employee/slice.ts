@@ -41,13 +41,11 @@ const employeeSlice = createSlice({
         state.loading = false;
       })
       .addMatcher(isPending, (state) => {
-        console.log("addMatcher(isPending, (state) => ", state);
         state.loading = true;
         state.error = null;
       });
   },
 });
-
 
 export default employeeSlice.reducer;
 
