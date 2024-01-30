@@ -10,8 +10,13 @@ export type Employee = {
   middle_name: string;
   grade: string;
   position: string;
-  task_count: number;
-  idp_status: string;
+  idp: {
+    status: string;
+    has_task: boolean;
+    total_completed_idps: number;
+    completed_tasks_count: number;
+    total_idps_count: number;
+  };
 };
 
 type EmployeesState = {
