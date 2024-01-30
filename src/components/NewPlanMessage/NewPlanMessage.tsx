@@ -19,7 +19,7 @@ export default function NewPlanMessage() {
 
   return (
     <div className={styles.newPlanBlock}>
-      <Gap size="5xl" />
+      <Gap size="4xl" />
       <SuperEllipse imageUrl={icon} size={128} />
       <Gap size="l" />
       {showTitle && (

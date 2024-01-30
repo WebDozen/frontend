@@ -6,11 +6,13 @@ import { Gap } from "../../components/ui-kit";
 import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
 import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
 
-const EmployeePage = () => {
-  const activeIPRs = false;
+interface Props {
+  role: string;
+}
+
+const EmployeePage = ({role}: Props) => {
+  const activeIPRs = true;
   const status: string = "green";
-  const role = "mentor";
-  const has_task = false;
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -78,8 +80,9 @@ const EmployeePage = () => {
           text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
         />
       )} */}
-      <IdpList />
-      {has_task === false && <NewPlanMessage />}
+            {(role === "employee" && !activeIPRs) ? 
+      <NewPlanMessage /> :
+      <IdpList />}
     </>
   );
 };
