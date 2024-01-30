@@ -7,10 +7,16 @@ import { useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
 
 const EmployeePage = () => {
-  const {employee, loading, error} = useAppSelector(getEmployeeData);
+  const {
+    employee: {
+      idp: { status: idp_status },
+    },
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);
 
   const activeIPRs = false;
-  const status: string = "green";
+  const status: string = idp_status;
 
   const plateSuccess = {
     hasBadge: "positive",
