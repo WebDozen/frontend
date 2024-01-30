@@ -11,6 +11,7 @@ import TaskModal from "../TaskModal/TaskModal";
 import style from "./App.module.scss";
 import { useState } from "react";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
+import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 
 const App = () => {
   const [role, setRole] = useState("manager");
@@ -33,31 +34,27 @@ const App = () => {
           }
         >
           {/* 2 уроверь */}
-          <>
-            <Route
-              index
-              element={
-                role === "manager" ? (
-                  <ManagerPage />
-                ) : (<></>
-                 // <EmployeePage />
-                )
-              }
-            />
-
-            <Route
-              path="/employee/:id"
-              element={<EmployeePage />}
-            />
-            <Route path="/idp/:id" element={<IdpPage />} />
-            <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
-            <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
-
-            <Route
-              path="/employee/:id/edit-idp/:idp-id"
-              element={<div>Редактирование ИПР</div>}
-            />
-          </>
+          <Route
+            index
+            element={
+              role === "manager" ? (
+                // <MainManagerPage />
+                <ManagerPage />
+              ) : (
+                <EmployeePage
+                // role={role}
+                />
+              )
+            }
+          />
+          <Route path="/employee/:id" element={<EmployeePage />} />
+          {/* <Route path="/idp/:id" element={<IdpPage />} /> */}
+          <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
+          <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
+          <Route
+            path="/employee/:id/edit_idp/:idp_id"
+            element={<div>Редактирование ИПР</div>}
+          />
         </Route>
       </Routes>
       <TaskModal />

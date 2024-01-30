@@ -31,7 +31,7 @@ const EmployeePage = () => {
   
 
   const activeIPRs = false;
-  const status: string = "green";
+  const status: string = idp_status;
 
   const plateSuccess = {
     hasBadge: "positive",

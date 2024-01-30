@@ -4,8 +4,8 @@ import type { Employee } from "./slice";
 
 export const getEmployeeByID = createAsyncThunk<
   Employee,
-  string,
-  { rejectValue: unknown }
+  string | number,
+  { rejectValue: unknown}
 >("employee/getEmployees", async (id, { rejectWithValue }) => {
   try {
     const res = await api.getEmployeeByID(id);

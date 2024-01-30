@@ -54,19 +54,19 @@ class Api {
   getEmployees = () => this._makeRequest({ url: "/employees/", method: "GET" });
 
   // Получение всех данных о сотруднике
-  getEmployeeByID = (id: number) =>
+  getEmployeeByID = (id: string | number) =>
     this._makeRequest({ url: `/employees/${id}`, method: "GET" });
 
   // ИПР
   // Получение всех ИПР сотрудника
-  getIdps = (employee_id: number) =>
+  getIdps = (employee_id: string | number) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/`,
       method: "GET",
     });
 
   // Создание нового ИПР
-  postIdp = (employee_id: number, data: {}) =>
+  postIdp = (employee_id: string | number, data: {}) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/`,
       method: "POST",
@@ -74,14 +74,18 @@ class Api {
     });
 
   // Получение ИПР сотрудника по id ipd
-  getIdpByID = (employee_id: number, idp_id: number) =>
+  getIdpByID = (employee_id: string | number, idp_id: string | number) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/${idp_id}`,
       method: "GET",
     });
 
   // обновление ИПР
-  patchIdpByID = (employee_id: number, idp_id: number, data: {}) =>
+  patchIdpByID = (
+    employee_id: string | number,
+    idp_id: string | number,
+    data: {},
+  ) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/${idp_id}`,
       method: "PATCH",

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getEmployeeByID } from "./actions";
 
 export type Employee = {
-  id: number;
+  id: number | string;
   is_mentor: boolean;
   last_name: string;
   first_name: string;
@@ -20,13 +20,28 @@ export type Employee = {
 };
 
 type EmployeesState = {
-  employee: Employee | {};
+  employee: Employee;
   loading: boolean;
   error: string | null;
 };
 
 const initialState: EmployeesState = {
-  employee: {},
+  employee: {
+    id: 0,
+    is_mentor: false,
+    last_name: "",
+    first_name: "",
+    middle_name: "",
+    grade: "",
+    position: "",
+    idp: {
+      status: "",
+      has_task: false,
+      total_completed_idps: 0,
+      completed_tasks_count: 0,
+      total_idps_count: 0,
+    },
+  },
   loading: false,
   error: null,
 };
