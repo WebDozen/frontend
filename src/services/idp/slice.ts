@@ -1,50 +1,7 @@
-import type { UnknownAction } from "@reduxjs/toolkit";
+import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-
-export type TypeTask = {
-  id: number;
-  name: string;
-  description: string;
-  type: number;
-  status: string | null;
-  pub_date: string;
-  source: string;
-};
-
-export type TypeStatus = {
-  id: number;
-  name: string;
-  slug: string;
-  color_fon: string;
-  color_text: string;
-};
-
-export type TypeMentor = {
-  id: number;
-  last_name: string;
-  first_name: string;
-  middle_name: string;
-  grade: string;
-  position: string;
-};
-
-type TypeIDP = {
-  id: number;
-  employee: boolean;
-  name: string;
-  description: string;
-  pub_date: string;
-  deadline: string;
-  mentor: TypeMentor | null;
-  status: TypeStatus;
-  tasks: TypeTask[] | null;
-};
-
-type TypeIDPState = {
-  idp: TypeIDP;
-  loading: boolean;
-  error: string | null;
-};
+import type { TypeIDPState } from "./types";
+import { getIdpByID, patchIdpByID, postIdp } from "./actions";
 
 const initialState: TypeIDPState = {
   idp: {
@@ -68,18 +25,43 @@ const initialState: TypeIDPState = {
   error: null,
 };
 
-const employeesSlice = createSlice({
+const idpSlice = createSlice({
   name: "idp",
   initialState,
 
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(postIdp.fulfilled, (state, action) => {
+        state.idp = action.payload;
+        state.loading = false;
+      })
+      .addCase(getIdpByID.fulfilled, (state, action) => {
+        state.idp = action.payload;
+        state.loading = false;
+      })
+      .addCase(patchIdpByID.fulfilled, (state, action) => {
+        state.idp = action.payload;
+        state.loading = false;
+      })
+      .addMatcher(isPending, (state) => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
-export const {} = employeesSlice.actions;
+// export const {} = idpSlice.actions;
 
-export default employeesSlice.reducer;
+export default idpSlice.reducer;
 
 function isError(action: UnknownAction) {
   return action.type.endsWith("rejected");
+}
+function isPending(action: UnknownAction) {
+  return action.type.endsWith("pending");
 }
