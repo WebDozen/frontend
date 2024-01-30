@@ -3,15 +3,34 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getEmployeeData } from "../../services/selectors";
 import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
 import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
+import type { Employee } from "../../services/employee/slice";
+import { useEffect } from "react";
+import { getEmployeeByID } from "../../services/actions";
+import { useParams } from "react-router-dom";
 
-interface Props {
-  role: string;
-}
+const EmployeePage = () => {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
 
-const EmployeePage = ({role}: Props) => {
-  const activeIPRs = true;
+  useEffect(() => {
+    dispatch(getEmployeeByID(id));
+  }, [dispatch]);
+
+  const {
+    employee:  {
+      idp: {status: idp_status},
+     },
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);
+
+  
+
+  const activeIPRs = false;
   const status: string = "green";
 
   const plateSuccess = {
@@ -25,9 +44,11 @@ const EmployeePage = ({role}: Props) => {
     hasCloser: true,
   };
 
+
+
   return (
     <>
-      {role === "mentor" && (
+      {is_mentor && (
         <div>
           <MentorInfo />
           <Gap size="2xl" />
@@ -35,7 +56,7 @@ const EmployeePage = ({role}: Props) => {
       )}
       <EmployeeCard activeIPRs={activeIPRs} />
       <Gap size="2xl" />
-      {role === "mentor" && <TabsCustomMentor />}
+      {is_mentor && <TabsCustomMentor />}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !! */}
       {status === "green" && (
@@ -55,7 +76,7 @@ const EmployeePage = ({role}: Props) => {
         />
       )}
 
-{/* Плашки для сотрудника
+      {/* Плашки для сотрудника
 {status === "green" && (
         <PlateWrapper
           config={plateSuccess}
@@ -80,9 +101,9 @@ const EmployeePage = ({role}: Props) => {
           text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
         />
       )} */}
-            {(role === "employee" && !activeIPRs) ? 
+      {/*  {(role === "employee" && !activeIPRs) ? 
       <NewPlanMessage /> :
-      <IdpList />}
+      <IdpList />} */}
     </>
   );
 };
