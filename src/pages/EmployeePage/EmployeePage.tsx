@@ -3,8 +3,12 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
+import { useAppSelector } from "../../services/hook";
+import { getEmployeeData } from "../../services/selectors";
 
 const EmployeePage = () => {
+  const {employee, loading, error} = useAppSelector(getEmployeeData);
+
   const activeIPRs = false;
   const status: string = "green";
 
@@ -42,7 +46,7 @@ const EmployeePage = () => {
         />
       )}
 
-{/* Плашки для сотрудника
+      {/* Плашки для сотрудника
 {status === "green" && (
         <PlateWrapper
           config={plateSuccess}
