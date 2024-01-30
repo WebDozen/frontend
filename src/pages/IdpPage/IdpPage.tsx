@@ -6,31 +6,27 @@ import CommentsList from "../../components/CommentsList/CommentsList";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import NoTaskMessage from "../../components/NoTaskMessage/NoTaskMessage";
 import style from "./IdpPage.module.scss";
-import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 
 const IdpPage = () => {
   const activeIPRs = false;
-
-  const value = {
-    badge: "no",
-    title: "bold",
-    subTitle: "no",
-    button: "no",
-    width: "nolimit",
-    mechanics: "close",
+  const plateSuccess = {
+    hasButton: false,
+    hasCloser: true,
   };
 
   return (
-    <div>
+    <>
       <MentorArea status="blue" />
       <Gap size="2xl" />
       <EmployeeCard activeIPRs={!activeIPRs} />
+      <Gap size="3xl" />
       <TaskDescription />
       <div className={style.leftContainer}>
         <NoTaskMessage />
         <Gap size="2xl" />
         <PlateWrapper
-          value={value}
+          config={plateSuccess}
           view="positive"
           titleText="Оставьте свой комментарий"
           text="Здесь будут отображаться комментарии ко всему плану развития. Если же вы
@@ -43,7 +39,7 @@ const IdpPage = () => {
         <IdpCommentSending />
       </div>
       <Gap size="7xl" />
-    </div>
+    </>
   );
 };
 

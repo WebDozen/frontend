@@ -11,8 +11,7 @@ export default function EmployeeCard({ activeIPRs }: CardProps) {
   return (
     <div className={style.employeeCard}>
       <EmployeeInfo />
-      {!activeIPRs && <InfoProgressNoIdp />}
-      {activeIPRs && <InfoProgressStatusBar />}
+      {!activeIPRs ? <InfoProgressNoIdp /> : <InfoProgressStatusBar />}
     </div>
   );
 }

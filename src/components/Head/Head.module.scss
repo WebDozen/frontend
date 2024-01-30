@@ -1,5 +1,11 @@
 .container {
-  width: max-content;
+  //width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftContainer {
+  width: 704px;
 }
 
 .linkBack {
@@ -17,4 +23,16 @@
   &:hover {
     opacity: 0.6;
   }
+}
+
+.mainButton {
+  max-height: 56px;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.subtitleStatusBlock {
+  display: flex;
+  gap: var(--gap---m, 16px);
+  align-items: center;
 }

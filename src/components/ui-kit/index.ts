@@ -24,7 +24,7 @@ import { Input } from '@alfalab/core-components/input';
 import { UniversalDateInput } from '@alfalab/core-components/universal-date-input';
 import { Calendar } from '@alfalab/core-components/calendar';
 import { Plate } from '@alfalab/core-components/plate';
-import { Badge } from '@alfalab/core-components/badge';
+import { StatusBadge } from '@alfalab/core-components/status-badge';
 import { List } from '@alfalab/core-components/list';
 import { Scrollbar } from '@alfalab/core-components/scrollbar';
 import { CustomButton } from '@alfalab/core-components/custom-button';
@@ -45,10 +45,8 @@ import { CopyMIcon } from '@alfalab/icons-glyph/CopyMIcon';
 import { ChevronRightShiftRightSIcon } from '@alfalab/icons-glyph/ChevronRightShiftRightSIcon';
 import { PersonalManagerMIcon } from '@alfalab/icons-glyph/PersonalManagerMIcon';
 import { ArrowBackMIcon } from "@alfalab/icons-glyph/ArrowBackMIcon";
-import { CheckmarkCircleMIcon } from '@alfalab/icons-glyph/CheckmarkCircleMIcon';
 import { ChevronDownMIcon } from '@alfalab/icons-glyph/ChevronDownMIcon';
 import { PencilMIcon } from '@alfalab/icons-glyph/PencilMIcon';
-import { ExclamationCircleMIcon } from '@alfalab/icons-glyph/ExclamationCircleMIcon';
 
 export {
   // Компоненты
@@ -74,7 +72,7 @@ export {
   Underlay,
   CircularProgressBar,
   Plate,
-  Badge,
+  StatusBadge,
   List,
   Scrollbar,
   CustomButton,
@@ -97,8 +95,6 @@ export {
   ChevronRightShiftRightSIcon,
   PersonalManagerMIcon,
   ArrowBackMIcon,
-  CheckmarkCircleMIcon,
   ChevronDownMIcon,
   PencilMIcon,
-  ExclamationCircleMIcon,
 };
