@@ -15,7 +15,7 @@ const TeamInfoBlock = () => {
           <GenericWrapper column={true} justifyContent="between">
             <h4 className={s.infoHeadline}>В вашем отделе {7} сотрудников</h4>
             <Gap size="m" />
-            <span className={s.infoSubtitle}>Назначено ИПР</span>
+            <span className={s.infoSubtitle}>Активно ИПР</span>
             <Gap size="xs" />
             <span className={s.infoText}>{6}</span>
           </GenericWrapper>
@@ -24,12 +24,12 @@ const TeamInfoBlock = () => {
       </Underlay>
       <Underlay borderRadius="xl" backgroundColor="secondary" padding="xl">
         <GenericWrapper grow={true} column={true} justifyContent="between">
-          <h4 className={s.infoHeadline}>В вашем отделе {7} сотрудников</h4>
+          <h4 className={s.infoHeadline}>Данные по текущим ИПР</h4>
           <Gap size="m" />
           <GenericWrapper column={true} justifyContent="between">
             <Space align="end" className={s.custom} direction="horizontal">
               <div>
-                <span className={s.infoSubtitle}>Не назначены</span>
+                <span className={s.infoSubtitle}>На ревью</span>
                 <Gap size="xs" />
                 <span className={s.infoText}>{6}</span>
               </div>
@@ -41,13 +41,13 @@ const TeamInfoBlock = () => {
               </div>
               <div className={s.customLine}></div>
               <div>
-                <span className={s.infoSubtitle}>Просрочено</span>
+                <span className={s.infoSubtitle}>Просрочен</span>
                 <Gap size="xs" />
                 <span className={s.infoText}>{6}</span>
               </div>
               <div className={s.customLine}></div>
               <div>
-                <span className={s.infoSubtitle}>Ожидают ревью</span>
+                <span className={s.infoSubtitle}>Отменен</span>
                 <Gap size="xs" />
                 <span className={s.infoText}>{6}</span>
               </div>

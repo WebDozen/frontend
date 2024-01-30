@@ -11,7 +11,6 @@ import TaskModal from "../TaskModal/TaskModal";
 import style from "./App.module.scss";
 import { useState } from "react";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
-import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 
 const App = () => {
   const [role, setRole] = useState("manager");

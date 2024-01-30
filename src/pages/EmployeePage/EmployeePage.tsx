@@ -7,13 +7,16 @@ import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
 import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
 import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
-import type { Employee } from "../../services/employee/slice";
 import { useEffect } from "react";
 import { getEmployeeByID } from "../../services/actions";
 import { useParams } from "react-router-dom";
 
 const EmployeePage = () => {
-  const { id } = useParams();
+  type Params = {
+    id: string;
+  };
+  
+  const { id } = useParams<Params>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,16 +24,18 @@ const EmployeePage = () => {
   }, [dispatch]);
 
   const {
-    employee:  {
+    employee:  {is_mentor,
       idp: {status: idp_status},
-     },
+     }, employee,
     loading,
     error,
   } = useAppSelector(getEmployeeData);
 
-  
+  useEffect(() => {
+  console.log(employee)
+  }, [employee]);
 
-  const activeIPRs = false;
+  const activeIPRs = true;
   const status: string = idp_status;
 
   const plateSuccess = {
