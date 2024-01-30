@@ -12,10 +12,9 @@ import s from "./TeamList.module.scss";
 
 import avatar from "./../../images/employeeAvatar.png";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { useAppSelector } from "../../services/hook";
 import { getEmployeesListData } from "../../services/selectors";
 import type { Employees } from "../../services/employeesList/slice";
-import { getEmployeeByID } from "../../services/actions";
 
 const TeamList = () => {
   const navigate = useNavigate();
