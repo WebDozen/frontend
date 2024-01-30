@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
-import MainManagerPage from "../../pages/MainManagerPage/MainManagerPage";
+// import MainManagerPage from "../../pages/MainManagerPage/MainManagerPage";
 import AddIdpPage from "../../pages/AddIdpPage/AddIdpPage";
 
 import Header from "../Header/Header";
@@ -11,6 +11,7 @@ import TaskModal from "../TaskModal/TaskModal";
 
 import style from "./App.module.scss";
 import { useState } from "react";
+import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 
 const App = () => {
   const [role, setRole] = useState("manager");
@@ -37,7 +38,8 @@ const App = () => {
             index
             element={
               role === "manager" ? (
-                <MainManagerPage />
+                // <MainManagerPage />
+                <ManagerPage />
               ) : (
                 <EmployeePage
                 // role={role}

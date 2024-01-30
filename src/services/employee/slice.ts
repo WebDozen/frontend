@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getEmployeeByID } from "./actions";
 
 export type Employee = {
-  id: number;
+  id: number | string;
   is_mentor: boolean;
   last_name: string;
   first_name: string;

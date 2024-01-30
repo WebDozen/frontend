@@ -12,9 +12,10 @@ import s from "./TeamList.module.scss";
 
 import avatar from "./../../images/employeeAvatar.png";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../services/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeesListData } from "../../services/selectors";
 import type { Employees } from "../../services/employeesList/slice";
+import { getEmployeeByID } from "../../services/actions";
 
 const TeamList = () => {
   const navigate = useNavigate();
@@ -25,71 +26,15 @@ const TeamList = () => {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",
   };
 
-  // let users = [
-  //   {
-  //     id: 12,
-  //     avatar: avatar,
-  //     name: "Волкова Елена Николаевна",
-  //     specialty: "Frontend Разработчик, Middle",
-  //     mentor: { id: 123 },
-  //     status: "выполнен",
-  //   },
-  //   {
-  //     id: 13,
-  //     avatar: avatar,
-  //     name: "Карпова ирина Владимирвна",
-  //     specialty: "Backend Разработчик, Junior",
-  //     mentor: { id: 123 },
-  //     status: "выполнен",
-  //   },
-  //   {
-  //     id: 1123,
-  //     avatar: avatar,
-  //     name: "Степанов Игорь Викторович",
-  //     specialty: "Devops Инженер, Middle",
-  //     mentor: { id: 123 },
-  //     status: "выполнен",
-  //   },
-  //   {
-  //     id: 1,
-  //     avatar: avatar,
-  //     name: "Филатова Мария Анатольевна",
-  //     specialty: "Тестировшик ПО, Junior +",
-  //     mentor: { id: 123 },
-  //     status: "выполнен",
-  //   },
-  //   {
-  //     id: 32,
-  //     avatar: avatar,
-  //     name: "Максимова Дарья Олеговна",
-  //     specialty: "Backend Разработчик, Senior",
-  //     mentor: "",
-  //     status: "выполнен",
-  //   },
-  // ];
+  //   (e) => {
+  //   navigate(`/employee/${user.id}`);
+  // }
 
-  // id: number;
-  // mentor: boolean;
-  // last_name: string;
-  // first_name: string;
-  // middle_name: string;
-  // grade: string;
-  // position: string;
-  // idp: {
-  //   status: string;
-  //   has_task: boolean;
-  //   total_completed_idps: number;
-  //   completed_tasks_count: number;
-  //   total_idps_count: number;
-  // };
-
+  const handleClickEmployee: (id: string | number) => void = (id) => {
+    navigate(`/employee/${id}`);
+  };
   const tableRowElement = (user: Employees) => (
-    <Table.TRow
-      key={user.id}
-      onClick={(e) => {
-        navigate(`/employee/${user.id}`);
-      }}
-    >
+    <Table.TRow key={user.id} onClick={() => handleClickEmployee(user.id)}>
       <Table.TCell className={s.tableCell}>
         <div className={s.tableUser}>
           <Circle size={40} imageUrl={avatar} />
@@ -120,7 +65,6 @@ const TeamList = () => {
       </Table.TCell>
     </Table.TRow>
   );
-
   return (
     <div>
       <TableCustomWrapper>
