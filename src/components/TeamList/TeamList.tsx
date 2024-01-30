@@ -56,7 +56,7 @@ const TeamList = () => {
 
       <Table.TCell className={s.tableCell}>
         <div className={s.status}>
-          <Status view="soft" color={"green"} key={"green"}>
+          <Status view="contrast" color={"green"} key={"green"}>
             {user.idp.status}
           </Status>
           <img src={chevronIcon} alt="шеврон вправо" />

@@ -1,7 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
-// import MainManagerPage from "../../pages/MainManagerPage/MainManagerPage";
 import AddIdpPage from "../../pages/AddIdpPage/AddIdpPage";
 
 import Header from "../Header/Header";

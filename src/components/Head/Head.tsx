@@ -17,7 +17,7 @@ const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const status: STATUSES = STATUSES.Done;
+  const status: STATUSES = STATUSES.done;
   const showButton = pathname === "/employee/1";
   const addIdpLocation = pathname === "/employee/1/add-idp";
   const buttonIsDisabled =

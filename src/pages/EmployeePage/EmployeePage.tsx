@@ -3,19 +3,39 @@ import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
-import { useAppSelector } from "../../services/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
+import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
+import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
+import { useEffect } from "react";
+import { getEmployeeByID } from "../../services/actions";
+import { useParams } from "react-router-dom";
 
 const EmployeePage = () => {
+  type Params = {
+    id: string;
+  };
+  
+  const { id } = useParams<Params>();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getEmployeeByID(id));
+  }, [dispatch]);
+
   const {
-    employee: {
-      idp: { status: idp_status },
-    },
+    employee:  {is_mentor,
+      idp: {status: idp_status},
+     }, employee,
     loading,
     error,
   } = useAppSelector(getEmployeeData);
 
-  const activeIPRs = false;
+  useEffect(() => {
+  console.log(employee)
+  }, [employee]);
+
+  const activeIPRs = true;
   const status: string = idp_status;
 
   const plateSuccess = {
@@ -29,10 +49,19 @@ const EmployeePage = () => {
     hasCloser: true,
   };
 
+
+
   return (
     <>
+      {is_mentor && (
+        <div>
+          <MentorInfo />
+          <Gap size="2xl" />
+        </div>
+      )}
       <EmployeeCard activeIPRs={activeIPRs} />
       <Gap size="2xl" />
+      {is_mentor && <TabsCustomMentor />}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !! */}
       {status === "green" && (
@@ -77,8 +106,9 @@ const EmployeePage = () => {
           text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
         />
       )} */}
-      <IdpList />
-      <NewPlanMessage />
+      {/*  {(role === "employee" && !activeIPRs) ? 
+      <NewPlanMessage /> :
+      <IdpList />} */}
     </>
   );
 };

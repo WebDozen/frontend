@@ -54,7 +54,7 @@ class Api {
   getEmployees = () => this._makeRequest({ url: "/employees/", method: "GET" });
 
   // Получение всех данных о сотруднике
-  getEmployeeByID = (id: string | number) =>
+  getEmployeeByID = (id: string | undefined) =>
     this._makeRequest({ url: `/employees/${id}`, method: "GET" });
 
   // ИПР

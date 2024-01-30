@@ -1,14 +1,6 @@
-import {
-  Button,
-  Circle,
-  CopyMIcon,
-  IconButton,
-  PencilMIcon,
-  PersonalManagerMIcon,
-} from "../ui-kit";
+import { Button, CopyMIcon, IconButton, PencilMIcon } from "../ui-kit";
 import styles from "./MentorArea.module.scss";
-import style from "../EmployeeCard/EmployeeCard.module.scss";
-import managerIcon from "../../images/mentorAva.svg";
+import MentorInfo from "./MentorInfo/MentorInfo";
 
 interface statusProps {
   status: string;
@@ -17,23 +9,7 @@ interface statusProps {
 const MentorArea = ({ status }: statusProps) => {
   return (
     <div className={styles.mentorCopyAreaBlock}>
-      <div className={styles.mentorAreaBlock}>
-        <div className={styles.block}>
-          <Circle size={32} imageUrl={managerIcon} />
-
-          <div className={style.infoDescription}>
-            <div className={styles.iconAndName}>
-              <PersonalManagerMIcon className={styles.icon} />
-              <h5 className={style.infoDescriptionName}>
-                Степанов Игорь Викторович
-              </h5>
-            </div>
-            <p className={style.infoDescriptionGrade}>
-              Frontend-разработчик, Senior
-            </p>
-          </div>
-        </div>
-      </div>
+      <MentorInfo />
       {(status === "green" || status === "grey") && (
         <IconButton
           view="primary"

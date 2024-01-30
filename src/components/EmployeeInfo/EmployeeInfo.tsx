@@ -5,13 +5,21 @@ import avatar from "../../images/employeeAvatar.png";
 import { useLocation } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
 import { STATUSES } from "../../utils/constants";
+import { getEmployeeData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
-  const status: STATUSES = STATUSES.Done;
-  const date = (status as STATUSES) === "red" ? 
-  "Истек" : "31.12.2025";
 
+  const {
+    employee,
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);
+
+  const date = employee.idp.status === 'expired' ? 
+  "Истек" : "31.12.2025";
+  
   return (
     <div className={style.info}>
       <div className={style.infoBlock}>
@@ -19,10 +27,10 @@ export default function EmployeeInfo() {
           <Circle size={64} imageUrl={avatar} />
           <div className={style.infoDescription}>
             <h5 className={style.infoDescriptionName}>
-              Максимова Дарья Олеговна
+            {`${employee.first_name} ${employee.middle_name} ${employee.last_name} `}
             </h5>
             <p className={style.infoDescriptionGrade}>
-              Frontend-разработчик, Middle
+            {`${employee.position}, ${employee.grade}  `}
             </p>
           </div>
         </div>
@@ -31,7 +39,7 @@ export default function EmployeeInfo() {
         {pathname === "/employee/1" ? (
           <>
             <div className={style.infoIdp}>
-              <h5 className={style.infoIdpAmount}>2 ИПР</h5>
+              <h5 className={style.infoIdpAmount}>{`${employee.idp.total_completed_idps}`} ИПР</h5>
               <p className={style.infoPIdponeStatus}>Выполнено</p>
             </div>
           </>
