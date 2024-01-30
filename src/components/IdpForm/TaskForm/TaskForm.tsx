@@ -6,7 +6,6 @@ import {
   Gap,
   Input,
   Textarea,
-  Button,
   Divider,
 } from "../../ui-kit";
 import style from "./TaskForm.module.scss";
@@ -19,33 +18,44 @@ const data = {
   options: [{ key: "Букварь" }, { key: "Учебник" }, { key: "Альфа-академия" }],
 };
 
+// type Pr = {
+//   set: React.Dispatch<React.SetStateAction<string>>;
+// };
+
+interface DATA {
+  title?: string;
+  description?: string;
+  type?: string;
+  resource?: string;
+}
+
 interface TaskFormProps {
-  title: number;
-  showTaskForm: boolean;
-  handleAddTask: (item: number) => void;
-  handleDeleteTask: () => void;
+  taskData: { id?: number; data?: DATA };
+  handleDeleteTask: (idx: number | undefined) => void;
+  inputs: DATA;
+  handleChange: (event: any) => void;
+  // handleAddTask: (item: { id: number; data: string }) => void;
 }
 
 const TaskForm = ({
-  title,
-  showTaskForm,
-  handleAddTask,
+  taskData,
   handleDeleteTask,
+  inputs,
+  handleChange,
 }: TaskFormProps) => {
-  const [hideButton, setHideButton] = useState(showTaskForm);
-
-  const addNewTask = () => {
-    setHideButton(false);
-    handleAddTask(11);
+  const deleteTask = () => {
+    handleDeleteTask(taskData.id);
   };
 
-  const resetTask = () => {
-    setHideButton(true);
-    handleDeleteTask();
-  };
+  // const onSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   console.log("Submit Tasjki");
+  //   // handleAddTask({ id: taskData.id, data: test });
+  // };
 
   return (
     <GenericWrapper column={true} className={style.container}>
+      <Gap size="4xl" />
       <Divider className={style.dividerCustom} />
       <Gap size="s" />
       <GenericWrapper justifyContent="between" alignItems="center">
@@ -55,13 +65,13 @@ const TaskForm = ({
           view="secondary-large"
           className={style.text}
         >
-          {`ЗАДАЧА ${title}`}
+          {`ЗАДАЧА ${taskData.id}`}
         </Typography.Text>
         <IconButton
           icon={<TrashCanMIcon />}
           size={40}
           className={style.trashCanButton}
-          onClick={resetTask}
+          onClick={deleteTask}
         />
       </GenericWrapper>
       <Gap size="m" />
@@ -71,9 +81,13 @@ const TaskForm = ({
         label="Название"
         labelView="outer"
         size="m"
+        name="title"
+        value={inputs.title}
+        onChange={handleChange}
       />
       <Gap size="m" />
       <Textarea
+        name="description"
         block={true}
         minRows={1}
         maxRows={10}
@@ -83,34 +97,29 @@ const TaskForm = ({
         maxLength={200}
         showCounter={true}
         size="m"
+        value={inputs.description}
+        onChange={handleChange}
       />
       <Gap size="m" />
       <GenericWrapper justifyContent="between">
-        <AutoInput data={data} />
+        <AutoInput
+          data={data}
+          name="type"
+          value={inputs.type}
+          onChange={handleChange}
+        />
         <Input
+          name="resource"
           className={style.input}
           placeholder="Добавьте источник или название"
           block={true}
           label="Источник"
           labelView="outer"
           size="m"
+          value={inputs.resource}
+          onChange={handleChange}
         />
       </GenericWrapper>
-      <Gap size="2xl" />
-      {hideButton && (
-        <Button
-          view="primary"
-          size="xs"
-          disabled={false}
-          type="button"
-          className={style.button}
-          onClick={addNewTask}
-        >
-          Добавить еще задачу
-        </Button>
-      )}
-      <Gap size="4xl" />
-      <Divider className={style.dividerCustom} />
     </GenericWrapper>
   );
 };

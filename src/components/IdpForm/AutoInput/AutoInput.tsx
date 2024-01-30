@@ -13,9 +13,10 @@ interface inputProps {
     placeholder: string;
     options: { key: string }[];
   };
+  name: string;
 }
 
-const AutoInput = ({ data }: inputProps) => {
+const AutoInput = ({ data, name }: inputProps) => {
   const [value, setValue] = useState("");
   const shownChevron = true;
 
@@ -40,6 +41,7 @@ const AutoInput = ({ data }: inputProps) => {
   return (
     <GenericWrapper className={style.autoInput}>
       <InputAutocomplete
+        name={name}
         size="m"
         selected={[]}
         block={true}

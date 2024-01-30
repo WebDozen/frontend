@@ -5,78 +5,88 @@ import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 
 const IdpForm = () => {
-  // const [inputs, setInputs] = useState({});
-  // const [isValid, setIsValid] = useState(false);
+  interface DATA {
+    title?: string;
+    description?: string;
+    type?: string;
+    resource?: string;
+  }
 
-  // const handleChange = (e: any) => {
-  //   const input = e.target;
-  //   const { name, value } = input;
+  const initialTaskList: Array<{ id?: number; data?: DATA }> = [
+    // { id: 1, data: "Почитать" },
+    // { id: 2, data: "Погулять" },
+    // { id: 3, data: "Поесть" },
+    // { id: 4, data: "Посмотреть ютубчик" },
+    // { id: 5, data: "СДЕЛАТЬ ИПР" },
+  ];
+  const [taskList, setTaskList] = useState(initialTaskList);
+  const nullArray = taskList.length === 0;
 
-  //   setInputs({ ...inputs, [name]: value });
-  //   setIsValid(e.target.closest("form").checkValidity());
-  //   console.log(name);
-  // };
-
-  // const resetSubmitButton = () => {
-  //   setIsValid(false);
-  // };
-
-  // const onSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   console.log("privet");
-  // };
-  const [showTaskForm, setShowTaskForm] = useState(false);
-
-  const numbers: Array<number> = [];
-  const [taskList, setTaskList] = useState(numbers);
-
-  const handleAddTask = (item: number) => {
-    setTaskList([item, ...taskList]);
-    console.log(taskList);
+  const handleAddTask = (item: { id: number; data: DATA } | {}) => {
+    setTaskList([...taskList, item]);
   };
 
-  const handleDeleteTask = () => {
-    setTaskList(taskList.splice(-1));
+  const handleButtonClick = () => {
+    if (nullArray) {
+      handleAddTask({});
+    } else {
+      handleAddTask({ id: taskList.length + 1, data: inputs });
+    }
+  };
+
+  const handleDeleteTask = (idx: number | undefined) => {
     console.log(taskList);
+    setTaskList(taskList.filter((item) => item.id !== idx));
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(taskList);
+  };
+  type GG = {
+    title?: string;
+    description?: string;
+    type?: string;
+    resource?: string;
+  };
+
+  const [inputs, setInputs] = useState<GG>({});
+
+  const handleChange = (e: any) => {
+    const input = e.target;
+    const { name, value } = input;
+    setInputs({ ...inputs, [name]: value });
+    console.log(inputs);
   };
 
   return (
     <form>
       <IdpFormPartOne />
-      <Gap size="xl" />
-
-      {showTaskForm ? (
+      {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
+      {taskList?.map((item, idx) => (
         <TaskForm
-          title={1}
-          showTaskForm={showTaskForm}
-          handleAddTask={handleAddTask}
+          taskData={item}
           handleDeleteTask={handleDeleteTask}
-        />
-      ) : (
-        <>
-          <Button
-            view="primary"
-            size="xs"
-            disabled={false}
-            type="button"
-            onClick={() => setShowTaskForm(true)}
-          >
-            Добавить задачу
-          </Button>
-          <Gap size="4xl" />
-          <Divider className={style.dividerCustom} />
-        </>
-      )}
-
-      {taskList.map((_, id) => (
-        <TaskForm
-          title={id + 2}
-          showTaskForm={showTaskForm}
-          handleAddTask={handleAddTask}
-          handleDeleteTask={handleDeleteTask}
-          key={id}
+          inputs={inputs}
+          handleChange={handleChange}
+          key={idx}
+          // handleAddTask={handleAddTask}
         />
       ))}
+      <Gap size="2xl" />
+      <Button
+        view="primary"
+        size="xs"
+        disabled={false}
+        type="button"
+        onClick={handleButtonClick}
+      >
+        {nullArray ? "Добавить задачу" : "Добавить еще задачу"}
+      </Button>
+      <Gap size="4xl" />
+      <Divider
+        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
+      />
 
       <Gap size="2xl" />
       <GenericWrapper>
@@ -92,9 +102,10 @@ const IdpForm = () => {
         <Button
           view="accent"
           size="m"
-          disabled={true}
+          disabled={false}
           className={style.mainButton}
           type="submit"
+          onClick={handleSubmit}
         >
           Создать ИПР
         </Button>
