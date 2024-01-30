@@ -2,7 +2,7 @@ import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees } from "./actions";
 
-export type Employees = {
+export type TypeEmployeesItem = {
   id: number;
   mentor: boolean;
   last_name: string;
@@ -19,13 +19,13 @@ export type Employees = {
   };
 };
 
-type EmployeesListState = {
-  list: Employees[];
+type TypeEmployeesListState = {
+  list: TypeEmployeesItem[];
   loading: boolean;
   error: string | null;
 };
 
-const initialState: EmployeesListState = {
+const initialState: TypeEmployeesListState = {
   list: [],
   loading: false,
   error: null,
