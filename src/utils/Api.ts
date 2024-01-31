@@ -54,12 +54,12 @@ class Api {
   getEmployees = () => this._makeRequest({ url: "/employees/", method: "GET" });
 
   // Получение всех данных о сотруднике
-  getEmployeeByID = (id: string | number) =>
+  getEmployeeByID = (id: string | undefined) =>
     this._makeRequest({ url: `/employees/${id}`, method: "GET" });
 
   // ИПР
   // Получение всех ИПР сотрудника
-  getIdps = (employee_id: string | number) =>
+  getIdps = (employee_id: string | undefined) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/`,
       method: "GET",

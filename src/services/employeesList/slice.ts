@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees } from "./actions";
 import type { STATUSES_IDP } from "../../utils/constants";
 
-export type TypeEmployeesItem = {
+export type Employees = {
   id: number;
   mentor: boolean;
   last_name: string;
@@ -11,22 +11,23 @@ export type TypeEmployeesItem = {
   middle_name: string;
   grade: string;
   position: string;
+  is_mentor: boolean,
   idp: {
     status: keyof typeof STATUSES_IDP;
     has_task: boolean;
-    total_completed_idps: number;
     completed_tasks_count: number;
-    total_idps_count: number;
+    total_completed_idps: number;
+    total_tasks_count: number;
   };
 };
 
-type TypeEmployeesListState = {
-  list: TypeEmployeesItem[];
+type EmployeesListState = {
+  list: Employees[];
   loading: boolean;
   error: string | null;
 };
 
-const initialState: TypeEmployeesListState = {
+const initialState: EmployeesListState = {
   list: [],
   loading: false,
   error: null,

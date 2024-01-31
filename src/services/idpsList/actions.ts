@@ -4,7 +4,7 @@ import type { TypeIDP } from "../idp/types";
 
 export const getIdps = createAsyncThunk<
   TypeIDP[],
-  string | number,
+  string | undefined,
   { rejectValue: unknown }
 >("idpsList/getIdps", async (employee_id, { rejectWithValue }) => {
   try {

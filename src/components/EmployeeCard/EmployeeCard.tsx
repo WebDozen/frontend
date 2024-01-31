@@ -4,10 +4,14 @@ import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBa
 import EmployeeInfo from "../EmployeeInfo/EmployeeInfo";
 
 interface CardProps {
+  // из листа ИПР-ов
   activeIPRs: boolean;
-}
+} 
+
 
 export default function EmployeeCard({ activeIPRs }: CardProps) {
+
+  
   return (
     <div className={style.employeeCard}>
       <EmployeeInfo />
