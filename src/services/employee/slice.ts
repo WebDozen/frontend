@@ -4,18 +4,19 @@ import { getEmployeeByID } from "./actions";
 
 export type Employee = {
   id: number | string;
-  is_mentor: boolean;
+  mentor: boolean;
   last_name: string;
   first_name: string;
   middle_name: string;
   grade: string;
   position: string;
+  is_mentor: boolean;
   idp: {
     status: string;
     has_task: boolean;
-    total_completed_idps: number;
     completed_tasks_count: number;
-    total_idps_count: number;
+    total_completed_idps: number;
+    total_tasks_count: number;
   };
 };
 
@@ -34,12 +35,13 @@ const initialState: EmployeesState = {
     middle_name: "",
     grade: "",
     position: "",
+    mentor: false,
     idp: {
       status: "",
       has_task: false,
       total_completed_idps: 0,
       completed_tasks_count: 0,
-      total_idps_count: 0,
+      total_tasks_count: 0,
     },
   },
   loading: false,

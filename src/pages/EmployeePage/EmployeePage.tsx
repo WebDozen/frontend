@@ -8,7 +8,7 @@ import { getEmployeeData } from "../../services/selectors";
 import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
 import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
 import { useEffect } from "react";
-import { getEmployeeByID } from "../../services/actions";
+import { getEmployeeByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
 
 const EmployeePage = () => {
@@ -21,6 +21,7 @@ const EmployeePage = () => {
 
   useEffect(() => {
     dispatch(getEmployeeByID(id));
+      dispatch(getIdps(id));
   }, [dispatch]);
 
   const {
@@ -35,8 +36,9 @@ const EmployeePage = () => {
   console.log(employee)
   }, [employee]);
 
-  const activeIPRs = true;
+  const total_count_iprs = 1;
   const status: string = idp_status;
+  const activeIPRs = (status !== "done" && status !== "cancelled");
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -64,7 +66,7 @@ const EmployeePage = () => {
       {is_mentor && <TabsCustomMentor />}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !! */}
-      {status === "green" && (
+      {(status === "done" || status === "cancelled") && (
         <PlateWrapper
           config={plateSuccess}
           view="positive"
@@ -72,7 +74,7 @@ const EmployeePage = () => {
           text="Пришло время создать новый план развития и двигаться к новым целям!"
         />
       )}
-      {status === "red" && (
+      {status === "expired" && (
         <PlateWrapper
           config={plateAttention}
           view="attention"
@@ -80,6 +82,10 @@ const EmployeePage = () => {
           text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
         />
       )}
+
+{(total_count_iprs === 0) ? 
+      <NewPlanMessage /> :
+      <IdpList />}
 
       {/* Плашки для сотрудника
 {status === "green" && (
@@ -106,9 +112,6 @@ const EmployeePage = () => {
           text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
         />
       )} */}
-      {/*  {(role === "employee" && !activeIPRs) ? 
-      <NewPlanMessage /> :
-      <IdpList />} */}
     </>
   );
 };

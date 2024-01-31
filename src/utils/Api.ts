@@ -59,7 +59,7 @@ class Api {
 
   // ИПР
   // Получение всех ИПР сотрудника
-  getIdps = (employee_id: string | number) =>
+  getIdps = (employee_id: string | undefined) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/`,
       method: "GET",

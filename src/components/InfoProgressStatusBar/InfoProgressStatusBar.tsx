@@ -17,11 +17,11 @@ export default function InfoProgressStatusBar() {
         <p className={styleStatus.infoProgressStatus}>Задач по текущему ИПР</p>
         <p className={styleStatus.infoProcent}>
           <span className={styleStatus.infoProcentBold}>{`${employee.idp.completed_tasks_count}
-`}</span> из 5
+`}</span> из {`${employee.idp.total_tasks_count}`}
         </p>
       </div>
       <Space size={20} fullWidth>
-        <ProgressBar view="positive" size="s" value={(employee.idp.completed_tasks_count / 5) * 100} />
+        <ProgressBar view="positive" size="s" value={(employee.idp.completed_tasks_count / employee.idp.total_tasks_count) * 100} />
       </Space>
     </div>
   );
