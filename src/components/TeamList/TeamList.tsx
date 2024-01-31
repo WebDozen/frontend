@@ -25,13 +25,10 @@ const TeamList = () => {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",
   };
 
-  //   (e) => {
-  //   navigate(`/employee/${user.id}`);
-  // }
-
   const handleClickEmployee: (id: string | number) => void = (id) => {
     navigate(`/employee/${id}`);
   };
+
   const tableRowElement = (user: TypeEmployeesItem) => (
     <Table.TRow key={user.id} onClick={() => handleClickEmployee(user.id)}>
       <Table.TCell className={s.tableCell}>

@@ -1,9 +1,4 @@
-import {
-  Table,
-  Typography,
-  Status,
-  TableCustomWrapper,
-} from "../ui-kit";
+import { Table, Typography, Status, TableCustomWrapper } from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";
@@ -17,7 +12,7 @@ import { useAppSelector } from "../../services/hook";
 const IdpList = () => {
   const navigate = useNavigate();
   const { idpsList, loading, error } = useAppSelector(getIdpsListData);
-  const {id} = useParams();
+  const { id } = useParams();
   console.log(idpsList);
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
@@ -25,9 +20,7 @@ const IdpList = () => {
   };
 
   const tableRowElement = (idp: TypeIDP) => (
-    <Table.TRow
-      key={idp.id} onClick={() => handleClickIdp(idp.id)}
-    >
+    <Table.TRow key={idp.id} onClick={() => handleClickIdp(idp.id)}>
       <Table.TCell className={styles.styleTableCell}>
         <Typography.Text
           view="primary-small"
@@ -48,27 +41,24 @@ const IdpList = () => {
           color="primary"
           style={{ fontFamily: "SF Pro Text" }}
         >
-          {idp.deadline.split('T')[0]}
+          {new Date(idp.deadline).toLocaleDateString("ru-RU")}
         </Typography.Text>
       </Table.TCell>
 
       <Table.TCell className={styles.styleTableCell}>
         <div className={styles.statusBlock}>
-          {idp.mentor &&
-          <img src={mentorIcon} alt="Иконка ментора" />}
-          {!idp.tasks && (
-            <img src={znak} alt="Иконка восклицательного знака" />
-          )}
+          {idp.mentor && <img src={mentorIcon} alt="Иконка ментора" />}
+          {!idp.tasks && <img src={znak} alt="Иконка восклицательного знака" />}
         </div>
       </Table.TCell>
 
       <Table.TCell className={styles.styleTableCell}>
         <div className={styles.statusBlock}>
           {
-            <> 
-                <Status view="contrast" color={"green"} key={"green"}>
-                  ВЫПОЛНЕН
-                </Status>
+            <>
+              <Status view="contrast" color={"green"} key={"green"}>
+                ВЫПОЛНЕН
+              </Status>
               <img
                 src={chevron}
                 alt="шеврон вправо"
