@@ -1,9 +1,14 @@
+import type {
+  TYPE_SLAG_IDP,
+  TYPE_SLAG_TASK,
+} from "../../utils/constants";
+
 export type TypeTask = {
   id: number;
   name: string;
   description: string;
   type: number;
-  status: string | null;
+  status: keyof typeof TYPE_SLAG_TASK;
   pub_date: string;
   source: string;
 };
@@ -11,7 +16,7 @@ export type TypeTask = {
 export type TypeStatus = {
   id: number;
   name: string;
-  slug: string;
+  slug: keyof typeof TYPE_SLAG_IDP;
   color_fon: string;
   color_text: string;
 };

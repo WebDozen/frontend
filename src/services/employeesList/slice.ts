@@ -1,6 +1,7 @@
 import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees } from "./actions";
+import type { STATUSES_IDP } from "../../utils/constants";
 
 export type Employees = {
   id: number;
@@ -12,7 +13,7 @@ export type Employees = {
   position: string;
   is_mentor: boolean,
   idp: {
-    status: string;
+    status: keyof typeof STATUSES_IDP;
     has_task: boolean;
     completed_tasks_count: number;
     total_completed_idps: number;
