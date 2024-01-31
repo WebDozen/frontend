@@ -2,7 +2,6 @@ import style from "./EmployeeCard.module.scss";
 import InfoProgressNoIdp from "../InfoProgressNoIdp/InfoProgressNoIdp";
 import InfoProgressStatusBar from "../InfoProgressStatusBar/InfoProgressStatusBar";
 import EmployeeInfo from "../EmployeeInfo/EmployeeInfo";
-import { useAppSelector } from "../../services/hook";
 
 interface CardProps {
   // из листа ИПР-ов

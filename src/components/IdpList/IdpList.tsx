@@ -9,34 +9,24 @@ import styles from "./IdpList.module.scss";
 import mentorIcon from "../../images/personalManagerIcon.svg";
 import znak from "../../images/znak.svg";
 import chevron from "../../images/chevron-left-shift-right_s.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import type { TypeIDP } from "../../services/idp/types";
+import { getIdpsListData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
 
 const IdpList = () => {
   const navigate = useNavigate();
+  const { idpsList, loading, error } = useAppSelector(getIdpsListData);
+  const {id} = useParams();
+  console.log(idpsList);
 
-  const getCurrentDay = function (addDays: any) {
-    const date = new Date();
-    date.setDate(date.getDate() + addDays);
-    return date;
+  const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
+    navigate(`/employee/${id}/idp/${idp_id}`);
   };
 
-  const data = Array.from({ length: 10 }, (_, i) => i + 1).map((idx) => ({
-    id: idx,
-    deadline: getCurrentDay(idx),
-    name: `Название ИПР ${idx}`,
-  }));
-
-  const tableRowElement = (idp: {
-    id: number;
-    name: string;
-    // status: string;
-    deadline: Date;
-  }) => (
+  const tableRowElement = (idp: TypeIDP) => (
     <Table.TRow
-      key={idp.id}
-      onClick={(e) => {
-        navigate(`/idp/${idp.id}`);
-      }}
+      key={idp.id} onClick={() => handleClickIdp(idp.id)}
     >
       <Table.TCell className={styles.styleTableCell}>
         <Typography.Text
@@ -58,14 +48,15 @@ const IdpList = () => {
           color="primary"
           style={{ fontFamily: "SF Pro Text" }}
         >
-          {idp.deadline.toLocaleDateString()}
+          {idp.deadline.split('T')[0]}
         </Typography.Text>
       </Table.TCell>
 
       <Table.TCell className={styles.styleTableCell}>
         <div className={styles.statusBlock}>
-          <img src={mentorIcon} alt="Иконка ментора" />
-          {idp.id === 6 && (
+          {idp.mentor &&
+          <img src={mentorIcon} alt="Иконка ментора" />}
+          {!idp.tasks && (
             <img src={znak} alt="Иконка восклицательного знака" />
           )}
         </div>
@@ -74,37 +65,10 @@ const IdpList = () => {
       <Table.TCell className={styles.styleTableCell}>
         <div className={styles.statusBlock}>
           {
-            <>
-              {(idp.id === 1 || idp.id > 6) && (
+            <> 
                 <Status view="contrast" color={"green"} key={"green"}>
                   ВЫПОЛНЕН
                 </Status>
-              )}
-              {idp.id === 2 && (
-                <Status view="contrast" color={"blue"} key={"blue"}>
-                  В РАБОТЕ
-                </Status>
-              )}
-              {idp.id === 3 && (
-                <Status view="contrast" color={"grey"} key={0}>
-                  ОТМЕНЕН
-                </Status>
-              )}
-              {idp.id === 4 && (
-                <Status view="contrast" color={"orange"} key={"orange"}>
-                  НА РЕВЬЮ
-                </Status>
-              )}
-              {idp.id === 5 && (
-                <Status view="contrast" color={"red"} key={"red"}>
-                  ПРОСРОЧЕН
-                </Status>
-              )}
-              {idp.id === 6 && (
-                <Status view="contrast" color={"teal"} key={"teal"}>
-                  ОТКРЫТ
-                </Status>
-              )}
               <img
                 src={chevron}
                 alt="шеврон вправо"
@@ -136,7 +100,7 @@ const IdpList = () => {
             СТАТУС ИПР
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{data.map((idp) => tableRowElement(idp))}</Table.TBody>
+        <Table.TBody>{idpsList.map((idp) => tableRowElement(idp))}</Table.TBody>
       </TableCustomWrapper>
     </div>
   );

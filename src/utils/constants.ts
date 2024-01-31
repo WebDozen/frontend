@@ -1,5 +1,5 @@
 export enum STATUSES {
-  done = "green",
+  done = "green", 
   review = "orange",
   cancelled = "grey",
   work = "blue",
