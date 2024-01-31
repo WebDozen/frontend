@@ -12,7 +12,7 @@ import { useAppSelector } from "../../services/hook";
 const IdpList = () => {
   const navigate = useNavigate();
   const { idpsList, loading, error } = useAppSelector(getIdpsListData);
-  const { id } = useParams();
+  const {id} = useParams();
   console.log(idpsList);
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {

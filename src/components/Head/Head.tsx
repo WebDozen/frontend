@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import {
   ArrowBackMIcon,
@@ -12,24 +12,34 @@ import {
 } from "../ui-kit";
 import style from "./Head.module.scss";
 import { STATUSES } from "../../utils/constants";
+import { getEmployeeData } from "../../services/selectors";
 
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const {id} = useParams();
+
+  /*const {
+    employee:  {is_mentor,
+      idp: {status: idp_status},
+     }, employee,
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);*/
 
   const status: STATUSES = STATUSES.done;
-  const showButton = pathname === "/employee/1";
-  const addIdpLocation = pathname === "/employee/1/add-idp";
+  const showButton = pathname === `/employee/${id}`;
+  const addIdpLocation = pathname === `/employee/${id}/add-idp`;
   const buttonIsDisabled =
     (status as STATUSES) === "orange" ||
     (status as STATUSES) === "teal" ||
     (status as STATUSES) === "blue";
   let subtitle =
-    pathname === "/employee/1"
+    pathname === `/employee/${id}`
       ? "Карточка сотрудника"
       : pathname === "/"
         ? "Главная страница"
-        : pathname === "/idp/1"
+        : pathname === `employee/${id}/idp/1`
           ? "Название ИПР":
           addIdpLocation
           ? "Создание ИПР"

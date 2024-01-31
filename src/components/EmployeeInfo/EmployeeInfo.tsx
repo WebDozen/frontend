@@ -4,7 +4,6 @@ import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
 import { useLocation } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
-import { STATUSES } from "../../utils/constants";
 import { getEmployeeData } from "../../services/selectors";
 import { useAppSelector } from "../../services/hook";
 

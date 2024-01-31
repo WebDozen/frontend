@@ -83,7 +83,7 @@ const EmployeePage = () => {
         />
       )}
 
-{(total_count_iprs === 0) ? 
+{(total_count_iprs === null) ? 
       <NewPlanMessage /> :
       <IdpList />}
 
