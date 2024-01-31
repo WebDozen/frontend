@@ -28,6 +28,8 @@ import { StatusBadge } from '@alfalab/core-components/status-badge';
 import { List } from '@alfalab/core-components/list';
 import { Scrollbar } from '@alfalab/core-components/scrollbar';
 import { CustomButton } from '@alfalab/core-components/custom-button';
+import { RadioGroup } from '@alfalab/core-components/radio-group';
+import { Tag } from '@alfalab/core-components/tag';
 
 //Кастомные компоненты
 import TableCustomWrapper from "./TableCustomWrapper/TableCustomWrapper";
@@ -80,6 +82,8 @@ export {
   Input,
   UniversalDateInput,
   Calendar,
+  RadioGroup,
+  Tag,
   //Кастомные компоненты
   TableCustomWrapper,
   NavLink,

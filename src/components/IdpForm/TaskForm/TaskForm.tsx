@@ -11,39 +11,30 @@ import {
 import style from "./TaskForm.module.scss";
 import AutoInput from "../AutoInput/AutoInput";
 
-const data = {
+const config = {
   label: "Тип задачи",
   placeholder: "Выберите тип задачи",
   options: [{ key: "Букварь" }, { key: "Учебник" }, { key: "Альфа-академия" }],
 };
 
-interface DATA {
-  title?: string;
-  description?: string;
-  type?: string;
-  resource?: string;
-  id: number;
-}
-
-interface DATTA {
-  title?: string;
-  description?: string;
-  type?: string;
-  resource?: string;
-  title1?: string;
-}
-
 interface TaskFormProps {
-  // taskData: DATA;
-  // handleDeleteTask: (idx: number) => void; //| undefined
-  // arr: DATA[];
-  // handleAddTask: (item: DATA) => void;
+  taskProps: number;
   removeFields: () => void;
-  inputs: DATTA;
-  handleChange: (e: any, index: number) => void;
+  inputs: {
+    title: string;
+    description: string;
+    type: string;
+    resource: string;
+  };
+  handleChange: (e: any) => void;
 }
 
-const TaskForm = ({ removeFields, inputs, handleChange }: TaskFormProps) => {
+const TaskForm = ({
+  removeFields,
+  inputs,
+  handleChange,
+  taskProps,
+}: TaskFormProps) => {
   return (
     <GenericWrapper column={true} className={style.container}>
       <Gap size="4xl" />
@@ -56,8 +47,7 @@ const TaskForm = ({ removeFields, inputs, handleChange }: TaskFormProps) => {
           view="secondary-large"
           className={style.text}
         >
-          {/* {`ЗАДАЧА ${taskData.id + 1}`} */}
-          ЗАДАЧА
+          {`ЗАДАЧА ${taskProps + 1}`}
         </Typography.Text>
         <IconButton
           icon={<TrashCanMIcon />}
@@ -73,15 +63,13 @@ const TaskForm = ({ removeFields, inputs, handleChange }: TaskFormProps) => {
         label="Название"
         labelView="outer"
         size="m"
-        name="title"
-        // name={`title${taskData.id}`}
+        name="name"
         value={inputs.title}
         onChange={handleChange}
       />
       <Gap size="m" />
       <Textarea
         name="description"
-        // name={`description${taskData.id}`}
         block={true}
         minRows={1}
         maxRows={10}
@@ -97,15 +85,13 @@ const TaskForm = ({ removeFields, inputs, handleChange }: TaskFormProps) => {
       <Gap size="m" />
       <GenericWrapper justifyContent="between">
         <AutoInput
-          data={data}
+          config={config}
           name="type"
-          // name={`type${taskData.id}`}
           // value={inputs.type}
           // onChange={() => handleChange}
         />
         <Input
-          name="resource"
-          // name={`resource${taskData.id}`}
+          name="source"
           className={style.input}
           placeholder="Добавьте источник или название"
           block={true}

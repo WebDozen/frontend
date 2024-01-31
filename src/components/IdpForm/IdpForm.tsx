@@ -4,8 +4,27 @@ import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 
+const fakeProps1 = [
+  {
+    id: 0,
+    name: "d",
+    description: "",
+    type: "",
+    source: "",
+    status: {
+      id: 0,
+      name: "string",
+      slug: "ylQr8lB2DqF6BZXbrSjLo06dfe0aCCxC0D-OtFrYqpcvt1eSvy",
+      color_fon: "#2d17CE",
+      color_text: "#939",
+    },
+  },
+];
+
 const IdpForm = () => {
-  const [inputFields, setInputFields] = useState([]);
+  const [inputFields, setInputFields] = useState<
+    { title: string; description: string; type: string; resource: string }[]
+  >([]);
   const nullArray = inputFields.length === 0;
 
   const handleSubmit = (e: any) => {
@@ -13,12 +32,9 @@ const IdpForm = () => {
     console.log(inputFields);
   };
 
-  const handleChange = (
-    event: any, //React.ChangeEvent<HTMLInputElement> //React.ChangeEvent
-    index: number,
-  ) => {
+  const handleChange = (event: any, index: number) => {
     const { name, value } = event.target;
-    let data = [...inputFields];
+    let data: any = [...inputFields];
     data[index][name] = value;
     setInputFields(data);
   };
@@ -28,7 +44,7 @@ const IdpForm = () => {
     setInputFields([...inputFields, newfield]);
   };
 
-  const removeFields = (index) => {
+  const removeFields = (index: number) => {
     let data = [...inputFields];
     data.splice(index, 1);
     setInputFields(data);
@@ -40,8 +56,9 @@ const IdpForm = () => {
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((inputs, index) => (
         <TaskForm
+          taskProps={index}
           inputs={inputs}
-          handleChange={(e) => handleChange(e, index)}
+          handleChange={(e: any) => handleChange(e, index)}
           removeFields={() => removeFields(index)}
           key={index}
         />

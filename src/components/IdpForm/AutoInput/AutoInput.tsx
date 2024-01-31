@@ -7,8 +7,8 @@ import {
 } from "../../ui-kit";
 import style from "./AutoInput.module.scss";
 
-interface inputProps {
-  data: {
+interface Config {
+  config: {
     label: string;
     placeholder: string;
     options: { key: string }[];
@@ -16,14 +16,14 @@ interface inputProps {
   name: string;
 }
 
-const AutoInput = ({ data, name }: inputProps) => {
+const AutoInput = ({ config, name }: Config) => {
   const [value, setValue] = useState("");
   const shownChevron = true;
 
   const matchOption = (option: { key: string }, inputValue: string) =>
     option.key.toLowerCase().includes((inputValue || "").toLowerCase());
 
-  const filteredOptions = data.options.filter((option) =>
+  const filteredOptions = config.options.filter((option) =>
     matchOption(option, value),
   );
 
@@ -46,8 +46,8 @@ const AutoInput = ({ data, name }: inputProps) => {
         selected={[]}
         block={true}
         options={filteredOptions}
-        label={data.label}
-        placeholder={data.placeholder}
+        label={config.label}
+        placeholder={config.placeholder}
         labelView="outer"
         onChange={handleChange}
         onInput={handleInput}
