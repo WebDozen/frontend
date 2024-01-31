@@ -5,95 +5,61 @@ import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 
 const IdpForm = () => {
-  interface DATA {
-    id: number;
-    item?: DATTA;
-  }
-  interface DATTA {
-    title?: string;
-    description?: string;
-    type?: string;
-    resource?: string;
-
-    title0?: string;
-
-    title1?: string;
-
-    title2?: string;
-  }
-
-  const initialTaskList: DATA[] = [];
-  const [taskList, setTaskList] = useState(initialTaskList);
-  const nullArray = taskList.length === 0;
-
-  const handleAddTask = ({ id, item }: DATA) => {
-    setTaskList([...taskList, { id, item }]);
-  };
-
-  const handleButtonClick = () => {
-    if (nullArray) {
-      handleAddTask({ id: taskList.length });
-    } else {
-      handleAddTask({
-        id: taskList.length,
-        item: inputs,
-      });
-    }
-  };
-
-  const handleDeleteTask = (idx: number | undefined) => {
-    console.log(taskList);
-    setTaskList(taskList.filter((item) => item.id !== idx));
-  };
+  const [inputFields, setInputFields] = useState([]);
+  const nullArray = inputFields.length === 0;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // console.log(taskList.slice(1, taskList.length));
-    console.log(taskList);
-    // let gg = Object.assign({}, { title: taskList[1].item });
-    // const gg = taskList.forEach(
-    //   (n) => ((n.item? = n.item.title), delete n.item?.title0),
-    // );
-    // console.log(taskList[0]);
+    console.log(inputFields);
   };
 
-  // const initialInputs: DATTA = {};
-  const [inputs, setInputs] = useState({});
+  const handleChange = (
+    event: any, //React.ChangeEvent<HTMLInputElement> //React.ChangeEvent
+    index: number,
+  ) => {
+    const { name, value } = event.target;
+    let data = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
+  };
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
+  const addFields = () => {
+    let newfield = { title: "", description: "", type: "", resource: "" };
+    setInputFields([...inputFields, newfield]);
+  };
+
+  const removeFields = (index) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
   };
 
   return (
     <form>
       <IdpFormPartOne />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
-      {taskList?.map((item) => (
+      {inputFields.map((inputs, index) => (
         <TaskForm
-          taskData={item}
-          handleDeleteTask={handleDeleteTask}
-          // arr={taskList}
-          // handleAddTask={handleAddTask}
-          key={item.id}
           inputs={inputs}
-          handleChange={handleChange}
+          handleChange={(e) => handleChange(e, index)}
+          removeFields={() => removeFields(index)}
+          key={index}
         />
       ))}
-      <Gap size="4xl" />
-      <Divider
-        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
-      />
       <Gap size="2xl" />
       <Button
         view="primary"
         size="xs"
         disabled={false}
         type="button"
-        onClick={handleButtonClick}
+        onClick={addFields}
       >
         {nullArray ? "Добавить задачу" : "Добавить еще задачу"}
       </Button>
+      <Gap size="4xl" />
+      <Divider
+        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
+      />
       <Gap size="2xl" />
       <GenericWrapper>
         <Button
