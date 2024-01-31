@@ -6,31 +6,38 @@ import TaskForm from "./TaskForm/TaskForm";
 
 const IdpForm = () => {
   interface DATA {
+    id: number;
+    item?: DATTA;
+  }
+  interface DATTA {
     title?: string;
     description?: string;
     type?: string;
     resource?: string;
+
+    title0?: string;
+
+    title1?: string;
+
+    title2?: string;
   }
 
-  const initialTaskList: Array<{ id?: number; data?: DATA }> = [
-    // { id: 1, data: "Почитать" },
-    // { id: 2, data: "Погулять" },
-    // { id: 3, data: "Поесть" },
-    // { id: 4, data: "Посмотреть ютубчик" },
-    // { id: 5, data: "СДЕЛАТЬ ИПР" },
-  ];
+  const initialTaskList: DATA[] = [];
   const [taskList, setTaskList] = useState(initialTaskList);
   const nullArray = taskList.length === 0;
 
-  const handleAddTask = (item: { id: number; data: DATA } | {}) => {
-    setTaskList([...taskList, item]);
+  const handleAddTask = ({ id, item }: DATA) => {
+    setTaskList([...taskList, { id, item }]);
   };
 
   const handleButtonClick = () => {
     if (nullArray) {
-      handleAddTask({});
+      handleAddTask({ id: taskList.length });
     } else {
-      handleAddTask({ id: taskList.length + 1, data: inputs });
+      handleAddTask({
+        id: taskList.length,
+        item: inputs,
+      });
     }
   };
 
@@ -41,38 +48,42 @@ const IdpForm = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    // console.log(taskList.slice(1, taskList.length));
     console.log(taskList);
-  };
-  type GG = {
-    title?: string;
-    description?: string;
-    type?: string;
-    resource?: string;
+    // let gg = Object.assign({}, { title: taskList[1].item });
+    // const gg = taskList.forEach(
+    //   (n) => ((n.item? = n.item.title), delete n.item?.title0),
+    // );
+    // console.log(taskList[0]);
   };
 
-  const [inputs, setInputs] = useState<GG>({});
+  // const initialInputs: DATTA = {};
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (e: any) => {
-    const input = e.target;
-    const { name, value } = input;
+    const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    console.log(inputs);
   };
 
   return (
     <form>
       <IdpFormPartOne />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
-      {taskList?.map((item, idx) => (
+      {taskList?.map((item) => (
         <TaskForm
           taskData={item}
           handleDeleteTask={handleDeleteTask}
+          // arr={taskList}
+          // handleAddTask={handleAddTask}
+          key={item.id}
           inputs={inputs}
           handleChange={handleChange}
-          key={idx}
-          // handleAddTask={handleAddTask}
         />
       ))}
+      <Gap size="4xl" />
+      <Divider
+        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
+      />
       <Gap size="2xl" />
       <Button
         view="primary"
@@ -83,11 +94,6 @@ const IdpForm = () => {
       >
         {nullArray ? "Добавить задачу" : "Добавить еще задачу"}
       </Button>
-      <Gap size="4xl" />
-      <Divider
-        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
-      />
-
       <Gap size="2xl" />
       <GenericWrapper>
         <Button
