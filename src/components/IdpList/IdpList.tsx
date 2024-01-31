@@ -1,4 +1,4 @@
-import { Table, Typography, Status, TableCustomWrapper } from "../ui-kit";
+import { Table, Typography, Status, TableCustomWrapper, StatusComponent } from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";
@@ -56,9 +56,7 @@ const IdpList = () => {
         <div className={styles.statusBlock}>
           {
             <>
-              <Status view="contrast" color={"green"} key={"green"}>
-                ВЫПОЛНЕН
-              </Status>
+              <StatusComponent slag_idp={idp.status.slug} />
               <img
                 src={chevron}
                 alt="шеврон вправо"
@@ -90,7 +88,7 @@ const IdpList = () => {
             СТАТУС ИПР
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{idpsList.map((idp) => tableRowElement(idp))}</Table.TBody>
+        <Table.TBody>{idpsList.map((idp) => tableRowElement(idp)).reverse()}</Table.TBody>
       </TableCustomWrapper>
     </div>
   );

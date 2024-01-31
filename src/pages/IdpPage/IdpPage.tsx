@@ -24,8 +24,7 @@ const IdpPage = () => {
    // dispatch(getEmployeeByID(id));
     dispatch(getIdpByID(id));
   }, [dispatch]);
-  
-  const activeIPRs = false;
+
   const plateSuccess = {
     hasButton: false,
     hasCloser: true,
@@ -35,7 +34,7 @@ const IdpPage = () => {
     <>
       <MentorArea status="blue" />
       <Gap size="2xl" />
-      <EmployeeCard activeIPRs={!activeIPRs} />
+      <EmployeeCard />
       <Gap size="3xl" />
       <TaskDescription />
       <div className={style.leftContainer}>

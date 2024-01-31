@@ -10,35 +10,36 @@ import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor
 import { useEffect } from "react";
 import { getEmployeeByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
+import { TYPE_SLAG_IDP } from "../../utils/constants";
 
 const EmployeePage = () => {
   type Params = {
     id: string;
   };
-  
+
   const { id } = useParams<Params>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getEmployeeByID(id));
-      dispatch(getIdps(id));
+    dispatch(getIdps(id));
   }, [dispatch]);
 
   const {
-    employee:  {is_mentor,
-      idp: {status: idp_status},
-     }, employee,
+    employee: {
+      is_mentor,
+      idp: { status: idp_status },
+    },
+    employee,
     loading,
     error,
   } = useAppSelector(getEmployeeData);
 
   useEffect(() => {
-  console.log(employee)
+    console.log(employee);
   }, [employee]);
 
-  const total_count_iprs = 1;
   const status: string = idp_status;
-  const activeIPRs = (status !== "done" && status !== "cancelled");
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -51,22 +52,20 @@ const EmployeePage = () => {
     hasCloser: true,
   };
 
-
-
   return (
     <>
-      {is_mentor && (
+      {/* {is_mentor && (
         <div>
           <MentorInfo />
           <Gap size="2xl" />
         </div>
-      )}
-      <EmployeeCard activeIPRs={activeIPRs} />
+     )} */}
+      <EmployeeCard />
       <Gap size="2xl" />
-      {is_mentor && <TabsCustomMentor />}
+      {/*{is_mentor && <TabsCustomMentor />}*/}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !! */}
-      {(status === "done" || status === "cancelled") && (
+      {status === TYPE_SLAG_IDP.completed && (
         <PlateWrapper
           config={plateSuccess}
           view="positive"
@@ -83,9 +82,7 @@ const EmployeePage = () => {
         />
       )}
 
-{(total_count_iprs === null) ? 
-      <NewPlanMessage /> :
-      <IdpList />}
+      {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
 
       {/* Плашки для сотрудника
 {status === "green" && (

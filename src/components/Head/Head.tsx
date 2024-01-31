@@ -11,39 +11,39 @@ import {
   StatusCustom,
 } from "../ui-kit";
 import style from "./Head.module.scss";
-import { STATUSES } from "../../utils/constants";
+import { TYPE_SLAG_IDP } from "../../utils/constants";
 import { getEmployeeData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
 
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const {id} = useParams();
+  const { id } = useParams();
 
-  /*const {
-    employee:  {is_mentor,
-      idp: {status: idp_status},
-     }, employee,
+  const {
+    employee: {
+      idp: { total_tasks_count: total_tasks_count, status: status },
+    },
     loading,
     error,
-  } = useAppSelector(getEmployeeData);*/
+  } = useAppSelector(getEmployeeData);
 
-  const status: STATUSES = STATUSES.done;
-  const showButton = pathname === `/employee/${id}`;
+  const showButton = pathname === `/employee/${id}` && total_tasks_count !== 0;
   const addIdpLocation = pathname === `/employee/${id}/add-idp`;
   const buttonIsDisabled =
-    (status as STATUSES) === "orange" ||
-    (status as STATUSES) === "teal" ||
-    (status as STATUSES) === "blue";
+    status === TYPE_SLAG_IDP.awaiting_review ||
+    status === TYPE_SLAG_IDP.open ||
+    status === TYPE_SLAG_IDP.in_progress;
   let subtitle =
     pathname === `/employee/${id}`
       ? "Карточка сотрудника"
       : pathname === "/"
         ? "Главная страница"
         : pathname === `employee/${id}/idp/1`
-          ? "Название ИПР":
-          addIdpLocation
-          ? "Создание ИПР"
-          : "Главная страница";
+          ? "Название ИПР"
+          : addIdpLocation
+            ? "Создание ИПР"
+            : "Главная страница";
 
   const statusData: { color: "green"; view: "contrast"; text: string } = {
     color: "green",
@@ -98,7 +98,7 @@ const Head = () => {
             className={style.mainButton}
             type="button"
             onClick={(e: any) => {
-              navigate(`/employee/1/add-idp`);
+              navigate(`/employee/${id}/add_idp`);
             }}
           >
             Создать ИПР

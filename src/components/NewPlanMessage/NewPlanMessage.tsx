@@ -2,20 +2,26 @@ import { Button, Gap, SuperEllipse, Typography } from "../ui-kit";
 import styles from "./NewPlanMessage.module.scss";
 import calendar from "../../images/iconCalendarNewPlan.svg";
 import books from "../../images/managerNoIprBooks.svg";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export default function NewPlanMessage() {
   const { pathname } = useLocation();
+  const {id} = useParams();
+  const navigate = useNavigate();
 
-  //const role = "manager";
-  const role = "employee";
-  const icon = role === "employee" ? books : calendar;
+  //const role = "employee";
+  const role = "manager";
+  const icon = role === "manager" ? calendar : books;
   const mainText =
-    role === "employee"
-      ? "Обратитесь к руководителю, чтобы скорее начать развиваться!"
-      : "Создайте план развития для сотрудника на основе его текущего грейда";
-  const showButton = pathname === "/employee/1";
+    role === "manager"
+      ? "Создайте план развития для сотрудника на основе его текущего грейда"
+      : "Обратитесь к руководителю, чтобы скорее начать развиваться!";
+  const showButton = pathname === `/employee/${id}`;
   const showTitle = pathname === "/";
+
+  const handleButtonClick: (id: string | undefined) => void = (id) => {
+    navigate(`/employee/${id}/add_idp`);
+  };
 
   return (
     <div className={styles.newPlanBlock}>
@@ -46,7 +52,7 @@ export default function NewPlanMessage() {
       {showButton && (
         <div>
           <Gap size="2xl" />
-          <Button view="accent" className={styles.button}>
+          <Button view="accent" className={styles.button} onClick={() => handleButtonClick(id)}>
             Создать ИПР
           </Button>
           <Gap size="l" />
