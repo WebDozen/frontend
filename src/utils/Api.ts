@@ -91,6 +91,12 @@ class Api {
       method: "PATCH",
       data,
     });
+
+  getManagersStatistics = (head_id: string | number) =>
+    this._makeRequest({
+      url: `/head/${head_id}/statistics/`,
+      method: "GET",
+    });
 }
 
 const config = {

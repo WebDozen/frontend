@@ -1,6 +1,7 @@
 import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees } from "./actions";
+import type { STATUSES_IDP } from "../../utils/constants";
 
 export type TypeEmployeesItem = {
   id: number;
@@ -11,7 +12,7 @@ export type TypeEmployeesItem = {
   grade: string;
   position: string;
   idp: {
-    status: string;
+    status: keyof typeof STATUSES_IDP;
     has_task: boolean;
     total_completed_idps: number;
     completed_tasks_count: number;

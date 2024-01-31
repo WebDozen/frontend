@@ -3,6 +3,7 @@ import employeesListReducer from "./employeesList/slice";
 import employeeReducer from "./employee/slice";
 import idpReducer from "./idp/slice";
 import idpsListReducer from "./idpsList/slice";
+import managersStatisticsReducer from "./managersStatistics/slice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     employee: employeeReducer,
     idp: idpReducer,
     idpsList: idpsListReducer,
+    managersStatistics: managersStatisticsReducer,
   },
 });
 

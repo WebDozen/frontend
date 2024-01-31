@@ -1,10 +1,10 @@
 import {
   Circle,
   Gap,
-  Status,
   Typography,
   Table,
   TableCustomWrapper,
+  StatusComponent,
 } from "../ui-kit";
 import mentorIcon from "./../../images/personalManagerIcon.svg";
 import chevronIcon from "./../../images/chevron-left-shift-right_s.svg";
@@ -14,7 +14,7 @@ import avatar from "./../../images/employeeAvatar.png";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../services/hook";
 import { getEmployeesListData } from "../../services/selectors";
-import type { Employees } from "../../services/employeesList/slice";
+import type { TypeEmployeesItem } from "../../services/employeesList/slice";
 
 const TeamList = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const TeamList = () => {
   const handleClickEmployee: (id: string | number) => void = (id) => {
     navigate(`/employee/${id}`);
   };
-  const tableRowElement = (user: Employees) => (
+  const tableRowElement = (user: TypeEmployeesItem) => (
     <Table.TRow key={user.id} onClick={() => handleClickEmployee(user.id)}>
       <Table.TCell className={s.tableCell}>
         <div className={s.tableUser}>
@@ -56,9 +56,7 @@ const TeamList = () => {
 
       <Table.TCell className={s.tableCell}>
         <div className={s.status}>
-          <Status view="soft" color={"green"} key={"green"}>
-            {user.idp.status}
-          </Status>
+          <StatusComponent slag_idp={user.idp.status} />
           <img src={chevronIcon} alt="шеврон вправо" />
         </div>
       </Table.TCell>
