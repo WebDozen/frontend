@@ -27,16 +27,48 @@ const config = {
   ],
 };
 
-const IdpFormPartOne = () => {
+interface Props {
+  idpValue: {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  };
+  setIdpValue: (e: any) => void;
+  // props: {
+  //   mentor: string;
+  //   name: string;
+  //   description: string;
+  //   deadline: string;
+  //   tasks: {
+  //     type: string;
+  //     name: string;
+  //     description: string;
+  //     source: string;
+  //   }[];
+  // };
+}
+
+const IdpFormPartOne = ({ idpValue, setIdpValue }: Props) => {
   const [value, setValue] = useState("");
 
-  const onChange = (_: any, payload: any) => {
+  const onChange1 = (_: any, payload: any) => {
     setValue(payload.value);
+  };
+
+  const handleIdpChange = (event: any) => {
+    const { name, value } = event.target;
+    setIdpValue({ ...idpValue, [name]: value });
   };
 
   return (
     <div className={style.container}>
-      <AutoInput config={config} name="mentor" />
+      <AutoInput
+        config={config}
+        name="mentor"
+        idpValue={idpValue}
+        setIdpValue={setIdpValue}
+      />
       <Gap size="m" />
       <Input
         placeholder="Введите название ИПР"
@@ -44,6 +76,9 @@ const IdpFormPartOne = () => {
         label="Название ИПР"
         labelView="outer"
         size="m"
+        name="name"
+        value={idpValue.name}
+        onChange={handleIdpChange}
       />
       <Gap size="m" />
       <Textarea
@@ -54,11 +89,14 @@ const IdpFormPartOne = () => {
         placeholder="Добавьте описание ИПР"
         label="Описание ИПР"
         size="m"
+        name="description"
+        value={idpValue.description}
+        onChange={handleIdpChange}
       />
       <Gap size="m" />
-      <DateInputCustom />
+      <DateInputCustom idpValue={idpValue} setIdpValue={setIdpValue} />
       <Gap size="s" />
-      <RadioGroup direction="horizontal" type="tag" onChange={onChange}>
+      <RadioGroup direction="horizontal" type="tag" onChange={onChange1}>
         <Tag value="one" size="xxs">
           3 месяца
         </Tag>

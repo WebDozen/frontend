@@ -4,33 +4,48 @@ import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 
-const fakeProps1 = [
-  {
-    id: 0,
-    name: "d",
-    description: "",
-    type: "",
-    source: "",
-    status: {
-      id: 0,
-      name: "string",
-      slug: "ylQr8lB2DqF6BZXbrSjLo06dfe0aCCxC0D-OtFrYqpcvt1eSvy",
-      color_fon: "#2d17CE",
-      color_text: "#939",
+const fakeProps = {
+  mentor: "Petr Mihalich",
+  name: "Pochitat",
+  description: "otkrit knigu",
+  deadline: "25.01.2024", //2024-01-31T17:57:20.770Z "25.01.2024"
+  tasks: [
+    {
+      type: "Alfa - lab",
+      name: "Privet",
+      description: "Chto to na umnom",
+      source: "link to the...",
     },
-  },
-];
+  ],
+};
 
 const IdpForm = () => {
-  const [inputFields, setInputFields] = useState<
-    { title: string; description: string; type: string; resource: string }[]
-  >([]);
-  const nullArray = inputFields.length === 0;
+  //tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(inputFields);
-  };
+  const initialTaskState: Array<{
+    type: string;
+    name: string;
+    description: string;
+    source: string;
+  }> = fakeProps.tasks;
+
+  const initialTaskNull: Array<{
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }> = [];
+
+  const [inputFields, setInputFields] = useState(
+    fakeProps.tasks ? initialTaskState : initialTaskNull,
+  );
+  const nullArray = inputFields.length === 0;
 
   const handleChange = (event: any, index: number) => {
     const { name, value } = event.target;
@@ -40,7 +55,7 @@ const IdpForm = () => {
   };
 
   const addFields = () => {
-    let newfield = { title: "", description: "", type: "", resource: "" };
+    let newfield = { name: "", description: "", type: "", source: "" };
     setInputFields([...inputFields, newfield]);
   };
 
@@ -50,14 +65,47 @@ const IdpForm = () => {
     setInputFields(data);
   };
 
+  //idp
+  interface IdpValue {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  }
+
+  const idpInitialState: IdpValue = {
+    mentor: fakeProps.mentor,
+    name: fakeProps.name,
+    description: fakeProps.description,
+    deadline: fakeProps.deadline,
+  };
+
+  const idpInitialNull: IdpValue = {
+    mentor: "",
+    name: "",
+    description: "",
+    deadline: "",
+  };
+
+  const [idpValue, setIdpValue] = useState(idpInitialState);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let FinalObj = {};
+    const { mentor, name, description, deadline } = idpValue;
+    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    console.log(FinalObj);
+  };
+
   return (
     <form>
-      <IdpFormPartOne />
+      <IdpFormPartOne idpValue={idpValue} setIdpValue={setIdpValue} />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
-      {inputFields.map((inputs, index) => (
+      {inputFields.map((input, index) => (
         <TaskForm
           taskProps={index}
-          inputs={inputs}
+          inputFields={inputFields}
+          setInputFields={setInputFields}
           handleChange={(e: any) => handleChange(e, index)}
           removeFields={() => removeFields(index)}
           key={index}

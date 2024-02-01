@@ -9,7 +9,7 @@ import {
   Divider,
 } from "../../ui-kit";
 import style from "./TaskForm.module.scss";
-import AutoInput from "../AutoInput/AutoInput";
+import TaskFormAutoInput from "../TaskFormAutoInput/TaskFormAutoInput";
 
 const config = {
   label: "Тип задачи",
@@ -20,18 +20,20 @@ const config = {
 interface TaskFormProps {
   taskProps: number;
   removeFields: () => void;
-  inputs: {
-    title: string;
+  inputFields: {
+    name: string;
     description: string;
     type: string;
-    resource: string;
-  };
+    source: string;
+  }[];
+  setInputFields: (e: any) => void;
   handleChange: (e: any) => void;
 }
 
 const TaskForm = ({
   removeFields,
-  inputs,
+  inputFields,
+  setInputFields,
   handleChange,
   taskProps,
 }: TaskFormProps) => {
@@ -64,7 +66,7 @@ const TaskForm = ({
         labelView="outer"
         size="m"
         name="name"
-        value={inputs.title}
+        value={inputFields[taskProps].name}
         onChange={handleChange}
       />
       <Gap size="m" />
@@ -79,16 +81,17 @@ const TaskForm = ({
         maxLength={200}
         showCounter={true}
         size="m"
-        value={inputs.description}
+        value={inputFields[taskProps].description}
         onChange={handleChange}
       />
       <Gap size="m" />
       <GenericWrapper justifyContent="between">
-        <AutoInput
+        <TaskFormAutoInput
           config={config}
           name="type"
-          // value={inputs.type}
-          // onChange={() => handleChange}
+          inputFields={inputFields}
+          setInputFields={setInputFields}
+          index={taskProps}
         />
         <Input
           name="source"
@@ -98,7 +101,7 @@ const TaskForm = ({
           label="Источник"
           labelView="outer"
           size="m"
-          value={inputs.resource}
+          value={inputFields[taskProps].source}
           onChange={handleChange}
         />
       </GenericWrapper>
