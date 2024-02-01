@@ -1,7 +1,16 @@
+import { useAppSelector } from "../../services/hook";
+import { getIdpData } from "../../services/selectors";
 import { Gap, Typography } from "../ui-kit";
 import style from "./PlanDescription.module.scss";
 
 export default function PlanDescription() {
+  const {
+    idp,
+    loading,
+    error,
+  } = useAppSelector(getIdpData);
+  console.log(idp);
+
   return (
     <div className={style.block}>
       <Typography.Title view="xsmall" tag="h3" style={{ color: "#0E0E0E" }}>
@@ -14,12 +23,12 @@ export default function PlanDescription() {
         defaultMargins={false}
         color="primary"
         style={{ fontFamily: "SF Pro Text" }}
-      >
+      > {/*{`${idp.description}`}*/}
         Повышение компетенциий в области soft-скиллов, включая коммуникативные
         навыки, умение работать в команде, разрешение конфликтов и управление
         временем. Эти навыки помогут улучшить взаимодействие с коллегами,
         повысят эффективность работы в проектах и обеспечат более качественное
-        тестирование програмного обеспечения.
+  тестирование програмного обеспечения.
       </Typography.Text>
       <Gap size="s" />
       <Typography.Text

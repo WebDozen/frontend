@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import {
   ArrowBackMIcon,
@@ -8,21 +8,48 @@ import {
   Typography,
   Link,
   Button,
+  StatusCustom,
 } from "../ui-kit";
 import style from "./Head.module.scss";
-import { STATUSES } from "../../utils/constants";
+import { TYPE_SLAG_IDP } from "../../utils/constants";
+import { getEmployeeData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
 
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { id } = useParams();
 
-  const status: STATUSES = STATUSES.Done;
-  const showButton = pathname === "/employee/1";
-  const addIdpLocation = pathname === "/employee/1/add-idp";
+  const {
+    employee: {
+      idp: { total_tasks_count: total_tasks_count, status: status },
+    },
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);
+
+  const showButton = pathname === `/employee/${id}` && total_tasks_count !== 0;
+  const addIdpLocation = pathname === `/employee/${id}/add-idp`;
   const buttonIsDisabled =
-    (status as STATUSES) === "orange" ||
-    (status as STATUSES) === "teal" ||
-    (status as STATUSES) === "blue";
+    status === TYPE_SLAG_IDP.awaiting_review ||
+    status === TYPE_SLAG_IDP.open ||
+    status === TYPE_SLAG_IDP.in_progress;
+  let subtitle =
+    pathname === `/employee/${id}`
+      ? "Карточка сотрудника"
+      : pathname === "/"
+        ? "Главная страница"
+        : pathname === `employee/${id}/idp/1`
+          ? "Название ИПР"
+          : addIdpLocation
+            ? "Создание ИПР"
+            : "Главная страница";
+
+  const statusData: { color: "green"; view: "contrast"; text: string } = {
+    color: "green",
+    view: "contrast",
+    text: "ВЫПОЛНЕН",
+  };
 
   return (
     <GenericWrapper column={true}>
@@ -50,9 +77,18 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          <Typography.Title font="styrene" view="small" tag="h1">
-            {addIdpLocation ? "Создание ИПР" : "Главная страница"}
-          </Typography.Title>
+          {pathname === "/idp/1" ? (
+            <div className={style.subtitleStatusBlock}>
+              <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+                {subtitle}
+              </Typography.TitleResponsive>
+              <StatusCustom data={statusData} />
+            </div>
+          ) : (
+            <Typography.TitleResponsive font="styrene" view="small" tag="h1">
+              {subtitle}
+            </Typography.TitleResponsive>
+          )}
         </div>
         {showButton && (
           <Button
@@ -62,7 +98,7 @@ const Head = () => {
             className={style.mainButton}
             type="button"
             onClick={(e: any) => {
-              navigate(`/employee/1/add-idp`);
+              navigate(`/employee/${id}/add_idp`);
             }}
           >
             Создать ИПР

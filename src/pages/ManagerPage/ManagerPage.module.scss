@@ -1,16 +1,16 @@
 .content {
-  display: flex;
-  flex-direction: column;
-}
-.infoContainer {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap-xl);
-  flex-direction: row;
-}
-
-.infoWrapper {
     display: flex;
-    justify-content: space-between;
-}
+    flex-direction: column;
+  }
+  .infoContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xl);
+    flex-direction: row;
+   }
+  
+   .infoWrapper {
+     display: flex;
+     justify-content: space-between;
+   }

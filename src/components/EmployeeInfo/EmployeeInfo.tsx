@@ -2,12 +2,24 @@ import { Circle, NoShape, Typography } from "../ui-kit";
 import style from "../EmployeeCard/EmployeeCard.module.scss";
 import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
+import { getEmployeeData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
+  const {id} = useParams();
 
+  const {
+    employee,
+    loading,
+    error,
+  } = useAppSelector(getEmployeeData);
+
+  const date = employee.idp.status === 'expired' ? 
+  "Истек" : "31.12.2025";
+  
   return (
     <div className={style.info}>
       <div className={style.infoBlock}>
@@ -15,19 +27,19 @@ export default function EmployeeInfo() {
           <Circle size={64} imageUrl={avatar} />
           <div className={style.infoDescription}>
             <h5 className={style.infoDescriptionName}>
-              Максимова Дарья Олеговна
+            {`${employee.first_name} ${employee.middle_name} ${employee.last_name} `}
             </h5>
             <p className={style.infoDescriptionGrade}>
-              Frontend-разработчик, Middle
+            {`${employee.position}, ${employee.grade}  `}
             </p>
           </div>
         </div>
         <div className={style.dividerCustom}></div>
 
-        {pathname === "/employee/1" ? (
+        {pathname === `/employee/${id}` ? (
           <>
             <div className={style.infoIdp}>
-              <h5 className={style.infoIdpAmount}>2 ИПР</h5>
+              <h5 className={style.infoIdpAmount}>{`${employee.idp.total_completed_idps}`} ИПР</h5>
               <p className={style.infoPIdponeStatus}>Выполнено</p>
             </div>
           </>
@@ -57,7 +69,7 @@ export default function EmployeeInfo() {
                   weight="bold"
                   style={{ fontFamily: "SF Pro Text" }}
                 >
-                  31.12.2024
+                  {date}
                 </Typography.Text>
               </div>
             </div>

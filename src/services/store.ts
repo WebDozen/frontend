@@ -1,8 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import employeeReducer from "./employees/slice";
+import employeesListReducer from "./employeesList/slice";
+import employeeReducer from "./employee/slice";
+import idpReducer from "./idp/slice";
+import idpsListReducer from "./idpsList/slice";
+import managersStatisticsReducer from "./managersStatistics/slice";
 
 const store = configureStore({
-  reducer: { employees: employeeReducer },
+  reducer: {
+    employeesList: employeesListReducer,
+    employee: employeeReducer,
+    idp: idpReducer,
+    idpsList: idpsListReducer,
+    managersStatistics: managersStatisticsReducer,
+  },
 });
 
 export default store;
