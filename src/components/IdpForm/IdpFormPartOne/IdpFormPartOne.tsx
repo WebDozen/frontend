@@ -1,10 +1,11 @@
-import { Gap, GenericWrapper, Input, Textarea } from "../../ui-kit";
+import { Gap, Input, Textarea, RadioGroup, Tag } from "../../ui-kit";
 import style from "./IdpFormPartOne.module.scss";
 import AutoInput from "../AutoInput/AutoInput";
 import DateInputCustom from "../DateInputCustom/DateInputCustom";
-import MonthButton from "../MonthButton/MonthButton";
+import { useState } from "react";
+// import MonthButton from "../MonthButton/MonthButton";
 
-const data = {
+const config = {
   label: "Ментор",
   placeholder: "Назначьте ментора",
   options: [
@@ -26,10 +27,48 @@ const data = {
   ],
 };
 
-const IdpFormPartOne = () => {
+interface Props {
+  idpValue: {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  };
+  setIdpValue: (e: any) => void;
+  // props: {
+  //   mentor: string;
+  //   name: string;
+  //   description: string;
+  //   deadline: string;
+  //   tasks: {
+  //     type: string;
+  //     name: string;
+  //     description: string;
+  //     source: string;
+  //   }[];
+  // };
+}
+
+const IdpFormPartOne = ({ idpValue, setIdpValue }: Props) => {
+  const [value, setValue] = useState("");
+
+  const onChange1 = (_: any, payload: any) => {
+    setValue(payload.value);
+  };
+
+  const handleIdpChange = (event: any) => {
+    const { name, value } = event.target;
+    setIdpValue({ ...idpValue, [name]: value });
+  };
+
   return (
     <div className={style.container}>
-      <AutoInput data={data} />
+      <AutoInput
+        config={config}
+        name="mentor"
+        idpValue={idpValue}
+        setIdpValue={setIdpValue}
+      />
       <Gap size="m" />
       <Input
         placeholder="Введите название ИПР"
@@ -37,6 +76,9 @@ const IdpFormPartOne = () => {
         label="Название ИПР"
         labelView="outer"
         size="m"
+        name="name"
+        value={idpValue.name}
+        onChange={handleIdpChange}
       />
       <Gap size="m" />
       <Textarea
@@ -47,17 +89,31 @@ const IdpFormPartOne = () => {
         placeholder="Добавьте описание ИПР"
         label="Описание ИПР"
         size="m"
+        name="description"
+        value={idpValue.description}
+        onChange={handleIdpChange}
       />
       <Gap size="m" />
-      <DateInputCustom />
+      <DateInputCustom idpValue={idpValue} setIdpValue={setIdpValue} />
       <Gap size="s" />
-      <GenericWrapper>
+      <RadioGroup direction="horizontal" type="tag" onChange={onChange1}>
+        <Tag value="one" size="xxs">
+          3 месяца
+        </Tag>
+        <Tag value="two" size="xxs">
+          6 месяцев
+        </Tag>
+        <Tag value="three" size="xxs">
+          1 год
+        </Tag>
+      </RadioGroup>
+      {/* <GenericWrapper>
         <MonthButton children="3 месяца" />
         <Gap size="xs" direction="horizontal" />
         <MonthButton children="6 месяцев" />
         <Gap size="xs" direction="horizontal" />
         <MonthButton children="1 год" />
-      </GenericWrapper>
+      </GenericWrapper> */}
     </div>
   );
 };

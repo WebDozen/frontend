@@ -1,15 +1,27 @@
-import { useState } from "react";
 import { UniversalDateInput, Calendar } from "../../ui-kit";
 import style from "./DateInputCustom.module.scss";
 
-const DateInputCustom = () => {
-  const [value, setValue] = useState("");
+interface Props {
+  idpValue: {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  };
+  setIdpValue: (e: any) => void;
+}
 
+const DateInputCustom = ({ idpValue, setIdpValue }: Props) => {
   const handleChange = (
     _: React.ChangeEvent<HTMLInputElement> | null,
     { value }: { value: string },
   ) => {
-    setValue(value);
+    setIdpValue({ ...idpValue, deadline: value });
+  };
+
+  const handleClear = (e: any) => {
+    e.stopPropagation();
+    setIdpValue({ ...idpValue, deadline: "" });
   };
 
   return (
@@ -19,7 +31,7 @@ const DateInputCustom = () => {
       view="date"
       label="Срок выполнения"
       labelView={"outer"}
-      value={value}
+      value={idpValue.deadline}
       onChange={handleChange}
       size="m"
       picker={true}
@@ -28,10 +40,7 @@ const DateInputCustom = () => {
         selectorView: "month-only",
       }}
       clear={true}
-      onClear={(e) => {
-        e.stopPropagation();
-        setValue("");
-      }}
+      onClear={handleClear}
     />
   );
 };

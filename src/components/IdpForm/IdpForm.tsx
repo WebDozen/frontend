@@ -4,80 +4,127 @@ import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 
+const fakeProps = {
+  mentor: "Petr Mihalich",
+  name: "Pochitat",
+  description: "otkrit knigu",
+  deadline: "25.01.2024", //2024-01-31T17:57:20.770Z "25.01.2024"
+  tasks: [
+    {
+      type: "Alfa - lab",
+      name: "Privet",
+      description: "Chto to na umnom",
+      source: "link to the...",
+    },
+  ],
+};
+
 const IdpForm = () => {
-  // const [inputs, setInputs] = useState({});
-  // const [isValid, setIsValid] = useState(false);
+  //tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
 
-  // const handleChange = (e: any) => {
-  //   const input = e.target;
-  //   const { name, value } = input;
+  const initialTaskState: Array<{
+    type: string;
+    name: string;
+    description: string;
+    source: string;
+  }> = fakeProps.tasks;
 
-  //   setInputs({ ...inputs, [name]: value });
-  //   setIsValid(e.target.closest("form").checkValidity());
-  //   console.log(name);
-  // };
+  const initialTaskNull: Array<{
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }> = [];
 
-  // const resetSubmitButton = () => {
-  //   setIsValid(false);
-  // };
+  const [inputFields, setInputFields] = useState(
+    fakeProps.tasks ? initialTaskState : initialTaskNull,
+  );
+  const nullArray = inputFields.length === 0;
 
-  // const onSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   console.log("privet");
-  // };
-  const [showTaskForm, setShowTaskForm] = useState(false);
-
-  const numbers: Array<number> = [];
-  const [taskList, setTaskList] = useState(numbers);
-
-  const handleAddTask = (item: number) => {
-    setTaskList([item, ...taskList]);
-    console.log(taskList);
+  const handleChange = (event: any, index: number) => {
+    const { name, value } = event.target;
+    let data: any = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
   };
 
-  const handleDeleteTask = () => {
-    setTaskList(taskList.splice(-1));
-    console.log(taskList);
+  const addFields = () => {
+    let newfield = { name: "", description: "", type: "", source: "" };
+    setInputFields([...inputFields, newfield]);
+  };
+
+  const removeFields = (index: number) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
+  };
+
+  //idp
+  interface IdpValue {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  }
+
+  const idpInitialState: IdpValue = {
+    mentor: fakeProps.mentor,
+    name: fakeProps.name,
+    description: fakeProps.description,
+    deadline: fakeProps.deadline,
+  };
+
+  const idpInitialNull: IdpValue = {
+    mentor: "",
+    name: "",
+    description: "",
+    deadline: "",
+  };
+
+  const [idpValue, setIdpValue] = useState(idpInitialState);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let FinalObj = {};
+    const { mentor, name, description, deadline } = idpValue;
+    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    console.log(FinalObj);
   };
 
   return (
     <form>
-      <IdpFormPartOne />
-      <Gap size="xl" />
-
-      {showTaskForm ? (
+      <IdpFormPartOne idpValue={idpValue} setIdpValue={setIdpValue} />
+      {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
+      {inputFields.map((input, index) => (
         <TaskForm
-          title={1}
-          showTaskForm={showTaskForm}
-          handleAddTask={handleAddTask}
-          handleDeleteTask={handleDeleteTask}
-        />
-      ) : (
-        <>
-          <Button
-            view="primary"
-            size="xs"
-            disabled={false}
-            type="button"
-            onClick={() => setShowTaskForm(true)}
-          >
-            Добавить задачу
-          </Button>
-          <Gap size="4xl" />
-          <Divider className={style.dividerCustom} />
-        </>
-      )}
-
-      {taskList.map((_, id) => (
-        <TaskForm
-          title={id + 2}
-          showTaskForm={showTaskForm}
-          handleAddTask={handleAddTask}
-          handleDeleteTask={handleDeleteTask}
-          key={id}
+          taskProps={index}
+          inputFields={inputFields}
+          setInputFields={setInputFields}
+          handleChange={(e: any) => handleChange(e, index)}
+          removeFields={() => removeFields(index)}
+          key={index}
         />
       ))}
-
+      <Gap size="2xl" />
+      <Button
+        view="primary"
+        size="xs"
+        disabled={false}
+        type="button"
+        onClick={addFields}
+      >
+        {nullArray ? "Добавить задачу" : "Добавить еще задачу"}
+      </Button>
+      <Gap size="4xl" />
+      <Divider
+        className={nullArray ? style.dividerCustom : style.dividerCustomLarge}
+      />
       <Gap size="2xl" />
       <GenericWrapper>
         <Button
@@ -92,9 +139,10 @@ const IdpForm = () => {
         <Button
           view="accent"
           size="m"
-          disabled={true}
+          disabled={false}
           className={style.mainButton}
           type="submit"
+          onClick={handleSubmit}
         >
           Создать ИПР
         </Button>

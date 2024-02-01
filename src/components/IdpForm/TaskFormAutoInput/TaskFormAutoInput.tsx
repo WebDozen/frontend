@@ -4,7 +4,7 @@ import {
   ChevronDownMIcon,
   GenericWrapper,
 } from "../../ui-kit";
-import style from "./AutoInput.module.scss";
+import style from "../AutoInput/AutoInput.module.scss";
 
 interface Config {
   config: {
@@ -13,39 +13,53 @@ interface Config {
     options: { key: string }[];
   };
   name: string;
-  idpValue: {
-    mentor: string;
+  inputFields: {
     name: string;
     description: string;
-    deadline: string;
-  };
-  setIdpValue: (e: any) => void;
+    type: string;
+    source: string;
+  }[];
+  setInputFields: (e: any) => void;
+  index: number;
 }
 
-const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
+const TaskFormAutoInput = ({
+  config,
+  name,
+  inputFields,
+  setInputFields,
+  index,
+}: Config) => {
+  const value = inputFields[index].type;
   const shownChevron = true;
 
   const matchOption = (option: { key: string }, inputValue: string) =>
     option.key.toLowerCase().includes((inputValue || "").toLowerCase());
 
   const filteredOptions = config.options.filter((option) =>
-    matchOption(option, idpValue.mentor),
+    matchOption(option, value),
   );
 
   const handleInput = (
     _: React.ChangeEvent<HTMLInputElement> | null,
     { value }: { value: string },
   ) => {
-    setIdpValue({ ...idpValue, [name]: value });
+    let data: any = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
   };
 
   const handleChange = ({ selected }: any) => {
-    setIdpValue(selected ? { ...idpValue, [name]: selected.key } : "");
+    let data: any = [...inputFields];
+    data[index][name] = selected.key;
+    setInputFields(data);
+    console.log(value)
   };
 
-  const handleClear = (e: any) => {
-    e.stopPropagation();
-    setIdpValue({ ...idpValue, [name]: "" });
+  const handleClear = () => {
+    let data: any = [...inputFields];
+    data[index][name] = "";
+    setInputFields(data);
   };
 
   return (
@@ -61,7 +75,7 @@ const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
         labelView="outer"
         onChange={handleChange}
         onInput={handleInput}
-        value={idpValue.mentor}
+        value={value}
         Arrow={shownChevron ? ChevronDownMIcon : undefined}
         showEmptyOptionsList={true}
         inputProps={{
@@ -80,4 +94,4 @@ const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
   );
 };
 
-export default AutoInput;
+export default TaskFormAutoInput;

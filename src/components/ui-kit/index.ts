@@ -19,6 +19,8 @@ import { ProgressBar } from "@alfalab/core-components/progress-bar";
 import { NoShape } from "@alfalab/core-components/icon-view/no-shape";
 import { Underlay } from "@alfalab/core-components/underlay";
 import { CircularProgressBar } from "@alfalab/core-components/circular-progress-bar";
+import { RadioGroup } from '@alfalab/core-components/radio-group';
+import { Tag } from '@alfalab/core-components/tag';
 import { InputAutocomplete } from "@alfalab/core-components/input-autocomplete";
 import { Input } from "@alfalab/core-components/input";
 import { UniversalDateInput } from "@alfalab/core-components/universal-date-input";
@@ -83,6 +85,8 @@ export {
   Input,
   UniversalDateInput,
   Calendar,
+  RadioGroup,
+  Tag,
   Skeleton,
   //Кастомные компоненты
   StatusComponent,
