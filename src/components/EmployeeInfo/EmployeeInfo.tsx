@@ -2,14 +2,14 @@ import { Circle, NoShape, Typography } from "../ui-kit";
 import style from "../EmployeeCard/EmployeeCard.module.scss";
 import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
-import { STATUSES } from "../../utils/constants";
 import { getEmployeeData } from "../../services/selectors";
 import { useAppSelector } from "../../services/hook";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
+  const {id} = useParams();
 
   const {
     employee,
@@ -36,7 +36,7 @@ export default function EmployeeInfo() {
         </div>
         <div className={style.dividerCustom}></div>
 
-        {pathname === "/employee/1" ? (
+        {pathname === `/employee/${id}` ? (
           <>
             <div className={style.infoIdp}>
               <h5 className={style.infoIdpAmount}>{`${employee.idp.total_completed_idps}`} ИПР</h5>

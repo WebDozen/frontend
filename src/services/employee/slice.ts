@@ -17,6 +17,7 @@ export type Employee = {
     completed_tasks_count: number;
     total_completed_idps: number;
     total_tasks_count: number;
+    total_idp_count: number;
   };
 };
 
@@ -42,6 +43,7 @@ const initialState: EmployeesState = {
       total_completed_idps: 0,
       completed_tasks_count: 0,
       total_tasks_count: 0,
+      total_idp_count: 0,
     },
   },
   loading: false,

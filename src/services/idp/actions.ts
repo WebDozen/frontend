@@ -19,7 +19,7 @@ export const postIdp = createAsyncThunk<
 
 export const getIdpByID = createAsyncThunk<
   TypeIDP,
-  string | number,
+  string | undefined,
   { rejectValue: {} | unknown }
 >("idp/getIdpByID", async (employee_id, { rejectWithValue }) => {
   try {

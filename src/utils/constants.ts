@@ -5,7 +5,7 @@ export enum STATUSES {
   in_progress = "blue",
   expired = "red",
   open = "teal",
-  none = "purple",
+  none = "grey",
 }
 
 export enum TYPE_SLAG_IDP {
@@ -40,7 +40,7 @@ export const STATUSES_IDP = {
   },
   awaiting_review: {
     id: 3,
-    name: "Ожидает ревью",
+    name: "На ревью",
     slug: "awaiting_review",
     color: "orange",
   },
@@ -64,9 +64,9 @@ export const STATUSES_IDP = {
   },
   none: {
     id: 7,
-    name: "Без статуса",
+    name: "Нет ИПР",
     slug: "none",
-    color: "purple",
+    color: "grey",
   },
 } as const;
 
@@ -91,8 +91,8 @@ export const STATUSES_TASK = {
   },
   none: {
     id: 4,
-    name: "Без статуса",
+    name: "Нет задач",
     slug: "none",
-    color: "purple",
+    color: "grey",
   },
 } as const;
