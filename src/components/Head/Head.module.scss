@@ -1,11 +1,11 @@
 .container {
-  //width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .leftContainer {
-  width: 704px;
+  //width: 704px;
 }
 
 .linkBack {
@@ -33,6 +33,11 @@
 
 .subtitleStatusBlock {
   display: flex;
+  width: 100%;
   gap: var(--gap---m, 16px);
   align-items: center;
+}
+
+.buttonsArea {
+  margin-left: auto;
 }

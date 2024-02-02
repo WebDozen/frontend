@@ -74,7 +74,7 @@ class Api {
     });
 
   // Получение ИПР сотрудника по id ipd
-  getIdpByID = (employee_id: string | number, idp_id: string | number) =>
+  getIdpByID = (employee_id: string | undefined, idp_id: string | undefined) =>
     this._makeRequest({
       url: `/employees/${employee_id}/idps/${idp_id}`,
       method: "GET",

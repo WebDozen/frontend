@@ -4,8 +4,9 @@ import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
 import { useLocation, useParams } from "react-router-dom";
 import iconCalendar from "../../images/iconCalendar.svg";
-import { getEmployeeData } from "../../services/selectors";
+import { getEmployeeData, getIdpData } from "../../services/selectors";
 import { useAppSelector } from "../../services/hook";
+import { TYPE_SLAG_IDP } from "../../utils/constants";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
@@ -17,8 +18,14 @@ export default function EmployeeInfo() {
     error,
   } = useAppSelector(getEmployeeData);
 
-  const date = employee.idp.status === 'expired' ? 
-  "Истек" : "31.12.2025";
+  const {
+    idp,
+  } = useAppSelector(getIdpData);
+
+  console.log(idp);
+
+  const date = idp.status.slug === TYPE_SLAG_IDP.expired ? 
+  "Истек" : new Date(idp.deadline).toLocaleDateString("ru-RU");
   
   return (
     <div className={style.info}>

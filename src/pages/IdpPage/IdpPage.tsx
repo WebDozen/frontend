@@ -10,20 +10,24 @@ import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSend
 
 import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
-import { getIdpByID } from "../../services/actions";
+import { getEmployeeByID, getIdpByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
+import { getEmployeeData } from "../../services/selectors";
+import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
 
 const IdpPage = () => {
   type Params = {
     id: string;
+    idp_id: string;
   };
   
   const { id } = useParams<Params>();
+  const {idp_id} = useParams<Params>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-   // dispatch(getEmployeeByID(id));
-    dispatch(getIdpByID(id));
+    dispatch(getEmployeeByID(id));
+    dispatch(getIdpByID({id, idp_id}));
   }, [dispatch]);
 
   const plateSuccess = {
@@ -31,11 +35,14 @@ const IdpPage = () => {
     hasCloser: true,
   };
 
+  console.log(idp_id);
+
   return (
     <>
-      <MentorArea status="blue" />
+      
+     {/* <MentorArea />*/}
       <Gap size="2xl" />
-      <EmployeeCard />
+      <EmployeeCardInIdp />
       <Gap size="3xl" />
       <TaskDescription />
       <div className={style.leftContainer}>

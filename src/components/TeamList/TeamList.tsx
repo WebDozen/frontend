@@ -9,6 +9,7 @@ import {
 import mentorIcon from "./../../images/personalManagerIcon.svg";
 import chevronIcon from "./../../images/chevron-left-shift-right_s.svg";
 import s from "./TeamList.module.scss";
+import znak from "../../images/znak.svg";
 
 import avatar from "./../../images/employeeAvatar.png";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +50,9 @@ const TeamList = () => {
 
       <Table.TCell className={s.tableCell}>
         {user.mentor ? <img src={mentorIcon} alt="mentor" /> : null}
+        {!user.idp.has_task && (
+          <img src={znak} alt="Иконка восклицательного знака" />
+        )}
       </Table.TCell>
 
       <Table.TCell className={s.tableCell}>

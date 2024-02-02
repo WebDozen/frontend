@@ -4,6 +4,7 @@ import TeamList from "../../components/TeamList/TeamList";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../services/hook";
 import { getEmployees, getManagersStatistics } from "../../services/actions";
+import { Gap } from "../../components/ui-kit";
 
 const ManagerPage = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +16,10 @@ const ManagerPage = () => {
 
   return (
     <div className={style.content}>
+      <Gap size="3xl" />
       <TeamInfoBlock />
       <TeamList />
+      <Gap size="7xl" />
     </div>
   );
 };

@@ -17,7 +17,7 @@ const initialState: TypeIDPState = {
     status: {
       id: 0,
       name: "string",
-      slug: "none",
+      slug: "none" ,
       color_fon: "string",
       color_text: "string",
     },

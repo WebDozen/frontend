@@ -3,29 +3,37 @@ import {
   Table,
   Typography,
   NoShape,
-  Status,
   ChevronRightShiftRightSIcon,
   TableCustomWrapper,
+  StatusComponent,
+  Status,
 } from "../ui-kit";
 import styleTask from "./TaskList.module.scss";
+import { getIdpData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
+import type { TypeTask } from "../../services/idp/types";
+import { STATUSES_TASK } from "../../utils/constants";
+import { useState } from "react";
+import TaskModal from "../TaskModal/TaskModal";
 
-export default function TaskList() {
+export default function TaskList(isOpen: any, onClose: any) {
   const navigate = useNavigate();
 
-  const data = Array.from({ length: 5 }, (_, i) => i + 1).map((idx) => ({
-    id: idx,
-    name: `Название задачи ${idx}`,
-  }));
+  const {
+    idp: { tasks: tasks },
+    idp,
+    loading,
+    error,
+  } = useAppSelector(getIdpData);
 
-  const tableRowElement = (task: {
-    id: number;
-    name: string;
-    // status: string;
-  }) => (
+  console.log(idp);
+
+  const tableRowElement = (task: TypeTask) => (
     <Table.TRow
       key={task.id}
       onClick={(e) => {
-        navigate(`/task/${task.id}`);
+        //navigate(`/task/${task.id}`);
+        <TaskModal isOpen={isOpen} onClose={onClose} />;
       }}
     >
       <Table.TCell className={styleTask.cell}>
@@ -39,9 +47,7 @@ export default function TaskList() {
         >
           {task.name}
         </Typography.Text>
-        <Status view="soft" color={"green"} key={"green"}>
-          ВЫПОЛНЕНА
-        </Status>
+        <StatusComponent slag_task={task.status.slug} />
         <NoShape
           className={styleTask.chevron}
           size={16}
@@ -60,7 +66,9 @@ export default function TaskList() {
             Задачи
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{data.map((task) => tableRowElement(task))}</Table.TBody>
+        <Table.TBody>
+          {tasks ? tasks.map((task) => tableRowElement(task)) : null}
+        </Table.TBody>
       </TableCustomWrapper>
     </div>
   );
