@@ -28,6 +28,7 @@ interface TaskFormProps {
   }[];
   setInputFields: (e: any) => void;
   handleChange: (e: any) => void;
+  setTaskSubmitButtonDisabled: (e: any) => void;
 }
 
 const TaskForm = ({
@@ -36,6 +37,7 @@ const TaskForm = ({
   setInputFields,
   handleChange,
   taskProps,
+  setTaskSubmitButtonDisabled,
 }: TaskFormProps) => {
   return (
     <GenericWrapper column={true} className={style.container}>
@@ -91,6 +93,7 @@ const TaskForm = ({
           name="type"
           inputFields={inputFields}
           setInputFields={setInputFields}
+          setTaskSubmitButtonDisabled={setTaskSubmitButtonDisabled}
           index={taskProps}
         />
         <Input

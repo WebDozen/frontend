@@ -1,9 +1,14 @@
 import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeIDPState } from "./types";
-import { getIdpByID, patchIdpByID, postIdp } from "./actions";
+import {
+  getIdpByID,
+  patchIdpByID,
+  patchIdpsStatusByID,
+  patchTasksStatusByID,
+  postIdp,
+} from "./actions";
 import type { TypeRequestError } from "../types";
-
 
 const initialState: TypeIDPState = {
   idp: {
@@ -17,11 +22,11 @@ const initialState: TypeIDPState = {
     status: {
       id: 0,
       name: "string",
-      slug: "none" ,
+      slug: "none",
       color_fon: "string",
       color_text: "string",
     },
-    tasks: null,
+    tasks: [],
   },
   loading: false,
   error: null,
@@ -46,6 +51,19 @@ const idpSlice = createSlice({
         state.idp = action.payload;
         state.loading = false;
       })
+      .addCase(patchIdpsStatusByID.fulfilled, (state, action) => {
+        state.idp.status = action.payload;
+        state.loading = false;
+      })
+      .addCase(patchTasksStatusByID.fulfilled, (state, action) => {
+        const { task_id, status } = action.payload;
+        state.idp.tasks = state.idp.tasks.map((task) => {
+          return task.id.toString() === task_id.toString()
+            ? { ...task, status: status }
+            : task;
+        });
+        state.loading = false;
+      })
       .addMatcher(isPending, (state) => {
         state.error = null;
         state.loading = true;
@@ -53,7 +71,7 @@ const idpSlice = createSlice({
       .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
         state.error = action.payload.detail;
         state.loading = false;
-      })
+      });
   },
 });
 
