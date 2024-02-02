@@ -2,6 +2,7 @@ import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeStatisticState } from "./types";
 import { getManagersStatistics } from "./actions";
+import type { TypeRequestError } from "../types";
 
 const initialState: TypeStatisticState = {
   statistics: {
@@ -34,9 +35,9 @@ const managersStatisticsSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
+        state.error = action.payload.detail;
         state.loading = false;
-        state.error = action.payload;
       });
   },
 });

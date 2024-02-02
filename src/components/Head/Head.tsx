@@ -34,7 +34,7 @@ const Head = () => {
   const { idp } = useAppSelector(getIdpData);
 
   const showButton = pathname === `/employee/${id}` && total_tasks_count !== 0;
-  const addIdpLocation = pathname === `/employee/${id}/add-idp`;
+  const addIdpLocation = pathname === `/employee/${id}/add_idp`;
   const buttonIsDisabled =
     status === TYPE_SLAG_IDP.awaiting_review ||
     status === TYPE_SLAG_IDP.open ||

@@ -1,20 +1,25 @@
-import IdpForm from "../../components/IdpForm/IdpForm";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import { Gap } from "../../components/ui-kit";
-import { useAppDispatch } from "../../services/hook";
+import IdpForm from "../../components/IdpForm/IdpForm";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getEmployeeByID, getEmployees } from "../../services/actions";
+import { useAppDispatch } from "../../services/hook";
+import {
+  getEmployeeByID,
+  getEmployees,
+  getIdpByID,
+} from "../../services/actions";
 
-const AddIdpPage = () => {
-  const { id } = useParams();
+const EditIdpPage = () => {
+  const { id, idp_id } = useParams();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getEmployeeByID(id));
+    dispatch(getIdpByID(idp_id));
     dispatch(getEmployees());
-  }, [id, dispatch]);
+  }, [id, idp_id, dispatch]);
 
   return (
     <>
@@ -26,4 +31,4 @@ const AddIdpPage = () => {
   );
 };
 
-export default AddIdpPage;
+export default EditIdpPage;

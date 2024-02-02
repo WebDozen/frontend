@@ -6,46 +6,40 @@ import {
   Gap,
   Input,
   Textarea,
-  Button,
   Divider,
 } from "../../ui-kit";
 import style from "./TaskForm.module.scss";
-import AutoInput from "../AutoInput/AutoInput";
-import { useState } from "react";
+import TaskFormAutoInput from "../TaskFormAutoInput/TaskFormAutoInput";
 
-const data = {
+const config = {
   label: "Тип задачи",
   placeholder: "Выберите тип задачи",
   options: [{ key: "Букварь" }, { key: "Учебник" }, { key: "Альфа-академия" }],
 };
 
 interface TaskFormProps {
-  title: number;
-  showTaskForm: boolean;
-  handleAddTask: (item: number) => void;
-  handleDeleteTask: () => void;
+  taskProps: number;
+  removeFields: () => void;
+  inputFields: {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }[];
+  setInputFields: (e: any) => void;
+  handleChange: (e: any) => void;
 }
 
 const TaskForm = ({
-  title,
-  showTaskForm,
-  handleAddTask,
-  handleDeleteTask,
+  removeFields,
+  inputFields,
+  setInputFields,
+  handleChange,
+  taskProps,
 }: TaskFormProps) => {
-  const [hideButton, setHideButton] = useState(showTaskForm);
-
-  const addNewTask = () => {
-    setHideButton(false);
-    handleAddTask(11);
-  };
-
-  const resetTask = () => {
-    setHideButton(true);
-    handleDeleteTask();
-  };
-
   return (
     <GenericWrapper column={true} className={style.container}>
+      <Gap size="4xl" />
       <Divider className={style.dividerCustom} />
       <Gap size="s" />
       <GenericWrapper justifyContent="between" alignItems="center">
@@ -55,13 +49,13 @@ const TaskForm = ({
           view="secondary-large"
           className={style.text}
         >
-          {`ЗАДАЧА ${title}`}
+          {`ЗАДАЧА ${taskProps + 1}`}
         </Typography.Text>
         <IconButton
           icon={<TrashCanMIcon />}
           size={40}
           className={style.trashCanButton}
-          onClick={resetTask}
+          onClick={removeFields}
         />
       </GenericWrapper>
       <Gap size="m" />
@@ -71,9 +65,13 @@ const TaskForm = ({
         label="Название"
         labelView="outer"
         size="m"
+        name="name"
+        value={inputFields[taskProps].name}
+        onChange={handleChange}
       />
       <Gap size="m" />
       <Textarea
+        name="description"
         block={true}
         minRows={1}
         maxRows={10}
@@ -83,34 +81,30 @@ const TaskForm = ({
         maxLength={200}
         showCounter={true}
         size="m"
+        value={inputFields[taskProps].description}
+        onChange={handleChange}
       />
       <Gap size="m" />
       <GenericWrapper justifyContent="between">
-        <AutoInput data={data} />
+        <TaskFormAutoInput
+          config={config}
+          name="type"
+          inputFields={inputFields}
+          setInputFields={setInputFields}
+          index={taskProps}
+        />
         <Input
+          name="source"
           className={style.input}
           placeholder="Добавьте источник или название"
           block={true}
           label="Источник"
           labelView="outer"
           size="m"
+          value={inputFields[taskProps].source}
+          onChange={handleChange}
         />
       </GenericWrapper>
-      <Gap size="2xl" />
-      {hideButton && (
-        <Button
-          view="primary"
-          size="xs"
-          disabled={false}
-          type="button"
-          className={style.button}
-          onClick={addNewTask}
-        >
-          Добавить еще задачу
-        </Button>
-      )}
-      <Gap size="4xl" />
-      <Divider className={style.dividerCustom} />
     </GenericWrapper>
   );
 };
