@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../utils/Api";
-import type { TypeIDP, TypeStatus } from "./types";
+import type { TypeIDP, TypeStatus, TypeStatusTask } from "./types";
 
 export const postIdp = createAsyncThunk<
   TypeIDP,
@@ -64,7 +64,7 @@ export const patchIdpsStatusByID = createAsyncThunk<
 });
 
 export const patchTasksStatusByID = createAsyncThunk<
-  { task_id: string | number; status: TypeStatus },
+  { task_id: string | number; status: TypeStatusTask },
   {
     idp_id: string | number;
     task_id: string | number;

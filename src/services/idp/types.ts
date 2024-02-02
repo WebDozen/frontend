@@ -3,9 +3,13 @@ import type { TYPE_SLAG_IDP, TYPE_SLAG_TASK } from "../../utils/constants";
 export type TypeStatus = {
   id: number;
   name: string;
-  slug: keyof typeof TYPE_SLAG_IDP | keyof typeof TYPE_SLAG_TASK;
+  slug: keyof typeof TYPE_SLAG_IDP;
   color_fon: string;
   color_text: string;
+};
+
+export type TypeStatusTask = TypeStatus & {
+  slug: keyof typeof TYPE_SLAG_TASK;
 };
 
 export type TypeTask = {
@@ -13,7 +17,7 @@ export type TypeTask = {
   name: string;
   description: string;
   type: number;
-  status: TypeStatus;
+  status: TypeStatusTask;
   pub_date: string;
   source: string;
 };
