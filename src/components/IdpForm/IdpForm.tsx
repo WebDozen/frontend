@@ -3,12 +3,14 @@ import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
+import { DATE_TRANSLETER } from "../../utils/constants";
+import useFormValidation from "../../hooks/useFormValidation";
 
 const fakeProps = {
   mentor: "Petr Mihalich",
   name: "Pochitat",
   description: "otkrit knigu",
-  deadline: "25.01.2024", //2024-01-31T17:57:20.770Z "25.01.2024"
+  deadline: "2024-01-31T17:57:20.770Z",
   tasks: [
     {
       type: "Alfa - lab",
@@ -21,81 +23,79 @@ const fakeProps = {
 
 const IdpForm = () => {
   //tasks
-  interface TaskValue {
-    name: string;
-    description: string;
-    type: string;
-    source: string;
-  }
+  // interface TaskValue {
+  //   name: string;
+  //   description: string;
+  //   type: string;
+  //   source: string;
+  // }
 
-  const initialTaskState: Array<{
-    type: string;
-    name: string;
-    description: string;
-    source: string;
-  }> = fakeProps.tasks;
+  // const initialTaskState: Array<{
+  //   type: string;
+  //   name: string;
+  //   description: string;
+  //   source: string;
+  // }> = fakeProps.tasks;
 
-  const initialTaskNull: Array<{
-    name: string;
-    description: string;
-    type: string;
-    source: string;
-  }> = [];
+  // const initialTaskNull: Array<{
+  //   name: string;
+  //   description: string;
+  //   type: string;
+  //   source: string;
+  // }> = [];
 
-  const [inputFields, setInputFields] = useState(
-    fakeProps.tasks ? initialTaskState : initialTaskNull,
-  );
-  const nullArray = inputFields.length === 0;
+  // const [inputFields, setInputFields] = useState(initialTaskNull);
+  // const nullArray = inputFields.length === 0;
 
-  const handleChange = (event: any, index: number) => {
-    const { name, value } = event.target;
-    let data: any = [...inputFields];
-    data[index][name] = value;
-    setInputFields(data);
-  };
+  // const handleChange = (event: any, index: number) => {
+  //   const { name, value } = event.target;
+  //   let data: any = [...inputFields];
+  //   data[index][name] = value;
+  //   setInputFields(data);
+  // };
 
-  const addFields = () => {
-    let newfield = { name: "", description: "", type: "", source: "" };
-    setInputFields([...inputFields, newfield]);
-  };
+  // const addFields = () => {
+  //   let newfield = { name: "", description: "", type: "", source: "" };
+  //   setInputFields([...inputFields, newfield]);
+  // };
 
-  const removeFields = (index: number) => {
-    let data = [...inputFields];
-    data.splice(index, 1);
-    setInputFields(data);
-  };
+  // const removeFields = (index: number) => {
+  //   let data = [...inputFields];
+  //   data.splice(index, 1);
+  //   setInputFields(data);
+  // };
 
   //idp
-  interface IdpValue {
-    mentor: string;
-    name: string;
-    description: string;
-    deadline: string;
-  }
+  // interface IdpValue {
+  //   mentor: string;
+  //   name: string;
+  //   description: string;
+  //   deadline: string;
+  // }
 
-  const idpInitialState: IdpValue = {
-    mentor: fakeProps.mentor,
-    name: fakeProps.name,
-    description: fakeProps.description,
-    deadline: fakeProps.deadline,
-  };
+  // const idpInitialState: IdpValue = {
+  //   mentor: fakeProps.mentor,
+  //   name: fakeProps.name,
+  //   description: fakeProps.description,
+  //   deadline: DATE_TRANSLETER(fakeProps.deadline),
+  // };
 
-  const idpInitialNull: IdpValue = {
-    mentor: "",
-    name: "",
-    description: "",
-    deadline: "",
-  };
+  // const idpInitialNull: IdpValue = {
+  //   mentor: "",
+  //   name: "",
+  //   description: "",
+  //   deadline: "",
+  // };
 
-  const [idpValue, setIdpValue] = useState(idpInitialState);
+  // const [idpValue, setIdpValue] = useState(idpInitialState);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    let FinalObj = {};
-    const { mentor, name, description, deadline } = idpValue;
-    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
-    console.log(FinalObj);
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   let FinalObj = {};
+  //   const { mentor, name, description, deadline } = idpValue;
+  //   FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+  //   console.log(FinalObj);
+  // };
 
   return (
     <form>

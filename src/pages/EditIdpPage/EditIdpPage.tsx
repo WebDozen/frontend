@@ -1,8 +1,8 @@
-import IdpForm from "../../components/IdpForm/IdpForm";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import { Gap } from "../../components/ui-kit";
+import IdpForm from "../../components/IdpForm/IdpForm";
 
-const AddIdpPage = () => {
+const EditIdpPage = () => {
   return (
     <>
       <EmployeeCard />
@@ -13,4 +13,4 @@ const AddIdpPage = () => {
   );
 };
 
-export default AddIdpPage;
+export default EditIdpPage;

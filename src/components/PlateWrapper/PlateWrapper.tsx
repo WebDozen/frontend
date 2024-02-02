@@ -12,21 +12,12 @@ interface PlateWrapperProps {
   text?: string;
 }
 
-export default function PlateWrapper({
-  config,
-  view,
-  titleText,
-  text,
-}: PlateWrapperProps) {
-  /* const onChange = (_, payload) => {
-        setValue({ ...value, [payload.name]: payload.value });
-    };*/
-
+const PlateWrapper = ({ config, view, titleText, text }: PlateWrapperProps) => {
   return (
     <Plate
       view={view}
       hasCloser={config.hasCloser}
-      limitContentWidth = {false}
+      limitContentWidth={false}
       title={
         <Typography.Text
           tag="p"
@@ -40,9 +31,11 @@ export default function PlateWrapper({
       }
       leftAddons={
         config.hasBadge ? (
-          config.hasBadge === "positive" 
-          ? <StatusBadge view="positive-checkmark" />
-          : <StatusBadge view="attention-alert" />
+          config.hasBadge === "positive" ? (
+            <StatusBadge view="positive-checkmark" />
+          ) : (
+            <StatusBadge view="attention-alert" />
+          )
         ) : null
       }
       buttons={
@@ -55,4 +48,6 @@ export default function PlateWrapper({
       {text}
     </Plate>
   );
-}
+};
+
+export default PlateWrapper;

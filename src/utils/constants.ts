@@ -1,4 +1,4 @@
-export enum STATUSES {
+export const enum STATUSES {
   completed = "green",
   awaiting_review = "orange",
   cancelled = "grey",
@@ -8,7 +8,7 @@ export enum STATUSES {
   none = "grey",
 }
 
-export enum TYPE_SLAG_IDP {
+export const enum TYPE_SLAG_IDP {
   completed = "completed",
   awaiting_review = "awaiting_review",
   cancelled = "cancelled",
@@ -18,7 +18,7 @@ export enum TYPE_SLAG_IDP {
   none = "none",
 }
 
-export enum TYPE_SLAG_TASK {
+export const enum TYPE_SLAG_TASK {
   completed = "completed",
   in_progress = "in_progress",
   open = "open",
@@ -96,3 +96,9 @@ export const STATUSES_TASK = {
     color: "grey",
   },
 } as const;
+
+export const DATE_TRANSLETER = (date: any) => {
+  const q = date.split("T");
+  const w = q[0].split("-");
+  return w[2] + "." + w[1] + "." + w[0];
+};
