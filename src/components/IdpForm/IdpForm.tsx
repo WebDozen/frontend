@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 import { DATE_TRANSLETER } from "../../utils/constants";
 import useFormValidation from "../../hooks/useFormValidation";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getEmployeesListData } from "../../services/selectors";
+import { patchIdpByID, postIdp } from "../../services/actions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const fakeProps = {
   mentor: "Petr Mihalich",
@@ -22,80 +27,128 @@ const fakeProps = {
 };
 
 const IdpForm = () => {
-  //tasks
-  // interface TaskValue {
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { list } = useAppSelector(getEmployeesListData);
 
-  // const initialTaskState: Array<{
-  //   type: string;
-  //   name: string;
-  //   description: string;
-  //   source: string;
-  // }> = fakeProps.tasks;
+  const location = useLocation();
+  const { id, idp_id } = useParams();
+  const { pathname } = location;
+  const isAddIdpPage = pathname === `/employee/${id}/add_idp`;
+  const isEditIdpPage = pathname === `/employee/${id}/edit_idp/${idp_id}`;
+  const finishLink = isAddIdpPage
+    ? `/employee/${id}/`
+    : isEditIdpPage
+      ? `/employee/${id}/idp/${idp_id}`
+      : pathname;
 
-  // const initialTaskNull: Array<{
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }> = [];
+  // tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
 
-  // const [inputFields, setInputFields] = useState(initialTaskNull);
-  // const nullArray = inputFields.length === 0;
+  const initialTaskState: Array<{
+    type: string;
+    name: string;
+    description: string;
+    source: string;
+  }> = fakeProps.tasks;
 
-  // const handleChange = (event: any, index: number) => {
-  //   const { name, value } = event.target;
-  //   let data: any = [...inputFields];
-  //   data[index][name] = value;
-  //   setInputFields(data);
-  // };
+  const initialTaskNull: Array<{
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }> = [];
 
-  // const addFields = () => {
-  //   let newfield = { name: "", description: "", type: "", source: "" };
-  //   setInputFields([...inputFields, newfield]);
-  // };
+  const [inputFields, setInputFields] = useState(initialTaskNull);
+  const nullArray = inputFields.length === 0;
 
-  // const removeFields = (index: number) => {
-  //   let data = [...inputFields];
-  //   data.splice(index, 1);
-  //   setInputFields(data);
-  // };
+  const handleChange = (event: any, index: number) => {
+    const { name, value } = event.target;
+    let data: any = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
+  };
 
-  //idp
-  // interface IdpValue {
-  //   mentor: string;
-  //   name: string;
-  //   description: string;
-  //   deadline: string;
-  // }
+  const addFields = () => {
+    let newfield = { name: "", description: "", type: "", source: "" };
+    setInputFields([...inputFields, newfield]);
+  };
 
-  // const idpInitialState: IdpValue = {
-  //   mentor: fakeProps.mentor,
-  //   name: fakeProps.name,
-  //   description: fakeProps.description,
-  //   deadline: DATE_TRANSLETER(fakeProps.deadline),
-  // };
+  const removeFields = (index: number) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
+  };
 
-  // const idpInitialNull: IdpValue = {
-  //   mentor: "",
-  //   name: "",
-  //   description: "",
-  //   deadline: "",
-  // };
+  // idp
+  interface IdpValue {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  }
 
-  // const [idpValue, setIdpValue] = useState(idpInitialState);
+  const idpInitialState: IdpValue = {
+    mentor: fakeProps.mentor,
+    name: fakeProps.name,
+    description: fakeProps.description,
+    deadline: DATE_TRANSLETER(fakeProps.deadline),
+  };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   let FinalObj = {};
-  //   const { mentor, name, description, deadline } = idpValue;
-  //   FinalObj = { mentor, name, description, deadline, tasks: inputFields };
-  //   console.log(FinalObj);
-  // };
+  const idpInitialNull: IdpValue = {
+    mentor: "",
+    name: "",
+    description: "",
+    deadline: "",
+  };
+
+  const [idpValue, setIdpValue] = useState(idpInitialState);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    let FinalObj = {};
+    const { mentor, name, description, deadline } = idpValue;
+    let date = new Date(deadline.split(".").reverse().join("-"));
+    let deadlineISO = date.toISOString();
+    FinalObj = {
+      mentor,
+      name,
+      description,
+      deadline: deadlineISO,
+      tasks: inputFields,
+    };
+    console.log(FinalObj);
+    try {
+      let originalPromiseResult;
+      if (isAddIdpPage) {
+        const resultAction = await dispatch(
+          postIdp({ employee_id: `${id}`, data: FinalObj }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (isEditIdpPage) {
+        const resultAction = await dispatch(
+          patchIdpByID({
+            employee_id: `${id}`,
+            idp_id: `${idp_id}`,
+            data: FinalObj,
+          }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (originalPromiseResult) {
+        console.log(originalPromiseResult);
+        navigate(finishLink);
+      }
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
+    }
+  };
 
   return (
     <form>

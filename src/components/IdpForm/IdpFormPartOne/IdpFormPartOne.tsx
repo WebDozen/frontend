@@ -2,7 +2,11 @@ import { Gap, Input, Textarea, RadioGroup, Tag } from "../../ui-kit";
 import style from "./IdpFormPartOne.module.scss";
 import AutoInput from "../AutoInput/AutoInput";
 import DateInputCustom from "../DateInputCustom/DateInputCustom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "../../../services/hook";
+import { getEmployeesListData } from "../../../services/selectors";
+import { useParams } from "react-router-dom";
+import type { TypeEmployeesItem } from "../../../services/employeesList/slice";
 // import MonthButton from "../MonthButton/MonthButton";
 
 const config = {
@@ -51,6 +55,18 @@ interface Props {
 
 const IdpFormPartOne = ({ idpValue, setIdpValue }: Props) => {
   const [value, setValue] = useState("");
+  const { id } = useParams();
+  const { list } = useAppSelector(getEmployeesListData);
+  const [mentorsList, setMentorsList] = useState<TypeEmployeesItem[]>([]);
+
+  useEffect(() => {
+    setMentorsList(list.filter((emloyee) => emloyee.id.toString() !== id));
+  }, [list, id]);
+  
+  // Удалить потом
+  useEffect(() => {
+    console.log(mentorsList);
+  }, [mentorsList]);
 
   const onChange1 = (_: any, payload: any) => {
     setValue(payload.value);
