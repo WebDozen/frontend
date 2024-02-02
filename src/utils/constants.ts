@@ -97,8 +97,8 @@ export const STATUSES_TASK = {
   },
 } as const;
 
-export const DATE_TRANSLETER = (date: any) => {
-  const q = date.split("T");
-  const w = q[0].split("-");
-  return w[2] + "." + w[1] + "." + w[0];
-};
+// export const DATE_TRANSLETER = (date: any) => {
+//   const q = date.split("T");
+//   const w = q[0].split("-");
+//   return w[2] + "." + w[1] + "." + w[0];
+// };

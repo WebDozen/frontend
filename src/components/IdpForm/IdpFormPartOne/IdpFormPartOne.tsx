@@ -6,30 +6,8 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../services/hook";
 import { getEmployeesListData } from "../../../services/selectors";
 import { useParams } from "react-router-dom";
-import type { TypeEmployeesItem } from "../../../services/employeesList/slice";
+// import type { TypeEmployeesItem } from "../../../services/employeesList/slice";
 // import MonthButton from "../MonthButton/MonthButton";
-
-const config = {
-  label: "Ментор",
-  placeholder: "Назначьте ментора",
-  options: [
-    { key: "Иванов Андрей" },
-    { key: "Петров Алексей" },
-    { key: "Сидоров Александр" },
-    { key: "Curium" },
-    { key: "Berkelium" },
-    { key: "Californium" },
-    { key: "Einsteinium" },
-    { key: "Fermium" },
-    { key: "Mendelevium" },
-    { key: "Nobelium" },
-    { key: "Lawrencium" },
-    { key: "Rutherfordium" },
-    { key: "Dubnium" },
-    { key: "Seaborgium" },
-    { key: "Bohrium" },
-  ],
-};
 
 interface Props {
   idpValue: {
@@ -39,46 +17,52 @@ interface Props {
     deadline: string;
   };
   setIdpValue: (e: any) => void;
-  setIdpSubmitButtonDisabled: (e: any) => void;
+  setTaskSubmitButtonDisabled: (e: any) => void;
 }
 
 const IdpFormPartOne = ({
   idpValue,
   setIdpValue,
-  setIdpSubmitButtonDisabled,
+  setTaskSubmitButtonDisabled,
 }: Props) => {
-  const [value, setValue] = useState("");
   const { id } = useParams();
   const { list } = useAppSelector(getEmployeesListData);
-  const [mentorsList, setMentorsList] = useState<TypeEmployeesItem[]>([]);
+  const [mentorsList, setMentorsList] = useState<Array<{ key: string }>>([]); //<TypeEmployeesItem[]> <MyArray>
 
   useEffect(() => {
-    setMentorsList(list.filter((emloyee) => emloyee.id.toString() !== id));
+    const filterThisEmployee = list.filter(
+      (emloyee) => emloyee.id.toString() !== id,
+    );
+    const fillMentorList = filterThisEmployee.map((item) => {
+      const fullName = `${item.last_name} ${item.first_name} ${item.middle_name}`;
+      return { key: fullName };
+    });
+    setMentorsList(fillMentorList);
   }, [list, id]);
-  
-  // Удалить потом
-  useEffect(() => {
-    console.log(mentorsList);
-  }, [mentorsList]);
-
-  const onChange1 = (_: any, payload: any) => {
-    setValue(payload.value);
-  };
 
   useEffect(() => {
     const idpFormIsValid =
-      idpValue.name &&
-      idpValue.deadline &&
-      idpValue.description &&
-      idpValue.mentor;
+      idpValue.name && idpValue.deadline && idpValue.description;
     idpFormIsValid
-      ? setIdpSubmitButtonDisabled(false)
-      : setIdpSubmitButtonDisabled(true);
+      ? setTaskSubmitButtonDisabled(false)
+      : setTaskSubmitButtonDisabled(true);
   }, [idpValue]);
 
   const handleIdpChange = (event: any) => {
     const { name, value } = event.target;
     setIdpValue({ ...idpValue, [name]: value });
+  };
+
+  //radio buttons
+  const [value, setValue] = useState("");
+  const onChange1 = (_: any, payload: any) => {
+    setValue(payload.value);
+  };
+
+  const config = {
+    label: "Ментор",
+    placeholder: "Назначьте ментора",
+    options: mentorsList,
   };
 
   return (
