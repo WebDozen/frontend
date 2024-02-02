@@ -1,3 +1,7 @@
+// import { CONFIG } from "./data";
+
+import { CONFIG } from "./data";
+
 interface RequestType {
   url: string | undefined;
   method: string;
@@ -92,19 +96,36 @@ class Api {
       data,
     });
 
-  getManagersStatistics = (head_id: string | number) =>
+  // получить статистику по команде
+  getManagersStatistics = () =>
     this._makeRequest({
-      url: `/head/${head_id}/statistics/`,
+      url: `/head/statistics/`,
       method: "GET",
+    });
+
+  // Обновление статуса ИПР
+  patchIdpsStatusByID = (
+    employee_id: string | number,
+    idp_id: string | number,
+    data: { status: string },
+  ) =>
+    this._makeRequest({
+      url: `/employees/${employee_id}/idps/${idp_id}/status`,
+      method: "PATCH",
+      data,
+    });
+
+  // Обновление статуса Задачи
+  patchTasksStatusByID = (
+    idp_id: string | number,
+    task_id: string | number,
+    data: { status: string },
+  ) =>
+    this._makeRequest({
+      url: `/idps/${idp_id}/tasks/${task_id}/status`,
+      method: "PATCH",
+      data,
     });
 }
 
-const config = {
-  baseUrl: "http://127.0.0.1:8000/api/v1",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Token 7770768818aca29747c62c4130a178283e93396c",
-  },
-};
-
-export const api = new Api(config);
+export const api = new Api(CONFIG);
