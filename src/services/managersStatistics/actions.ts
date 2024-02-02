@@ -3,14 +3,14 @@ import { api } from "../../utils/Api";
 import type { TypeStatistic } from "./types";
 
 export const getManagersStatistics = createAsyncThunk<
-  { statistics: TypeStatistic }[],
-  string | number,
+  { statistics: TypeStatistic },
+  undefined,
   { rejectValue: unknown }
 >(
   "managersStatistics/getManagersStatistics",
-  async (head_id, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const res = await api.getManagersStatistics(head_id);
+      const res = await api.getManagersStatistics();
       return res;
     } catch (err) {
       return rejectWithValue(err);
