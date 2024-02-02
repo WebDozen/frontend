@@ -39,21 +39,14 @@ interface Props {
     deadline: string;
   };
   setIdpValue: (e: any) => void;
-  // props: {
-  //   mentor: string;
-  //   name: string;
-  //   description: string;
-  //   deadline: string;
-  //   tasks: {
-  //     type: string;
-  //     name: string;
-  //     description: string;
-  //     source: string;
-  //   }[];
-  // };
+  setIdpSubmitButtonDisabled: (e: any) => void;
 }
 
-const IdpFormPartOne = ({ idpValue, setIdpValue }: Props) => {
+const IdpFormPartOne = ({
+  idpValue,
+  setIdpValue,
+  setIdpSubmitButtonDisabled,
+}: Props) => {
   const [value, setValue] = useState("");
   const { id } = useParams();
   const { list } = useAppSelector(getEmployeesListData);
@@ -71,6 +64,17 @@ const IdpFormPartOne = ({ idpValue, setIdpValue }: Props) => {
   const onChange1 = (_: any, payload: any) => {
     setValue(payload.value);
   };
+
+  useEffect(() => {
+    const idpFormIsValid =
+      idpValue.name &&
+      idpValue.deadline &&
+      idpValue.description &&
+      idpValue.mentor;
+    idpFormIsValid
+      ? setIdpSubmitButtonDisabled(false)
+      : setIdpSubmitButtonDisabled(true);
+  }, [idpValue]);
 
   const handleIdpChange = (event: any) => {
     const { name, value } = event.target;

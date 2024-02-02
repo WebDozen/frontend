@@ -53,7 +53,6 @@ const TaskFormAutoInput = ({
     let data: any = [...inputFields];
     data[index][name] = selected.key;
     setInputFields(data);
-    console.log(value)
   };
 
   const handleClear = () => {

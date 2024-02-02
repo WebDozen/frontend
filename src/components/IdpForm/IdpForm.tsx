@@ -4,7 +4,6 @@ import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 import { DATE_TRANSLETER } from "../../utils/constants";
-import useFormValidation from "../../hooks/useFormValidation";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeesListData } from "../../services/selectors";
@@ -50,6 +49,30 @@ const IdpForm = () => {
     source: string;
   }
 
+  //validation
+  const [idpSubmitButtonDisabled, setIdpSubmitButtonDisabled] = useState(true);
+  const [taskSubmitButtonDisabled, setTaskSubmitButtonDisabled] =
+    useState(false);
+
+  // useEffect(() => {
+  //   const taskFormIsValid = inputFields?.filter(
+  //     (inputs) =>
+  //       inputs.description && inputs.name && inputs.source && inputs.type,
+  //   );
+
+  //   taskFormIsValid
+  //     ? setTaskSubmitButtonDisabled(false)
+  //     : setTaskSubmitButtonDisabled(true);
+  // }, [taskSubmitButtonDisabled]);
+
+  // tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
+
   const initialTaskState: Array<{
     type: string;
     name: string;
@@ -72,6 +95,14 @@ const IdpForm = () => {
     let data: any = [...inputFields];
     data[index][name] = value;
     setInputFields(data);
+
+    const taskFormisValid =
+      data[index].name === "" ||
+      data[index].description === "" ||
+      data[index].type === "" ||
+      data[index].source === "";
+
+    setTaskSubmitButtonDisabled(taskFormisValid);
   };
 
   const addFields = () => {
@@ -107,7 +138,7 @@ const IdpForm = () => {
     deadline: "",
   };
 
-  const [idpValue, setIdpValue] = useState(idpInitialState);
+  const [idpValue, setIdpValue] = useState(idpInitialNull);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -152,7 +183,11 @@ const IdpForm = () => {
 
   return (
     <form>
-      <IdpFormPartOne idpValue={idpValue} setIdpValue={setIdpValue} />
+      <IdpFormPartOne
+        idpValue={idpValue}
+        setIdpValue={setIdpValue}
+        setIdpSubmitButtonDisabled={setIdpSubmitButtonDisabled}
+      />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (
         <TaskForm
@@ -168,7 +203,7 @@ const IdpForm = () => {
       <Button
         view="primary"
         size="xs"
-        disabled={false}
+        disabled={taskSubmitButtonDisabled}
         type="button"
         onClick={addFields}
       >
@@ -192,7 +227,7 @@ const IdpForm = () => {
         <Button
           view="accent"
           size="m"
-          disabled={false}
+          disabled={idpSubmitButtonDisabled}
           className={style.mainButton}
           type="submit"
           onClick={handleSubmit}
