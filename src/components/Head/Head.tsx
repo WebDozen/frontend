@@ -10,6 +10,7 @@ import {
   Button,
   StatusCustom,
   StatusComponent,
+  Skeleton,
 } from "../ui-kit";
 import style from "./Head.module.scss";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
@@ -75,7 +76,8 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          {pathname === `/employee/${id}/idp/${idp_id}` ? (
+         
+          {pathname === `/employee/${id}/idp/${idp_id}` ? (   
             <div className={style.subtitleStatusBlock}>
               <Typography.TitleResponsive font="styrene" view="small" tag="h1">
                 {subtitle}
@@ -88,6 +90,7 @@ const Head = () => {
             </Typography.TitleResponsive>
           )}
         </div>
+    
         {showButton && (
           <Button
             view="accent"

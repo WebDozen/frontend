@@ -19,17 +19,23 @@ const fakeProps4: { color: "green"; view: "soft"; text: string } = {
   text: "ВЫПОЛНЕНА",
 };
 
-const TaskModal = () => {
+/*const {
+  idp : {tasks: tasks}, idp,
+  loading,
+  error,
+} = useAppSelector(getIdpData);*/
+
+const TaskModal = (onCLose: any) => {
   const [isOpen, setIsOpen] = useState(false);
   // const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
+ // const handleClose = () => setIsOpen(false);
   return (
     <>
       {/* <Button onClick={handleOpen}>Открыть сайд-панель</Button> */}
 
       <SidePanelDesktop
         open={isOpen}
-        onClose={handleClose}
+        onClose={onCLose}
         className={style.modal}
       >
         <SidePanelDesktop.Header

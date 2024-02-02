@@ -1,0 +1,11 @@
+.block {
+    background-color: black;
+    max-height: 672px;
+}
+
+.textBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 156px 0 0 132px;
+}

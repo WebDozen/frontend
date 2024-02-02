@@ -3,22 +3,23 @@ import type {
   TYPE_SLAG_TASK,
 } from "../../utils/constants";
 
-export type TypeTask = {
-  id: number;
-  name: string;
-  description: string;
-  type: number;
-  status: keyof typeof TYPE_SLAG_TASK;
-  pub_date: string;
-  source: string;
-};
-
 export type TypeStatus = {
+
   id: number;
   name: string;
   slug: keyof typeof TYPE_SLAG_IDP;
   color_fon: string;
   color_text: string;
+};
+
+export type TypeTask = {
+  id: number;
+  name: string;
+  description: string;
+  type: number;
+  status: TypeStatus & { slug: keyof typeof TYPE_SLAG_TASK };
+  pub_date: string;
+  source: string;
 };
 
 export type TypeMentor = {

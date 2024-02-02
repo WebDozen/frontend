@@ -16,33 +16,24 @@ import { STATUSES_TASK } from "../../utils/constants";
 import { useState } from "react";
 import TaskModal from "../TaskModal/TaskModal";
 
-export default function TaskList() {
+export default function TaskList(isOpen: any, onClose: any) {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
- 
+
   const {
-    idp : {tasks: tasks}, idp,
+    idp: { tasks: tasks },
+    idp,
     loading,
     error,
   } = useAppSelector(getIdpData);
 
   console.log(idp);
 
-
-  const handleModalClick = () => setIsOpen(true);
- const  handleModalClose = () => setIsOpen(false);
-
-  const tableRowElement = (
-    task: TypeTask
-  ) => (
+  const tableRowElement = (task: TypeTask) => (
     <Table.TRow
       key={task.id}
       onClick={(e) => {
         //navigate(`/task/${task.id}`);
-        <TaskModal 
-        //isOpen={handleModalClick}
-        //onClose={handleModalClose}
-        />
+        <TaskModal isOpen={isOpen} onClose={onClose} />;
       }}
     >
       <Table.TCell className={styleTask.cell}>
@@ -56,7 +47,7 @@ export default function TaskList() {
         >
           {task.name}
         </Typography.Text>
-    {  /* <StatusComponent slag_task={task.status} />*/}
+        <StatusComponent slag_task={task.status.slug} />
         <NoShape
           className={styleTask.chevron}
           size={16}
@@ -75,7 +66,9 @@ export default function TaskList() {
             Задачи
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{tasks ? tasks.map((task) => tableRowElement(task)): null}</Table.TBody>
+        <Table.TBody>
+          {tasks ? tasks.map((task) => tableRowElement(task)) : null}
+        </Table.TBody>
       </TableCustomWrapper>
     </div>
   );

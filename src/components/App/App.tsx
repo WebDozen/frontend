@@ -11,9 +11,16 @@ import TaskModal from "../TaskModal/TaskModal";
 import style from "./App.module.scss";
 import { useState } from "react";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
+import SuccessPage from "../../pages/SuccessPage/SuccessPage";
+import CancelPage from "../../pages/CancelPage/CancelPage";
 
 const App = () => {
   const [role, setRole] = useState("manager");
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  function handleModalClick() {setIsOpen(true)};
+ function  handleModalClose() {setIsOpen(false)};
 
   return (
     <div className={style.app}>
@@ -52,6 +59,8 @@ const App = () => {
             element={<div>Редактирование ИПР</div>}
           />
         </Route>
+        <Route path="/employee/:id/idp/:idp_id/success" element={<SuccessPage />}/>
+        <Route path="/employee/:id/idp/:idp_id/cancel" element={<CancelPage />}/>
       </Routes>
       <TaskModal />
     </div>
