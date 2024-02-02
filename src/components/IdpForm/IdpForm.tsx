@@ -5,6 +5,11 @@ import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 import { DATE_TRANSLETER } from "../../utils/constants";
 import useFormValidation from "../../hooks/useFormValidation";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getEmployeesListData } from "../../services/selectors";
+import { patchIdpByID, postIdp } from "../../services/actions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const fakeProps = {
   mentor: "Petr Mihalich",
@@ -22,7 +27,20 @@ const fakeProps = {
 };
 
 const IdpForm = () => {
-  
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { list } = useAppSelector(getEmployeesListData);
+
+  const location = useLocation();
+  const { id, idp_id } = useParams();
+  const { pathname } = location;
+  const isAddIdpPage = pathname === `/employee/${id}/add_idp`;
+  const isEditIdpPage = pathname === `/employee/${id}/edit_idp/${idp_id}`;
+  const finishLink = isAddIdpPage
+    ? `/employee/${id}/`
+    : isEditIdpPage
+      ? `/employee/${id}/idp/${idp_id}`
+      : pathname;
 
   // tasks
   interface TaskValue {
@@ -91,12 +109,44 @@ const IdpForm = () => {
 
   const [idpValue, setIdpValue] = useState(idpInitialState);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
-    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    let deadlineISO = new Date(deadline).toISOString();
+    FinalObj = {
+      mentor,
+      name,
+      description,
+      deadline: deadlineISO,
+      tasks: inputFields,
+    };
     console.log(FinalObj);
+    try {
+      let originalPromiseResult;
+      if (isAddIdpPage) {
+        const resultAction = await dispatch(
+          postIdp({ employee_id: `${id}`, data: FinalObj }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (isEditIdpPage) {
+        const resultAction = await dispatch(
+          patchIdpByID({
+            employee_id: `${id}`,
+            idp_id: `${idp_id}`,
+            data: FinalObj,
+          }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (originalPromiseResult) {
+        console.log(originalPromiseResult);
+        navigate(finishLink);
+      }
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
+    }
   };
 
   return (
