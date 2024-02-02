@@ -17,7 +17,7 @@ const EditIdpPage = () => {
 
   useEffect(() => {
     dispatch(getEmployeeByID(id));
-    dispatch(getIdpByID(idp_id));
+    dispatch(getIdpByID({ id, idp_id }));
     dispatch(getEmployees());
   }, [id, idp_id, dispatch]);
 
