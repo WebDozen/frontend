@@ -1,6 +1,8 @@
 .block {
-    background-color: black;
-    max-height: 672px;
+    background-image: url(../../images/success.gif);
+    background-repeat: no-repeat;
+    height: 672px;
+    padding: 0;
 }
 
 .textBlock {
@@ -8,4 +10,11 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 156px 0 0 132px;
+}
+
+.text {
+    font-family: "SF Pro Display";
+    font-size: 68px;
+    text-shadow: 20px;
+    line-height: 68px;
 }

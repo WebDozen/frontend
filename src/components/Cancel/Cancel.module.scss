@@ -1,0 +1,24 @@
+.button {
+    color: var(
+      --static_text_inverted-primary,
+      var(--static_text_inverted-primary, #fff)
+    );
+    font-family: "SF Pro Text";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  
+  .text {
+      color: #0E0E0E;
+      text-align: center;
+      max-width: 340px;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+margin: 204px auto 172px auto;
+  }

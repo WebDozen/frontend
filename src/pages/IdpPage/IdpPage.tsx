@@ -40,7 +40,7 @@ const IdpPage = () => {
   return (
     <>
       
-     {/* <MentorArea />*/}
+      <MentorArea />
       <Gap size="2xl" />
       <EmployeeCardInIdp />
       <Gap size="3xl" />

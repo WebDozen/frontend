@@ -24,8 +24,8 @@ const MentorArea = () => {
   const showCancelButton = idp.status.slug === TYPE_SLAG_IDP.in_progress || idp.status.slug === TYPE_SLAG_IDP.open;
   const showFinishButton = idp.status.slug === TYPE_SLAG_IDP.awaiting_review;
 
-  const handleButtonClick: () => void = () => {
-    navigate(`/employee/${id}/idp/${idp_id}/success`);
+  const handleButtonClick = () => {
+    navigate(`/employee/${id}/idp/${idp_id}/success`);}
 
 
   return ( 
@@ -62,6 +62,9 @@ const MentorArea = () => {
             Отменить
           </Button>}
           </div>
+          </div>
+  );
+};
       
   {/*  {idp.status.slug !== TYPE_SLAG_IDP.none  && 
         <IconButton
@@ -144,8 +147,6 @@ const MentorArea = () => {
           />
         </div>
           )} */}
-    </div>
-  );
-};}
+   
 
 export default MentorArea;
