@@ -22,80 +22,82 @@ const fakeProps = {
 };
 
 const IdpForm = () => {
-  //tasks
-  // interface TaskValue {
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }
+  
 
-  // const initialTaskState: Array<{
-  //   type: string;
-  //   name: string;
-  //   description: string;
-  //   source: string;
-  // }> = fakeProps.tasks;
+  // tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
 
-  // const initialTaskNull: Array<{
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }> = [];
+  const initialTaskState: Array<{
+    type: string;
+    name: string;
+    description: string;
+    source: string;
+  }> = fakeProps.tasks;
 
-  // const [inputFields, setInputFields] = useState(initialTaskNull);
-  // const nullArray = inputFields.length === 0;
+  const initialTaskNull: Array<{
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }> = [];
 
-  // const handleChange = (event: any, index: number) => {
-  //   const { name, value } = event.target;
-  //   let data: any = [...inputFields];
-  //   data[index][name] = value;
-  //   setInputFields(data);
-  // };
+  const [inputFields, setInputFields] = useState(initialTaskNull);
+  const nullArray = inputFields.length === 0;
 
-  // const addFields = () => {
-  //   let newfield = { name: "", description: "", type: "", source: "" };
-  //   setInputFields([...inputFields, newfield]);
-  // };
+  const handleChange = (event: any, index: number) => {
+    const { name, value } = event.target;
+    let data: any = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
+  };
 
-  // const removeFields = (index: number) => {
-  //   let data = [...inputFields];
-  //   data.splice(index, 1);
-  //   setInputFields(data);
-  // };
+  const addFields = () => {
+    let newfield = { name: "", description: "", type: "", source: "" };
+    setInputFields([...inputFields, newfield]);
+  };
 
-  //idp
-  // interface IdpValue {
-  //   mentor: string;
-  //   name: string;
-  //   description: string;
-  //   deadline: string;
-  // }
+  const removeFields = (index: number) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
+  };
 
-  // const idpInitialState: IdpValue = {
-  //   mentor: fakeProps.mentor,
-  //   name: fakeProps.name,
-  //   description: fakeProps.description,
-  //   deadline: DATE_TRANSLETER(fakeProps.deadline),
-  // };
+  // idp
+  interface IdpValue {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  }
 
-  // const idpInitialNull: IdpValue = {
-  //   mentor: "",
-  //   name: "",
-  //   description: "",
-  //   deadline: "",
-  // };
+  const idpInitialState: IdpValue = {
+    mentor: fakeProps.mentor,
+    name: fakeProps.name,
+    description: fakeProps.description,
+    deadline: DATE_TRANSLETER(fakeProps.deadline),
+  };
 
-  // const [idpValue, setIdpValue] = useState(idpInitialState);
+  const idpInitialNull: IdpValue = {
+    mentor: "",
+    name: "",
+    description: "",
+    deadline: "",
+  };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   let FinalObj = {};
-  //   const { mentor, name, description, deadline } = idpValue;
-  //   FinalObj = { mentor, name, description, deadline, tasks: inputFields };
-  //   console.log(FinalObj);
-  // };
+  const [idpValue, setIdpValue] = useState(idpInitialState);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let FinalObj = {};
+    const { mentor, name, description, deadline } = idpValue;
+    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    console.log(FinalObj);
+  };
 
   return (
     <form>
