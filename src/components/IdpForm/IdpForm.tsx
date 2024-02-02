@@ -4,7 +4,6 @@ import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 import { DATE_TRANSLETER } from "../../utils/constants";
-import useFormValidation from "../../hooks/useFormValidation";
 
 const fakeProps = {
   mentor: "Petr Mihalich",
@@ -22,84 +21,112 @@ const fakeProps = {
 };
 
 const IdpForm = () => {
-  //tasks
-  // interface TaskValue {
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }
+  //validation
+  const [idpSubmitButtonDisabled, setIdpSubmitButtonDisabled] = useState(true);
+  const [taskSubmitButtonDisabled, setTaskSubmitButtonDisabled] =
+    useState(false);
 
-  // const initialTaskState: Array<{
-  //   type: string;
-  //   name: string;
-  //   description: string;
-  //   source: string;
-  // }> = fakeProps.tasks;
+  // useEffect(() => {
+  //   const taskFormIsValid = inputFields?.filter(
+  //     (inputs) =>
+  //       inputs.description && inputs.name && inputs.source && inputs.type,
+  //   );
 
-  // const initialTaskNull: Array<{
-  //   name: string;
-  //   description: string;
-  //   type: string;
-  //   source: string;
-  // }> = [];
+  //   taskFormIsValid
+  //     ? setTaskSubmitButtonDisabled(false)
+  //     : setTaskSubmitButtonDisabled(true);
+  // }, [taskSubmitButtonDisabled]);
 
-  // const [inputFields, setInputFields] = useState(initialTaskNull);
-  // const nullArray = inputFields.length === 0;
+  // tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
 
-  // const handleChange = (event: any, index: number) => {
-  //   const { name, value } = event.target;
-  //   let data: any = [...inputFields];
-  //   data[index][name] = value;
-  //   setInputFields(data);
-  // };
+  const initialTaskState: Array<{
+    type: string;
+    name: string;
+    description: string;
+    source: string;
+  }> = fakeProps.tasks;
 
-  // const addFields = () => {
-  //   let newfield = { name: "", description: "", type: "", source: "" };
-  //   setInputFields([...inputFields, newfield]);
-  // };
+  const initialTaskNull: Array<{
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }> = [];
 
-  // const removeFields = (index: number) => {
-  //   let data = [...inputFields];
-  //   data.splice(index, 1);
-  //   setInputFields(data);
-  // };
+  const [inputFields, setInputFields] = useState(initialTaskNull);
+  const nullArray = inputFields.length === 0;
 
-  //idp
-  // interface IdpValue {
-  //   mentor: string;
-  //   name: string;
-  //   description: string;
-  //   deadline: string;
-  // }
+  const handleChange = (event: any, index: number) => {
+    const { name, value } = event.target;
+    let data: any = [...inputFields];
+    data[index][name] = value;
+    setInputFields(data);
 
-  // const idpInitialState: IdpValue = {
-  //   mentor: fakeProps.mentor,
-  //   name: fakeProps.name,
-  //   description: fakeProps.description,
-  //   deadline: DATE_TRANSLETER(fakeProps.deadline),
-  // };
+    const taskFormisValid =
+      data[index].name === "" ||
+      data[index].description === "" ||
+      data[index].type === "" ||
+      data[index].source === "";
 
-  // const idpInitialNull: IdpValue = {
-  //   mentor: "",
-  //   name: "",
-  //   description: "",
-  //   deadline: "",
-  // };
+    setTaskSubmitButtonDisabled(taskFormisValid);
+  };
 
-  // const [idpValue, setIdpValue] = useState(idpInitialState);
+  const addFields = () => {
+    let newfield = { name: "", description: "", type: "", source: "" };
+    setInputFields([...inputFields, newfield]);
+  };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   let FinalObj = {};
-  //   const { mentor, name, description, deadline } = idpValue;
-  //   FinalObj = { mentor, name, description, deadline, tasks: inputFields };
-  //   console.log(FinalObj);
-  // };
+  const removeFields = (index: number) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
+  };
+
+  // idp
+  interface IdpValue {
+    mentor: string;
+    name: string;
+    description: string;
+    deadline: string;
+  }
+
+  const idpInitialState: IdpValue = {
+    mentor: fakeProps.mentor,
+    name: fakeProps.name,
+    description: fakeProps.description,
+    deadline: DATE_TRANSLETER(fakeProps.deadline),
+  };
+
+  const idpInitialNull: IdpValue = {
+    mentor: "",
+    name: "",
+    description: "",
+    deadline: "",
+  };
+
+  const [idpValue, setIdpValue] = useState(idpInitialNull);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let FinalObj = {};
+    const { mentor, name, description, deadline } = idpValue;
+    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    console.log(FinalObj);
+  };
 
   return (
     <form>
-      <IdpFormPartOne idpValue={idpValue} setIdpValue={setIdpValue} />
+      <IdpFormPartOne
+        idpValue={idpValue}
+        setIdpValue={setIdpValue}
+        setIdpSubmitButtonDisabled={setIdpSubmitButtonDisabled}
+      />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (
         <TaskForm
@@ -115,7 +142,7 @@ const IdpForm = () => {
       <Button
         view="primary"
         size="xs"
-        disabled={false}
+        disabled={taskSubmitButtonDisabled}
         type="button"
         onClick={addFields}
       >
@@ -139,7 +166,7 @@ const IdpForm = () => {
         <Button
           view="accent"
           size="m"
-          disabled={false}
+          disabled={idpSubmitButtonDisabled}
           className={style.mainButton}
           type="submit"
           onClick={handleSubmit}
