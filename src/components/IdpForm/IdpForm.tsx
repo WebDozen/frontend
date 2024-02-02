@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
+import { DATE_TRANSLETER } from "../../utils/constants";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getEmployeesListData } from "../../services/selectors";
+import { patchIdpByID, postIdp } from "../../services/actions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const fakeProps = {
   mentor: "Petr Mihalich",
   name: "Pochitat",
   description: "otkrit knigu",
-  deadline: "25.01.2024", //2024-01-31T17:57:20.770Z "25.01.2024"
+  deadline: "2024-01-31T17:57:20.770Z",
   tasks: [
     {
       type: "Alfa - lab",
@@ -20,7 +26,46 @@ const fakeProps = {
 };
 
 const IdpForm = () => {
-  //tasks
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { list } = useAppSelector(getEmployeesListData);
+
+  const location = useLocation();
+  const { id, idp_id } = useParams();
+  const { pathname } = location;
+  const isAddIdpPage = pathname === `/employee/${id}/add_idp`;
+  const isEditIdpPage = pathname === `/employee/${id}/edit_idp/${idp_id}`;
+  const finishLink = isAddIdpPage
+    ? `/employee/${id}/`
+    : isEditIdpPage
+      ? `/employee/${id}/idp/${idp_id}`
+      : pathname;
+
+  // tasks
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
+
+  //validation
+  const [idpSubmitButtonDisabled, setIdpSubmitButtonDisabled] = useState(true);
+  const [taskSubmitButtonDisabled, setTaskSubmitButtonDisabled] =
+    useState(false);
+
+  // useEffect(() => {
+  //   const taskFormIsValid = inputFields?.filter(
+  //     (inputs) =>
+  //       inputs.description && inputs.name && inputs.source && inputs.type,
+  //   );
+
+  //   taskFormIsValid
+  //     ? setTaskSubmitButtonDisabled(false)
+  //     : setTaskSubmitButtonDisabled(true);
+  // }, [taskSubmitButtonDisabled]);
+
+  // tasks
   interface TaskValue {
     name: string;
     description: string;
@@ -42,9 +87,7 @@ const IdpForm = () => {
     source: string;
   }> = [];
 
-  const [inputFields, setInputFields] = useState(
-    fakeProps.tasks ? initialTaskState : initialTaskNull,
-  );
+  const [inputFields, setInputFields] = useState(initialTaskNull);
   const nullArray = inputFields.length === 0;
 
   const handleChange = (event: any, index: number) => {
@@ -52,6 +95,14 @@ const IdpForm = () => {
     let data: any = [...inputFields];
     data[index][name] = value;
     setInputFields(data);
+
+    const taskFormisValid =
+      data[index].name === "" ||
+      data[index].description === "" ||
+      data[index].type === "" ||
+      data[index].source === "";
+
+    setTaskSubmitButtonDisabled(taskFormisValid);
   };
 
   const addFields = () => {
@@ -65,7 +116,7 @@ const IdpForm = () => {
     setInputFields(data);
   };
 
-  //idp
+  // idp
   interface IdpValue {
     mentor: string;
     name: string;
@@ -77,7 +128,7 @@ const IdpForm = () => {
     mentor: fakeProps.mentor,
     name: fakeProps.name,
     description: fakeProps.description,
-    deadline: fakeProps.deadline,
+    deadline: DATE_TRANSLETER(fakeProps.deadline),
   };
 
   const idpInitialNull: IdpValue = {
@@ -87,19 +138,56 @@ const IdpForm = () => {
     deadline: "",
   };
 
-  const [idpValue, setIdpValue] = useState(idpInitialState);
+  const [idpValue, setIdpValue] = useState(idpInitialNull);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
-    FinalObj = { mentor, name, description, deadline, tasks: inputFields };
+    let date = new Date(deadline.split(".").reverse().join("-"));
+    let deadlineISO = date.toISOString();
+    FinalObj = {
+      mentor,
+      name,
+      description,
+      deadline: deadlineISO,
+      tasks: inputFields,
+    };
     console.log(FinalObj);
+    try {
+      let originalPromiseResult;
+      if (isAddIdpPage) {
+        const resultAction = await dispatch(
+          postIdp({ employee_id: `${id}`, data: FinalObj }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (isEditIdpPage) {
+        const resultAction = await dispatch(
+          patchIdpByID({
+            employee_id: `${id}`,
+            idp_id: `${idp_id}`,
+            data: FinalObj,
+          }),
+        );
+        originalPromiseResult = unwrapResult(resultAction);
+      }
+      if (originalPromiseResult) {
+        console.log(originalPromiseResult);
+        navigate(finishLink);
+      }
+    } catch (rejectedValueOrSerializedError) {
+      console.log(rejectedValueOrSerializedError);
+    }
   };
 
   return (
     <form>
-      <IdpFormPartOne idpValue={idpValue} setIdpValue={setIdpValue} />
+      <IdpFormPartOne
+        idpValue={idpValue}
+        setIdpValue={setIdpValue}
+        setIdpSubmitButtonDisabled={setIdpSubmitButtonDisabled}
+      />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (
         <TaskForm
@@ -115,7 +203,7 @@ const IdpForm = () => {
       <Button
         view="primary"
         size="xs"
-        disabled={false}
+        disabled={taskSubmitButtonDisabled}
         type="button"
         onClick={addFields}
       >
@@ -139,7 +227,7 @@ const IdpForm = () => {
         <Button
           view="accent"
           size="m"
-          disabled={false}
+          disabled={idpSubmitButtonDisabled}
           className={style.mainButton}
           type="submit"
           onClick={handleSubmit}
