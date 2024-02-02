@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
@@ -113,7 +113,7 @@ const IdpForm = () => {
     e.preventDefault();
     let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
-    let date = new Date(deadline);
+    let date = new Date(deadline.split(".").reverse().join("-"));
     let deadlineISO = date.toISOString();
     FinalObj = {
       mentor,
