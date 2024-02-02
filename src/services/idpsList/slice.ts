@@ -2,6 +2,7 @@ import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeIDPState } from "./types";
 import { getIdps } from "./actions";
+import type { TypeRequestError } from "../types";
 
 const initialState: TypeIDPState = {
   idpsList: [],
@@ -24,9 +25,9 @@ const idpsListSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
+        state.error = action.payload.detail;
         state.loading = false;
-        state.error = action.payload;
       });
   },
 });

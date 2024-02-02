@@ -2,6 +2,8 @@ import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeIDPState } from "./types";
 import { getIdpByID, patchIdpByID, postIdp } from "./actions";
+import type { TypeRequestError } from "../types";
+
 
 const initialState: TypeIDPState = {
   idp: {
@@ -15,7 +17,7 @@ const initialState: TypeIDPState = {
     status: {
       id: 0,
       name: "string",
-      slug: "string",
+      slug: "none",
       color_fon: "string",
       color_text: "string",
     },
@@ -48,10 +50,10 @@ const idpSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
+        state.error = action.payload.detail;
         state.loading = false;
-        state.error = action.payload;
-      });
+      })
   },
 });
 
