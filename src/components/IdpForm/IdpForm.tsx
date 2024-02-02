@@ -113,7 +113,8 @@ const IdpForm = () => {
     e.preventDefault();
     let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
-    let deadlineISO = new Date(deadline).toISOString();
+    let date = new Date(deadline);
+    let deadlineISO = date.toISOString();
     FinalObj = {
       mentor,
       name,

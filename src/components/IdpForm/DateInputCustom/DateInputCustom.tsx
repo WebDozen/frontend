@@ -16,6 +16,7 @@ const DateInputCustom = ({ idpValue, setIdpValue }: Props) => {
     _: React.ChangeEvent<HTMLInputElement> | null,
     { value }: { value: string },
   ) => {
+
     setIdpValue({ ...idpValue, deadline: value });
   };
 
