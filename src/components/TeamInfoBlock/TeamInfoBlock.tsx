@@ -25,7 +25,7 @@ const TeamInfoBlock = () => {
                 В вашем отделе {statistics.count_employe} сотрудников
               </h4>
               <Gap size="m" />
-              <span className={s.infoSubtitle}>Назначено ИПР</span>
+              <span className={s.infoSubtitle}>Активно ИПР</span>
               <Gap size="xs" />
               <span className={s.infoText}>
                 {statistics.count_employe_with_idp}
@@ -48,10 +48,10 @@ const TeamInfoBlock = () => {
             <GenericWrapper column={true} justifyContent="between">
               <Space align="end" className={s.custom} direction="horizontal">
                 <div>
-                  <span className={s.infoSubtitle}>Не назначены</span>
+                  <span className={s.infoSubtitle}>На ревью</span>
                   <Gap size="xs" />
                   <span className={s.infoText}>
-                    {statistics.count_employe_without_idp}
+                    {statistics.count_idp_with_status_awaiting_review}
                   </span>
                 </div>
                 <div className={s.customLine}></div>
@@ -64,7 +64,7 @@ const TeamInfoBlock = () => {
                 </div>
                 <div className={s.customLine}></div>
                 <div>
-                  <span className={s.infoSubtitle}>Просрочено</span>
+                  <span className={s.infoSubtitle}>Просрочен</span>
                   <Gap size="xs" />
                   <span className={s.infoText}>
                     {statistics.count_idp_with_status_not_done}
@@ -72,10 +72,10 @@ const TeamInfoBlock = () => {
                 </div>
                 <div className={s.customLine}></div>
                 <div>
-                  <span className={s.infoSubtitle}>Ожидают ревью</span>
+                  <span className={s.infoSubtitle}>Отменен</span>
                   <Gap size="xs" />
                   <span className={s.infoText}>
-                    {statistics.count_idp_with_status_awaiting_review}
+                    {statistics.count_idp_with_status_not_done}
                   </span>
                 </div>
               </Space>

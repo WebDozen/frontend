@@ -7,6 +7,7 @@ import { getEmployeeData } from "../../services/selectors";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
 
 export default function EmployeeCard() {
+
   const {
     employee: {
       idp: { status: idp_status, total_tasks_count: tasks_count },

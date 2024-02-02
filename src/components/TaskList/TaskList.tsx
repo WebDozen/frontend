@@ -3,29 +3,46 @@ import {
   Table,
   Typography,
   NoShape,
-  Status,
   ChevronRightShiftRightSIcon,
   TableCustomWrapper,
+  StatusComponent,
+  Status,
 } from "../ui-kit";
 import styleTask from "./TaskList.module.scss";
+import { getIdpData } from "../../services/selectors";
+import { useAppSelector } from "../../services/hook";
+import type { TypeTask } from "../../services/idp/types";
+import { STATUSES_TASK } from "../../utils/constants";
+import { useState } from "react";
+import TaskModal from "../TaskModal/TaskModal";
 
 export default function TaskList() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const {
+    idp : {tasks: tasks}, idp,
+    loading,
+    error,
+  } = useAppSelector(getIdpData);
 
-  const data = Array.from({ length: 5 }, (_, i) => i + 1).map((idx) => ({
-    id: idx,
-    name: `Название задачи ${idx}`,
-  }));
+  console.log(idp);
 
-  const tableRowElement = (task: {
-    id: number;
-    name: string;
-    // status: string;
-  }) => (
+
+  const handleModalClick = () => setIsOpen(true);
+ const  handleModalClose = () => setIsOpen(false);
+
+  const tableRowElement = (
+    task: TypeTask
+  ) => (
     <Table.TRow
       key={task.id}
       onClick={(e) => {
-        navigate(`/task/${task.id}`);
+        //navigate(`/task/${task.id}`);
+        <TaskModal 
+        //isOpen={handleModalClick}
+        //onClose={handleModalClose}
+        />
       }}
     >
       <Table.TCell className={styleTask.cell}>
@@ -39,9 +56,7 @@ export default function TaskList() {
         >
           {task.name}
         </Typography.Text>
-        <Status view="soft" color={"green"} key={"green"}>
-          ВЫПОЛНЕНА
-        </Status>
+    {  /* <StatusComponent slag_task={task.status} />*/}
         <NoShape
           className={styleTask.chevron}
           size={16}
@@ -60,7 +75,7 @@ export default function TaskList() {
             Задачи
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{data.map((task) => tableRowElement(task))}</Table.TBody>
+        <Table.TBody>{tasks ? tasks.map((task) => tableRowElement(task)): null}</Table.TBody>
       </TableCustomWrapper>
     </div>
   );

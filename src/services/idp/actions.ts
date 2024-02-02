@@ -19,11 +19,12 @@ export const postIdp = createAsyncThunk<
 
 export const getIdpByID = createAsyncThunk<
   TypeIDP,
-  string | undefined,
+  { id: string | undefined; idp_id: string | undefined},
   { rejectValue: {} | unknown }
->("idp/getIdpByID", async (employee_id, { rejectWithValue }) => {
+>("idp/getIdpByID", async (idpData, { rejectWithValue }) => {
+  const {id, idp_id } = idpData;
   try {
-    const res = await api.getIdps(employee_id);
+    const res = await api.getIdpByID(id, idp_id);
     return res;
   } catch (err) {
     return rejectWithValue(err);

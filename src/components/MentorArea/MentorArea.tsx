@@ -1,16 +1,61 @@
-import { Button, CopyMIcon, IconButton, PencilMIcon } from "../ui-kit";
+import { useAppSelector } from "../../services/hook";
+import { getIdpData } from "../../services/selectors";
+import { TYPE_SLAG_IDP, TYPE_SLAG_TASK } from "../../utils/constants";
+import { Button, CopyMIcon, Gap, IconButton, PencilMIcon } from "../ui-kit";
 import styles from "./MentorArea.module.scss";
 import MentorInfo from "./MentorInfo/MentorInfo";
 
-interface statusProps {
-  status: string;
-}
+const MentorArea = () => {
+  const {
+    idp : {tasks: tasks}, idp,
+    loading,
+    error,
+  } = useAppSelector(getIdpData);
 
-const MentorArea = ({ status }: statusProps) => {
-  return (
+  const showMentorInfo = idp.mentor !== null;
+  const showEditButton = idp.status.slug === TYPE_SLAG_IDP.in_progress || 
+  idp.status.slug === TYPE_SLAG_IDP.awaiting_review || 
+  idp.status.slug === TYPE_SLAG_IDP.expired || idp.status.slug === TYPE_SLAG_IDP.open;
+  const showCancelButton = idp.status.slug === TYPE_SLAG_IDP.in_progress || idp.status.slug === TYPE_SLAG_IDP.open;
+  const showFinishButton = idp.status.slug === TYPE_SLAG_IDP.awaiting_review;
+
+
+  return ( 
     <div className={styles.mentorCopyAreaBlock}>
-      <MentorInfo />
-      {(status === "green" || status === "grey") && (
+    {showMentorInfo && 
+    <MentorInfo />
+    }
+      <div className={styles.buttonsBlock}>
+          <div className={styles.littleButtonsBlock}>
+          {showEditButton &&
+            <IconButton
+              view="primary"
+              size={56}
+              icon={PencilMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />}
+            
+            <IconButton
+              view="primary"
+              size={56}
+              icon={CopyMIcon}
+              style={{
+                backgroundColor: "rgba(15, 25, 55, 0.1)",
+              }}
+            />
+          </div>
+          { showFinishButton &&
+          <Button view="primary" className={styles.button}>
+            Завершить ИПР
+          </Button>}
+          {showCancelButton && <Button view="primary" className={styles.button}>
+            Отменить
+          </Button>}
+          </div>
+      
+  {/*  {idp.status.slug !== TYPE_SLAG_IDP.none  && 
         <IconButton
           view="primary"
           size={56}
@@ -19,8 +64,9 @@ const MentorArea = ({ status }: statusProps) => {
             backgroundColor: "rgba(15, 25, 55, 0.1)",
           }}
         />
-      )}
-      {(status === "blue" || status === "teal") && (
+      }
+      {(idp.status.slug === TYPE_SLAG_IDP.in_progress || idp.status.slug === TYPE_SLAG_IDP.awaiting_review 
+      || idp.status.slug === TYPE_SLAG_IDP.expired || idp.status.slug === TYPE_SLAG_IDP.open) && (
         <div className={styles.buttonsBlock}>
           <div className={styles.littleButtonsBlock}>
             <IconButton
@@ -89,7 +135,7 @@ const MentorArea = ({ status }: statusProps) => {
             }}
           />
         </div>
-      )}
+          )} */}
     </div>
   );
 };

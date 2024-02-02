@@ -60,6 +60,7 @@ const EmployeePage = () => {
           <Gap size="2xl" />
         </div>
      )} */}
+     <Gap size="3xl" />
       <EmployeeCard />
       <Gap size="2xl" />
       {/*{is_mentor && <TabsCustomMentor />}*/}

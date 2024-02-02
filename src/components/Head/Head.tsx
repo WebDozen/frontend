@@ -9,16 +9,18 @@ import {
   Link,
   Button,
   StatusCustom,
+  StatusComponent,
 } from "../ui-kit";
 import style from "./Head.module.scss";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
-import { getEmployeeData } from "../../services/selectors";
+import { getEmployeeData, getIdpData } from "../../services/selectors";
 import { useAppSelector } from "../../services/hook";
 
 const Head = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { id } = useParams();
+  const { idp_id } = useParams();
 
   const {
     employee: {
@@ -28,6 +30,8 @@ const Head = () => {
     error,
   } = useAppSelector(getEmployeeData);
 
+  const { idp } = useAppSelector(getIdpData);
+
   const showButton = pathname === `/employee/${id}` && total_tasks_count !== 0;
   const addIdpLocation = pathname === `/employee/${id}/add-idp`;
   const buttonIsDisabled =
@@ -35,21 +39,15 @@ const Head = () => {
     status === TYPE_SLAG_IDP.open ||
     status === TYPE_SLAG_IDP.in_progress;
   let subtitle =
-    pathname === `/employee/${id}`
-      ? "Карточка сотрудника"
-      : pathname === "/"
-        ? "Главная страница"
-        : pathname === `employee/${id}/idp/1`
-          ? "Название ИПР"
-          : addIdpLocation
-            ? "Создание ИПР"
-            : "Главная страница";
+    pathname === "/"
+      ? "Главная страница"
+      : pathname === `/employee/${id}`
+        ? "Карточка сотрудника"
+        : addIdpLocation
+          ? "Создание ИПР"
+          : `${idp.name}`;
 
-  const statusData: { color: "green"; view: "contrast"; text: string } = {
-    color: "green",
-    view: "contrast",
-    text: "ВЫПОЛНЕН",
-  };
+  //pathname === `employee/${id}/idp/${idp_id}`
 
   return (
     <GenericWrapper column={true}>
@@ -77,12 +75,12 @@ const Head = () => {
           </Typography.Title>
           <Gap size={"xl"} />
           <Gap size={"2xl"} />
-          {pathname === "/idp/1" ? (
+          {pathname === `/employee/${id}/idp/${idp_id}` ? (
             <div className={style.subtitleStatusBlock}>
               <Typography.TitleResponsive font="styrene" view="small" tag="h1">
                 {subtitle}
               </Typography.TitleResponsive>
-              <StatusCustom data={statusData} />
+              <StatusComponent slag_idp={idp.status.slug} />
             </div>
           ) : (
             <Typography.TitleResponsive font="styrene" view="small" tag="h1">
@@ -105,7 +103,6 @@ const Head = () => {
           </Button>
         )}
       </GenericWrapper>
-      <Gap size="3xl" />
     </GenericWrapper>
   );
 };
