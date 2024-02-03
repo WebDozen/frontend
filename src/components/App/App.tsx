@@ -1,9 +1,15 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import {
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
 import AddIdpPage from "../../pages/AddIdpPage/AddIdpPage";
 import EditIdpPage from "../../pages/EditIdpPage/EditIdpPage";
+import SuccessPage from "../../pages/SuccessPage/SuccessPage";
+import CancelPage from "../../pages/CancelPage/CancelPage";
 
 import Header from "../Header/Header";
 import Head from "../Head/Head";
@@ -42,7 +48,6 @@ const App = () => {
             element={role === "manager" ? <ManagerPage /> : <EmployeePage />}
           />
           <Route path="/employee/:id" element={<EmployeePage />} />
-          {/* <Route path="/idp/:id" element={<IdpPage />} /> */}
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route

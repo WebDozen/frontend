@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
 import { getEmployeeByID, getIdps } from "../../services/actions";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
+import style from '../AddIdpPage/AddIdpPage.module.scss';
 
 const EmployeePage = () => {
   type Params = {
@@ -54,6 +55,7 @@ const EmployeePage = () => {
           <Gap size="2xl" />
         </div>
      )} */}
+         <div className={style.content}>
      <Gap size="3xl" />
       <EmployeeCard />
       <Gap size="2xl" />
@@ -78,7 +80,7 @@ const EmployeePage = () => {
       )}
 
       {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
-
+      </div>
       {/* Плашки для сотрудника
 {status === "green" && (
         <PlateWrapper

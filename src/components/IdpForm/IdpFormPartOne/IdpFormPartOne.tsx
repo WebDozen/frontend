@@ -34,7 +34,7 @@ const IdpFormPartOne = ({
       (emloyee) => emloyee.id.toString() !== id,
     );
     const fillMentorList = filterThisEmployee.map((item) => {
-      const fullName = `${item.last_name} ${item.first_name} ${item.middle_name}`;
+      const fullName =  `${item.last_name} ${item.first_name} ${item.middle_name} `;
       return { key: fullName };
     });
     setMentorsList(fillMentorList);
