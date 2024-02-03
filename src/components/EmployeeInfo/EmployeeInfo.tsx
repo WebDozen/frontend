@@ -22,7 +22,7 @@ export default function EmployeeInfo() {
     idp,
   } = useAppSelector(getIdpData);
 
-  console.log(idp);
+  // console.log(idp);
 
   const date = idp.status.slug === TYPE_SLAG_IDP.expired ? 
   "Истек" : new Date(idp.deadline).toLocaleDateString("ru-RU");

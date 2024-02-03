@@ -128,36 +128,32 @@ class Api {
     });
 
   // Получить комментарии по ID задачи
-  getTaskCommentsByTaskID = (task_id: string | number) =>
+  getTaskCommentsByTaskID = (task_id: string | undefined) =>
     this._makeRequest({
-      url: `
-      /api/v1/task/${task_id}/comments/`,
+      url: `/task/${task_id}/comments/`,
       method: "GET",
     });
   // Добавить комментарий к задаче по ID задачи
   postTaskCommentsByTaskID = (
-    task_id: string | number,
+    task_id: string | undefined,
     data: { text: string },
   ) =>
     this._makeRequest({
-      url: `
-    /api/v1/task/${task_id}/comments/`,
+      url: `/task/${task_id}/comments/`,
       method: "POST",
       data,
     });
 
   // Получить комментарии по ID ИПР
-  getIdpCommentsByIdpID = (idp_id: string | number) =>
+  getIdpCommentsByIdpID = (idp_id: string | undefined) =>
     this._makeRequest({
-      url: `
-    /api/v1/idp/${idp_id}/comments/`,
+      url: `/idp/${idp_id}/comments/`,
       method: "GET",
     });
   // Добавить комментарий к ИПР по ID ИПР
-  postIdpCommentsByIdpID = (idp_id: string | number, data: { text: string }) =>
+  postIdpCommentsByIdpID = (idp_id: string | undefined, data: {}) =>
     this._makeRequest({
-      url: `
-  /api/v1/idp/${idp_id}/comments/`,
+      url: `/idp/${idp_id}/comments/`,
       method: "POST",
       data,
     });

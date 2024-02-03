@@ -4,3 +4,4 @@ export * from "./idp/actions";
 export * from "./idpsList/actions";
 export * from "./managersStatistics/actions";
 export * from "./task/slice";
+export * from "./comments/actions";

@@ -1,21 +1,27 @@
+import Comment from "../../../Comment/Comment";
 import {
   Textarea,
   Button,
   Gap,
   GenericWrapper,
   TrashCanMIcon,
-  Comment,
   IconButton,
 } from "../../../ui-kit";
 
 const TaskComments = () => {
   const fakeProps = {
-    author: "Николай Афанасьев",
-    role: "ментор",
-    text: "Мы можем периодически проводить встречи и обсуждать прогресс по текущему проекту. А если что-то будет вызывать вопросы, оставляй свои комментарии, я помогу разобраться!",
-    date: "20.01.2024",
-  };
+    id: 10,
 
+    text: "Мы можем периодически проводить встречи и обсуждать прогресс по текущему проекту. А если что-то будет вызывать вопросы, оставляй свои комментарии, я помогу разобраться!",
+    pub_date: "20.01.2024",
+    author: {
+      id: 10,
+      first_name: "Николай",
+      last_name: "Николаев",
+      middle_name: "Николаевич",
+      is_mentor: true,
+    },
+  };
   return (
     <form>
       <Textarea

@@ -13,7 +13,7 @@ const IdpList = () => {
   const navigate = useNavigate();
   const { idpsList, loading, error } = useAppSelector(getIdpsListData);
   const {id} = useParams();
-  console.log(idpsList);
+  // console.log(idpsList);
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
     navigate(`/employee/${id}/idp/${idp_id}`);

@@ -4,7 +4,7 @@ import type { TypeComment } from "./types";
 
 export const getTaskCommentsByTaskID = createAsyncThunk<
   TypeComment[],
-  string | number,
+  string | undefined,
   { rejectValue: {} | unknown }
 >("comments/getTaskCommentsByTaskID", async (task_id, { rejectWithValue }) => {
   try {
@@ -17,7 +17,7 @@ export const getTaskCommentsByTaskID = createAsyncThunk<
 
 export const postTaskCommentsByTaskID = createAsyncThunk<
   TypeComment,
-  { task_id: string | number; data: { text: string } },
+  { task_id: string | undefined; data: { text: string } },
   { rejectValue: {} | unknown }
 >(
   "comments/postTaskCommentsByTaskID",
@@ -33,7 +33,7 @@ export const postTaskCommentsByTaskID = createAsyncThunk<
 
 export const getIdpCommentsByIdpID = createAsyncThunk<
   TypeComment[],
-  string | number,
+  string | undefined,
   { rejectValue: {} | unknown }
 >("comments/getIdpCommentsByIdpID", async (task_id, { rejectWithValue }) => {
   try {
@@ -46,7 +46,7 @@ export const getIdpCommentsByIdpID = createAsyncThunk<
 
 export const postIdpCommentsByIdpID = createAsyncThunk<
   TypeComment,
-  { idp_id: string | number; data: { text: string } },
+  { idp_id: string | undefined; data: { text: string } },
   { rejectValue: {} | unknown }
 >(
   "comments/postIdpCommentsByIdpID",

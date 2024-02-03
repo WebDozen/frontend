@@ -7,7 +7,7 @@ export type TypeComment = {
     first_name: string;
     last_name: string;
     middle_name: string;
-    is_mentor?: true;
+    is_mentor?: boolean;
   };
 };
 
