@@ -126,6 +126,41 @@ class Api {
       method: "PATCH",
       data,
     });
+
+  // Получить комментарии по ID задачи
+  getTaskCommentsByTaskID = (task_id: string | number) =>
+    this._makeRequest({
+      url: `
+      /api/v1/task/${task_id}/comments/`,
+      method: "GET",
+    });
+  // Добавить комментарий к задаче по ID задачи
+  postTaskCommentsByTaskID = (
+    task_id: string | number,
+    data: { text: string },
+  ) =>
+    this._makeRequest({
+      url: `
+    /api/v1/task/${task_id}/comments/`,
+      method: "POST",
+      data,
+    });
+
+  // Получить комментарии по ID ИПР
+  getIdpCommentsByIdpID = (idp_id: string | number) =>
+    this._makeRequest({
+      url: `
+    /api/v1/idp/${idp_id}/comments/`,
+      method: "GET",
+    });
+  // Добавить комментарий к ИПР по ID ИПР
+  postIdpCommentsByIdpID = (idp_id: string | number, data: { text: string }) =>
+    this._makeRequest({
+      url: `
+  /api/v1/idp/${idp_id}/comments/`,
+      method: "POST",
+      data,
+    });
 }
 
 export const api = new Api(CONFIG);

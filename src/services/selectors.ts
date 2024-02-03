@@ -7,3 +7,4 @@ export const getIdpData = (state: RootState) => state.idp;
 export const getManagersStatisticsData = (state: RootState) =>
   state.managersStatistics;
 export const getTasksSidePanelData = (state: RootState) => state.task;
+export const getCommentsData = (state: RootState) => state.comments;
