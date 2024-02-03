@@ -33,7 +33,7 @@ export default function EmployeeInfo() {
           <Skeleton visible={loading}>
             <div className={style.infoDescription}>
               <h5 className={style.infoDescriptionName}>
-                {`${employee.first_name} ${employee.middle_name} ${employee.last_name} `}
+              {`${employee.last_name} ${employee.first_name} ${employee.middle_name} `}
               </h5>
               <p className={style.infoDescriptionGrade}>
                 {`${employee.position}, ${employee.grade}  `}

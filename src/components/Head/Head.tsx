@@ -90,28 +90,28 @@ const Head = () => {
               <Gap size={"2xl"} />
 
               {pathname === `/employee/${id}/idp/${idp_id}` ? (
-                <Skeleton visible={loading}>
-                  <div className={style.subtitleStatusBlock}>
+                <div className={style.subtitleStatusBlock}>
+                  <Skeleton visible={loading}>
                     <Typography.TitleResponsive
                       font="styrene"
                       view="small"
-                      tag="h1"
+                      tag="h2"
                     >
                       {subtitle}
                     </Typography.TitleResponsive>
+                  </Skeleton>
+                  <Skeleton visible={loading}>
                     <StatusComponent slag_idp={idp.status.slug} />
-                  </div>
-                </Skeleton>
+                  </Skeleton>
+                </div>
               ) : (
-                <Skeleton visible={loading}>
-                  <Typography.TitleResponsive
-                    font="styrene"
-                    view="small"
-                    tag="h1"
-                  >
-                    {subtitle}
-                  </Typography.TitleResponsive>
-                </Skeleton>
+                <Typography.TitleResponsive
+                  font="styrene"
+                  view="small"
+                  tag="h2"
+                >
+                  {subtitle}
+                </Typography.TitleResponsive>
               )}
             </div>
             {showButtonsBlock && (
