@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getEmployeeByID, getEmployees } from "../../services/actions";
+import style from './AddIdpPage.module.scss';
 
 const AddIdpPage = () => {
   const { id } = useParams();
@@ -18,10 +19,12 @@ const AddIdpPage = () => {
 
   return (
     <>
+    <div className={style.content}>
       <EmployeeCard />
       <Gap size="2xl" />
       <IdpForm />
       <Gap size="2xl" />
+      </div>
     </>
   );
 };

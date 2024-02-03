@@ -7,7 +7,10 @@
 .leftContainer {
   //width: 704px;
 }
-
+.buttons {
+  height: max-content;
+  margin-top: auto;
+}
 .linkBack {
   display: flex;
   flex-direction: row;
