@@ -110,7 +110,7 @@ class Api {
     data: { status: string },
   ) =>
     this._makeRequest({
-      url: `/employees/${employee_id}/idps/${idp_id}/status`,
+      url: `/employees/${employee_id}/idps/${idp_id}/status/`,
       method: "PATCH",
       data,
     });

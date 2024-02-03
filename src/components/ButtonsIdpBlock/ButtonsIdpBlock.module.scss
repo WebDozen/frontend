@@ -1,0 +1,23 @@
+
+.littleButtonsBlock {
+    display: flex;
+    justify-content:space-between;
+    gap: var(--gap-m);
+    
+  }
+  
+  .buttonsBlock {
+    display: flex;
+    justify-content:space-between;
+    gap: var(--gap-3xl);
+  }
+  
+  .button {
+    color: var(--text_inverted-primary, var(--text_inverted-primary, #FFF));
+    font-family: "SF Pro Text";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  

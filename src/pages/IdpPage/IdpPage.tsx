@@ -14,6 +14,7 @@ import { getEmployeeByID, getIdpByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
 import { getEmployeeData } from "../../services/selectors";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
+import styles from '../AddIdpPage/AddIdpPage.module.scss';
 
 const IdpPage = () => {
   type Params = {
@@ -39,7 +40,7 @@ const IdpPage = () => {
 
   return (
     <>
-      
+               <div className={styles.content}>
       <MentorArea />
       <Gap size="2xl" />
       <EmployeeCardInIdp />
@@ -62,6 +63,7 @@ const IdpPage = () => {
         <IdpCommentSending />
       </div>
       <Gap size="7xl" />
+      </div>
     </>
   );
 };

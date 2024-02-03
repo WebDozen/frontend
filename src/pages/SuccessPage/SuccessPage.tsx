@@ -11,6 +11,8 @@ const SuccessPage = () => {
       };
 
 return(
+  <>
+  <Gap size='xl'/>
 <div className={style.block}>
 <div className={style.textBlock}>
 <div>
@@ -40,6 +42,7 @@ return(
         </div>
 </div>
 </div>
+</>
 )
 }
 

@@ -9,6 +9,7 @@ import {
   getEmployees,
   getIdpByID,
 } from "../../services/actions";
+import style from '../AddIdpPage/AddIdpPage.module.scss';
 
 const EditIdpPage = () => {
   const { id, idp_id } = useParams();
@@ -22,12 +23,12 @@ const EditIdpPage = () => {
   }, [id, idp_id, dispatch]);
 
   return (
-    <>
+    <div className={style.content}>
       <EmployeeCard />
       <Gap size="2xl" />
       <IdpForm />
       <Gap size="2xl" />
-    </>
+    </div>
   );
 };
 
