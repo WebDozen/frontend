@@ -34,7 +34,7 @@ export default function TaskList(isOpen: any, onClose: any) {
   const tableRowElement = (task: TypeTask) => (
     <Table.TRow
       key={task.id}
-      onClick={(e) => {
+      onClick={() => {
         dispatch(handleOpenSidePanel(task));
       }}
     >

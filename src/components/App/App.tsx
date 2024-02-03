@@ -58,6 +58,7 @@ const App = () => {
           element={<CancelPage />}
         />
       </Routes>
+      
       <TaskModal />
     </div>
   );
