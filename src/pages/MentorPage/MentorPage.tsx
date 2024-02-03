@@ -1,39 +1,41 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import IdpList from "../../components/IdpList/IdpList";
-import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
-import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
-import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
-import { Gap } from "../../components/ui-kit";
+import { getEmployeeByID, getIdps } from "../../services/actions";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
-import { getEmployeeByID, getIdps } from "../../services/actions";
+import styles from './MentorPage.module.scss';
+import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
+import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
+import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
+import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
+import { Gap } from "../../components/ui-kit";
+import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
+import IdpList from "../../components/IdpList/IdpList";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
 
-const EmployeePage = () => {
-  type Params = {
-    id: string;
-  };
+const MentorPage = () => {
+    type Params = {
+      id: string;
+    };
+  
+    const { id } = useParams<Params>();
+    const dispatch = useAppDispatch();
+  
+    useEffect(() => {
+      dispatch(getEmployeeByID(id));
+      dispatch(getIdps(id));
+    }, [dispatch]);
+  
+    const {
+      employee: {
+        is_mentor,
+        idp: { status: idp_status },
+      },
+      employee,
+      loading,
+      error,
+    } = useAppSelector(getEmployeeData);
 
-  const { id } = useParams<Params>();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getEmployeeByID(id));
-    dispatch(getIdps(id));
-  }, [dispatch]);
-
-  const {
-    employee: {
-      is_mentor,
-      idp: { status: idp_status },
-    },
-    employee,
-    loading,
-    error,
-  } = useAppSelector(getEmployeeData);
-
-  const status: string = idp_status;
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -45,19 +47,20 @@ const EmployeePage = () => {
     hasButton: false,
     hasCloser: true,
   };
-
-  return (
-    <>
-      {/* {is_mentor && (
+  
+    const status: string = idp_status;
+    return (
+        <div className={styles.content}>
+       {is_mentor && (
         <div>
           <MentorInfo />
           <Gap size="2xl" />
         </div>
-     )} */}
+     )} 
      <Gap size="3xl" />
       <EmployeeCard />
       <Gap size="2xl" />
-      {/*{is_mentor && <TabsCustomMentor />}*/}
+      {is_mentor && <TabsCustomMentor />}
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
        нужно будет переделать !! */}
       {status === TYPE_SLAG_IDP.completed && (
@@ -104,8 +107,8 @@ const EmployeePage = () => {
           text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
         />
       )} */}
-    </>
+    </div>
   );
-};
+}
 
-export default EmployeePage;
+export default MentorPage;

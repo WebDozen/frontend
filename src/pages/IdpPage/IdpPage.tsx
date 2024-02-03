@@ -13,7 +13,7 @@ import { getEmployeeByID, getIdpByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
 import { getEmployeeData } from "../../services/selectors";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
-import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 
 const IdpPage = () => {
   type Params = {

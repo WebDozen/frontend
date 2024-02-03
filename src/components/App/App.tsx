@@ -14,6 +14,7 @@ import style from "./App.module.scss";
 import { useState } from "react";
 import SuccessPage from "../../pages/SuccessPage/SuccessPage";
 import CancelPage from "../../pages/CancelPage/CancelPage";
+import MentorPage from "../../pages/MentorPage/MentorPage";
 
 const App = () => {
   const [role, setRole] = useState("manager");
@@ -46,8 +47,9 @@ const App = () => {
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
             path={"/employee/:id/edit_idp/:idp_id"}
-            element={<EditIdpPage />}
-          />
+            element={<EditIdpPage />} />
+          <Route path="mentor/employee/:id" element={<MentorPage />} />
+
         </Route>
         <Route
           path="/employee/:id/idp/:idp_id/success"
