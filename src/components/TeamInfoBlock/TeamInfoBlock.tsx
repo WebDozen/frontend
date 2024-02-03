@@ -13,8 +13,6 @@ import s from "./TeamInfoBlock.module.scss";
 const TeamInfoBlock = () => {
   const { statistics, loading } = useAppSelector(getManagersStatisticsData);
 
-  console.log(statistics);
-
   return (
     <div className={s.container}>
       <Skeleton visible={loading}>
