@@ -10,7 +10,7 @@ const ManagerPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getManagersStatistics(1));
+    dispatch(getManagersStatistics());
     dispatch(getEmployees());
   }, [dispatch]);
 

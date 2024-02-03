@@ -6,7 +6,6 @@ import CommentsList from "../../components/CommentsList/CommentsList";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import NoTaskMessage from "../../components/NoTaskMessage/NoTaskMessage";
 import style from "./IdpPage.module.scss";
-import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 
 import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
@@ -14,20 +13,21 @@ import { getEmployeeByID, getIdpByID, getIdps } from "../../services/actions";
 import { useParams } from "react-router-dom";
 import { getEmployeeData } from "../../services/selectors";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
+import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
 
 const IdpPage = () => {
   type Params = {
     id: string;
     idp_id: string;
   };
-  
+
   const { id } = useParams<Params>();
-  const {idp_id} = useParams<Params>();
+  const { idp_id } = useParams<Params>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getEmployeeByID(id));
-    dispatch(getIdpByID({id, idp_id}));
+    dispatch(getIdpByID({ id, idp_id }));
   }, [dispatch]);
 
   const plateSuccess = {
@@ -39,8 +39,7 @@ const IdpPage = () => {
 
   return (
     <>
-      
-     {/* <MentorArea />*/}
+      {/* <MentorArea />*/}
       <Gap size="2xl" />
       <EmployeeCardInIdp />
       <Gap size="3xl" />
