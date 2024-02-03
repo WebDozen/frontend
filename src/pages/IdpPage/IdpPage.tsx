@@ -1,19 +1,16 @@
 import { Gap } from "../../components/ui-kit";
-import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import MentorArea from "../../components/MentorArea/MentorArea";
 import TaskDescription from "../../components/TaskDescription/TaskDescription";
 import CommentsList from "../../components/CommentsList/CommentsList";
 import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
-import NoTaskMessage from "../../components/NoTaskMessage/NoTaskMessage";
 import style from "./IdpPage.module.scss";
 
 import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
-import { getEmployeeByID, getIdpByID, getIdps } from "../../services/actions";
+import { getEmployeeByID, getIdpByID} from "../../services/actions";
 import { useParams } from "react-router-dom";
-import { getEmployeeData } from "../../services/selectors";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
-import IdpCommentSending from "../../components/IdPCommentSending/IdpCommentSending";
+import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
 import styles from '../AddIdpPage/AddIdpPage.module.scss';
 
 const IdpPage = () => {
