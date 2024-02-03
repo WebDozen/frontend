@@ -104,7 +104,8 @@ const TeamList = () => {
         </Table.THead>
 
         <Table.TBody>
-          {users.length > 1 ? users.map((user) => tableRowElement(user)) : null}
+          {/* {users.length > 1 ? users.map((user) => tableRowElement(user)) : null} */}
+          {users?.map((user) => tableRowElement(user))}
         </Table.TBody>
       </TableCustomWrapper>
     </div>

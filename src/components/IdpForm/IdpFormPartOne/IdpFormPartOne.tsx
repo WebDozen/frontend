@@ -3,50 +3,36 @@ import style from "./IdpFormPartOne.module.scss";
 import AutoInput from "../AutoInput/AutoInput";
 import DateInputCustom from "../DateInputCustom/DateInputCustom";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../../services/hook";
-import { getEmployeesListData } from "../../../services/selectors";
-import { useParams } from "react-router-dom";
+// import { useAppSelector } from "../../../services/hook";
+// import { getEmployeesListData } from "../../../services/selectors";
+// import { useParams } from "react-router-dom";
 // import type { TypeEmployeesItem } from "../../../services/employeesList/slice";
 // import MonthButton from "../MonthButton/MonthButton";
 
 interface Props {
   idpValue: {
-    mentor: string;
+    mentor: string | undefined;
     name: string;
     description: string;
     deadline: string;
   };
   setIdpValue: (e: any) => void;
-  setTaskSubmitButtonDisabled: (e: any) => void;
+  mentorsList: { key: string }[];
 }
 
-const IdpFormPartOne = ({
-  idpValue,
-  setIdpValue,
-  setTaskSubmitButtonDisabled,
-}: Props) => {
-  const { id } = useParams();
-  const { list } = useAppSelector(getEmployeesListData);
-  const [mentorsList, setMentorsList] = useState<Array<{ key: string }>>([]); //<TypeEmployeesItem[]> <MyArray>
-
+const IdpFormPartOne = ({ idpValue, setIdpValue, mentorsList }: Props) => {
+  const [config, setConfig] = useState({
+    label: "Ментор",
+    placeholder: "Назначьте ментора",
+    options: [{ key: "Михалыч" }],
+  });
   useEffect(() => {
-    const filterThisEmployee = list.filter(
-      (emloyee) => emloyee.id.toString() !== id,
-    );
-    const fillMentorList = filterThisEmployee.map((item) => {
-      const fullName = `${item.last_name} ${item.first_name} ${item.middle_name}`;
-      return { key: fullName };
+    setConfig({
+      label: "Ментор",
+      placeholder: "Назначьте ментора",
+      options: mentorsList,
     });
-    setMentorsList(fillMentorList);
-  }, [list, id]);
-
-  useEffect(() => {
-    const idpFormIsValid =
-      idpValue.name && idpValue.deadline && idpValue.description;
-    idpFormIsValid
-      ? setTaskSubmitButtonDisabled(false)
-      : setTaskSubmitButtonDisabled(true);
-  }, [idpValue]);
+  }, [mentorsList]);
 
   const handleIdpChange = (event: any) => {
     const { name, value } = event.target;
@@ -57,12 +43,6 @@ const IdpFormPartOne = ({
   const [value, setValue] = useState("");
   const onChange1 = (_: any, payload: any) => {
     setValue(payload.value);
-  };
-
-  const config = {
-    label: "Ментор",
-    placeholder: "Назначьте ментора",
-    options: mentorsList,
   };
 
   return (

@@ -25,6 +25,13 @@ export const enum TYPE_SLAG_TASK {
   none = "none",
 }
 
+export const enum TASK_TYPES {
+  "Книга" = 1,
+  "Курс" = 2,
+  "Рабочая задача" = 3,
+  "Alfa Academy" = 4,
+}
+
 export const STATUSES_IDP = {
   open: {
     id: 1,
@@ -97,8 +104,20 @@ export const STATUSES_TASK = {
   },
 } as const;
 
-// export const DATE_TRANSLETER = (date: any) => {
-//   const q = date.split("T");
-//   const w = q[0].split("-");
-//   return w[2] + "." + w[1] + "." + w[0];
-// };
+
+
+export const DATE_FROM_ISO = (date: any) => {
+  const newDate = new Date(date);
+  const day = newDate.getUTCDate().toString().padStart(2, '0');
+  const month = (newDate.getUTCMonth() + 1).toString().padStart(2, '0');
+  const year = newDate.getUTCFullYear();
+  return `${day}.${month}.${year}`;
+};
+
+export const DATE_TO_ISO = (date: any) => {
+  const parts = date.split(".");
+  const day = parts[0];
+  const month = parts[1];
+  const year = parts[2];
+  return new Date(`${year}-${month}-${day}`).toISOString();
+};

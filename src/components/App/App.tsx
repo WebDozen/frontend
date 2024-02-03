@@ -41,7 +41,6 @@ const App = () => {
             element={role === "manager" ? <ManagerPage /> : <EmployeePage />}
           />
           <Route path="/employee/:id" element={<EmployeePage />} />
-          {/* <Route path="/idp/:id" element={<IdpPage />} /> */}
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
