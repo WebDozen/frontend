@@ -40,7 +40,7 @@ const Head = () => {
     status === TYPE_SLAG_IDP.open ||
     status === TYPE_SLAG_IDP.in_progress;
   let subtitle =
-    pathname === "/"
+    (pathname === "/" || pathname === `/mentor/employee/${id}`)
       ? "Главная страница"
       : pathname === `/employee/${id}`
         ? "Карточка сотрудника"

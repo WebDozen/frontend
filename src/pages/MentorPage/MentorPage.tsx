@@ -3,15 +3,10 @@ import { useParams } from "react-router-dom";
 import { getEmployeeByID, getIdps } from "../../services/actions";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
-import styles from './MentorPage.module.scss';
-import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
-import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
 import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
 import { Gap } from "../../components/ui-kit";
-import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
-import IdpList from "../../components/IdpList/IdpList";
-import { TYPE_SLAG_IDP } from "../../utils/constants";
+import styles from './MentorPage.module.scss';
 
 const MentorPage = () => {
     type Params = {
@@ -36,6 +31,7 @@ const MentorPage = () => {
       error,
     } = useAppSelector(getEmployeeData);
 
+console.log("employee:", employee);
 
   const plateSuccess = {
     hasBadge: "positive",
@@ -51,18 +47,19 @@ const MentorPage = () => {
     const status: string = idp_status;
     return (
         <div className={styles.content}>
-       {is_mentor && (
+   { /*   {is_mentor && (
         <div>
           <MentorInfo />
           <Gap size="2xl" />
         </div>
-     )} 
+   )} */}
      <Gap size="3xl" />
       <EmployeeCard />
       <Gap size="2xl" />
       {is_mentor && <TabsCustomMentor />}
+      <Gap size="7xl" />
       {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
-       нужно будет переделать !! */}
+       нужно будет переделать !!
       {status === TYPE_SLAG_IDP.completed && (
         <PlateWrapper
           config={plateSuccess}
@@ -82,7 +79,7 @@ const MentorPage = () => {
 
       {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
 
-      {/* Плашки для сотрудника
+     Плашки для сотрудника
 {status === "green" && (
         <PlateWrapper
           config={plateSuccess}
