@@ -67,6 +67,7 @@ const EmployeeCard = () => {
       ) : (
         <InfoProgressStatusBar />
       )}
+
     </div>
   );
 };

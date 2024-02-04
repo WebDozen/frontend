@@ -21,7 +21,7 @@ const MentorInfo = () => {
           <div className={styles.iconAndName}>
             <PersonalManagerMIcon className={styles.icon} />
             <h5 className={style.infoDescriptionName}>
-            {mentor !== null ?`${mentor.first_name} ${mentor.middle_name} ${mentor.last_name} `: ''}
+            {mentor !== null ? `${mentor.last_name} ${mentor.first_name} ${mentor.middle_name} `: ''}
             </h5>
           </div>
           <p className={style.infoDescriptionGrade}>

@@ -37,7 +37,7 @@ const TeamList = () => {
           <Circle size={40} imageUrl={avatar} />
           <Gap size="m" direction="horizontal" />
           <Typography.Text view="primary-small" tag="span">
-            {`${user.first_name} ${user.middle_name} ${user.last_name} `}
+            {`${user.last_name} ${user.first_name} ${user.middle_name} `}
           </Typography.Text>
         </div>
       </Table.TCell>

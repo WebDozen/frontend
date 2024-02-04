@@ -1,4 +1,10 @@
-import { Table, Typography, Status, TableCustomWrapper, StatusComponent } from "../ui-kit";
+import {
+  Table,
+  Typography,
+  Status,
+  TableCustomWrapper,
+  StatusComponent,
+} from "../ui-kit";
 import styles from "./IdpList.module.scss";
 
 import mentorIcon from "../../images/personalManagerIcon.svg";
@@ -12,8 +18,12 @@ import { useAppSelector } from "../../services/hook";
 const IdpList = () => {
   const navigate = useNavigate();
   const { idpsList, loading, error } = useAppSelector(getIdpsListData);
-  const {id} = useParams();
+  const { id } = useParams();
   console.log(idpsList);
+
+  const formatedDeadline = (date: string) => {
+    new Date(date).toLocaleDateString("ru-RU");
+  };
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
     navigate(`/employee/${id}/idp/${idp_id}`);
@@ -41,7 +51,9 @@ const IdpList = () => {
           color="primary"
           style={{ fontFamily: "SF Pro Text" }}
         >
-          {new Date(idp.deadline).toLocaleDateString("ru-RU")}
+          {new Date(idp.deadline).toLocaleDateString("ru-RU") === "01.01.1970"
+            ? ""
+            : new Date(idp.deadline).toLocaleDateString("ru-RU")}
         </Typography.Text>
       </Table.TCell>
 
@@ -88,7 +100,9 @@ const IdpList = () => {
             СТАТУС ИПР
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>{idpsList.map((idp) => tableRowElement(idp)).reverse()}</Table.TBody>
+        <Table.TBody>
+          {idpsList.map((idp) => tableRowElement(idp)).reverse()}
+        </Table.TBody>
       </TableCustomWrapper>
     </div>
   );
