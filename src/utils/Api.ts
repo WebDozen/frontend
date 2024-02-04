@@ -1,6 +1,4 @@
-// import { CONFIG } from "./data";
-
-import { CONFIG } from "./data";
+import { CONFIG_API } from "./data";
 
 interface RequestType {
   url: string | undefined;
@@ -126,6 +124,37 @@ class Api {
       method: "PATCH",
       data,
     });
+
+  // Получить комментарии по ID задачи
+  getTaskCommentsByTaskID = (task_id: string | undefined) =>
+    this._makeRequest({
+      url: `/task/${task_id}/comments/`,
+      method: "GET",
+    });
+  // Добавить комментарий к задаче по ID задачи
+  postTaskCommentsByTaskID = (
+    task_id: string | undefined,
+    data: { text: string },
+  ) =>
+    this._makeRequest({
+      url: `/task/${task_id}/comments/`,
+      method: "POST",
+      data,
+    });
+
+  // Получить комментарии по ID ИПР
+  getIdpCommentsByIdpID = (idp_id: string | undefined) =>
+    this._makeRequest({
+      url: `/idp/${idp_id}/comments/`,
+      method: "GET",
+    });
+  // Добавить комментарий к ИПР по ID ИПР
+  postIdpCommentsByIdpID = (idp_id: string | undefined, data: {}) =>
+    this._makeRequest({
+      url: `/idp/${idp_id}/comments/`,
+      method: "POST",
+      data,
+    });
 }
 
-export const api = new Api(CONFIG);
+export const api = new Api(CONFIG_API);

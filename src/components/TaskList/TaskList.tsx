@@ -11,14 +11,17 @@ import {
 } from "../ui-kit";
 import styleTask from "./TaskList.module.scss";
 import { getIdpData } from "../../services/selectors";
-import { useAppSelector } from "../../services/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
 import type { TypeTask } from "../../services/idp/types";
 import { STATUSES_TASK } from "../../utils/constants";
 import { useState } from "react";
 import TaskModal from "../TaskModal/TaskModal";
+import { handleOpenSidePanel } from "../../services/actions";
 
 export default function TaskList(isOpen: any, onClose: any) {
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   const {
     idp: { tasks: tasks },
@@ -27,14 +30,13 @@ export default function TaskList(isOpen: any, onClose: any) {
     error,
   } = useAppSelector(getIdpData);
 
-  console.log(idp);
+  // console.log(idp);
 
   const tableRowElement = (task: TypeTask) => (
     <Table.TRow
       key={task.id}
-      onClick={(e) => {
-        //navigate(`/task/${task.id}`);
-        <TaskModal isOpen={isOpen} onClose={onClose} />;
+      onClick={() => {
+        dispatch(handleOpenSidePanel(task));
       }}
     >
       <Table.TCell className={styleTask.cell}>

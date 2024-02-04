@@ -14,7 +14,12 @@ import TaskFormAutoInput from "../TaskFormAutoInput/TaskFormAutoInput";
 const config = {
   label: "Тип задачи",
   placeholder: "Выберите тип задачи",
-  options: [{ key: "Букварь" }, { key: "Учебник" }, { key: "Альфа-академия" }],
+  options: [
+    { key: "Книга" },
+    { key: "Курс" },
+    { key: "Рабочая задача" },
+    { key: "Alfa Academy" },
+  ],
 };
 
 interface TaskFormProps {

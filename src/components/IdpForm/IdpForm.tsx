@@ -5,33 +5,35 @@ import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
-// import { getEmployeesListData } from "../../services/selectors";
+import { getEmployeesListData, getIdpData } from "../../services/selectors";
+import { DATE_FROM_ISO, DATE_TO_ISO, TASK_TYPES } from "../../utils/constants";
 import { patchIdpByID, postIdp } from "../../services/actions";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-// const fakeProps = {
-//   mentor: "Petr Mihalich",
-//   name: "Pochitat",
-//   description: "otkrit knigu",
-//   deadline: "2024-01-31T17:57:20.770Z",
-//   tasks: [
-//     {
-//       type: "Alfa - lab",
-//       name: "Privet",
-//       description: "Chto to na umnom",
-//       source: "link to the...",
-//     },
-//   ],
-// };
+interface IdpValue {
+  mentor: string | undefined;
+  name: string;
+  description: string;
+  deadline: string;
+}
+interface TaskValue {
+  name: string;
+  description: string;
+  type: string;
+  source: string;
+}
+
+//
+//
+//
 
 const IdpForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const { list } = useAppSelector(getEmployeesListData);
-
-  const location = useLocation();
+  const { pathname } = useLocation();
   const { id, idp_id } = useParams();
-  const { pathname } = location;
+  const { idp, loading } = useAppSelector(getIdpData);
+  const { list } = useAppSelector(getEmployeesListData);
   const isAddIdpPage = pathname === `/employee/${id}/add_idp`;
   const isEditIdpPage = pathname === `/employee/${id}/edit_idp/${idp_id}`;
   const finishLink = isAddIdpPage
@@ -39,52 +41,73 @@ const IdpForm = () => {
     : isEditIdpPage
       ? `/employee/${id}/idp/${idp_id}`
       : pathname;
+      
+  //
+  //
+  //
 
-  // initial state for idp / task
-  interface IdpValue {
-    mentor: string;
-    name: string;
-    description: string;
-    deadline: string;
-  }
-
-  // const idpInitialState: IdpValue = {
-  //   mentor: fakeProps.mentor,
-  //   name: fakeProps.name,
-  //   description: fakeProps.description,
-  //   deadline: fakeProps.deadline,
-  // };
-
+  const initialTaskNull: TaskValue[] = [];
   const idpInitialNull: IdpValue = {
     mentor: "",
     name: "",
     description: "",
     deadline: "",
   };
+  useEffect(() => {
+    const idpInitialState: IdpValue = {
+      mentor: idp.mentor !== null ? idp.mentor.toString() : undefined,
+      name: idp.name,
+      description: idp.description,
+      deadline: DATE_FROM_ISO(idp.deadline),
+    };
+    const taskExtractor: TaskValue[] = idp.tasks.map((item) => {
+      let type;
+      switch (item.type) {
+        case TASK_TYPES["Книга"]:
+          type = "Книга";
+          break;
+        case TASK_TYPES["Курс"]:
+          type = "Курс";
+          break;
+        case TASK_TYPES["Рабочая задача"]:
+          type = "Рабочая задача";
+          break;
+        case TASK_TYPES["Alfa Academy"]:
+          type = "Alfa Academy";
+          break;
+        default:
+          type = "Другое";
+      }
+      return {
+        name: item.name,
+        description: item.description,
+        type: type,
+        source: item.source,
+      };
+    });
 
-  // const initialTaskState: Array<{
-  //   type: string;
-  //   name: string;
-  //   description: string;
-  //   source: string;
-  // }> = fakeProps.tasks;
-
-  const initialTaskNull: Array<{
-    name: string;
-    description: string;
-    type: string;
-    source: string;
-  }> = [];
-
+    isAddIdpPage ? setIdpValue(idpInitialNull) : setIdpValue(idpInitialState);
+    isAddIdpPage
+      ? setInputFields(initialTaskNull)
+      : setInputFields(taskExtractor);
+  }, [idp, id]);
   // states
   const [idpValue, setIdpValue] = useState(idpInitialNull);
   const [inputFields, setInputFields] = useState(initialTaskNull);
   const [idpButtonIsActive, setIdpButtonIsActive] = useState(false);
   const [taskSubmitButtonDisabled, setTaskSubmitButtonDisabled] =
     useState(true);
+  const [mentorsList, setMentorsList] = useState<Array<{ key: string }>>([]);
+  const [idMentorsList, setIdMentorsList] = useState<Array<{ string: number }>>(
+    [],
+  );
+
+  //
+  //
+  //
 
   useEffect(() => {
-    const hasMentor = idpValue?.mentor !== ""; //true kogda zapolnen
+    const hasMentor = idpValue.mentor !== "" && idpValue.name !== ""; //true kogda zapolnen
     const firstTaskIsComplete =
       inputFields[0]?.description !== "" &&
       inputFields[0]?.name !== "" &&
@@ -94,6 +117,43 @@ const IdpForm = () => {
 
     setIdpButtonIsActive(hasMentor || firstTaskIsComplete);
   }, [idpValue, inputFields]);
+
+  useEffect(() => {
+    const idpFormIsValid =
+      idpValue.name && idpValue.deadline && idpValue.description;
+    idpFormIsValid
+      ? setTaskSubmitButtonDisabled(false)
+      : setTaskSubmitButtonDisabled(true);
+  }, [idpValue]);
+
+  useEffect(() => {
+    const filterThisEmployee = list.filter(
+      (emloyee) => emloyee.id.toString() !== id,
+    );
+    const fillMentorList = filterThisEmployee.map((item) => {
+      const fullName = `${item.last_name} ${item.first_name} ${item.middle_name}`;
+      return { key: fullName };
+    });
+    const idMentorList = filterThisEmployee.map((item) => {
+      const fullName = `${item.last_name} ${item.first_name} ${item.middle_name}`;
+      const id = item.id;
+      return { [fullName]: id } as { string: number };
+    });
+
+    setMentorsList(fillMentorList);
+    setIdMentorsList(idMentorList);
+  }, [list, id]);
+
+  const getMentorId = (
+    idList: { [key: string]: number }[],
+    selectedItem: string | undefined,
+  ): number | void => {
+    if (selectedItem === undefined) {
+      return undefined;
+    }
+    const idObj = idList.find((item) => Object.keys(item)[0] === selectedItem);
+    return idObj ? idObj[selectedItem] : undefined;
+  };
 
   // tasks handlers
   const handleChange = (event: any, index: number) => {
@@ -129,16 +189,16 @@ const IdpForm = () => {
     e.preventDefault();
     let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
-    let date = new Date(deadline.split(".").reverse().join("-"));
-    let deadlineISO = date.toISOString();
+    const mentorId = getMentorId(idMentorsList, mentor);
+    const isoDate = DATE_TO_ISO(deadline);
     FinalObj = {
-      mentor,
+      mentor: mentorId,
       name,
       description,
-      deadline: deadlineISO,
+      deadline: isoDate,
       tasks: inputFields,
     };
-    console.log(FinalObj);
+
     try {
       let originalPromiseResult;
       if (isAddIdpPage) {
@@ -173,7 +233,7 @@ const IdpForm = () => {
       <IdpFormPartOne
         idpValue={idpValue}
         setIdpValue={setIdpValue}
-        setTaskSubmitButtonDisabled={setTaskSubmitButtonDisabled}
+        mentorsList={mentorsList}
       />
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (

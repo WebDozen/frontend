@@ -1,16 +1,20 @@
+import type { TypeComment } from "../../services/comments/types";
 import { Gap, GenericWrapper, Typography } from "../ui-kit";
 import style from "./Comment.module.scss";
 
 interface CommentProps {
-  commentData: {
-    author: string;
-    role: string;
-    text: string;
-    date: string;
-  };
+  commentData: TypeComment;
 }
 
 const Comment = ({ commentData }: CommentProps) => {
+  const {
+    text,
+    pub_date,
+    author: { first_name, last_name, middle_name, is_mentor = false },
+  } = commentData;
+
+  const fullName = `${first_name} ${middle_name} ${last_name}`;
+
   return (
     <GenericWrapper column={true}>
       <GenericWrapper>
@@ -20,17 +24,19 @@ const Comment = ({ commentData }: CommentProps) => {
           defaultMargins={false}
           className={style.author}
         >
-          {commentData.author}
+          {fullName}
         </Typography.Text>
         <Gap size="xs" direction="horizontal" />
-        <Typography.Text
-          tag="p"
-          view="secondary-large"
-          defaultMargins={false}
-          className={style.role}
-        >
-          {commentData.role}
-        </Typography.Text>
+        {is_mentor ? (
+          <Typography.Text
+            tag="p"
+            view="secondary-large"
+            defaultMargins={false}
+            className={style.role}
+          >
+            ментор
+          </Typography.Text>
+        ) : null}
       </GenericWrapper>
       <Gap size="xs" />
       <Typography.Text
@@ -40,7 +46,7 @@ const Comment = ({ commentData }: CommentProps) => {
         defaultMargins={false}
         className={style.text}
       >
-        {commentData.text}
+        {text}
       </Typography.Text>
       <Gap size="xs" />
       <Typography.Text
@@ -49,7 +55,7 @@ const Comment = ({ commentData }: CommentProps) => {
         defaultMargins={false}
         className={style.date}
       >
-        {commentData.date}
+        {new Date(pub_date).toLocaleDateString("ru-RU")}
       </Typography.Text>
     </GenericWrapper>
   );

@@ -25,7 +25,6 @@ const TeamList = () => {
 
   const titleThirdRow = pathname === `/mentor/employee/${id}` ? "Нет задач" : "Ментор";
   const showMentorIcon = pathname !== `/mentor/employee/${id}`;
-  console.log("users", users);
 
   const styleTableCell = {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",

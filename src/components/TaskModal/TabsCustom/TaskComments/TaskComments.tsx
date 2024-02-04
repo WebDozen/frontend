@@ -1,42 +1,82 @@
+import { useEffect, useState } from "react";
+import Comment from "../../../Comment/Comment";
 import {
   Textarea,
   Button,
   Gap,
   GenericWrapper,
   TrashCanMIcon,
-  Comment,
   IconButton,
+  Skeleton,
 } from "../../../ui-kit";
+import { useAppDispatch, useAppSelector } from "../../../../services/hook";
+import { getCommentsData } from "../../../../services/selectors";
+import {
+  getTaskCommentsByTaskID,
+  postTaskCommentsByTaskID,
+} from "../../../../services/actions";
+import s from "./TackComments.module.scss";
 
-const TaskComments = () => {
-  const fakeProps = {
-    author: "Николай Афанасьев",
-    role: "ментор",
-    text: "Мы можем периодически проводить встречи и обсуждать прогресс по текущему проекту. А если что-то будет вызывать вопросы, оставляй свои комментарии, я помогу разобраться!",
-    date: "20.01.2024",
-  };
+type Props = { task_id: string };
+
+const TaskComments: React.FC<Props> = ({ task_id }) => {
+  const dispatch = useAppDispatch();
+  const { taskComments, loading, error } = useAppSelector(getCommentsData);
+  const [text, setText] = useState<string>("");
+
+  useEffect(() => {
+    dispatch(getTaskCommentsByTaskID(task_id));
+  }, [dispatch]);
 
   return (
-    <form>
-      <Textarea
-        block={true}
-        maxRows={5}
-        minRows={5}
-        placeholder="Введите свой комментарий"
-      />
-      <Gap size="s" />
-      <GenericWrapper justifyContent="between">
-        <Button view={"tertiary"} size="xxs" type="submit">
-          Отправить комментарий
-        </Button>
-        <IconButton
-          icon={<TrashCanMIcon color="rgba(9, 12, 37, 0.28)" />}
-          size={32}
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(
+            postTaskCommentsByTaskID({
+              task_id,
+              data: { text: text },
+            }),
+          );
+          setText("");
+        }}
+      >
+        <Textarea
+          block={true}
+          maxRows={5}
+          minRows={5}
+          placeholder="Введите свой комментарий"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
         />
-      </GenericWrapper>
+        <Gap size="s" />
+        <GenericWrapper justifyContent="between">
+          <Button view={"tertiary"} size="xxs" type="submit">
+            Отправить комментарий
+          </Button>
+          <IconButton
+            icon={<TrashCanMIcon color="rgba(9, 12, 37, 0.28)" />}
+            size={32}
+            onClick={() => setText("")}
+          />
+        </GenericWrapper>
+      </form>
       <Gap size="xl" />
-      <Comment commentData={fakeProps} />
-    </form>
+      <Skeleton visible={loading}>
+        <ul className={s.commentsList}>
+          {taskComments.map((comment) => {
+            return (
+              <li key={comment.id}>
+                <Comment commentData={comment} />
+              </li>
+            );
+          })}
+        </ul>
+      </Skeleton>
+    </>
   );
 };
 

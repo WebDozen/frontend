@@ -2,25 +2,12 @@ $SF: "SF Pro Text";
 
 .modal {
   width: 600px !important;
+  height: 100%;
 }
 
 .header {
   padding: 24px 24px 10px;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: rgba(15, 25, 55, 0.1);
-  border: none;
-}
-
-.gap {
-  height: 26px;
-}
-
-.bigGap {
-  height: 34px;
+  border-bottom: solid 1px rgba(15, 25, 55, 0.1);
 }
 
 .link {
