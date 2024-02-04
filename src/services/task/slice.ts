@@ -30,23 +30,8 @@ const taskSlice = createSlice({
       state.task = actions.payload;
       state.is_open_side_panel = true;
     },
-    handleCloseSidePanel(state) {
-      state.task = {
-        id: 0,
-        name: "",
-        description: "",
-        type: 0,
-        status: {
-          id: 0,
-          name: "",
-          slug: "none",
-          color_fon: "",
-          color_text: "",
-        },
-        pub_date: "",
-        source: "",
-      };
-      state.is_open_side_panel = false;
+    handleCloseSidePanel() {
+      return initialState;
     },
   },
 });

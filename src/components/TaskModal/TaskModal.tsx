@@ -9,26 +9,53 @@ import {
 import style from "./TaskModal.module.scss";
 import TabsCustom from "./TabsCustom/TabsCustom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
-import { getTasksSidePanelData } from "../../services/selectors";
-import { handleCloseSidePanel } from "../../services/actions";
+import { getIdpData, getTasksSidePanelData } from "../../services/selectors";
+import {
+  handleCloseSidePanel,
+  patchTasksStatusByID,
+} from "../../services/actions";
 
 const TaskModal: React.FC = () => {
   const { is_open_side_panel, task } = useAppSelector(getTasksSidePanelData);
+  const {
+    idp: { id: idp_id },
+  } = useAppSelector(getIdpData);
+  const {
+    status: { slug },
+  } = task;
+
   const dispatch = useAppDispatch();
   const handleClose = () => dispatch(handleCloseSidePanel());
+
+  const setTextButton = () =>
+    slug === "open"
+      ? "Взять в работу"
+      : slug === "completed"
+        ? "Вернуть в работу"
+        : slug === "in_progress"
+          ? "Выполнена"
+          : "Взять в работу";
+
   const handleStatusButton = () => {
-    const {
-      status: { slug },
-    } = task;
+    let newStatus = "none";
     if (slug === "open") {
-      console.log("Взять в работу");
+      newStatus = "in_progress";
     }
     if (slug === "completed") {
-      console.log("Вернуть в работу");
+      newStatus = "in_progress";
     }
     if (slug === "in_progress") {
-      console.log("Завершить работу");
+      newStatus = "completed";
     }
+    dispatch(
+      patchTasksStatusByID({
+        idp_id,
+        task_id: task.id,
+        data: {
+          status: newStatus,
+        },
+      }),
+    );
   };
 
   return (
@@ -124,8 +151,12 @@ const TaskModal: React.FC = () => {
         </div>
       </SidePanelDesktop.Content>
       <SidePanelDesktop.Footer sticky={true}>
-        <Button size={"s"} view="primary" onClick={() => handleStatusButton()}>
-          Взять в работу
+        <Button
+          size={"s"}
+          view={slug === "completed" ? "secondary" : "primary"}
+          onClick={() => handleStatusButton()}
+        >
+          {setTextButton()}
         </Button>
       </SidePanelDesktop.Footer>
     </SidePanelDesktop>

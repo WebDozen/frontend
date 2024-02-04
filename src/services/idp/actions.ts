@@ -5,7 +5,7 @@ import type { TypeIDP, TypeStatus, TypeStatusTask } from "./types";
 export const postIdp = createAsyncThunk<
   TypeIDP,
   { employee_id: string | number; data: {} },
-  { rejectValue: {} | unknown }
+  { rejectValue: unknown }
 >("idp/postIdp", async (idpData, { rejectWithValue }) => {
   const { employee_id, data } = idpData;
 
@@ -20,7 +20,7 @@ export const postIdp = createAsyncThunk<
 export const getIdpByID = createAsyncThunk<
   TypeIDP,
   { id: string | undefined; idp_id: string | undefined },
-  { rejectValue: {} | unknown }
+  { rejectValue: unknown }
 >("idp/getIdpByID", async (idpData, { rejectWithValue }) => {
   const { id, idp_id } = idpData;
   try {
@@ -34,7 +34,7 @@ export const getIdpByID = createAsyncThunk<
 export const patchIdpByID = createAsyncThunk<
   TypeIDP,
   { employee_id: string | number; idp_id: string | number; data: {} },
-  { rejectValue: {} | unknown }
+  { rejectValue:  unknown }
 >("idp/patchIdpByID", async (idpData, { rejectWithValue }) => {
   const { employee_id, idp_id, data } = idpData;
   try {
@@ -52,7 +52,7 @@ export const patchIdpsStatusByID = createAsyncThunk<
     idp_id: string | number;
     data: { status: string };
   },
-  { rejectValue: {} | unknown }
+  { rejectValue:  unknown }
 >("idp/patchIdpsStatusByID", async (idpsStatusData, { rejectWithValue }) => {
   const { employee_id, idp_id, data } = idpsStatusData;
   try {
