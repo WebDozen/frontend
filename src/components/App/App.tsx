@@ -70,6 +70,7 @@ const App = () => {
             element={<EditIdpPage />}
           />
         </Route>
+        <Route path="mentor/employee/:id" element={<MentorPage />} />
         <Route
           path="/employee/:id/idp/:idp_id/success"
           element={<SuccessPage />}
