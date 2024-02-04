@@ -21,12 +21,10 @@ import { useAppDispatch } from "../../services/hook";
 import { handleRessetUser } from "../../services/actions";
 
 const App = () => {
-  const role = "manager";
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(handleRessetUser());
     navigate("/start");
   }, []);
 
@@ -48,10 +46,7 @@ const App = () => {
           }
         >
           {/* 2 уроверь */}
-          <Route
-            index
-            element={role === "manager" ? <ManagerPage /> : <EmployeePage />}
-          />
+          <Route index element={<ManagerPage />} />
           <Route path="/employee/:id" element={<EmployeePage />} />
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />

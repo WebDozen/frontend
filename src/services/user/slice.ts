@@ -1,12 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  first_name: "Руководитель",
-  middle_name: "Боссович",
-  last_name: "Начальников",
-  role: "manager",
-  token: "64cedf72b2567c000d0679bc30ae3b6d31e433f2",
-  id: 1,
+type TypeInitialSttate = {
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  role: string;
+  token: string;
+  id: number | string;
+};
+const initialState: TypeInitialSttate = {
+  first_name: "",
+  middle_name: "",
+  last_name: "",
+  role: "",
+  token: "",
+  id: 0,
 };
 
 const userSlice = createSlice({
@@ -14,8 +22,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     handleSetUser(state, actions) {
-      state = actions.payload;
       localStorage.setItem("token", actions.payload.token);
+      return (state = actions.payload);
     },
     handleRessetUser() {
       localStorage.clear();
