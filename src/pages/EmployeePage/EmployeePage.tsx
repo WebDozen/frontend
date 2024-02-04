@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import IdpList from "../../components/IdpList/IdpList";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
 import NewPlanMessage from "../../components/NewPlanMessage/NewPlanMessage";
@@ -5,13 +7,9 @@ import PlateWrapper from "../../components/PlateWrapper/PlateWrapper";
 import { Gap } from "../../components/ui-kit";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
-import MentorInfo from "../../components/MentorArea/MentorInfo/MentorInfo";
-import TabsCustomMentor from "../../components/TabsCustomMentor/TabsCustomMentor";
-import { useEffect } from "react";
 import { getEmployeeByID, getIdps } from "../../services/actions";
-import { useParams } from "react-router-dom";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
-import style from '../AddIdpPage/AddIdpPage.module.scss';
+import style from "../AddIdpPage/AddIdpPage.module.scss";
 
 const EmployeePage = () => {
   type Params = {
@@ -28,17 +26,12 @@ const EmployeePage = () => {
 
   const {
     employee: {
-      is_mentor,
       idp: { status: idp_status },
     },
     employee,
     loading,
     error,
   } = useAppSelector(getEmployeeData);
-
-  useEffect(() => {
-    console.log(employee);
-  }, [employee]);
 
   const status: string = idp_status;
 
@@ -55,37 +48,28 @@ const EmployeePage = () => {
 
   return (
     <>
-      {/* {is_mentor && (
-        <div>
-          <MentorInfo />
-          <Gap size="2xl" />
-        </div>
-     )} */}
-         <div className={style.content}>
-     <Gap size="3xl" />
-      <EmployeeCard />
-      <Gap size="2xl" />
-      {/*{is_mentor && <TabsCustomMentor />}*/}
-      {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
-       нужно будет переделать !! */}
-      {status === TYPE_SLAG_IDP.completed && (
-        <PlateWrapper
-          config={plateSuccess}
-          view="positive"
-          titleText="Сотрудник выполнил все ИПР"
-          text="Пришло время создать новый план развития и двигаться к новым целям!"
-        />
-      )}
-      {status === "expired" && (
-        <PlateWrapper
-          config={plateAttention}
-          view="attention"
-          titleText="Сотрудник не выполнил последний ИПР"
-          text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
-        />
-      )}
+      <div className={style.content}>
+        <Gap size="3xl" />
+        <EmployeeCard />
+        <Gap size="2xl" />
+        {status === TYPE_SLAG_IDP.completed && (
+          <PlateWrapper
+            config={plateSuccess}
+            view="positive"
+            titleText="Сотрудник выполнил все ИПР"
+            text="Пришло время создать новый план развития и двигаться к новым целям!"
+          />
+        )}
+        {status === "expired" && (
+          <PlateWrapper
+            config={plateAttention}
+            view="attention"
+            titleText="Сотрудник не выполнил последний ИПР"
+            text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
+          />
+        )}
 
-      {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
+        {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
       </div>
       {/* Плашки для сотрудника
 {status === "green" && (

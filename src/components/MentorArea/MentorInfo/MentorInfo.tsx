@@ -8,8 +8,6 @@ import { getIdpData } from "../../../services/selectors";
 const MentorInfo = () => {
   const {
     idp : {mentor: mentor}, 
-    loading,
-    error,
   } = useAppSelector(getIdpData);
 
   return (

@@ -13,7 +13,7 @@ export default function ButtonsIdpBlock() {
   const { id } = useParams();
   const { idp_id } = useParams();
 
-  const { idp: idp, loading, error } = useAppSelector(getIdpData);
+  const { idp: idp} = useAppSelector(getIdpData);
 
   const showEditButton =
     idp.status.slug === TYPE_SLAG_IDP.in_progress ||
