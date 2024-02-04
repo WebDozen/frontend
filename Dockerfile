@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . /app
 
 RUN npm install
-RUN npm run dev
+RUN npm run build
 
 FROM ubuntu
 RUN apt-get update
