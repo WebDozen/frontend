@@ -1,8 +1,7 @@
-import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { getEmployees } from "./actions";
 import type { STATUSES_IDP } from "../../utils/constants";
-import type { TypeRequestError } from "../types";
+import { setError, setPending } from "../utils";
 
 export type TypeEmployeesItem = {
   id: number;
@@ -44,24 +43,11 @@ const employeesListSlice = createSlice({
         state.list = action.payload;
         state.loading = false;
       })
-      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
-        state.error = action.payload.detail;
-        state.loading = false;
-      })
-      .addMatcher(isPending, (state) => {
-        state.loading = true;
-        state.error = null;
-      });
+      .addCase(getEmployees.pending, setPending)
+      .addCase(getEmployees.rejected, setError);
   },
 });
 
 // export const {} = employeesSlice.actions;
 
 export default employeesListSlice.reducer;
-
-function isError(action: UnknownAction) {
-  return action.type.endsWith("rejected");
-}
-function isPending(action: UnknownAction) {
-  return action.type.endsWith("pending");
-}

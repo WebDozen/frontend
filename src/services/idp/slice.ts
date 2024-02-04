@@ -1,5 +1,4 @@
-import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import type { TypeIDPState } from "./types";
 import {
   getIdpByID,
@@ -8,7 +7,7 @@ import {
   patchTasksStatusByID,
   postIdp,
 } from "./actions";
-import type { TypeRequestError } from "../types";
+import { setError, setPending } from "../utils";
 
 const initialState: TypeIDPState = {
   idp: {
@@ -68,24 +67,29 @@ const idpSlice = createSlice({
         });
         state.loading = false;
       })
-      .addMatcher(isPending, (state) => {
-        state.error = null;
-        state.loading = true;
-      })
-      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
-        state.error = action.payload.detail;
-        state.loading = false;
-      });
+      .addMatcher(
+        isAnyOf(
+          getIdpByID.pending,
+          postIdp.pending,
+          patchIdpByID.pending,
+          patchIdpsStatusByID.pending,
+          patchTasksStatusByID.pending,
+        ),
+        setPending,
+      )
+      .addMatcher(
+        isAnyOf(
+          getIdpByID.rejected,
+          postIdp.rejected,
+          patchIdpByID.rejected,
+          patchIdpsStatusByID.rejected,
+          patchTasksStatusByID.rejected,
+        ),
+        setError,
+      );
   },
 });
 
 // export const {} = idpSlice.actions;
 
 export default idpSlice.reducer;
-
-function isError(action: UnknownAction) {
-  return action.type.endsWith("rejected");
-}
-function isPending(action: UnknownAction) {
-  return action.type.endsWith("pending");
-}
