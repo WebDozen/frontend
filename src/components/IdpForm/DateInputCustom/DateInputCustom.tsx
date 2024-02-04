@@ -3,7 +3,7 @@ import style from "./DateInputCustom.module.scss";
 
 interface Props {
   idpValue: {
-    mentor: string;
+    mentor: string | undefined;
     name: string;
     description: string;
     deadline: string;

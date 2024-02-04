@@ -14,7 +14,7 @@ interface Config {
   };
   name: string;
   idpValue: {
-    mentor: string;
+    mentor: string | undefined;
     name: string;
     description: string;
     deadline: string;
@@ -23,20 +23,24 @@ interface Config {
 }
 
 const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
-  const shownChevron = true;
-
   const matchOption = (option: { key: string }, inputValue: string) =>
     option.key.toLowerCase().includes((inputValue || "").toLowerCase());
 
-  const filteredOptions = config.options.filter((option) =>
-    matchOption(option, idpValue.mentor),
-  );
+  const filteredOptions = config.options.filter((option) => {
+    if (idpValue.mentor === undefined) {
+      return undefined;
+    }
+    return matchOption(option, idpValue.mentor);
+  });
 
   const handleInput = (
     _: React.ChangeEvent<HTMLInputElement> | null,
     { value }: { value: string },
   ) => {
-    setIdpValue({ ...idpValue, [name]: value });
+    const reg = /^\D*$/;
+    if (reg.test(value)) {
+      setIdpValue({ ...idpValue, [name]: value });
+    }
   };
 
   const handleChange = ({ selected }: any) => {
@@ -62,7 +66,7 @@ const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
         onChange={handleChange}
         onInput={handleInput}
         value={idpValue.mentor}
-        Arrow={shownChevron ? ChevronDownMIcon : undefined}
+        Arrow={ChevronDownMIcon}
         showEmptyOptionsList={true}
         inputProps={{
           onClear: handleClear,

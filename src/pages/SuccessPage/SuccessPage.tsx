@@ -11,34 +11,38 @@ const SuccessPage = () => {
       };
 
 return(
+  <>
+  <Gap size='xl'/>
 <div className={style.block}>
 <div className={style.textBlock}>
 <div>
-          <Typography.Title
-            view="xlarge"
-            tag="h3"
+<Typography.Text
+            tag="p"
             defaultMargins={false}
             color='primary-inverted'
             className={style.text}
+         
           >
             Поздравляем!
-          </Typography.Title>
+          </Typography.Text>
           <Gap size="m" />
           <Typography.Text
         view="primary-medium"
         tag="p"
         defaultMargins={false}
-        className={style.text}
+        //className={style.text}
+        color='primary-inverted'
       >
         Ваш сотрудник выполнил индивидуальный план развития
       </Typography.Text>
       <Gap size="l" />
-      <Button view="tertiary" className={style.button} onClick={() => handleButtonClick(id)}>
+      <Button view="tertiary" className={style.button} colors="inverted" size="m" onClick={() => handleButtonClick(id)}>
             Продолжить
           </Button>
         </div>
 </div>
 </div>
+</>
 )
 }
 

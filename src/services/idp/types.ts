@@ -41,7 +41,13 @@ export type TypeIDP = {
   mentor: TypeMentor | null;
   status: TypeStatus;
   tasks: TypeTask[];
+  statistic: TypeStatistic;
 };
+
+export type TypeStatistic = {
+  count_task: number;
+  task_done: number
+}
 
 export type TypeIDPState = {
   idp: TypeIDP;

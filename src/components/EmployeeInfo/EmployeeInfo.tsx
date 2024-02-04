@@ -1,4 +1,4 @@
-import { Circle, NoShape, Typography } from "../ui-kit";
+import { Circle, NoShape, Skeleton, Typography } from "../ui-kit";
 import style from "../EmployeeCard/EmployeeCard.module.scss";
 import styles from "./EmployeeInfo.module.scss";
 import avatar from "../../images/employeeAvatar.png";
@@ -10,46 +10,50 @@ import { TYPE_SLAG_IDP } from "../../utils/constants";
 
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
-  const {id} = useParams();
+  const { id } = useParams();
 
-  const {
-    employee,
-    loading,
-    error,
-  } = useAppSelector(getEmployeeData);
+  const { employee, loading, error } = useAppSelector(getEmployeeData);
 
-  const {
-    idp,
-  } = useAppSelector(getIdpData);
+  const { idp } = useAppSelector(getIdpData);
 
   // console.log(idp);
 
-  const date = idp.status.slug === TYPE_SLAG_IDP.expired ? 
-  "Истек" : new Date(idp.deadline).toLocaleDateString("ru-RU");
-  
+  const date =
+    idp.status.slug === TYPE_SLAG_IDP.expired
+      ? "Истек"
+      : new Date(idp.deadline).toLocaleDateString("ru-RU") === "01.01.1970"
+        ? ""
+        : new Date(idp.deadline).toLocaleDateString("ru-RU");
+
   return (
     <div className={style.info}>
       <div className={style.infoBlock}>
         <div className={style.infoEmployee}>
           <Circle size={64} imageUrl={avatar} />
-          <div className={style.infoDescription}>
-            <h5 className={style.infoDescriptionName}>
-            {`${employee.first_name} ${employee.middle_name} ${employee.last_name} `}
-            </h5>
-            <p className={style.infoDescriptionGrade}>
-            {`${employee.position}, ${employee.grade}  `}
-            </p>
-          </div>
+          <Skeleton visible={loading}>
+            <div className={style.infoDescription}>
+              <h5 className={style.infoDescriptionName}>
+              {`${employee.last_name} ${employee.first_name} ${employee.middle_name} `}
+              </h5>
+              <p className={style.infoDescriptionGrade}>
+                {`${employee.position}, ${employee.grade}  `}
+              </p>
+            </div>
+          </Skeleton>
         </div>
         <div className={style.dividerCustom}></div>
 
         {pathname === `/employee/${id}` ? (
-          <>
-            <div className={style.infoIdp}>
-              <h5 className={style.infoIdpAmount}>{`${employee.idp.total_completed_idps}`} ИПР</h5>
-              <p className={style.infoPIdponeStatus}>Выполнено</p>
-            </div>
-          </>
+          <Skeleton visible={loading}>
+            <>
+              <div className={style.infoIdp}>
+                <h5 className={style.infoIdpAmount}>
+                  {`${employee.idp.total_completed_idps}`} ИПР
+                </h5>
+                <p className={style.infoPIdponeStatus}>Выполнено</p>
+              </div>
+            </>
+          </Skeleton>
         ) : (
           <div className={styles.block}>
             <div className={styles.date}>
@@ -68,16 +72,18 @@ export default function EmployeeInfo() {
                 >
                   Срок выполнения
                 </Typography.Text>
-                <Typography.Text
-                  view="secondary-large"
-                  tag="p"
-                  defaultMargins={false}
-                  color="primary"
-                  weight="bold"
-                  style={{ fontFamily: "SF Pro Text" }}
-                >
-                  {date}
-                </Typography.Text>
+                <Skeleton visible={loading}>
+                  <Typography.Text
+                    view="secondary-large"
+                    tag="p"
+                    defaultMargins={false}
+                    color="primary"
+                    weight="bold"
+                    style={{ fontFamily: "SF Pro Text" }}
+                  >
+                    {date}
+                  </Typography.Text>
+                </Skeleton>
               </div>
             </div>
           </div>

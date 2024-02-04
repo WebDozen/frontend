@@ -27,6 +27,10 @@ const initialState: TypeIDPState = {
       color_text: "string",
     },
     tasks: [],
+    statistic: {
+      count_task: 0,
+      task_done: 0,
+    },
   },
   loading: false,
   error: null,

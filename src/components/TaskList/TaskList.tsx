@@ -7,6 +7,7 @@ import {
   TableCustomWrapper,
   StatusComponent,
   Status,
+  Skeleton,
 } from "../ui-kit";
 import styleTask from "./TaskList.module.scss";
 import { getIdpData } from "../../services/selectors";
@@ -61,6 +62,7 @@ export default function TaskList(isOpen: any, onClose: any) {
   );
 
   return (
+<Skeleton visible={loading}>
     <div className={styleTask.table}>
       <TableCustomWrapper>
         <Table.THead rowClassName={styleTask.tableHead}>
@@ -73,5 +75,6 @@ export default function TaskList(isOpen: any, onClose: any) {
         </Table.TBody>
       </TableCustomWrapper>
     </div>
+    </Skeleton>
   );
 }
