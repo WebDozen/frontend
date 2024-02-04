@@ -18,6 +18,7 @@ export default function EmployeeInfo() {
 
   const employeePage = pathname === `/employee/${id}`;
   const addIdpPage = pathname === `/employee/${id}/add_idp`;
+  const mentorPage = pathname === `/mentor/employee/${id}`
 
   const date =
     idp.status.slug === TYPE_SLAG_IDP.expired
@@ -44,7 +45,7 @@ export default function EmployeeInfo() {
         </div>
         <div className={style.dividerCustom}></div>
 
-        {employeePage || addIdpPage ? (
+        {employeePage || addIdpPage || mentorPage ? (
           <Skeleton visible={loading}>
             <>
               <div className={style.infoIdp}>
