@@ -23,10 +23,6 @@ interface TaskValue {
   source: string;
 }
 
-//
-//
-//
-
 const IdpForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -41,10 +37,6 @@ const IdpForm = () => {
     : isEditIdpPage
       ? `/employee/${id}/idp/${idp_id}`
       : pathname;
-      
-  //
-  //
-  //
 
   const initialTaskNull: TaskValue[] = [];
   const idpInitialNull: IdpValue = {
@@ -105,6 +97,20 @@ const IdpForm = () => {
   //
   //
   //
+
+  const taskParser = inputFields.map((task) => {
+    let type;
+    if (task.type === "Книга") type = 1;
+    else if (task.type === "Курс") type = 2;
+    else if (task.type === "Рабочая задача") type = 3;
+    else if (task.type === "Alfa Academy") type = 4;
+    return {
+      name: task.name,
+      description: task.description,
+      type: type,
+      source: task.source,
+    };
+  });
 
   useEffect(() => {
     const hasMentor = idpValue.mentor !== "" && idpValue.name !== ""; //true kogda zapolnen
@@ -187,23 +193,22 @@ const IdpForm = () => {
   // idp submit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
     const mentorId = getMentorId(idMentorsList, mentor);
     const isoDate = DATE_TO_ISO(deadline);
-    FinalObj = {
+    const finalObj = {
       mentor: mentorId,
       name,
       description,
       deadline: isoDate,
-      tasks: inputFields,
+      tasks: taskParser,
     };
 
     try {
       let originalPromiseResult;
       if (isAddIdpPage) {
         const resultAction = await dispatch(
-          postIdp({ employee_id: `${id}`, data: FinalObj }),
+          postIdp({ employee_id: `${id}`, data: finalObj }),
         );
         originalPromiseResult = unwrapResult(resultAction);
       }
@@ -212,7 +217,7 @@ const IdpForm = () => {
           patchIdpByID({
             employee_id: `${id}`,
             idp_id: `${idp_id}`,
-            data: FinalObj,
+            data: finalObj,
           }),
         );
         originalPromiseResult = unwrapResult(resultAction);

@@ -11,12 +11,11 @@ import { TYPE_SLAG_IDP } from "../../utils/constants";
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
   const { id } = useParams();
-
   const { employee, loading, error } = useAppSelector(getEmployeeData);
-
   const { idp } = useAppSelector(getIdpData);
 
-  // console.log(idp);
+  const employeePage = pathname === `/employee/${id}`;
+  const addIdpPage = pathname === `/employee/${id}/add_idp`;
 
   const date =
     idp.status.slug === TYPE_SLAG_IDP.expired
@@ -33,7 +32,7 @@ export default function EmployeeInfo() {
           <Skeleton visible={loading}>
             <div className={style.infoDescription}>
               <h5 className={style.infoDescriptionName}>
-              {`${employee.last_name} ${employee.first_name} ${employee.middle_name} `}
+                {`${employee.last_name} ${employee.first_name} ${employee.middle_name} `}
               </h5>
               <p className={style.infoDescriptionGrade}>
                 {`${employee.position}, ${employee.grade}  `}
@@ -43,7 +42,7 @@ export default function EmployeeInfo() {
         </div>
         <div className={style.dividerCustom}></div>
 
-        {pathname === `/employee/${id}` ? (
+        {employeePage || addIdpPage ? (
           <Skeleton visible={loading}>
             <>
               <div className={style.infoIdp}>
