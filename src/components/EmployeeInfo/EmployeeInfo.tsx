@@ -12,7 +12,7 @@ export default function EmployeeInfo() {
   const { pathname } = useLocation();
   const { id } = useParams();
 
-  const { employee, loading, error } = useAppSelector(getEmployeeData);
+  const { employee, loading, } = useAppSelector(getEmployeeData);
 
   const { idp } = useAppSelector(getIdpData);
 
@@ -43,7 +43,7 @@ export default function EmployeeInfo() {
         </div>
         <div className={style.dividerCustom}></div>
 
-        {pathname === `/employee/${id}` ? (
+        {(pathname === `/employee/${id}` || pathname === `/mentor/employee/${id}`) ? (
           <Skeleton visible={loading}>
             <>
               <div className={style.infoIdp}>

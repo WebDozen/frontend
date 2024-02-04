@@ -10,7 +10,7 @@ export default function InfoProgressStatusBar() {
   const { id } = useParams();
   const { idp_id } = useParams();
   
-  const { employee, loading, error } = useAppSelector(getEmployeeData);
+  const { employee, loading} = useAppSelector(getEmployeeData);
   const { idp } = useAppSelector(getIdpData);
 
   const valueZero =
@@ -26,13 +26,26 @@ export default function InfoProgressStatusBar() {
       <div className={styleStatus.infoTextBlock}>
         <p className={styleStatus.infoProgressStatus}>Задач по текущему ИПР</p>
         <Skeleton visible={loading}>
-       <p className={styleStatus.infoProcent}>
+        {pathname === `employee/${id}/idp/${idp_id}` ?
+
+       (<p className={styleStatus.infoProcent}>
           <span
             className={styleStatus.infoProcentBold}
-          >{`${idp.statistic.task_done}
+          >
+            {`${idp.statistic.task_done}
 `}</span>{" "}
           из {`${idp.statistic.count_task}`}
-  </p> 
+  </p> ) :
+
+  (<p className={styleStatus.infoProcent}>
+    <span
+      className={styleStatus.infoProcentBold}
+    >
+      {`${employee.idp.completed_tasks_count}
+`}</span>{" "}
+    из {`${employee.idp.total_tasks_count}`}
+</p> )
+}
   </Skeleton>
       </div>
       <Space size={20} fullWidth>

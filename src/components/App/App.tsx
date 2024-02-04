@@ -10,6 +10,7 @@ import AddIdpPage from "../../pages/AddIdpPage/AddIdpPage";
 import EditIdpPage from "../../pages/EditIdpPage/EditIdpPage";
 import SuccessPage from "../../pages/SuccessPage/SuccessPage";
 import CancelPage from "../../pages/CancelPage/CancelPage";
+import MentorPage from "../../pages/MentorPage/MentorPage";
 
 import Header from "../Header/Header";
 import Head from "../Head/Head";
@@ -18,12 +19,11 @@ import TaskModal from "../TaskModal/TaskModal";
 
 import style from "./App.module.scss";
 import { useState } from "react";
-import SuccessPage from "../../pages/SuccessPage/SuccessPage";
-import CancelPage from "../../pages/CancelPage/CancelPage";
-import MentorPage from "../../pages/MentorPage/MentorPage";
+
+
 
 const App = () => {
-  const [role, setRole] = useState("manager");
+  const [role] = useState("manager");
 
   return (
     <div className={style.app}>

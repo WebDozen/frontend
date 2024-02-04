@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeData } from "../../services/selectors";
 import { getEmployeeByID, getIdps } from "../../services/actions";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
-import style from '../AddIdpPage/AddIdpPage.module.scss';
+import style from "../AddIdpPage/AddIdpPage.module.scss";
 
 const EmployeePage = () => {
   type Params = {
@@ -26,7 +26,6 @@ const EmployeePage = () => {
 
   const {
     employee: {
-      is_mentor,
       idp: { status: idp_status },
     },
     employee,
@@ -49,37 +48,28 @@ const EmployeePage = () => {
 
   return (
     <>
-      {/* {is_mentor && (
-        <div>
-          <MentorInfo />
-          <Gap size="2xl" />
-        </div>
-     )} */}
-         <div className={style.content}>
-     <Gap size="3xl" />
-      <EmployeeCard />
-      <Gap size="2xl" />
-      {/*{is_mentor && <TabsCustomMentor />}*/}
-      {/* !! если все выполнены или отменены,то показываем зеленую плашку только тогда.
-       нужно будет переделать !! */}
-      {status === TYPE_SLAG_IDP.completed && (
-        <PlateWrapper
-          config={plateSuccess}
-          view="positive"
-          titleText="Сотрудник выполнил все ИПР"
-          text="Пришло время создать новый план развития и двигаться к новым целям!"
-        />
-      )}
-      {status === "expired" && (
-        <PlateWrapper
-          config={plateAttention}
-          view="attention"
-          titleText="Сотрудник не выполнил последний ИПР"
-          text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
-        />
-      )}
+      <div className={style.content}>
+        <Gap size="3xl" />
+        <EmployeeCard />
+        <Gap size="2xl" />
+        {status === TYPE_SLAG_IDP.completed && (
+          <PlateWrapper
+            config={plateSuccess}
+            view="positive"
+            titleText="Сотрудник выполнил все ИПР"
+            text="Пришло время создать новый план развития и двигаться к новым целям!"
+          />
+        )}
+        {status === "expired" && (
+          <PlateWrapper
+            config={plateAttention}
+            view="attention"
+            titleText="Сотрудник не выполнил последний ИПР"
+            text="Возможно, задач было слишком много? Узнайте у сотрудника, что пошло не так, и составьте новый план для развития"
+          />
+        )}
 
-      {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
+        {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
       </div>
       {/* Плашки для сотрудника
 {status === "green" && (

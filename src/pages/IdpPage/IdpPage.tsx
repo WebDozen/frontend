@@ -7,11 +7,11 @@ import style from "./IdpPage.module.scss";
 
 import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
-import { getEmployeeByID, getIdpByID} from "../../services/actions";
+import { getEmployeeByID, getIdpByID } from "../../services/actions";
 import { useParams } from "react-router-dom";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
 import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
-import styles from '../AddIdpPage/AddIdpPage.module.scss';
+import styles from "../AddIdpPage/AddIdpPage.module.scss";
 
 const IdpPage = () => {
   type Params = {
@@ -33,32 +33,30 @@ const IdpPage = () => {
     hasCloser: true,
   };
 
-  console.log(idp_id);
-
   return (
     <>
-               <div className={styles.content}>
-      <MentorArea />
-      <Gap size="2xl" />
-      <EmployeeCardInIdp />
-      <Gap size="3xl" />
-      <TaskDescription />
-      <div className={style.leftContainer}>
+      <div className={styles.content}>
+        <MentorArea />
         <Gap size="2xl" />
-        <PlateWrapper
-          config={plateSuccess}
-          view="positive"
-          titleText="Оставьте свой комментарий"
-          text="Здесь будут отображаться комментарии ко всему плану развития. Если же вы
+        <EmployeeCardInIdp />
+        <Gap size="3xl" />
+        <TaskDescription />
+        <div className={style.leftContainer}>
+          <Gap size="2xl" />
+          <PlateWrapper
+            config={plateSuccess}
+            view="positive"
+            titleText="Оставьте свой комментарий"
+            text="Здесь будут отображаться комментарии ко всему плану развития. Если же вы
       хотите оставить комментарий к конкретной задаче, откройте нужную вам
       задачу."
-        />
-        <Gap size="xl" />
-        <CommentsList>Времянка под комменты</CommentsList>
-        <Gap size="3xl" />
-        <IdpCommentSending />
-      </div>
-      <Gap size="7xl" />
+          />
+          <Gap size="xl" />
+          <CommentsList>Времянка под комменты</CommentsList>
+          <Gap size="3xl" />
+          <IdpCommentSending />
+        </div>
+        <Gap size="7xl" />
       </div>
     </>
   );
