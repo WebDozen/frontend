@@ -26,10 +26,11 @@ export const enum TYPE_SLAG_TASK {
 }
 
 export const enum TASK_TYPES {
-  "Книга" = 1,
+  "Альфа академия" = 1,
   "Курс" = 2,
-  "Рабочая задача" = 3,
-  "Alfa Academy" = 4,
+  "Книга" = 3,
+  "Другое" = 4,
+  'Рабочая задача' = 5,
 }
 
 export const STATUSES_IDP = {

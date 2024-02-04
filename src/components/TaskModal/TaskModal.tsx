@@ -18,6 +18,7 @@ import {
   handleCloseSidePanel,
   patchTasksStatusByID,
 } from "../../services/actions";
+import { TASK_TYPES } from "../../utils/constants";
 
 const TaskModal: React.FC = () => {
   const { is_open_side_panel, task } = useAppSelector(getTasksSidePanelData);
@@ -66,6 +67,38 @@ const TaskModal: React.FC = () => {
         },
       }),
     );
+  };
+
+  interface TaskValue {
+    name: string;
+    description: string;
+    type: string;
+    source: string;
+  }
+  const taskExtractor = (item: any): TaskValue => {
+    let type;
+    switch (item.type) {
+      case TASK_TYPES["Книга"]:
+        type = "Книга";
+        break;
+      case TASK_TYPES["Курс"]:
+        type = "Курс";
+        break;
+      case TASK_TYPES["Рабочая задача"]:
+        type = "Рабочая задача";
+        break;
+      case TASK_TYPES["Альфа академия"]:
+        type = "Альфа академия";
+        break;
+      default:
+        type = "Другое";
+    }
+    return {
+      name: item.name,
+      description: item.description,
+      type: type,
+      source: item.source,
+    };
   };
 
   return (
@@ -121,7 +154,7 @@ const TaskModal: React.FC = () => {
               defaultMargins={false}
               className={style.text}
             >
-              {task.type}
+              {taskExtractor(task).type}
             </Typography.Text>
 
             <Typography.Text
