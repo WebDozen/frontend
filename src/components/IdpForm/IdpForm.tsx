@@ -67,8 +67,8 @@ const IdpForm = () => {
         case TASK_TYPES["Рабочая задача"]:
           type = "Рабочая задача";
           break;
-        case TASK_TYPES["Alfa Academy"]:
-          type = "Alfa Academy";
+        case TASK_TYPES["Альфа академия"]:
+          type = "Альфа академия";
           break;
         default:
           type = "Другое";
