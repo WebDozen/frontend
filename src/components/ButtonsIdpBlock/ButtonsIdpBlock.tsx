@@ -42,7 +42,6 @@ export default function ButtonsIdpBlock() {
       );
       originalPromiseResult = unwrapResult(resultAction);
       if (originalPromiseResult) {
-        console.log(originalPromiseResult);
         navigate(`/employee/${id}/idp/${idp_id}/cancel`);
       }
     } catch (rejectedValueOrSerializedError) {
@@ -63,7 +62,6 @@ export default function ButtonsIdpBlock() {
       );
       originalPromiseResult = unwrapResult(resultAction);
       if (originalPromiseResult) {
-        console.log(originalPromiseResult);
         navigate(`/employee/${id}/idp/${idp_id}/success`);
       }
     } catch (rejectedValueOrSerializedError) {

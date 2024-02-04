@@ -9,7 +9,11 @@ import {
 import style from "./TaskModal.module.scss";
 import TabsCustom from "./TabsCustom/TabsCustom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
-import { getIdpData, getTasksSidePanelData } from "../../services/selectors";
+import {
+  getIdpData,
+  getTasksSidePanelData,
+  getUserData,
+} from "../../services/selectors";
 import {
   handleCloseSidePanel,
   patchTasksStatusByID,
@@ -17,6 +21,8 @@ import {
 
 const TaskModal: React.FC = () => {
   const { is_open_side_panel, task } = useAppSelector(getTasksSidePanelData);
+  const { role } = useAppSelector(getUserData);
+
   const {
     idp: { id: idp_id },
   } = useAppSelector(getIdpData);
@@ -42,7 +48,11 @@ const TaskModal: React.FC = () => {
       newStatus = "in_progress";
     }
     if (slug === "completed") {
-      newStatus = "in_progress";
+      if (role === "manager") {
+        newStatus = "open";
+      } else {
+        newStatus = "in_progress";
+      }
     }
     if (slug === "in_progress") {
       newStatus = "completed";
@@ -52,7 +62,7 @@ const TaskModal: React.FC = () => {
         idp_id,
         task_id: task.id,
         data: {
-          status: newStatus,
+          status_slug: newStatus,
         },
       }),
     );
@@ -151,13 +161,15 @@ const TaskModal: React.FC = () => {
         </div>
       </SidePanelDesktop.Content>
       <SidePanelDesktop.Footer sticky={true}>
-        <Button
-          size={"s"}
-          view={slug === "completed" ? "secondary" : "primary"}
-          onClick={() => handleStatusButton()}
-        >
-          {setTextButton()}
-        </Button>
+        {(role === "manager" && slug === "completed") || role !== "manager" ? (
+          <Button
+            size={"s"}
+            view={slug === "completed" ? "secondary" : "primary"}
+            onClick={() => handleStatusButton()}
+          >
+            {setTextButton()}
+          </Button>
+        ) : null}
       </SidePanelDesktop.Footer>
     </SidePanelDesktop>
   );

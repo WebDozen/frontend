@@ -226,7 +226,6 @@ const IdpForm = () => {
         originalPromiseResult = unwrapResult(resultAction);
       }
       if (originalPromiseResult) {
-        console.log(originalPromiseResult);
         navigate(finishLink);
       }
     } catch (rejectedValueOrSerializedError) {

@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
@@ -14,12 +14,19 @@ import Footer from "../Footer/Footer";
 import TaskModal from "../TaskModal/TaskModal";
 
 import style from "./App.module.scss";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import StartPage from "../../pages/StartPage/StartPage";
+import ProtectedRoute from "../ProtectedRoute";
+import { useAppDispatch } from "../../services/hook";
+import { handleRessetUser } from "../../services/actions";
 
 const App = () => {
-  const [role] = useState("manager");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/start");
+  }, []);
 
   return (
     <div className={style.app}>
@@ -28,29 +35,26 @@ const App = () => {
         <Route
           path={"/"}
           element={
-            <>
+            <ProtectedRoute>
               <Header />
               <main className={style.main}>
                 <Head />
                 <Outlet />
               </main>
               <Footer />
-            </>
+            </ProtectedRoute>
           }
         >
           {/* 2 уроверь */}
-          <Route
-            index
-            element={role === "manager" ? <ManagerPage /> : <EmployeePage />}
-          />
+          <Route index element={<ManagerPage />} />
           <Route path="/employee/:id" element={<EmployeePage />} />
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
             path={"/employee/:id/edit_idp/:idp_id"}
-            element={<EditIdpPage />} />
+            element={<EditIdpPage />}
+          />
           <Route path="mentor/employee/:id" element={<MentorPage />} />
-
         </Route>
         <Route
           path="/employee/:id/idp/:idp_id/success"
@@ -60,6 +64,7 @@ const App = () => {
           path="/employee/:id/idp/:idp_id/cancel"
           element={<CancelPage />}
         />
+        <Route path="/start" element={<StartPage />} />
       </Routes>
 
       <TaskModal />

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeTaskState } from "./types";
+import { patchTasksStatusByID } from "../actions";
 
 const initialState: TypeTaskState = {
   task: {
@@ -33,6 +34,11 @@ const taskSlice = createSlice({
     handleCloseSidePanel() {
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(patchTasksStatusByID.fulfilled, (state, action) => {
+      state.task.status = action.payload.status;
+    });
   },
 });
 

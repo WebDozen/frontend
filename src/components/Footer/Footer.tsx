@@ -14,12 +14,11 @@ import {
 } from "../ui-kit";
 import FooterLogo from "../../images/footer_logo.svg";
 import style from "./Footer.module.scss";
-import styles from "../../pages/AddIdpPage/AddIdpPage.module.scss";
 
 const Footer = () => {
   return (
     <footer>
-      <div className={styles.content}>
+      <div className={style.content}>
         <Divider className={style.dividerCustom} />
         <Gap size="4xl" />
         <div>
