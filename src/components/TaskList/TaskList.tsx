@@ -25,12 +25,9 @@ export default function TaskList(isOpen: any, onClose: any) {
 
   const {
     idp: { tasks: tasks },
-    idp,
     loading,
     error,
   } = useAppSelector(getIdpData);
-
-  // console.log(idp);
 
   const tableRowElement = (task: TypeTask) => (
     <Table.TRow
