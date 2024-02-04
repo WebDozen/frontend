@@ -17,12 +17,11 @@ const EmployeeCard = () => {
 
   const {
     employee: {
-      idp: { status: idp_status, total_tasks_count: tasks_count },
-    },
-    loading,
-    error,
+      idp: { status: idp_status, total_tasks_count: tasks_count }, 
+    }, employee,
   } = useAppSelector(getEmployeeData);
 
+  console.log ("Степанов  ", employee);
   const addPlateConfig = {
     hasButton: true,
     hasCloser: false,

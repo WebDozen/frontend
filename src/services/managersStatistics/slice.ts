@@ -1,8 +1,7 @@
-import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TypeStatisticState } from "./types";
 import { getManagersStatistics } from "./actions";
-import type { TypeRequestError } from "../types";
+import { setError, setPending } from "../utils";
 
 const initialState: TypeStatisticState = {
   statistics: {
@@ -29,21 +28,11 @@ const managersStatisticsSlice = createSlice({
         state.statistics = action.payload.statistics;
         state.loading = false;
       })
-      .addCase(getManagersStatistics.pending, (state) => {
-        state.error = null;
-        state.loading = true;
-      })
-      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
-        state.error = action.payload.detail;
-        state.loading = false;
-      });
+      .addCase(getManagersStatistics.pending, setPending)
+      .addCase(getManagersStatistics.rejected, setError);
   },
 });
 
 // export const {} = managersStatisticsSlice.actions;
 
 export default managersStatisticsSlice.reducer;
-
-function isError(action: UnknownAction) {
-  return action.type.endsWith("rejected");
-}

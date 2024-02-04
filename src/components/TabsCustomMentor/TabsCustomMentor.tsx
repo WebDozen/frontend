@@ -4,6 +4,7 @@ import IdpList from "../IdpList/IdpList";
 import TeamList from "../TeamList/TeamList";
 
 const TabsCustomMentor = () => {
+  //const { list: users, loading, error } = useAppSelector(getEmployeesListData);
   const TABS = [
     {
       title: "Мой ИПР",
@@ -18,8 +19,10 @@ const TabsCustomMentor = () => {
   ];
 
   const [selectedId, setSelectedId] = useState(TABS[0].id);
-  const handleChange = (event: any, { selectedId }: any) =>
+  const handleChange = (event: any, { selectedId }: any) => {
     setSelectedId(selectedId);
+  
+  }
   const selectedTab = TABS.find((tab) => tab.id === selectedId);
 
   return (

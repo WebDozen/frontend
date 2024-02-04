@@ -11,7 +11,9 @@ import { TYPE_SLAG_IDP } from "../../utils/constants";
 export default function EmployeeInfo() {
   const { pathname } = useLocation();
   const { id } = useParams();
-  const { employee, loading, error } = useAppSelector(getEmployeeData);
+
+  const { employee, loading, } = useAppSelector(getEmployeeData);
+
   const { idp } = useAppSelector(getIdpData);
 
   const employeePage = pathname === `/employee/${id}`;

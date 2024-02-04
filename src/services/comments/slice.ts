@@ -1,13 +1,12 @@
-import type { PayloadAction, UnknownAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   getIdpCommentsByIdpID,
   getTaskCommentsByTaskID,
   postIdpCommentsByIdpID,
   postTaskCommentsByTaskID,
 } from "./actions";
-import type { TypeRequestError } from "../types";
 import type { TypeCommentsState } from "./types";
+import { setError, setPending } from "../utils";
 
 const initialState: TypeCommentsState = {
   taskComments: [],
@@ -40,24 +39,27 @@ const commentsSlice = createSlice({
         state.idpComments.push(action.payload);
         state.loading = false;
       })
-      .addMatcher(isPending, (state) => {
-        state.error = null;
-        state.loading = true;
-      })
-      .addMatcher(isError, (state, action: PayloadAction<TypeRequestError>) => {
-        state.error = action.payload.detail;
-        state.loading = false;
-      });
+      .addMatcher(
+        isAnyOf(
+          getTaskCommentsByTaskID.pending,
+          postTaskCommentsByTaskID.pending,
+          getIdpCommentsByIdpID.pending,
+          postIdpCommentsByIdpID.pending,
+        ),
+        setPending,
+      )
+      .addMatcher(
+        isAnyOf(
+          getTaskCommentsByTaskID.rejected,
+          postTaskCommentsByTaskID.rejected,
+          getIdpCommentsByIdpID.rejected,
+          postIdpCommentsByIdpID.rejected,
+        ),
+        setError,
+      );
   },
 });
 
 // export const {} = managersStatisticsSlice.actions;
 
 export default commentsSlice.reducer;
-
-function isError(action: UnknownAction) {
-  return action.type.endsWith("rejected");
-}
-function isPending(action: UnknownAction) {
-  return action.type.endsWith("pending");
-}

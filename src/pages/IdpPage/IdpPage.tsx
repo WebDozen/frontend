@@ -39,8 +39,6 @@ const IdpPage = () => {
     hasCloser: true,
   };
 
-  // console.log(idp_id);
-
   return (
     <div className={styles.content}>
       <MentorArea />
