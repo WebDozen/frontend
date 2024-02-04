@@ -7,7 +7,12 @@ import style from "./IdpPage.module.scss";
 
 import { useAppDispatch } from "../../services/hook";
 import { useEffect } from "react";
-import { getEmployeeByID, getIdpByID} from "../../services/actions";
+import {
+  getEmployeeByID,
+  getIdpByID,
+  getIdpCommentsByIdpID,
+  getIdps,
+} from "../../services/actions";
 import { useParams } from "react-router-dom";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
 import IdpCommentSending from "../../components/IdpCommentSending/IdpCommentSending";
@@ -26,6 +31,7 @@ const IdpPage = () => {
   useEffect(() => {
     dispatch(getEmployeeByID(id));
     dispatch(getIdpByID({ id, idp_id }));
+    dispatch(getIdpCommentsByIdpID(`${idp_id}`));
   }, [dispatch]);
 
   const plateSuccess = {
@@ -33,7 +39,7 @@ const IdpPage = () => {
     hasCloser: true,
   };
 
-  console.log(idp_id);
+  // console.log(idp_id);
 
   return (
     <>
@@ -54,9 +60,9 @@ const IdpPage = () => {
       задачу."
         />
         <Gap size="xl" />
-        <CommentsList>Времянка под комменты</CommentsList>
+        <CommentsList />
         <Gap size="3xl" />
-        <IdpCommentSending />
+        <IdpCommentSending idp_id={idp_id} />
       </div>
       <Gap size="7xl" />
       </div>

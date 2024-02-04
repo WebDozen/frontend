@@ -61,6 +61,7 @@ const App = () => {
           />
         </Route>
       </Routes>
+      
       <TaskModal />
     </div>
   );

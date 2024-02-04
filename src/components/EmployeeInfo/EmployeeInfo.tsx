@@ -16,7 +16,7 @@ export default function EmployeeInfo() {
 
   const { idp } = useAppSelector(getIdpData);
 
-  console.log(idp);
+  // console.log(idp);
 
   const date =
     idp.status.slug === TYPE_SLAG_IDP.expired

@@ -20,7 +20,6 @@ import type { TypeEmployeesItem } from "../../services/employeesList/slice";
 const TeamList = () => {
   const navigate = useNavigate();
   const { list: users, loading, error } = useAppSelector(getEmployeesListData);
-  console.log(users, loading, error);
 
   const styleTableCell = {
     padding: "var(--gap-2xl) var(--gap-s) var(--gap-xl) ",

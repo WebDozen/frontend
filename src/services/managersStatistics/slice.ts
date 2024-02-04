@@ -26,7 +26,6 @@ const managersStatisticsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getManagersStatistics.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.statistics = action.payload.statistics;
         state.loading = false;
       })
