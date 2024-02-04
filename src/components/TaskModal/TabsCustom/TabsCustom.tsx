@@ -3,20 +3,19 @@ import { Gap, Tabs, Tab } from "../../ui-kit";
 import TaskDescription from "./TaskDescription/TaskDescription";
 import TaskComments from "./TaskComments/TaskComments";
 
-const fakeProps1 =
-  "Избегание конфликтов в команде приводит к ещё большим проблемам. Давай разберёмся, почему возникают разногласия, чем они полезны, и какие методы управления конфликтами в организации можно использовать. По ходу прочтения задавай свои вопросы, а после – обсудим ключевые моменты на созвоне.";
+type Props = { description: string; task_id: string };
 
-const TabsCustom = () => {
+const TabsCustom: React.FC<Props> = ({ description, task_id }) => {
   const TABS = [
     {
       title: "Описание",
       id: "tab-1",
-      comp: <TaskDescription children={fakeProps1} />,
+      comp: <TaskDescription children={description} />,
     },
     {
       title: "Комментарии",
       id: "tab-2",
-      comp: <TaskComments />,
+      comp: <TaskComments task_id={task_id} />,
     },
   ];
 

@@ -2,7 +2,6 @@ import {
   Typography,
   Button,
   SidePanelDesktop,
-  Divider,
   Gap,
   Link,
   StatusComponent,
@@ -17,6 +16,21 @@ const TaskModal: React.FC = () => {
   const { is_open_side_panel, task } = useAppSelector(getTasksSidePanelData);
   const dispatch = useAppDispatch();
   const handleClose = () => dispatch(handleCloseSidePanel());
+  const handleStatusButton = () => {
+    const {
+      status: { slug },
+    } = task;
+    if (slug === "open") {
+      console.log("Взять в работу");
+    }
+    if (slug === "completed") {
+      console.log("Вернуть в работу");
+    }
+    if (slug === "in_progress") {
+      console.log("Завершить работу");
+    }
+  };
+
   return (
     <SidePanelDesktop
       open={is_open_side_panel}
@@ -33,13 +47,12 @@ const TaskModal: React.FC = () => {
         </Typography.Title>
       </SidePanelDesktop.Header>
       <SidePanelDesktop.Content>
-        <Divider className={style.divider} />
         <Gap size="xl" />
         <div>
           <Typography.Title tag="h3" view="xsmall">
             {task.name}
           </Typography.Title>
-          <div className={style.gap} />
+          <Gap size="xl" />
 
           <div className={style.box}>
             <Typography.Text
@@ -105,13 +118,13 @@ const TaskModal: React.FC = () => {
             )}
           </div>
 
-          <div className={style.bigGap} />
+          <Gap size="2xl" />
 
-          <TabsCustom />
+          <TabsCustom description={task.description} task_id={`${task.id}`} />
         </div>
       </SidePanelDesktop.Content>
       <SidePanelDesktop.Footer sticky={true}>
-        <Button size={"s"} view="primary">
+        <Button size={"s"} view="primary" onClick={() => handleStatusButton()}>
           Взять в работу
         </Button>
       </SidePanelDesktop.Footer>

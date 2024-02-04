@@ -1,6 +1,4 @@
-// import { CONFIG } from "./data";
-
-import { CONFIG } from "./data";
+import { CONFIG_API } from "./data";
 
 interface RequestType {
   url: string | undefined;
@@ -159,4 +157,4 @@ class Api {
     });
 }
 
-export const api = new Api(CONFIG);
+export const api = new Api(CONFIG_API);
