@@ -24,8 +24,6 @@ const MentorPage = () => {
 
   const {
     employee: { is_mentor },
-    loading,
-    error,
   } = useAppSelector(getEmployeeData);
 
   return (
