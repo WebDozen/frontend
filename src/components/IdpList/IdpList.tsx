@@ -1,7 +1,6 @@
 import {
   Table,
   Typography,
-  Status,
   TableCustomWrapper,
   StatusComponent,
 } from "../ui-kit";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
+import { Gap, Button, GenericWrapper, Divider, Skeleton } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
@@ -47,7 +47,10 @@ const IdpForm = () => {
   };
   useEffect(() => {
     const idpInitialState: IdpValue = {
-      mentor: idp.mentor !== null ? idp.mentor.toString() : undefined,
+      mentor:
+        idp.mentor !== null
+          ? `${idp.mentor?.last_name} ${idp.mentor?.first_name} ${idp.mentor?.middle_name}`
+          : undefined,
       name: idp.name,
       description: idp.description,
       deadline: DATE_FROM_ISO(idp.deadline),
@@ -230,15 +233,15 @@ const IdpForm = () => {
     }
   };
 
-  // idp validation in IdpFormPartOne
-
   return (
     <form>
-      <IdpFormPartOne
-        idpValue={idpValue}
-        setIdpValue={setIdpValue}
-        mentorsList={mentorsList}
-      />
+      <Skeleton visible={loading}>
+        <IdpFormPartOne
+          idpValue={idpValue}
+          setIdpValue={setIdpValue}
+          mentorsList={mentorsList}
+        />
+      </Skeleton>
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (
         <TaskForm
@@ -274,6 +277,7 @@ const IdpForm = () => {
           size="m"
           className={style.mainButton}
           type="button"
+          onClick={() => navigate(-1)}
         >
           Назад
         </Button>
@@ -286,7 +290,7 @@ const IdpForm = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Создать ИПР
+          {isAddIdpPage ? "Создать ИПР" : "Сохранить"}
         </Button>
       </GenericWrapper>
       <Gap size="7xl" />

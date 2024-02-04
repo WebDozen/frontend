@@ -21,7 +21,7 @@ type Props = { task_id: string };
 
 const TaskComments: React.FC<Props> = ({ task_id }) => {
   const dispatch = useAppDispatch();
-  const { taskComments, loading, error } = useAppSelector(getCommentsData);
+  const { taskComments, loading } = useAppSelector(getCommentsData);
   const [text, setText] = useState<string>("");
 
   useEffect(() => {

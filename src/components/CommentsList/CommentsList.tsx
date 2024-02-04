@@ -4,10 +4,8 @@ import Comment from "../Comment/Comment";
 import { Gap, Typography, Scrollbar } from "../ui-kit";
 import style from "./CommentsList.module.scss";
 
-type Props = { children?: string };
-
-const CommentsList = ({ children }: Props) => {
-  const { idpComments, loading } = useAppSelector(getCommentsData);
+const CommentsList = () => {
+  const { idpComments } = useAppSelector(getCommentsData);
 
   return (
     <div className={style.block}>

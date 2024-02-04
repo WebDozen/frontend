@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   Table,
   Typography,
@@ -15,9 +14,7 @@ import type { TypeTask } from "../../services/idp/types";
 
 import { handleOpenSidePanel } from "../../services/actions";
 
-export default function TaskList(isOpen: any, onClose: any) {
-  const navigate = useNavigate();
-
+export default function TaskList() {
   const dispatch = useAppDispatch();
 
   const {
@@ -55,19 +52,19 @@ export default function TaskList(isOpen: any, onClose: any) {
   );
 
   return (
-    <Skeleton visible={loading}>
-      <div className={styleTask.table}>
-        <TableCustomWrapper>
-          <Table.THead rowClassName={styleTask.tableHead}>
-            <Table.THeadCell className={styleTask.tableHeadCell} title="Задачи">
-              Задачи
-            </Table.THeadCell>
-          </Table.THead>
-          <Table.TBody>
-            {tasks ? tasks.map((task) => tableRowElement(task)) : null}
-          </Table.TBody>
-        </TableCustomWrapper>
-      </div>
+        <Skeleton visible={loading}>
+        <div className={styleTask.table}>
+          <TableCustomWrapper>
+            <Table.THead rowClassName={styleTask.tableHead}>
+              <Table.THeadCell className={styleTask.tableHeadCell} title="Задачи">
+                Задачи
+              </Table.THeadCell>
+            </Table.THead>
+            <Table.TBody>
+              {tasks ? tasks.map((task) => tableRowElement(task)) : null}
+            </Table.TBody>
+          </TableCustomWrapper>
+        </div>
     </Skeleton>
   );
 }

@@ -29,8 +29,6 @@ const EmployeePage = () => {
       idp: { status: idp_status },
     },
     employee,
-    loading,
-    error,
   } = useAppSelector(getEmployeeData);
 
   const status: string = idp_status;
