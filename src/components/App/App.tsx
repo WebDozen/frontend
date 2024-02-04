@@ -15,8 +15,7 @@ import TaskModal from "../TaskModal/TaskModal";
 
 import style from "./App.module.scss";
 import { useState } from "react";
-
-
+import StartPage from "../../pages/StartPage/StartPage";
 
 const App = () => {
   const [role] = useState("manager");
@@ -48,9 +47,9 @@ const App = () => {
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
             path={"/employee/:id/edit_idp/:idp_id"}
-            element={<EditIdpPage />} />
+            element={<EditIdpPage />}
+          />
           <Route path="mentor/employee/:id" element={<MentorPage />} />
-
         </Route>
         <Route
           path="/employee/:id/idp/:idp_id/success"
@@ -60,6 +59,7 @@ const App = () => {
           path="/employee/:id/idp/:idp_id/cancel"
           element={<CancelPage />}
         />
+        <Route path="/start" element={<StartPage />} />
       </Routes>
 
       <TaskModal />
