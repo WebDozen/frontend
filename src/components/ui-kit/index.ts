@@ -32,6 +32,10 @@ import { Scrollbar } from "@alfalab/core-components/scrollbar";
 import { CustomButton } from "@alfalab/core-components/custom-button";
 import { Skeleton } from "@alfalab/core-components/skeleton";
 
+import { ChevronRightShiftRightMIcon } from "@alfalab/icons-glyph/ChevronRightShiftRightMIcon";
+import { UserRoundedXxlIcon } from "@alfalab/icons-glyph/UserRoundedXxlIcon";
+import { PureCell } from "@alfalab/core-components/pure-cell";
+
 //Кастомные компоненты
 import TableCustomWrapper from "./TableCustomWrapper/TableCustomWrapper";
 import StatusComponent from "./StatusComponent/StatusComponent";
@@ -87,6 +91,9 @@ export {
   RadioGroup,
   Tag,
   Skeleton,
+  ChevronRightShiftRightMIcon,
+  UserRoundedXxlIcon,
+  PureCell,
   //Кастомные компоненты
   StatusComponent,
   TableCustomWrapper,

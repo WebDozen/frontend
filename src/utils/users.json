@@ -1,0 +1,90 @@
+[
+  {
+    "first_name": "Дмитрий",
+    "middle_name": "Алексеевич",
+    "last_name": "Попов",
+    "role": "employee",
+    "token": "07dd378c587d55c3375560e270f17b756000ad34",
+    "id": 6
+  },
+  {
+    "first_name": "Сергей",
+    "middle_name": "Николаевич",
+    "last_name": "Иванов",
+    "role": "employee",
+    "token": "23679d62474620894b2e9a96bf8d50d559383aab",
+    "id": 3
+  },
+  {
+    "first_name": "Максим",
+    "middle_name": "Максимович",
+    "last_name": "Соколов",
+    "role": "employee",
+    "token": "4394ebbadbc2067dd9368baba525e48e2cf7ac04",
+    "id": 9
+  },
+  {
+    "first_name": "Алексей",
+    "middle_name": "Петрович",
+    "last_name": "Михайлов",
+    "role": "employee",
+    "token": "572ba6853db950318ff867bfd3814fd2149235b7",
+    "id": 10
+  },
+  {
+    "first_name": "Ольга",
+    "middle_name": "Николаевна",
+    "last_name": "Смирнова",
+    "role": "employee",
+    "token": "57f011d69f89cf31569f0fe58dd3ab340853271e",
+    "id": 4
+  },
+  {
+    "first_name": "Руководитель",
+    "middle_name": "Боссович",
+    "last_name": "Начальников",
+    "role": "manager",
+    "token": "64cedf72b2567c000d0679bc30ae3b6d31e433f2",
+    "id": 1
+  },
+  {
+    "first_name": "Андрей",
+    "middle_name": "Максимович",
+    "last_name": "Васильев",
+    "role": "employee",
+    "token": "7186efa0d05ef08d6a421b7bd6f1836d1ffa0da5",
+    "id": 7
+  },
+  {
+    "first_name": "Ирина",
+    "middle_name": "Николаевна",
+    "last_name": "Федорова",
+    "role": "employee",
+    "token": "7f249b08bbe2f61922657cd53b9a2be7224e0f82",
+    "id": 12
+  },
+  {
+    "first_name": "Сергей",
+    "middle_name": "Максимович",
+    "last_name": "Петров",
+    "role": "employee",
+    "token": "caab0dde61b913dfc31f8504a4052d83264d175d",
+    "id": 8
+  },
+  {
+    "first_name": "Иван",
+    "middle_name": "Дмитриевич",
+    "last_name": "Новиков",
+    "role": "employee",
+    "token": "e75d8b55fa4bebc48245290ca4a9aab11a99cd69",
+    "id": 11
+  },
+  {
+    "first_name": "Максим",
+    "middle_name": "Максимович",
+    "last_name": "Кузнецов",
+    "role": "employee",
+    "token": "f9012b41b0762c2672ba1cdc08a28e894a978bae",
+    "id": 5
+  }
+]
