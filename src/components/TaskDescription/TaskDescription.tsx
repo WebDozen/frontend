@@ -7,16 +7,10 @@ import { getIdpData } from "../../services/selectors";
 import NoTaskMessage from "../NoTaskMessage/NoTaskMessage";
 
 export default function TaskDescription() {
+  const { idp } = useAppSelector(getIdpData);
 
-   const {
-    idp,
-    loading,
-    error,
-  } = useAppSelector(getIdpData);
-  
   return (
     <div className={style.block}>
-
       {idp.tasks?.length ? <TaskList /> : <NoTaskMessage />}
       <Gap size="xl" />
       <PlanDescription />

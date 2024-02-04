@@ -30,7 +30,7 @@ const Head = () => {
 
   const {
     employee: {
-      idp: { total_idp_count: total_idp_count, status: status },
+      idp: { total_idp_count, status },
     },
     loading,
   } = useAppSelector(getEmployeeData);
