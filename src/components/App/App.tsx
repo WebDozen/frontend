@@ -1,4 +1,11 @@
-import { Outlet, Params, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import {
+  Outlet,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import type { Params } from "react-router-dom";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
@@ -19,7 +26,7 @@ import StartPage from "../../pages/StartPage/StartPage";
 import ProtectedRoute from "../ProtectedRoute";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getEmployeeByID } from "../../services/actions";
-import { getEmployeeData } from "../../services/selectors";
+// import { getEmployeeData } from "../../services/selectors";
 
 const App = () => {
   const navigate = useNavigate();
@@ -30,10 +37,7 @@ const App = () => {
     dispatch(getEmployeeByID(id));
   }, [dispatch]);
 
-  const {
-   
-    employee,
-  } = useAppSelector(getEmployeeData);
+  // const { employee } = useAppSelector(getEmployeeData);
 
   useEffect(() => {
     navigate("/start");
@@ -57,18 +61,14 @@ const App = () => {
           }
         >
           {/* 2 уроверь */}
-          <Route index element={
-          
-          <ManagerPage />} />
+          <Route index element={<ManagerPage />} />
           <Route path="/employee/:id" element={<EmployeePage />} />
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
             path={"/employee/:id/edit_idp/:idp_id"}
             element={<EditIdpPage />}
-            
           />
-          
         </Route>
         <Route
           path="/employee/:id/idp/:idp_id/success"
@@ -78,11 +78,9 @@ const App = () => {
           path="/employee/:id/idp/:idp_id/cancel"
           element={<CancelPage />}
         />
-          </Route>
-          
+
         <Route path="/start" element={<StartPage />} />
       </Routes>
-
       <TaskModal />
     </div>
   );
