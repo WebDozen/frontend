@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import { Outlet, Params, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
@@ -14,15 +14,26 @@ import Footer from "../Footer/Footer";
 import TaskModal from "../TaskModal/TaskModal";
 
 import style from "./App.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import StartPage from "../../pages/StartPage/StartPage";
 import ProtectedRoute from "../ProtectedRoute";
-import { useAppDispatch } from "../../services/hook";
-import { handleRessetUser } from "../../services/actions";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getEmployeeByID } from "../../services/actions";
+import { getEmployeeData } from "../../services/selectors";
 
 const App = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { id } = useParams<Params>();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getEmployeeByID(id));
+  }, [dispatch]);
+
+  const {
+   
+    employee,
+  } = useAppSelector(getEmployeeData);
 
   useEffect(() => {
     navigate("/start");
@@ -46,16 +57,20 @@ const App = () => {
           }
         >
           {/* 2 уроверь */}
-          <Route index element={<ManagerPage />} />
+          <Route index element={
+          
+          <ManagerPage />} />
           <Route path="/employee/:id" element={<EmployeePage />} />
           <Route path="/employee/:id/idp/:idp_id" element={<IdpPage />} />
           <Route path="/employee/:id/add_idp" element={<AddIdpPage />} />
           <Route
             path={"/employee/:id/edit_idp/:idp_id"}
             element={<EditIdpPage />}
+            
           />
-          <Route path="mentor/employee/:id" element={<MentorPage />} />
-          <Route
+          
+        </Route>
+        <Route
           path="/employee/:id/idp/:idp_id/success"
           element={<SuccessPage />}
         />
