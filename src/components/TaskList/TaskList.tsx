@@ -47,6 +47,7 @@ export default function TaskList(isOpen: any, onClose: any) {
           defaultMargins={false}
           color="primary"
           style={{ fontFamily: "SF Pro Text" }}
+          rowLimit={3}
         >
           {task.name}
         </Typography.Text>
