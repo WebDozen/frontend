@@ -55,8 +55,7 @@ const App = () => {
             element={<EditIdpPage />}
           />
           <Route path="mentor/employee/:id" element={<MentorPage />} />
-        </Route>
-        <Route
+          <Route
           path="/employee/:id/idp/:idp_id/success"
           element={<SuccessPage />}
         />
@@ -64,6 +63,8 @@ const App = () => {
           path="/employee/:id/idp/:idp_id/cancel"
           element={<CancelPage />}
         />
+          </Route>
+          
         <Route path="/start" element={<StartPage />} />
       </Routes>
 
