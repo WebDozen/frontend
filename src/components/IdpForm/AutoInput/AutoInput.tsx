@@ -30,14 +30,17 @@ const AutoInput = ({ config, name, idpValue, setIdpValue }: Config) => {
     if (idpValue.mentor === undefined) {
       return undefined;
     }
-    matchOption(option, idpValue.mentor);
+    return matchOption(option, idpValue.mentor);
   });
 
   const handleInput = (
     _: React.ChangeEvent<HTMLInputElement> | null,
     { value }: { value: string },
   ) => {
-    setIdpValue({ ...idpValue, [name]: value });
+    const reg = /^\D*$/;
+    if (reg.test(value)) {
+      setIdpValue({ ...idpValue, [name]: value });
+    }
   };
 
   const handleChange = ({ selected }: any) => {

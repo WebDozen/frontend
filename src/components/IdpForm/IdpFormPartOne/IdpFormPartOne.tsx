@@ -2,7 +2,7 @@ import { Gap, Input, Textarea, RadioGroup, Tag } from "../../ui-kit";
 import style from "./IdpFormPartOne.module.scss";
 import AutoInput from "../AutoInput/AutoInput";
 import DateInputCustom from "../DateInputCustom/DateInputCustom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { useAppSelector } from "../../../services/hook";
 // import { getEmployeesListData } from "../../../services/selectors";
 // import { useParams } from "react-router-dom";
@@ -21,18 +21,11 @@ interface Props {
 }
 
 const IdpFormPartOne = ({ idpValue, setIdpValue, mentorsList }: Props) => {
-  const [config, setConfig] = useState({
+  const config = {
     label: "Ментор",
     placeholder: "Назначьте ментора",
-    options: [{ key: "Михалыч" }],
-  });
-  useEffect(() => {
-    setConfig({
-      label: "Ментор",
-      placeholder: "Назначьте ментора",
-      options: mentorsList,
-    });
-  }, [mentorsList]);
+    options: mentorsList,
+  };
 
   const handleIdpChange = (event: any) => {
     const { name, value } = event.target;
@@ -43,6 +36,39 @@ const IdpFormPartOne = ({ idpValue, setIdpValue, mentorsList }: Props) => {
   const [value, setValue] = useState("");
   const onChange1 = (_: any, payload: any) => {
     setValue(payload.value);
+    if (!idpValue.deadline) {
+      const newDate = new Date();
+      let [day, month, year] = [
+        newDate.getDate(),
+        newDate.getMonth() + 1,
+        newDate.getFullYear(),
+      ];
+      if (payload.value === "three") month = (month + 3) % 12;
+      else if (payload.value === "six") month = (month + 6) % 12;
+      else if (payload.value === "twelve") year = year + 1;
+      let dayStr;
+      let monthStr;
+      if (day < 10) dayStr = "0" + day;
+      if (month < 10) monthStr = "0" + month;
+      else monthStr = month;
+      let result = `${dayStr}.${monthStr}.${year}`;
+      setIdpValue({ ...idpValue, deadline: result });
+    } else {
+      const parts = idpValue.deadline.split(".");
+      let [day, month, year] = [
+        parts[0],
+        parseInt(parts[1]),
+        parseInt(parts[2]),
+      ];
+      if (payload.value === "three") month = (month + 3) % 12;
+      else if (payload.value === "six") month = (month + 6) % 12;
+      else if (payload.value === "twelve") year = year + 1;
+      let monthStr;
+      if (month < 10) monthStr = "0" + month;
+      else monthStr = month;
+      let result = `${day}.${monthStr}.${year}`;
+      setIdpValue({ ...idpValue, deadline: result });
+    }
   };
 
   return (
@@ -81,13 +107,13 @@ const IdpFormPartOne = ({ idpValue, setIdpValue, mentorsList }: Props) => {
       <DateInputCustom idpValue={idpValue} setIdpValue={setIdpValue} />
       <Gap size="s" />
       <RadioGroup direction="horizontal" type="tag" onChange={onChange1}>
-        <Tag value="one" size="xxs">
+        <Tag value="three" size="xxs">
           3 месяца
         </Tag>
-        <Tag value="two" size="xxs">
+        <Tag value="six" size="xxs">
           6 месяцев
         </Tag>
-        <Tag value="three" size="xxs">
+        <Tag value="twelve" size="xxs">
           1 год
         </Tag>
       </RadioGroup>

@@ -104,8 +104,6 @@ export const STATUSES_TASK = {
   },
 } as const;
 
-
-
 export const DATE_FROM_ISO = (date: any) => {
   const newDate = new Date(date);
   const day = newDate.getUTCDate().toString().padStart(2, '0');

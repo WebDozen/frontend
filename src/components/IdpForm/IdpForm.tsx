@@ -41,8 +41,7 @@ const IdpForm = () => {
     : isEditIdpPage
       ? `/employee/${id}/idp/${idp_id}`
       : pathname;
-
-  console.log(list);
+      
   //
   //
   //
