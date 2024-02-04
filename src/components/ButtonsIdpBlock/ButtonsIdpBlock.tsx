@@ -13,7 +13,7 @@ export default function ButtonsIdpBlock() {
   const { id } = useParams();
   const { idp_id } = useParams();
 
-  const { idp: idp} = useAppSelector(getIdpData);
+  const { idp } = useAppSelector(getIdpData);
 
   const goToEditPage = () => {
     navigate(`/employee/${id}/edit_idp/${idp_id}`);
@@ -42,7 +42,6 @@ export default function ButtonsIdpBlock() {
       );
       originalPromiseResult = unwrapResult(resultAction);
       if (originalPromiseResult) {
-        console.log(originalPromiseResult);
         navigate(`/employee/${id}/idp/${idp_id}/cancel`);
       }
     } catch (rejectedValueOrSerializedError) {
@@ -63,7 +62,6 @@ export default function ButtonsIdpBlock() {
       );
       originalPromiseResult = unwrapResult(resultAction);
       if (originalPromiseResult) {
-        console.log(originalPromiseResult);
         navigate(`/employee/${id}/idp/${idp_id}/success`);
       }
     } catch (rejectedValueOrSerializedError) {

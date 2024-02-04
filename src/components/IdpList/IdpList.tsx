@@ -1,7 +1,6 @@
 import {
   Table,
   Typography,
-  Status,
   TableCustomWrapper,
   StatusComponent,
 } from "../ui-kit";
@@ -20,7 +19,6 @@ const IdpList = () => {
   const { pathname } = useLocation();
   const { idpsList} = useAppSelector(getIdpsListData);
   const { id } = useParams();
-  console.log("idpsList", idpsList);
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
     navigate(`/employee/${id}/idp/${idp_id}`);

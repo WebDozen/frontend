@@ -6,6 +6,7 @@ import idpsListReducer from "./idpsList/slice";
 import managersStatisticsReducer from "./managersStatistics/slice";
 import taskReducer from "./task/slice";
 import commentsReducer from "./comments/slice";
+import userReducer from "./user/slice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     managersStatistics: managersStatisticsReducer,
     task: taskReducer,
     comments: commentsReducer,
+    user: userReducer,
   },
 });
 

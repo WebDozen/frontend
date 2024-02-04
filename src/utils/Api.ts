@@ -1,4 +1,5 @@
 import { CONFIG_API } from "./data";
+import { getToken } from "./tokenStorage";
 
 interface RequestType {
   url: string | undefined;
@@ -15,8 +16,11 @@ interface ConfigType {
 
 class Api {
   private _baseUrl: string;
-  private _headers: {};
-  constructor(options: { baseUrl: string; headers: {} }) {
+  private _headers: { "Content-Type"?: string; Authorization?: string };
+  constructor(options: {
+    baseUrl: string;
+    headers: { "Content-Type"?: string; Authorization?: string };
+  }) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
@@ -42,6 +46,10 @@ class Api {
       method,
       headers: this._headers,
     };
+    const token = getToken();
+    if (token) {
+      this._headers.Authorization = `Token ${token}`;
+    }
 
     if (data !== undefined) {
       config.body = JSON.stringify(data);
@@ -117,10 +125,10 @@ class Api {
   patchTasksStatusByID = (
     idp_id: string | number,
     task_id: string | number,
-    data: { status: string },
+    data: { status_slug: string },
   ) =>
     this._makeRequest({
-      url: `/idps/${idp_id}/tasks/${task_id}/status`,
+      url: `/idps/${idp_id}/tasks/${task_id}/status/`,
       method: "PATCH",
       data,
     });

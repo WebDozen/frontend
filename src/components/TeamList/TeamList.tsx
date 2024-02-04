@@ -21,9 +21,10 @@ const TeamList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { id } = useParams();
-  const { list: users, loading, error } = useAppSelector(getEmployeesListData);
+  const { list: users } = useAppSelector(getEmployeesListData);
 
-  const titleThirdRow = pathname === `/mentor/employee/${id}` ? "Нет задач" : "Ментор";
+  const titleThirdRow =
+    pathname === `/mentor/employee/${id}` ? "Нет задач" : "Ментор";
   const showMentorIcon = pathname !== `/mentor/employee/${id}`;
 
   const styleTableCell = {
@@ -53,7 +54,9 @@ const TeamList = () => {
       </Table.TCell>
 
       <Table.TCell className={s.tableCell}>
-        {showMentorIcon && user.mentor ? <img src={mentorIcon} alt="mentor" /> : null}
+        {showMentorIcon && user.mentor ? (
+          <img src={mentorIcon} alt="mentor" />
+        ) : null}
         {!user.idp.has_task && (
           <img src={znak} alt="Иконка восклицательного знака" />
         )}
@@ -108,7 +111,9 @@ const TeamList = () => {
         </Table.THead>
 
         <Table.TBody>
-          {users.length >= 1 ? users.map((user) => tableRowElement(user)) : null}
+          {users.length >= 1
+            ? users.map((user) => tableRowElement(user))
+            : null}
         </Table.TBody>
       </TableCustomWrapper>
     </div>

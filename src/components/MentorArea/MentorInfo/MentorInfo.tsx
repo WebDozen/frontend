@@ -7,7 +7,7 @@ import { getIdpData } from "../../../services/selectors";
 
 const MentorInfo = () => {
   const {
-    idp : {mentor: mentor}, 
+    idp: { mentor },
   } = useAppSelector(getIdpData);
 
   return (
@@ -19,11 +19,13 @@ const MentorInfo = () => {
           <div className={styles.iconAndName}>
             <PersonalManagerMIcon className={styles.icon} />
             <h5 className={style.infoDescriptionName}>
-            {mentor !== null ? `${mentor.last_name} ${mentor.first_name} ${mentor.middle_name} `: ''}
+              {mentor !== null
+                ? `${mentor.last_name} ${mentor.first_name} ${mentor.middle_name} `
+                : ""}
             </h5>
           </div>
           <p className={style.infoDescriptionGrade}>
-          {mentor !== null ?`${mentor.position}, ${mentor.grade}` : ''}
+            {mentor !== null ? `${mentor.position}, ${mentor.grade}` : ""}
           </p>
         </div>
       </div>

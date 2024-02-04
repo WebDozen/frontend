@@ -68,13 +68,13 @@ export const patchTasksStatusByID = createAsyncThunk<
   {
     idp_id: string | number;
     task_id: string | number;
-    data: { status: string };
+    data: { status_slug: string };
   },
   { rejectValue: {} | unknown }
 >("idp/patchTasksStatusByID", async (tasksStatusData, { rejectWithValue }) => {
   const { idp_id, task_id, data } = tasksStatusData;
   try {
-    const status = await api.patchIdpsStatusByID(idp_id, task_id, data);
+    const status = await api.patchTasksStatusByID(idp_id, task_id, data);
     return { task_id, status };
   } catch (err) {
     return rejectWithValue(err);

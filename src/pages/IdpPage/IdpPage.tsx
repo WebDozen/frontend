@@ -11,7 +11,6 @@ import {
   getEmployeeByID,
   getIdpByID,
   getIdpCommentsByIdpID,
-  getIdps,
 } from "../../services/actions";
 import { useParams } from "react-router-dom";
 import EmployeeCardInIdp from "../../components/EmployeeCardInIdp/EmployeeCardInIdp";
