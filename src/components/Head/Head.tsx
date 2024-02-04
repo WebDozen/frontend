@@ -38,7 +38,7 @@ const Head = () => {
   const { idp } = useAppSelector(getIdpData);
 
   const showButtonsBlock =
-    idp.mentor == null && pathname === `employee/${id}/idp/${idp_id}`;
+    idp.mentor == null && pathname === `/employee/${id}/idp/${idp_id}`;
   const showButton = pathname === `/employee/${id}` && total_idp_count !== 0;
   const addIdpLocation = pathname === `/employee/${id}/add_idp`;
   const buttonIsDisabled =
