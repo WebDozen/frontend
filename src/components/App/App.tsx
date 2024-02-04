@@ -1,8 +1,4 @@
-import {
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import ManagerPage from "../../pages/ManagerPage/ManagerPage";
 import EmployeePage from "../../pages/EmployeePage/EmployeePage";
 import IdpPage from "../../pages/IdpPage/IdpPage";
@@ -65,7 +61,7 @@ const App = () => {
           element={<CancelPage />}
         />
       </Routes>
-      
+
       <TaskModal />
     </div>
   );

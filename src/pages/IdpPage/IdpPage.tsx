@@ -40,20 +40,19 @@ const IdpPage = () => {
   };
 
   return (
-    <>
-      <div className={styles.content}>
-        <MentorArea />
+    <div className={styles.content}>
+      <MentorArea />
+      <Gap size="2xl" />
+      <EmployeeCardInIdp />
+      <Gap size="3xl" />
+      <TaskDescription />
+      <div className={style.leftContainer}>
         <Gap size="2xl" />
-        <EmployeeCardInIdp />
-        <Gap size="3xl" />
-        <TaskDescription />
-        <div className={style.leftContainer}>
-          <Gap size="2xl" />
-          <PlateWrapper
-            config={plateSuccess}
-            view="positive"
-            titleText="Оставьте свой комментарий"
-            text="Здесь будут отображаться комментарии ко всему плану развития. Если же вы
+        <PlateWrapper
+          config={plateSuccess}
+          view="positive"
+          titleText="Оставьте свой комментарий"
+          text="Здесь будут отображаться комментарии ко всему плану развития. Если же вы
       хотите оставить комментарий к конкретной задаче, откройте нужную вам
       задачу."
         />
@@ -63,8 +62,7 @@ const IdpPage = () => {
         <IdpCommentSending idp_id={idp_id} />
       </div>
       <Gap size="7xl" />
-      </div>
-    </>
+    </div>
   );
 };
 
