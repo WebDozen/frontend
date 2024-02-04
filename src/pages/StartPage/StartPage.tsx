@@ -13,7 +13,7 @@ import s from "./StartPage.module.scss";
 import { useAppDispatch } from "../../services/hook";
 import { handleSetUser } from "../../services/actions";
 import { useNavigate } from "react-router-dom";
-import USERS from "./../../utils/users.json";
+import USERS from "./../../utils/users-test.json";
 
 const StartPage: React.FC = () => {
   const dispatch = useAppDispatch();
