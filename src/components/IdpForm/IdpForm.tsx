@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Gap, Button, GenericWrapper, Divider } from "../ui-kit";
+import { Gap, Button, GenericWrapper, Divider, Skeleton } from "../ui-kit";
 import style from "./IdpForm.module.scss";
 import IdpFormPartOne from "./IdpFormPartOne/IdpFormPartOne";
 import TaskForm from "./TaskForm/TaskForm";
@@ -23,10 +23,6 @@ interface TaskValue {
   source: string;
 }
 
-//
-//
-//
-
 const IdpForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -41,10 +37,6 @@ const IdpForm = () => {
     : isEditIdpPage
       ? `/employee/${id}/idp/${idp_id}`
       : pathname;
-      
-  //
-  //
-  //
 
   const initialTaskNull: TaskValue[] = [];
   const idpInitialNull: IdpValue = {
@@ -55,7 +47,10 @@ const IdpForm = () => {
   };
   useEffect(() => {
     const idpInitialState: IdpValue = {
-      mentor: idp.mentor !== null ? idp.mentor.toString() : undefined,
+      mentor:
+        idp.mentor !== null
+          ? `${idp.mentor?.last_name} ${idp.mentor?.first_name} ${idp.mentor?.middle_name}`
+          : undefined,
       name: idp.name,
       description: idp.description,
       deadline: DATE_FROM_ISO(idp.deadline),
@@ -105,6 +100,20 @@ const IdpForm = () => {
   //
   //
   //
+
+  const taskParser = inputFields.map((task) => {
+    let type;
+    if (task.type === "Книга") type = 1;
+    else if (task.type === "Курс") type = 2;
+    else if (task.type === "Рабочая задача") type = 3;
+    else if (task.type === "Alfa Academy") type = 4;
+    return {
+      name: task.name,
+      description: task.description,
+      type: type,
+      source: task.source,
+    };
+  });
 
   useEffect(() => {
     const hasMentor = idpValue.mentor !== "" && idpValue.name !== ""; //true kogda zapolnen
@@ -187,23 +196,22 @@ const IdpForm = () => {
   // idp submit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    let FinalObj = {};
     const { mentor, name, description, deadline } = idpValue;
     const mentorId = getMentorId(idMentorsList, mentor);
     const isoDate = DATE_TO_ISO(deadline);
-    FinalObj = {
+    const finalObj = {
       mentor: mentorId,
       name,
       description,
       deadline: isoDate,
-      tasks: inputFields,
+      tasks: taskParser,
     };
 
     try {
       let originalPromiseResult;
       if (isAddIdpPage) {
         const resultAction = await dispatch(
-          postIdp({ employee_id: `${id}`, data: FinalObj }),
+          postIdp({ employee_id: `${id}`, data: finalObj }),
         );
         originalPromiseResult = unwrapResult(resultAction);
       }
@@ -212,7 +220,7 @@ const IdpForm = () => {
           patchIdpByID({
             employee_id: `${id}`,
             idp_id: `${idp_id}`,
-            data: FinalObj,
+            data: finalObj,
           }),
         );
         originalPromiseResult = unwrapResult(resultAction);
@@ -226,15 +234,15 @@ const IdpForm = () => {
     }
   };
 
-  // idp validation in IdpFormPartOne
-
   return (
     <form>
-      <IdpFormPartOne
-        idpValue={idpValue}
-        setIdpValue={setIdpValue}
-        mentorsList={mentorsList}
-      />
+      <Skeleton visible={loading}>
+        <IdpFormPartOne
+          idpValue={idpValue}
+          setIdpValue={setIdpValue}
+          mentorsList={mentorsList}
+        />
+      </Skeleton>
       {/* {где то тут надо поменять отступ на 32 после кнопок месяцев} */}
       {inputFields.map((input, index) => (
         <TaskForm
@@ -270,6 +278,7 @@ const IdpForm = () => {
           size="m"
           className={style.mainButton}
           type="button"
+          onClick={() => navigate(-1)}
         >
           Назад
         </Button>
@@ -282,7 +291,7 @@ const IdpForm = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Создать ИПР
+          {isAddIdpPage ? "Создать ИПР" : "Сохранить"}
         </Button>
       </GenericWrapper>
       <Gap size="7xl" />

@@ -14,14 +14,12 @@ const EmployeeCard = () => {
   const isAddIdpPage = pathname === `/employee/${id}/add_idp`;
   const isEditIdpPage = pathname === `/employee/${id}/edit_idp/${idp_id}`;
 
-
   const {
     employee: {
-      idp: { status: idp_status, total_tasks_count: tasks_count }, 
-    }, employee,
+      idp: { status: idp_status, total_tasks_count: tasks_count },
+    },
   } = useAppSelector(getEmployeeData);
 
-  console.log ("Степанов  ", employee);
   const addPlateConfig = {
     hasButton: true,
     hasCloser: false,
@@ -66,7 +64,6 @@ const EmployeeCard = () => {
       ) : (
         <InfoProgressStatusBar />
       )}
-
     </div>
   );
 };

@@ -13,6 +13,7 @@ import style from "./Header.module.scss";
 import logo from "../../images/logo.svg";
 import { useLocation, useParams } from "react-router-dom";
 import styles from "../../pages/AddIdpPage/AddIdpPage.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ const Header = () => {
   const showButtomGap =
     pathname !== `/employee/${id}/idp/${idp_id}/cancel` &&
     pathname !== `/employee/${id}/idp/${idp_id}/success`;
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -28,6 +30,7 @@ const Header = () => {
         <GenericWrapper justifyContent="between">
           <GenericWrapper alignItems="center">
             <Link
+              onClick={() => navigate("/", { replace: true })}
               underline={false}
               leftAddons={
                 <>

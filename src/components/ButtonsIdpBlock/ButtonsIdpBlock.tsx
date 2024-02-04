@@ -13,7 +13,11 @@ export default function ButtonsIdpBlock() {
   const { id } = useParams();
   const { idp_id } = useParams();
 
-  const { idp: idp} = useAppSelector(getIdpData);
+  const { idp } = useAppSelector(getIdpData);
+
+  const goToEditPage = () => {
+    navigate(`/employee/${id}/edit_idp/${idp_id}`);
+  };
 
   const showEditButton =
     idp.status.slug === TYPE_SLAG_IDP.in_progress ||
@@ -75,6 +79,7 @@ export default function ButtonsIdpBlock() {
             view="primary"
             size={56}
             icon={PencilMIcon}
+            onClick={goToEditPage}
             style={{
               backgroundColor: "rgba(15, 25, 55, 0.1)",
             }}
