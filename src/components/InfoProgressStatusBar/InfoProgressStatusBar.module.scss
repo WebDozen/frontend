@@ -1,0 +1,49 @@
+.infoProgress {
+  display: flex;
+  width: 496px;
+  height: 112px;
+  padding: 0 var(--gap---xl, 24px);
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2637580f;
+  border-radius: var(--gap---s, 12px);
+  gap: var(--gap---s, 12px);
+}
+
+.infoTextBlock {
+  display: flex;
+  justify-content: space-between;
+  gap: auto;
+}
+
+%margins {
+  margin: 0;
+  padding: 0;
+}
+
+.infoProgressStatus {
+  @extend %margins;
+  color: var(--text-secondary, var(--text-secondary, rgba(4, 4, 19, 0.55)));
+  font-feature-settings: "salt" on;
+  font-family: "SF Pro Text";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.infoProcent {
+  @extend %margins;
+  color: var(rgba(4, 4, 19, 0.55));
+  font-feature-settings: "salt" on;
+  font-family: "SF Pro Text";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.infoProcentBold {
+  font-weight: bold;
+  color: var(--color-light-text-primary);
+}

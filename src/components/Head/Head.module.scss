@@ -1,0 +1,43 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons {
+  height: max-content;
+  margin-top: auto;
+}
+.linkBack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px; /* 150% */
+  text-decoration: none;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.mainButton {
+  max-height: 56px;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.subtitleStatusBlock {
+  display: flex;
+  width: 100%;
+  gap: var(--gap---m, 16px);
+  align-items: center;
+}
+
+.buttonsArea {
+  margin-left: auto;
+}

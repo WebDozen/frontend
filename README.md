@@ -1,27 +1,44 @@
-# vite-template-redux
+# Индивидуальный план развития для сотрудников в Альфа-Банке.
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+## Описание проекта
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
+MVP проект в рамках хакатона+ от Яндекс - Практикум.
+<br>
+Сервис предназначен для составления сотрудниками индивидуальных планов развития (ИПР):
+<br>
+* Руководитель может создать ИПР, назначать задачи сотруднику.
+* Руководитель может делегировать создание и редактирование ИПР выбранному сотруднику - ментору.
+* Все роли могут просматривать текущие статусы выполнения, обмениваться комментариями.
+
+### Команда:
+12 команда - WebDozen
+- [Nastya Tulupova](https://github.com/NastyaTulupova)
+- [Roman](https://github.com/BRoman22)
+- [Dmitry Tokmak](https://github.com/TokmakDA)
+
+### Ссылки на проект:
+* Проект задеплойен и доступен по [ссылке](https://webdozen.ddns.net)
+* [Дизайн - макет в Figma](https://www.figma.com/file/D7esh15fomUTJTR4z70h9M/%D0%98%D0%9F%D0%A0_%D0%A5%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD_%D0%90%D0%BB%D1%8C%D1%84%D0%B0_12?type=design&node-id=1756-172881&mode=design&t=VkRKZxUC7gKKnVHu-0)
+* [Архив main ветки со сборкой]()
+
+### Стэк технологий:
+* TypeScript
+* React
+* Redux / Redux toolkit
+* Scss модули
+* Core components [ссылка](https://core-ds.github.io/core-components)
+
+### Инструкция по сборке и запуску
+<!-- Готовая сборка собрана и доступна в папке build, ветки main. -->
+Клонировать репозиторий на свой компьютер.
+<br>
+Установить зависимости 
 ```
+npm i
+```
+<br>
+Запуск проекта локально:
 
-## Goals
-
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
-
-## Scripts
-
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
-
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+```
+npm run dev
+```

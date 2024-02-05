@@ -1,7 +1,7 @@
 {
-  "name": "vite-template-redux",
+  "name": "web-dozen-alfa",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,12 +9,15 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "format": "prettier --write .",
+    "format": "prettier --write src/**/*.{ts,tsx,js,jsx}",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@alfalab/core-components": "^44.5.1",
     "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,6 +36,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-prettier": "^5.1.3",
+    "gh-pages": "^6.1.1",
     "jsdom": "^23.2.0",
     "prettier": "^3.2.1",
     "sass": "^1.70.0",

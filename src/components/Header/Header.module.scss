@@ -1,0 +1,60 @@
+.content {
+  padding: var(--gap-xl) 28px 0;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 176px;
+  height: 40px;
+  background-color: var(--neutral-translucent-300, rgba(15, 25, 55, 0.1));
+  border: none;
+  border-radius: 8px;
+  cursor: text;
+}
+
+.container:hover {
+  opacity: 0.7;
+}
+
+.loupe {
+  width: 24px;
+  height: 24px;
+  background-image: url(../../images/loupe.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 0 0 12px;
+  cursor: text;
+}
+
+.input {
+  width: 126px;
+  height: 24px;
+  padding: 0;
+  margin-left: 36px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: "SF Pro Text";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #0e0e0e;
+  cursor: text;
+  opacity: 1;
+}
+
+.linkCustom {
+  align-items: center;
+}
+
+.linkCustom:hover {
+  opacity: 0.7;
+}
+
+.gapCustom {
+  width: 8px;
+}

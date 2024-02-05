@@ -1,0 +1,21 @@
+.mentorAreaBlock {
+    display: flex;
+    width: 269px;
+    align-items: end;
+  }
+  
+  .block {
+    display: flex;
+    gap: var(--gap---xs, 8px);
+  }
+  
+  .iconAndName {
+    display: flex;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+    padding: 0px 8.5px 0px 0px;
+  }
+    
