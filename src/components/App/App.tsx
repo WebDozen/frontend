@@ -24,9 +24,14 @@ import style from "./App.module.scss";
 import { useEffect } from "react";
 import StartPage from "../../pages/StartPage/StartPage";
 import ProtectedRoute from "../ProtectedRoute";
-import { useAppDispatch, useAppSelector } from "../../services/hook";
-import { getEmployeeByID } from "../../services/actions";
-// import { getEmployeeData } from "../../services/selectors";
+import { useAppDispatch } from "../../services/hook";
+import {
+  getEmployeeByID,
+  getUserEmployeeByID,
+  handleSetUser,
+} from "../../services/actions";
+import { getToken } from "../../utils/tokenStorage";
+import USERS from "./../../utils/users.json";
 
 const App = () => {
   const navigate = useNavigate();
@@ -37,10 +42,23 @@ const App = () => {
     dispatch(getEmployeeByID(id));
   }, [dispatch]);
 
-  // const { employee } = useAppSelector(getEmployeeData);
+  const cbCheck = async () => {
+    const token = getToken();
+    if (token) {
+      const user = USERS.find((user) => user.token === `${token}`);
+      if (user) {
+        dispatch(handleSetUser(user));
+        await dispatch(getUserEmployeeByID(`${user.id}`));
+      } else {
+        navigate("/start");
+      }
+    } else {
+      navigate("/start");
+    }
+  };
 
   useEffect(() => {
-    navigate("/start");
+    cbCheck();
   }, []);
 
   return (
@@ -69,8 +87,8 @@ const App = () => {
             path={"/employee/:id/edit_idp/:idp_id"}
             element={<EditIdpPage />}
           />
+          <Route path="mentor/employee/:id" element={<MentorPage />} />
         </Route>
-        <Route path="mentor/employee/:id" element={<MentorPage />} />
         <Route
           path="/employee/:id/idp/:idp_id/success"
           element={<SuccessPage />}

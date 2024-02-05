@@ -1,0 +1,16 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { api } from "../../utils/Api";
+import type { Employee } from "../employee/slice";
+
+export const getUserEmployeeByID = createAsyncThunk<
+  Employee,
+  string | undefined,
+  { rejectValue: unknown }
+>("user/getUserEmployeeByID", async (id, { rejectWithValue }) => {
+  try {
+    const res = await api.getEmployeeByID(id);
+    return res;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+});
