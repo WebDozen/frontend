@@ -90,16 +90,17 @@ const App = () => {
             element={<EditIdpPage />}
           />
           <Route path="mentor/employee/:id" element={<MentorPage />} />
+
+          <Route
+            path="/employee/:id/idp/:idp_id/cancel"
+            element={<CancelPage />}
+          />
         </Route>
+
         <Route
           path="/employee/:id/idp/:idp_id/success"
           element={<SuccessPage />}
         />
-        <Route
-          path="/employee/:id/idp/:idp_id/cancel"
-          element={<CancelPage />}
-        />
-
         <Route path="/start" element={<StartPage />} />
       </Routes>
       <TaskModal />

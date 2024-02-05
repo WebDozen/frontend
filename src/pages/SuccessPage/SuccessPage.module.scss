@@ -1,7 +1,13 @@
 .block {
     background-image: url(../../images/success.gif);
-    background-repeat: no-repeat;
-    height: 672px;
+    padding: 0;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .textBlock {
