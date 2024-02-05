@@ -11,13 +11,29 @@ import {
 import Background from "./../../images/background.jpg";
 import s from "./StartPage.module.scss";
 import { useAppDispatch } from "../../services/hook";
-import { handleSetUser } from "../../services/actions";
+import { getUserEmployeeByID, handleSetUser } from "../../services/actions";
 import { useNavigate } from "react-router-dom";
-import USERS from "./../../utils/users-test.json";
+import USERS from "./../../utils/users.json";
 
 const StartPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const handleClickUser: (user: {
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    role: string;
+    token: string;
+    id: number;
+    is_mentor?: string;
+  }) => void = async (user) => {
+    dispatch(handleSetUser(user));
+    if (user.role !== "manager") {
+      await dispatch(getUserEmployeeByID(`${user.id}`));
+    }
+    navigate("/");
+  };
 
   return (
     <div
@@ -48,10 +64,7 @@ const StartPage: React.FC = () => {
                     <li
                       className={s.listItem}
                       key={user.id}
-                      onClick={() => {
-                        dispatch(handleSetUser(user));
-                        navigate("/");
-                      }}
+                      onClick={() => handleClickUser(user)}
                     >
                       <GenericWrapper
                         alignItems="center"

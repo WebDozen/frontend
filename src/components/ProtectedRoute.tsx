@@ -6,13 +6,13 @@ import { getUserData } from "../services/selectors";
 
 const ProtectedRoute: React.FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();
-  const { role, id, isMentor } = useAppSelector(getUserData);
+  const { role, id, is_mentor } = useAppSelector(getUserData);
 
-  if (!checkToken()) {
+  if (!checkToken() || location.pathname.includes("NaN")) {
     return <Navigate to="/start" replace />;
   }
   if (role !== "manager" && location.pathname === "/") {
-    return isMentor ? <Navigate to={`/mentor/employee/${id}`} replace /> : <Navigate to={`/employee/${id}`} replace />;
+    return is_mentor ? <Navigate to={`/mentor/employee/${id}`} replace /> : <Navigate to={`/employee/${id}`} replace />;
   }
   return children;
 };

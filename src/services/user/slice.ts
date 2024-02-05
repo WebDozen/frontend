@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUserEmployeeByID } from "./actions";
+import { setError, setPending } from "../utils";
 
 type TypeInitialSttate = {
   first_name: string;
@@ -7,6 +9,9 @@ type TypeInitialSttate = {
   role: string;
   token: string;
   id: number | string;
+  is_mentor: boolean;
+  loading: boolean;
+  error: string | null;
 };
 const initialState: TypeInitialSttate = {
   first_name: "",
@@ -14,7 +19,10 @@ const initialState: TypeInitialSttate = {
   last_name: "",
   role: "",
   token: "",
-  id: 0,
+  id: NaN,
+  is_mentor: false,
+  loading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -29,6 +37,16 @@ const userSlice = createSlice({
       localStorage.clear();
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserEmployeeByID.fulfilled, (state, action) => {
+        const { is_mentor } = action.payload;
+        state.is_mentor = is_mentor;
+        state.loading = false;
+      })
+      .addCase(getUserEmployeeByID.pending, setPending)
+      .addCase(getUserEmployeeByID.rejected, setError);
   },
 });
 

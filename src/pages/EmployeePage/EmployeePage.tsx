@@ -68,31 +68,6 @@ const EmployeePage = () => {
         )}
         {employee.idp.total_idp_count === 0 ? <NewPlanMessage /> : <IdpList />}
       </div>
-      {/* Плашки для сотрудника
-{status === "green" && (
-        <PlateWrapper
-          config={plateSuccess}
-          view="positive"
-          titleText="Вы выполнили все ИПР"
-          text="Пришло время создать новый план развития и двигаться к новым целям!"
-        />
-      )}
-      {status === "red" && (
-        <PlateWrapper
-          config={plateAttention}
-          view="attention"
-          titleText="Вы не выполнили последний ИПР"
-          text="Возможно, задач было слишком много? Обратитесь к руководителю, и составьте новый план для развития"
-        />
-      )}
-      {status === "grey" && (
-        <PlateWrapper
-          config={plateAttention}
-          view="attention"
-          titleText="Ваш последний ИПР был отменен"
-          text="Узнайте у руководителя или ментора в чем причина отмены, и составьте новый план для развития!"
-        />
-      )} */}
     </>
   );
 };
