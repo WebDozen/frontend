@@ -48,7 +48,9 @@ const App = () => {
       const user = USERS.find((user) => user.token === `${token}`);
       if (user) {
         dispatch(handleSetUser(user));
-        await dispatch(getUserEmployeeByID(`${user.id}`));
+        if (user.role !== "manager") {
+          await dispatch(getUserEmployeeByID(`${user.id}`));
+        }
       } else {
         navigate("/start");
       }
