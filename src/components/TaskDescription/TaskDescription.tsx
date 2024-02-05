@@ -12,7 +12,7 @@ export default function TaskDescription() {
   return (
     <div className={style.block}>
       {idp.tasks?.length ? <TaskList /> : <NoTaskMessage />}
-      <Gap size="xl" />
+      <Gap size="2xl" />
       <PlanDescription />
     </div>
   );
