@@ -17,7 +17,7 @@ import { useAppSelector } from "../../services/hook";
 const IdpList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { idpsList} = useAppSelector(getIdpsListData);
+  const { idpsList } = useAppSelector(getIdpsListData);
   const { id } = useParams();
 
   const handleClickIdp: (idp_id: string | number) => void = (idp_id) => {
@@ -52,13 +52,18 @@ const IdpList = () => {
         </Typography.Text>
       </Table.TCell>
 
-      {pathname !== `/mentor/employee/${id}` ? 
-      <Table.TCell className={styles.styleTableCell}>
-        <div className={styles.statusBlock}>
-          {idp.mentor && <img src={mentorIcon} alt="Иконка ментора" />}
-          {!idp.tasks && <img src={znak} alt="Иконка восклицательного знака" />}
-        </div>
-      </Table.TCell> : <></>}
+      {pathname !== `/mentor/employee/${id}` ? (
+        <Table.TCell className={styles.styleTableCell}>
+          <div className={styles.statusBlock}>
+            {idp.mentor && <img src={mentorIcon} alt="Иконка ментора" />}
+            {!idp.tasks && (
+              <img src={znak} alt="Иконка восклицательного знака" />
+            )}
+          </div>
+        </Table.TCell>
+      ) : (
+        <></>
+      )}
 
       <Table.TCell className={styles.styleTableCell}>
         <div className={styles.statusBlock}>
@@ -88,17 +93,18 @@ const IdpList = () => {
           <Table.THeadCell title="СРОК ВЫПОЛНЕНИЯ" width={288}>
             СРОК ВЫПОЛНЕНИЯ
           </Table.THeadCell>
-          {pathname !== `/mentor/employee/${id}` ? 
-          <Table.THeadCell title="МЕНТОР" width={184}>
-            МЕНТОР
-          </Table.THeadCell>: <></>}
+          {pathname !== `/mentor/employee/${id}` ? (
+            <Table.THeadCell title="МЕНТОР" width={184}>
+              МЕНТОР
+            </Table.THeadCell>
+          ) : (
+            <></>
+          )}
           <Table.THeadCell title="СТАТУС ИПР" width={172}>
             СТАТУС ИПР
           </Table.THeadCell>
         </Table.THead>
-        <Table.TBody>
-          {idpsList.map((idp) => tableRowElement(idp)).reverse()}
-        </Table.TBody>
+        <Table.TBody>{idpsList.map((idp) => tableRowElement(idp))}</Table.TBody>
       </TableCustomWrapper>
     </div>
   );
