@@ -4,7 +4,7 @@ import { getIdpData } from "../../services/selectors";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
 import { Button, CopyMIcon, IconButton, PencilMIcon } from "../ui-kit";
 import styles from "./ButtonsIdpBlock.module.scss";
-import { patchIdpsStatusByID } from "../../services/actions";
+import { getEmployeeByID, patchIdpsStatusByID } from "../../services/actions";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 export default function ButtonsIdpBlock() {

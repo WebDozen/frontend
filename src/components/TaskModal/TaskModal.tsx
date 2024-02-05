@@ -10,6 +10,7 @@ import style from "./TaskModal.module.scss";
 import TabsCustom from "./TabsCustom/TabsCustom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import {
+  getEmployeeData,
   getIdpData,
   getTasksSidePanelData,
   getUserData,
@@ -23,6 +24,9 @@ import { TASK_TYPES } from "../../utils/constants";
 const TaskModal: React.FC = () => {
   const { is_open_side_panel, task } = useAppSelector(getTasksSidePanelData);
   const { role } = useAppSelector(getUserData);
+  const {
+    employee: { id: employee_id },
+  } = useAppSelector(getEmployeeData);
 
   const {
     idp: { id: idp_id },
@@ -60,6 +64,7 @@ const TaskModal: React.FC = () => {
     }
     dispatch(
       patchTasksStatusByID({
+        employee_id,
         idp_id,
         task_id: task.id,
         data: {

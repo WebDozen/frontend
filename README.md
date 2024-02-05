@@ -12,6 +12,9 @@ MVP проект в рамках хакатона+ от Яндекс - Прак�
 
 ### Команда:
 12 команда - WebDozen
+- [Nastya Tulupova](https://github.com/NastyaTulupova)
+- [Roman](https://github.com/BRoman22)
+- [Dmitry Tokmak](https://github.com/TokmakDA)
 
 ### Ссылки на проект:
 * Проект задеплойен и доступен по [ссылке](https://webdozen.ddns.net)

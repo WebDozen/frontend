@@ -12,7 +12,7 @@ const MentorPage = () => {
   type Params = {
     id: string;
   };
-
+  const { is_mentor } = useAppSelector(getUserData);
   const { id } = useParams<Params>();
   const dispatch = useAppDispatch();
 
@@ -21,11 +21,6 @@ const MentorPage = () => {
     dispatch(getEmployeeByID(id));
     dispatch(getIdps(id));
   }, [dispatch]);
-
-  // const {
-  //   employee: { is_mentor },
-  // } = useAppSelector(getEmployeeData);
-  const { is_mentor } = useAppSelector(getUserData);
 
   return (
     <div className={styles.content}>
