@@ -30,7 +30,6 @@ return(
         view="primary-medium"
         tag="p"
         defaultMargins={false}
-        //className={style.text}
         color='primary-inverted'
       >
         Ваш сотрудник выполнил индивидуальный план развития
