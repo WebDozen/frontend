@@ -114,6 +114,9 @@ export const DATE_FROM_ISO = (date: any) => {
 };
 
 export const DATE_TO_ISO = (date: any) => {
+  if (date === '') {
+    return;
+  }
   const parts = date.split(".");
   const day = parts[0];
   const month = parts[1];
