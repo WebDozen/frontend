@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
-import { getIdpData } from "../../services/selectors";
+import { getIdpData, getUserData } from "../../services/selectors";
 import { TYPE_SLAG_IDP } from "../../utils/constants";
 import { Button, CopyMIcon, IconButton, PencilMIcon } from "../ui-kit";
 import styles from "./ButtonsIdpBlock.module.scss";
-import { getEmployeeByID, patchIdpsStatusByID } from "../../services/actions";
+import { patchIdpsStatusByID } from "../../services/actions";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 export default function ButtonsIdpBlock() {
@@ -14,20 +14,22 @@ export default function ButtonsIdpBlock() {
   const { idp_id } = useParams();
 
   const { idp } = useAppSelector(getIdpData);
+  const { role } = useAppSelector(getUserData);
 
   const goToEditPage = () => {
     navigate(`/employee/${id}/edit_idp/${idp_id}`);
   };
+
 
   const showEditButton =
     idp.status.slug === TYPE_SLAG_IDP.in_progress ||
     idp.status.slug === TYPE_SLAG_IDP.awaiting_review ||
     idp.status.slug === TYPE_SLAG_IDP.expired ||
     idp.status.slug === TYPE_SLAG_IDP.open;
-  const showCancelButton =
-    idp.status.slug === TYPE_SLAG_IDP.in_progress ||
-    idp.status.slug === TYPE_SLAG_IDP.open;
-  const showFinishButton = idp.status.slug === TYPE_SLAG_IDP.awaiting_review;
+  const showCancelButton = role === "manager" &&
+    (idp.status.slug === TYPE_SLAG_IDP.in_progress ||
+    idp.status.slug === TYPE_SLAG_IDP.open);
+  const showFinishButton = role === "manager" && idp.status.slug === TYPE_SLAG_IDP.awaiting_review;
 
   const handleButtonClickCancell = async (e: any) => {
     e.preventDefault();

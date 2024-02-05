@@ -31,11 +31,13 @@ const Head = () => {
   const {
     employee: {
       idp: { total_idp_count, status },
-    },
+    },  employee,
     loading,
   } = useAppSelector(getEmployeeData);
 
   const { idp } = useAppSelector(getIdpData);
+
+  console.log(employee);
 
   const showButtonsBlock =
     idp.mentor == null && pathname === `/employee/${id}/idp/${idp_id}`;
