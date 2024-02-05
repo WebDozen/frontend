@@ -19,7 +19,6 @@ __Фронтенд__:
 ### Ссылки на проект:
 * Проект задеплойен и доступен по [ссылке](https://webdozen.ddns.net)
 * [Дизайн - макет в Figma](https://www.figma.com/file/D7esh15fomUTJTR4z70h9M/%D0%98%D0%9F%D0%A0_%D0%A5%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD_%D0%90%D0%BB%D1%8C%D1%84%D0%B0_12?type=design&node-id=1756-172881&mode=design&t=VkRKZxUC7gKKnVHu-0)
-* [Архив main ветки со сборкой]()
 
 ### Стэк технологий:
 * TypeScript
