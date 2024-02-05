@@ -29,7 +29,7 @@ const Header = () => {
         <GenericWrapper justifyContent="between">
           <GenericWrapper alignItems="center">
             <Link
-              onClick={() => navigate("/", { replace: true })}
+              onClick={() => navigate("/start", { replace: true })}
               underline={false}
               leftAddons={
                 <>
